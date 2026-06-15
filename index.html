@@ -51,7 +51,8 @@
       { "@type": "City", "name": "Dalaman" },
       { "@type": "City", "name": "Köyceğiz" },
       { "@type": "City", "name": "Fethiye" },
-      { "@type": "City", "name": "Marmaris" }
+      { "@type": "City", "name": "Marmaris" },
+      { "@type": "City", "name": "İztuzu" }
     ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -64,13 +65,20 @@
       "name": "Hizmetlerimiz",
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Elektrik Tesisatı" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acil Elektrikçi" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Elektrik Arıza Servisi" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Klima Montajı" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bakım & Periyodik Kontrol" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arıza & Acil Servis" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pano & Otomasyon" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Proje & Keşif" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hidrofor & Pompa" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Uydu & Çanak" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Klima Bakım ve Onarım" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Klima Gaz Dolumu" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bakım ve Periyodik Kontrol" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pano Kurulumu ve Montajı" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Proje ve Keşif" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hidrofor Kurulumu" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dalgıç Pompa Kurulumu" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Uydu ve Çanak Anten Montajı" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "İnternet Kablosu Çekimi" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Güvenlik Kamerası Elektrik Altyapısı" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Akıllı Ev Sistemleri" } }
       ]
     }
   }
@@ -649,6 +657,59 @@
       color: var(--slate);
     }
 
+    /* ── ACCORDION ──────────────────────────────────── */
+    .accordion-wrapper {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .accordion-item {
+      border: 1px solid rgba(200, 168, 75, 0.18);
+      border-radius: var(--radius);
+      background: #0d1e35;
+      overflow: hidden;
+    }
+    .accordion-item summary {
+      padding: 1.1rem 1.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: color var(--transition);
+    }
+    .accordion-item summary::-webkit-details-marker { display: none; }
+    .accordion-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .accordion-item[open] summary::after { transform: rotate(45deg); }
+    .accordion-item summary:hover { color: var(--gold); }
+    .accordion-body {
+      padding: 0 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(200, 168, 75, 0.1);
+      padding-top: 1.1rem;
+    }
+    .accordion-body p {
+      font-size: 0.88rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+    .accordion-body strong { color: var(--text-body); }
+
     /* ── SCROLL ANIMATION ─────────────────────────────── */
     .fade-up {
       opacity: 0;
@@ -791,7 +852,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
         <h3>Elektrik Tesisatı</h3>
-        <p>Konut ve iş yerlerinizde komple elektrik tesisatı kurulumu, yenileme ve güçlendirme işlemleri.</p>
+        <p>Ortaca ve Dalaman'da konut, iş yeri ve inşaat elektrik tesisatı kurulumu, yenileme, elektrik kablo çekimi ve topraklama ölçümü yapıyoruz. Priz, anahtar değişiminden bina elektrik tesisatına kadar tüm işler.</p>
         <span class="service-tag">İç / Dış Tesisat</span>
       </div>
 
@@ -801,7 +862,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
         </div>
         <h3>Klima Montajı</h3>
-        <p>Tüm marka ve modeller için profesyonel klima montajı, yerden tavana doğru en verimli kurulum noktası belirleniyor.</p>
+        <p>Split, inverter, salon tipi, kaset ve VRF klima sistemleri kurulumu. Klima alt yapı hazırlığı, bakır boru tesisatı çekimi, dış ünite montajı ve drenaj hattı dahil komple kurulum hizmeti.</p>
         <span class="service-tag">Split / Kaset / Kanallı</span>
       </div>
 
@@ -811,7 +872,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M20 12h-2M4 12H2M17.66 17.66l1.41 1.41M4.93 4.93l1.41 1.41"/></svg>
         </div>
         <h3>Bakım &amp; Periyodik Kontrol</h3>
-        <p>Klima temizliği, filtre bakımı, gaz dolumu ve elektrik paneli kontrolleriyle cihazlarınızın ömrünü uzatıyoruz.</p>
+        <p>Klima filtre temizliği, gaz dolumu ve şarjı, vakumlama işlemi, klima motoru ve kompresör kontrolü. Klima ısıtmıyor veya soğutmuyor arızaları ile kumanda sorunlarına yerinde çözüm.</p>
         <span class="service-tag">Mevsimlik Bakım</span>
       </div>
 
@@ -821,7 +882,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
         </div>
         <h3>Arıza &amp; Acil Servis</h3>
-        <p>Beklenmedik elektrik arızaları ve klima sorunlarında 7/24 acil müdahale ekibimizle yanınızdayız.</p>
+        <p>Ortaca, İztuzu ve Dalaman'da 7/24 acil elektrikçi ve nöbetçi elektrikçi hizmeti. Sigorta atması tamiri, kaçak akım rölesi değişimi ve elektrik arıza tespiti için anında müdahale.</p>
         <span class="service-tag">7/24 Acil</span>
       </div>
 
@@ -831,7 +892,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><path d="M3 17h4v4H3z"/><path d="M3 12h8M17 12v2"/></svg>
         </div>
         <h3>Pano &amp; Otomasyon</h3>
-        <p>Dağıtım panosu montajı, sigorta yenileme, akıllı ev / bina otomasyon sistemleri kurulumu.</p>
+        <p>Dağıtım panosu kurulumu ve montajı, sigorta yenileme, akıllı ev sistemleri altyapısı. Güvenlik kamerası elektrik altyapısı, yangın alarm sistemi kablolama ve görüntülü diafon montajı.</p>
         <span class="service-tag">Konut &amp; Ticari</span>
       </div>
 
@@ -841,7 +902,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
         <h3>Proje &amp; Keşif</h3>
-        <p>Yeni yapılarda elektrik ve klima altyapısı proje çizimi, keşif ve maliyet hesabı ücretsiz yapılmaktadır.</p>
+        <p>İnşaat elektrik işleri, iş yeri ve mağaza elektrik tesisatı, fabrika elektrik bakım onarımı için proje çizimi ve ücretsiz keşif. Jeneratör kurulumu, UPS montajı ve elektrik taahhüt işleri.</p>
         <span class="service-tag">Ücretsiz Keşif</span>
       </div>
 
@@ -851,7 +912,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12m0 0c0-4 3-7 6-7M12 12c0-4-3-7-6-7"/><circle cx="12" cy="12" r="2"/><path d="M5 19c1-2 2-4 3.5-5.5M19 19c-1-2-2-4-3.5-5.5"/></svg>
         </div>
         <h3>Hidrofor &amp; Pompa</h3>
-        <p>Hidrofor kurulumu, pompa montajı, arıza tespiti ve yedek parça değişimi hizmetleri sunuyoruz.</p>
+        <p>Ortaca'da hidrofor kurulumu ve montajı, hidrofor su basmıyor arıza tespiti, basınç şalteri değişimi. Dalgıç pompa kurulumu, genleşme tankı değişimi ve sessiz frekans konvertörlü hidrofor montajı.</p>
         <span class="service-tag">Kurulum &amp; Onarım</span>
       </div>
 
@@ -860,11 +921,12 @@
         <div class="service-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12C4 7.58 7.58 4 12 4s8 3.58 8 8"/><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10"/><path d="M6 12c0-3.31 2.69-6 6-6s6 2.69 6 6"/><circle cx="12" cy="12" r="2"/><path d="M12 14v6"/></svg>
         </div>
-        <h3>Uydu &amp; Çanak</h3>
-        <p>Uydu çanağı kurulumu, yönlendirme ayarı, kablo çekimi ve alıcı cihaz bağlantısı yapılmaktadır.</p>
-        <span class="service-tag">Montaj &amp; Ayar</span>
+        <h3>Uydu, Anten &amp; İnternet</h3>
+        <p>Çanak anten montajı ve yön ayarı, merkezi uydu sistemi, LNB değişimi, multiswitch santrali kurulumu. Ayrıca Cat6 internet kablosu çekimi, fiber optik sonlandırma, modem ve access point kurulumu.</p>
+        <span class="service-tag">Uydu / Anten / Network</span>
       </div>
     </div>
+
   </section>
 
   <!-- ─── NEDEN BİZ ─────────────────────────────────── -->
@@ -1036,7 +1098,40 @@
         </div>
       </div>
     </div>
-    <p class="gallery-note"><strong>Not:</strong> Gerçek proje fotoğraflarınızı bu alanlara ekleyeceğiz — kare, yatay veya dikey, hepsini destekler.</p>
+  </section>
+
+  <!-- ─── HİZMET DETAY ACCORDION ──────────────────────── -->
+  <section id="hizmet-detay" style="background:#060e1a; padding: 60px 5%;">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Tüm Hizmetlerimiz</div>
+      <h2 class="section-title">Detaylı Hizmet Listesi</h2>
+      <p class="section-desc">Sunduğumuz tüm teknik hizmetlerin kategorilere göre detaylı listesi.</p>
+    </div>
+    <div class="accordion-wrapper fade-up">
+      <details class="accordion-item">
+        <summary>Elektrik Hizmetleri — Detaylı Liste</summary>
+        <div class="accordion-body">
+          <p>Muğla ili genelinde <strong>Ortaca elektrikçi</strong>, <strong>Dalaman elektrikçi</strong> ve <strong>İztuzu elektrikçi</strong> hizmetleri sunuyoruz. Acil ve nöbetçi elektrikçi ihtiyaçlarınız için 7/24 ulaşabilirsiniz.</p>
+          <p>Sunduğumuz elektrik hizmetleri: elektrik arıza servisi, elektrik tesisatı yenileme, elektrik kablo çekimi, pano kurulumu ve montajı, sigorta atması tamiri, kaçak akım rölesi değişimi, priz ve anahtar değişimi, aydınlatma sistemleri kurulumu, LED spot aydınlatma montajı, avize montajı, şofben ve termosifon elektrik bağlantısı, bahçe aydınlatma kurulumu, akıllı ev sistemleri altyapısı, topraklama ölçümü ve hattı çekimi, inşaat elektrik işleri, iş yeri ve mağaza elektrik tesisatı, fabrika elektrik bakım onarımı, jeneratör kurulumu ve bağlantısı, UPS montajı, güvenlik kamerası elektrik altyapısı, yangın alarm sistemi kablolama, diafon ve zil sistemi tamiri, görüntülü diafon montajı, elektrik proje ve taahhüt işleri, beyaz eşya elektrik kurulumu, ankastre fırın ve ocak elektrik montajı.</p>
+        </div>
+      </details>
+      <details class="accordion-item">
+        <summary>Klima Hizmetleri — Detaylı Liste</summary>
+        <div class="accordion-body">
+          <p><strong>Ortaca klima servisi</strong>, <strong>İztuzu klima montajı</strong> ve <strong>Muğla klima bakım onarım</strong> hizmetlerimizle bölgenizde 7/24 hizmetinizdeyiz.</p>
+          <p>Sunduğumuz klima hizmetleri: split klima montajı, inverter klima kurulumu, salon tipi klima montajı, kaset tipi klima bakımı, VRF klima sistemleri kurulumu, klima alt yapı hazırlığı, bakır boru tesisatı çekimi, klima gaz dolumu ve şarjı, klima su akıtıyor tamiri, klima anakart ve kart tamiri, klima motoru ve kompresör değişimi, klima ısıtmıyor soğutmuyor çözümü, klima filtre temizliği ve periyodik bakım, klima kumanda arızası, klima dış ünite montajı, klima drenaj hattı çekimi, klima yer değiştirme demontaj ve montaj, klima söküm işlemi, klima vakumlama işlemi, klima arıza kodları çözümü, ticari klima sistemleri ve havalandırma, ikinci el klima montajı.</p>
+        </div>
+      </details>
+      <details class="accordion-item">
+        <summary>Hidrofor, Uydu, Anten &amp; İnternet — Detaylı Liste</summary>
+        <div class="accordion-body">
+          <p><strong>Ortaca hidrofor tamircisi</strong> olarak su pompası arızası, basınç sorunu ve sistem kurulumlarında hızlı çözüm sunuyoruz. Aynı zamanda <strong>Ortaca uyducu</strong> olarak anten ve internet altyapısı hizmetleri de veriyoruz.</p>
+          <p>Hidrofor hizmetleri: hidrofor kurulumu ve montajı, hidrofor su basmıyor arıza tespiti, dalgıç pompa kurulumu, su motoru arıza tespiti, hidrofor basınç şalteri değişimi, genleşme tankı değişimi, bina su deposu ve hidrofor sistemi, sessiz frekans konvertörlü hidrofor montajı.</p>
+          <p>Uydu ve anten hizmetleri: çanak anten montajı ve yön ayarı, merkezi uydu sistemi kurulumu, uydu sinyal yok arızası çözümü, LNB değişimi ve ince ayar, televizyon kanal ayarlama ve TV kurulumu, çift çanak uydu montajı, uydu anten kablosu çekimi, multiswitch uydu santrali montajı.</p>
+          <p>İnternet ve ağ hizmetleri: internet kablosu Cat6 çekimi, fiber optik kablo sonlandırma ve çekimi, modem kurulumu ve arayüz ayarı, router ve access point kurulumu, ağ kablolama ve switch montajı, ev içi ankastre internet hat çekimi, internet kopma sorunu ve hız düşüklüğü çözümü, server odası ve rack kabin montajı, projeksiyon cihazı ve perde montajı, TV duvara askı aparatı montajı.</p>
+        </div>
+      </details>
+    </div>
   </section>
 
   <!-- ─── FOOTER ───────────────────────────────────── -->
