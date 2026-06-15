@@ -93,15 +93,21 @@
     gtag('config', 'G-TXZ6DC22X2');
   </script>
 
-  <!-- ── Fonts: preconnect + preload kritik fontlar ── -->
+  <!-- ── Fonts: preconnect + non-blocking ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Kritik font: önce yükle, render'ı blokla -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500&display=swap" />
-  <!-- display=swap: font gelene kadar sistem fontu göster -->
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=optional" rel="stylesheet" />
   <style>
+    /* ── FONT FALLBACK — CLS önleyici ───────────────── */
+    @font-face {
+      font-family: 'Barlow Condensed';
+      font-style: normal;
+      font-weight: 800;
+      font-display: optional;
+      src: local('Barlow Condensed ExtraBold');
+      size-adjust: 95%;
+    }
+
     /* ── TOKENS ─────────────────────────────────────── */
     :root {
       --navy:      #0A1628;
@@ -237,11 +243,10 @@
       font-family: var(--font-heading);
       font-size: clamp(3rem, 7vw, 5.5rem);
       font-weight: 800;
-      line-height: 1.0;
+      line-height: 1.05;
       letter-spacing: -0.01em;
       color: var(--white);
       margin-bottom: 1.5rem;
-      min-height: 2lh;
     }
     .hero h1 em {
       font-style: normal;
