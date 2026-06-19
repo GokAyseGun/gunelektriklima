@@ -1,102 +1,275 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Ana Sayfa -->
   <url>
     <loc>https://www.gunelektrikklima.com/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/index-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Elektrik Landing Pages -->
+  <url>
+    <loc>https://www.gunelektrikklima.com/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/index-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/dalyan-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalyan-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalyan-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/dalyan-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalyan-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalyan-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/ortaca-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/ortaca-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/dalaman-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalaman-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalaman-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/dalaman-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalaman-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalaman-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/koycegiz-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/koycegiz-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/koycegiz-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/koycegiz-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/koycegiz-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/koycegiz-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/fethiye-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/fethiye-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/fethiye-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/fethiye-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/fethiye-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/fethiye-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/marmaris-elektrikci.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/marmaris-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/marmaris-elektrikci-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Klima Landing Pages -->
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/marmaris-elektrikci-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/marmaris-elektrikci.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/marmaris-elektrikci-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://www.gunelektrikklima.com/landing/dalyan-klima.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gunelektrikklima.com/landing/ortaca-klima.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gunelektrikklima.com/landing/dalaman-klima.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gunelektrikklima.com/landing/koycegiz-klima.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gunelektrikklima.com/landing/fethiye-klima.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.gunelektrikklima.com/landing/marmaris-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalyan-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalyan-klima-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Diğer Hizmet Landing Pages -->
   <url>
-    <loc>https://www.gunelektrikklima.com/landing/uydu-canak-anten.html</loc>
+    <loc>https://www.gunelektrikklima.com/landing/dalyan-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalyan-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalyan-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/ortaca-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://www.gunelektrikklima.com/landing/hidrofor-pompa.html</loc>
+    <loc>https://www.gunelektrikklima.com/landing/ortaca-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/dalaman-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalaman-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalaman-klima-en.html" />
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/dalaman-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/dalaman-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/dalaman-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/koycegiz-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/koycegiz-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/koycegiz-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/koycegiz-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/koycegiz-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/koycegiz-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/fethiye-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/fethiye-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/fethiye-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/fethiye-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/fethiye-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/fethiye-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/marmaris-klima.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/marmaris-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/marmaris-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/marmaris-klima-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/marmaris-klima.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/marmaris-klima-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/uydu-canak-anten.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/uydu-canak-anten.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/uydu-canak-anten-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/uydu-canak-anten-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/uydu-canak-anten.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/uydu-canak-anten-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/hidrofor-pompa.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/hidrofor-pompa.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/hidrofor-pompa-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gunelektrikklima.com/landing/hidrofor-pompa-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/hidrofor-pompa.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/hidrofor-pompa-en.html" />
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
