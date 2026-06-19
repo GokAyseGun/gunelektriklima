@@ -9,6 +9,9 @@
   <!-- ── Canonical & Robots ───────────────────────── -->
   <link rel="canonical" href="https://www.gunelektrikklima.com/" />
   <meta name="robots" content="index, follow" />
+  <link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/index-en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.gunelektrikklima.com/" />
 
   <!-- ── Open Graph ───────────────────────────────── -->
   <meta property="og:type"        content="website" />
@@ -236,6 +239,103 @@
       text-transform: uppercase;
     }
     .nav-links a:hover { color: var(--gold); }
+
+    /* ── DİL SEÇİCİ ─────────────────────────────────── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.5rem;
+      border: 1px solid rgba(200, 168, 75, 0.35);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .lang-switch a {
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      color: var(--slate);
+      transition: all var(--transition);
+    }
+    .lang-switch a.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .lang-switch a:not(.active):hover { color: var(--gold-lite); }
+
+    /* ── ÇOKLU HİZMET BANNER (sticky, nav altında) ──── */
+    .multi-banner {
+      position: fixed;
+      top: 80px;
+      left: 0; right: 0;
+      z-index: 99;
+      background: linear-gradient(90deg, rgba(200,168,75,0.16), rgba(27,58,107,0.5));
+      border-bottom: 1px solid rgba(200, 168, 75, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 0.55rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .multi-banner p {
+      font-size: 0.8rem;
+      color: var(--text-body);
+      line-height: 1.4;
+    }
+    .multi-banner a {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      border-bottom: 1px solid var(--gold);
+      transition: color var(--transition);
+    }
+    .multi-banner a:hover { color: var(--gold-lite); }
+
+    /* ── DİL ÖNERİ KUTUSU ────────────────────────────── */
+    .lang-suggest {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 250;
+      max-width: 300px;
+      background: #0d1e35;
+      border: 1px solid rgba(200,168,75,0.35);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .lang-suggest.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .lang-suggest p { font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
+    .lang-suggest-actions { display: flex; gap: 0.6rem; }
+    .lang-suggest-actions a, .lang-suggest-actions button {
+      font-size: 0.78rem; font-weight: 700;
+      padding: 0.45rem 0.9rem; border-radius: 6px; cursor: pointer; border: none;
+    }
+    .lang-suggest-yes { background: var(--gold); color: var(--navy); }
+    .lang-suggest-yes:hover { background: var(--gold-lite); }
+    .lang-suggest-no { background: transparent; color: var(--slate); border: 1px solid rgba(122,144,168,0.3) !important; }
+    .lang-suggest-no:hover { color: var(--text-body); }
 
     /* ── HERO ────────────────────────────────────────── */
     .hero {
@@ -842,6 +942,8 @@
         grid-template-rows: auto;
       }
       .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 180px; }
+      .multi-banner p { display: none; }
+      .multi-banner { padding: 0.5rem 5%; }
     }
     @media (max-width: 600px) {
       .hero {
@@ -861,6 +963,7 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item { height: 200px; }
       section { padding: 60px 5%; }
+      .lang-suggest { left: 0.75rem; right: 0.75rem; max-width: none; bottom: 0.75rem; }
       .why-visual { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -877,12 +980,27 @@
       <span class="bolt" aria-hidden="true"></span>
       Gün Elektrik &amp; Klima
     </div>
-    <ul class="nav-links">
-      <li><a href="#hizmetler">Hizmetler</a></li>
-      <li><a href="#neden-biz">Neden Biz</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#hizmetler">Hizmetler</a></li>
+        <li><a href="#neden-biz">Neden Biz</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+      <div class="lang-switch">
+        <a href="/" class="active">TR</a>
+        <a href="/index-en.html">EN</a>
+      </div>
+    </div>
   </nav>
+
+  <!-- ─── DİL ÖNERİ KUTUSU ───────────────────────────── -->
+  <div class="lang-suggest" id="langSuggest">
+    <p>It looks like your browser language isn't Turkish. View this page in English?</p>
+    <div class="lang-suggest-actions">
+      <a href="/index-en.html" class="lang-suggest-yes">View in English</a>
+      <button class="lang-suggest-no" onclick="dismissLangSuggest()">No thanks</button>
+    </div>
+  </div>
 
   <!-- ─── HERO ─────────────────────────────────────── -->
   <section class="hero" id="anasayfa">
@@ -1265,6 +1383,28 @@
         ticking = true;
       }
     }, { passive: true });
+
+    // Dil önerisi — tarayıcı Türkçe değilse 2.5sn sonra göster
+    (function() {
+      const targetLang = 'en'; // bu sayfanın diğer dili
+      const storageKey = 'gunelektrik_lang_dismissed';
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      const isTurkish = browserLang.startsWith('tr');
+      const alreadyDismissed = sessionStorage.getItem(storageKey);
+
+      if (!isTurkish && !alreadyDismissed) {
+        setTimeout(() => {
+          const box = document.getElementById('langSuggest');
+          if (box) box.classList.add('show');
+        }, 2500);
+      }
+    })();
+
+    function dismissLangSuggest() {
+      const box = document.getElementById('langSuggest');
+      if (box) box.classList.remove('show');
+      sessionStorage.setItem('gunelektrik_lang_dismissed', '1');
+    }
   </script>
 </body>
 </html>
