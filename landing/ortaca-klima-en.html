@@ -1,460 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ortaca AC Service | Gün Elektrik & Klima — 24/7 Service</title>
-  <meta name="description" content="AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all AC brands." />
-  <link rel="canonical" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html" />
-  <meta name="robots" content="index, follow" />
-  <link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html" />
-  <link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html" />
-  <link rel="alternate" hreflang="x-default" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html" />
-  <meta property="og:title" content="Ortaca AC Service | Gün Elektrik & Klima" />
-  <meta property="og:description" content="AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all AC brands." />
-  <meta property="og:image" content="https://www.gunelektrikklima.com/og-image.jpg" />
-  <meta property="og:locale" content="en_US" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
-
-  <!-- Google Analytics + Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TXZ6DC22X2');
-    gtag('config', 'AW-11041830318');
-    function trackWhatsApp() {
-      gtag('event', 'conversion', {'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY'});
-    }
-    function trackPhone() {
-      gtag('event', 'conversion', {'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY'});
-    }
-  </script>
-
-  <!-- Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Gün Elektrik & Klima",
-    "url": "https://www.gunelektrikklima.com/landing/ortaca-klima-en.html",
-    "telephone": "+90-544-652-94-86",
-    "priceRange": "₺₺",
-    "address": {"@type": "PostalAddress", "addressLocality": "Ortaca", "addressRegion": "Muğla", "addressCountry": "TR"},
-    "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "20:00"}
-  }
-  </script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --navy: #0A1628;
-      --navy-mid: #1B3A6B;
-      --gold: #C8A84B;
-      --gold-lite: #E2C06A;
-      --slate: #7A90A8;
-      --white: #FFFFFF;
-      --text-body: #D0DAE6;
-      --radius: 8px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--navy); color: var(--white); }
-    a { text-decoration: none; color: inherit; }
-
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 64px;
-      background: rgba(10,22,40,0.97);
-      border-bottom: 1px solid rgba(200,168,75,0.2);
-    }
-    .nav-logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.5rem; letter-spacing: 0.04em;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .bolt {
-      width: 28px; height: 28px; background: var(--gold); flex-shrink: 0;
-      clip-path: polygon(60% 0%,100% 0%,40% 50%,80% 50%,0% 100%,20% 52%,-5% 52%);
-    }
-    .nav-right { display: flex; align-items: center; gap: 1.4rem; }
-    .nav-phone {
-      font-size: 0.85rem; font-weight: 600; color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-    .lang-switch {
-      display: flex; align-items: center; gap: 0.3rem;
-      padding: 0.3rem 0.4rem; border: 1px solid rgba(200,168,75,0.35);
-      border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
-    }
-    .lang-switch a { padding: 0.18rem 0.55rem; border-radius: 100px; color: var(--slate); transition: all 0.2s; }
-    .lang-switch a.active { background: var(--gold); color: var(--navy); }
-    .lang-switch a:not(.active):hover { color: var(--gold-lite); }
-
-    /* MULTI-SERVICE BANNER (sticky, under nav) */
-    .multi-banner {
-      position: sticky; top: 64px; z-index: 99;
-      background: linear-gradient(90deg, rgba(200,168,75,0.16), rgba(27,58,107,0.5));
-      border-bottom: 1px solid rgba(200, 168, 75, 0.25);
-      backdrop-filter: blur(10px);
-      padding: 0.55rem 5%;
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.7rem; flex-wrap: wrap; text-align: center;
-    }
-    .multi-banner p { font-size: 0.8rem; color: var(--text-body); line-height: 1.4; }
-    .multi-banner a {
-      font-size: 0.8rem; font-weight: 700; color: var(--gold);
-      white-space: nowrap; border-bottom: 1px solid var(--gold);
-      transition: color 0.2s;
-    }
-    .multi-banner a:hover { color: var(--gold-lite); }
-
-    /* HERO */
-    .hero {
-      padding: 50px 5%;
-      background: linear-gradient(135deg, #0A1628 0%, #1B3A6B 100%);
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(200,168,75,0.15); border: 1px solid rgba(200,168,75,0.3);
-      color: var(--gold); font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800;
-      line-height: 1.05; margin-bottom: 1rem;
-    }
-    .hero h1 em { font-style: normal; color: var(--gold); }
-    .hero-desc {
-      font-size: 1.05rem; color: var(--text-body); line-height: 1.7;
-      max-width: 560px; margin: 0 auto 2rem;
-    }
-    .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-wa {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 1rem 2rem; background: #25D366; color: #fff;
-      font-weight: 700; font-size: 1rem; border-radius: var(--radius);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-wa:hover { background: #20bd5a; transform: translateY(-2px); }
-    .btn-tel {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 1rem 2rem; border: 2px solid var(--gold);
-      color: var(--gold); font-weight: 700; font-size: 1rem;
-      border-radius: var(--radius); transition: all 0.2s;
-    }
-    .btn-tel:hover { background: var(--gold); color: var(--navy); }
-
-    /* STATS */
-    .stats {
-      display: flex; justify-content: center; gap: 3rem;
-      padding: 2rem 5%; border-top: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
-    }
-    .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800; color: var(--gold); }
-    .stat-lbl { font-size: 0.75rem; color: var(--slate); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
-
-    /* HİZMETLER */
-    .hizmetler { padding: 60px 5%; background: #0d1e35; }
-    .section-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em;
-      color: var(--gold); text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem;
-    }
-    .section-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--gold); }
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 2.5rem;
-    }
-    .hiz-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px;
-      background: rgba(200,168,75,0.12); border: 1px solid rgba(200,168,75,0.12);
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .hiz-card { background: #0d1e35; padding: 1.8rem 1.6rem; transition: background 0.2s; }
-    .hiz-card:hover { background: #122540; }
-    .hiz-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-    .hiz-card h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--white);
-    }
-    .hiz-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
-
-    /* NEDEN BİZ */
-    .neden { padding: 60px 5%; }
-    .neden-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .neden-item { border: 1px solid rgba(200,168,75,0.2); border-radius: var(--radius); padding: 1.5rem; background: rgba(27,58,107,0.2); }
-    .neden-item h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem; font-weight: 700; color: var(--gold); margin-bottom: 0.4rem;
-    }
-    .neden-item p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
-
-    /* CTA BAND */
-    .cta-band {
-      padding: 50px 5%; text-align: center;
-      background: linear-gradient(135deg, #1B3A6B, #0A1628);
-      border-top: 1px solid rgba(200,168,75,0.15);
-    }
-    .cta-band h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; margin-bottom: 0.6rem;
-    }
-    .cta-band p { color: var(--text-body); margin-bottom: 1.8rem; }
-
-    /* FOOTER */
-    footer {
-      padding: 1.5rem 5%; background: #060e1a;
-      border-top: 1px solid rgba(200,168,75,0.1);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 0.75rem;
-    }
-    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.1rem; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.8rem; color: var(--slate); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: 0.78rem; color: var(--slate); }
-
-    /* FLOATING WA */
-    .wa-float {
-      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
-      width: 56px; height: 56px; background: #25D366; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
-      transition: transform 0.2s;
-    }
-    .wa-float:hover { transform: scale(1.1); }
-    .wa-pulse {
-      position: absolute; inset: -6px; border-radius: 50%;
-      border: 2px solid rgba(37,211,102,0.4); animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%{transform:scale(1);opacity:1} 70%{transform:scale(1.4);opacity:0} 100%{transform:scale(1.4);opacity:0} }
-
-    /* LANG SUGGEST BOX */
-    .lang-suggest {
-      position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 250;
-      max-width: 300px; background: #0d1e35;
-      border: 1px solid rgba(200,168,75,0.35); border-radius: 10px;
-      padding: 1rem 1.1rem; box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-      display: flex; flex-direction: column; gap: 0.7rem;
-      opacity: 0; transform: translateY(12px); pointer-events: none;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    .lang-suggest.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .lang-suggest p { font-size: 0.85rem; color: var(--text-body); line-height: 1.5; }
-    .lang-suggest-actions { display: flex; gap: 0.6rem; }
-    .lang-suggest-actions a, .lang-suggest-actions button {
-      font-size: 0.78rem; font-weight: 700; padding: 0.45rem 0.9rem;
-      border-radius: 6px; cursor: pointer; border: none;
-    }
-    .lang-suggest-yes { background: var(--gold); color: var(--navy); }
-    .lang-suggest-yes:hover { background: var(--gold-lite); }
-    .lang-suggest-no { background: transparent; color: var(--slate); border: 1px solid rgba(122,144,168,0.3) !important; }
-    .lang-suggest-no:hover { color: var(--text-body); }
-
-    @media(max-width:600px) {
-      .stats { gap: 1.5rem; }
-      .cta-group { flex-direction: column; align-items: center; }
-      .btn-wa, .btn-tel { width: 100%; justify-content: center; }
-      .multi-banner p { display: none; }
-      .lang-suggest { left: 0.75rem; right: 0.75rem; max-width: none; }
-    }
-    @media(prefers-reduced-motion:reduce) { .wa-pulse { animation:none; } }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ortaca AC Service | Gün Elektrik & Klima — 24/7 Service</title>
+<meta name="description" content="AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all brands."/>
+<link rel="canonical" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html"/>
+<meta name="robots" content="index, follow"/>
+<link rel="alternate" hreflang="tr" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html"/>
+<link rel="alternate" hreflang="en" href="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html"/>
+<link rel="alternate" hreflang="x-default" href="https://www.gunelektrikklima.com/landing/ortaca-klima.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.gunelektrikklima.com/landing/ortaca-klima-en.html"/>
+<meta property="og:title" content="Ortaca AC Service | Gün Elektrik & Klima"/>
+<meta property="og:description" content="AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all brands."/>
+<meta property="og:image" content="https://www.gunelektrikklima.com/og-image.jpg"/>
+<meta property="og:locale" content="en_US"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-TXZ6DC22X2');
+gtag('config','AW-11041830318');
+function trackWA(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
+function trackTel(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gün Elektrik & Klima","url":"https://www.gunelektrikklima.com/landing/ortaca-klima-en.html","telephone":"+90-544-652-94-86","priceRange":"₺₺","address":{"@type":"PostalAddress","addressLocality":"Ortaca","addressRegion":"Muğla","addressCountry":"TR"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"08:00","closes":"20:00"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:#F8FAFC;color:#0F1E3C;}
+a{text-decoration:none;color:inherit;}
+:root{--bg:#F8FAFC;--bg2:#F1F5F9;--surf:#FFFFFF;--brd:#E2E8F0;--brd2:#CBD5E1;--tx:#0F1E3C;--tx2:#475569;--tx3:#94A3B8;--amber:#D97706;--navy:#0F1E3C;--navy2:#1A3060;--blue:#1D4ED8;--fd:'Barlow Condensed',system-ui,sans-serif;--rad:10px;}
+#pbar{position:fixed;top:0;left:0;z-index:9999;height:3px;width:0%;background:linear-gradient(90deg,#D97706,#F59E0B 50%,#FCD34D);pointer-events:none;}
+#pbar::after{content:'';position:absolute;right:-4px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:#F59E0B;box-shadow:0 0 8px rgba(245,158,11,.6);}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:58px;background:#F1F5F9;border-bottom:1px solid #E2E8F0;}
+.nav-logo{font-family:var(--fd);font-weight:800;font-size:1.15rem;letter-spacing:.04em;color:#0F1E3C;display:flex;align-items:center;gap:9px;}
+.nav-logo svg{width:22px;height:22px;flex-shrink:0;}
+.lang-pill{display:flex;align-items:center;gap:2px;padding:3px;border-radius:100px;background:#FFFFFF;border:1px solid #E2E8F0;font-size:.7rem;font-weight:700;}
+.lang-pill a{padding:.2rem .6rem;border-radius:100px;color:#94A3B8;transition:all .2s;}
+.lang-pill a.on{background:#D97706;color:#fff;}
+.lang-pill a:not(.on):hover{color:#0F1E3C;}
+.multi-banner{background:#F1F5F9;border-bottom:1px solid #E2E8F0;padding:.5rem 5%;display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;text-align:center;}
+.multi-banner p{font-size:.78rem;color:#475569;}
+.multi-banner a{font-size:.78rem;font-weight:700;color:#D97706;border-bottom:1px solid rgba(217,119,6,.4);transition:color .2s;white-space:nowrap;}
+.multi-banner a:hover{color:#92400E;}
+.hero{padding:60px 5% 48px;background:#F8FAFC;position:relative;overflow:hidden;text-align:center;}
+.hero-circuit{position:absolute;inset:0;width:100%;height:100%;opacity:.22;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:.32rem .9rem;border-radius:100px;background:rgba(217,119,6,.10);border:1px solid rgba(217,119,6,.28);font-size:.64rem;font-weight:700;letter-spacing:.16em;color:#92400E;text-transform:uppercase;margin-bottom:1.4rem;}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#D97706;animation:bdot 2s ease-in-out infinite;}
+@keyframes bdot{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,7vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem;color:#0F1E3C;}
+.hero h1 em{font-style:normal;color:#D97706;}
+.hero-desc{font-size:1rem;color:#475569;line-height:1.7;max-width:540px;margin:0 auto 2rem;}
+.cta-group{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
+.btn-wa{display:inline-flex;align-items:center;gap:.55rem;padding:.82rem 1.6rem;border-radius:var(--rad);background:rgba(37,211,102,.12);border:1.5px solid rgba(37,211,102,.40);color:#15803D;font-weight:700;font-size:.9rem;transition:all .2s;}
+.btn-wa:hover{background:rgba(37,211,102,.22);border-color:rgba(37,211,102,.65);}
+.btn-tel{display:inline-flex;align-items:center;gap:.55rem;padding:.82rem 1.6rem;border-radius:var(--rad);background:rgba(217,119,6,.10);border:1.5px solid rgba(217,119,6,.35);color:#92400E;font-weight:700;font-size:.9rem;transition:all .2s;}
+.btn-tel:hover{background:rgba(217,119,6,.20);border-color:rgba(217,119,6,.60);}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:32px 5% 0;max-width:680px;margin:0 auto;position:relative;z-index:1;}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,1fr);}}
+.stat-card{border-radius:var(--rad);padding:18px 14px;text-align:center;}
+.stat-card.amber{background:rgba(253,230,138,.25);border:1px solid rgba(217,119,6,.28);}
+.stat-card.navy{background:#FFFFFF;border:1px solid rgba(29,78,216,.22);}
+.stat-num{font-family:var(--fd);font-size:1.8rem;font-weight:800;line-height:1;}
+.stat-card.amber .stat-num{color:#92400E;}
+.stat-card.navy .stat-num{color:#0F1E3C;font-size:1.1rem;}
+.stat-lbl{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:.35rem;}
+.stat-card.amber .stat-lbl{color:#78350F;}
+.stat-card.navy .stat-lbl{color:#1D4ED8;}
+.section{padding:64px 5%;}
+.section.bg2{background:#F1F5F9;}
+.sec-tag{display:flex;align-items:center;gap:.55rem;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.6rem;}
+.sec-tag.amber{color:#D97706;}
+.sec-tag.amber::before{content:'';display:block;width:18px;height:1.5px;background:#D97706;}
+.sec-tag.navy{color:#1A3060;}
+.sec-tag.navy::before{content:'';display:block;width:18px;height:1.5px;background:#1A3060;}
+.sec-h2{font-family:var(--fd);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:2rem;color:#0F1E3C;}
+.hiz-grid{display:grid;gap:1px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));background:#E2E8F0;border:1px solid #E2E8F0;border-radius:var(--rad);overflow:hidden;}
+.hiz-card{background:#FFFFFF;padding:1.8rem 1.6rem;transition:background .2s;position:relative;}
+.hiz-card:hover{background:#F8FAFC;}
+.hiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#F59E0B,#D97706);opacity:0;transition:opacity .3s;}
+.hiz-card:hover::before{opacity:1;}
+.hiz-icon{font-size:1.6rem;margin-bottom:.7rem;}
+.hiz-card h3{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:#0F1E3C;margin-bottom:.35rem;}
+.hiz-card p{font-size:.83rem;color:#475569;line-height:1.6;}
+.neden-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.neden-item{border:1px solid #E2E8F0;border-radius:var(--rad);padding:1.4rem;background:#FFFFFF;transition:border-color .2s,transform .2s;}
+.neden-item:hover{border-color:rgba(217,119,6,.35);transform:translateY(-2px);}
+.neden-item h4{font-family:var(--fd);font-size:1.05rem;font-weight:700;color:#D97706;margin-bottom:.35rem;}
+.neden-item p{font-size:.83rem;color:#475569;line-height:1.6;}
+.cta-band{padding:56px 5%;text-align:center;background:#0F1E3C;}
+.cta-band h2{font-family:var(--fd);font-size:clamp(1.6rem,4vw,2.6rem);font-weight:800;margin-bottom:.6rem;color:#FFFFFF;}
+.cta-band p{color:rgba(255,255,255,.75);margin-bottom:1.8rem;}
+.cta-band .btn-wa{background:rgba(37,211,102,.18);border-color:rgba(37,211,102,.45);color:#86EFAC;}
+.cta-band .btn-wa:hover{background:rgba(37,211,102,.30);}
+.cta-band .btn-tel{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.40);color:#FCD34D;}
+.cta-band .btn-tel:hover{background:rgba(245,158,11,.28);}
+footer{padding:1.4rem 5%;background:#0F1E3C;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;}
+.footer-logo{font-family:var(--fd);font-weight:800;font-size:1rem;color:rgba(255,255,255,.9);}
+.footer-links{display:flex;gap:1.4rem;flex-wrap:wrap;}
+.footer-links a{font-size:.78rem;color:rgba(255,255,255,.5);transition:color .2s;}
+.footer-links a:hover{color:#F59E0B;}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.4);}
+.float-btns{position:fixed;bottom:20px;right:20px;z-index:800;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.float-btn{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s;position:relative;flex-shrink:0;}
+.float-btn:hover{transform:scale(1.1);}
+.float-btn svg{width:22px;height:22px;}
+.float-btn-wa{background:#25D366;box-shadow:0 4px 16px rgba(37,211,102,.38);}
+.float-btn-tel{background:#D97706;box-shadow:0 4px 16px rgba(217,119,6,.35);}
+.float-ring{position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(37,211,102,.3);animation:ring 2.2s infinite;}
+@keyframes ring{0%{transform:scale(1);opacity:1;}70%{transform:scale(1.5);opacity:0;}100%{transform:scale(1.5);opacity:0;}}
+.ls-box{position:fixed;bottom:1.5rem;left:1.5rem;z-index:250;max-width:300px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:1rem 1.1rem;box-shadow:0 8px 32px rgba(15,30,60,.12);display:flex;flex-direction:column;gap:.6rem;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .4s,transform .4s;}
+.ls-box.on{opacity:1;transform:none;pointer-events:auto;}
+.ls-box p{font-size:.83rem;color:#475569;line-height:1.5;}
+.ls-btns{display:flex;gap:.5rem;}
+.ls-yes{padding:.38rem .8rem;border-radius:6px;background:#D97706;color:#fff;font-size:.72rem;font-weight:700;}
+.ls-no{padding:.38rem .8rem;border-radius:6px;background:transparent;border:1px solid #CBD5E1;color:#94A3B8;font-size:.72rem;font-weight:600;cursor:pointer;}
+.px{will-change:transform,opacity;}
+@media(max-width:600px){.cta-group{flex-direction:column;align-items:center;}.btn-wa,.btn-tel{width:100%;justify-content:center;}.multi-banner p{display:none;}.ls-box{left:.75rem;right:.75rem;max-width:none;}}
+@media(prefers-reduced-motion:reduce){.px,.float-ring{animation:none!important;}}
+</style>
 </head>
 <body>
+<div id="pbar"></div>
 
-<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <span class="bolt" aria-hidden="true"></span>
+    <svg viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+        <linearGradient id="lg2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E3A8A"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
+      </defs>
+      <polygon points="47,6 24,58 38,58 30,114 47,73" fill="url(#lg1)"/>
+      <polygon points="47,6 47,73 60,114 66,58 52,58" fill="url(#lg2)"/>
+    </svg>
     Gün Elektrik &amp; Klima
   </a>
-  <div class="nav-right">
-    <a href="tel:+905446529486" class="nav-phone" onclick="trackPhone()">+90 544 652 94 86</a>
-    <div class="lang-switch">
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="lang-pill">
       <a href="/landing/ortaca-klima.html">TR</a>
-        <a href="/landing/ortaca-klima-en.html" class="active">EN</a>
+      <a href="/landing/ortaca-klima-en.html"class="on">EN</a>
     </div>
   </div>
 </nav>
 
-<!-- MULTI-SERVICE STICKY BANNER -->
 <div class="multi-banner">
   <p>That's not all — see every trade Gün Teknik can help you with.</p>
   <a href="/">View All Our Services →</a>
 </div>
 
-<!-- LANG SUGGEST -->
-<div class="lang-suggest" id="langSuggest">
+<div class="ls-box" id="lsBox">
   <p>Bu sayfayı Türkçe görüntülemek ister misiniz?</p>
-  <div class="lang-suggest-actions">
-    <a href="/landing/ortaca-klima.html" class="lang-suggest-yes">Türkçe Görüntüle</a>
-    <button class="lang-suggest-no" onclick="dismissLangSuggest()">No thanks</button>
+  <div class="ls-btns">
+    <a href="/landing/ortaca-klima.html" class="ls-yes">Türkçe Görüntüle</a>
+    <button class="ls-no" onclick="dismissLang()">No thanks</button>
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">24/7 At Your Service · Muğla, Turkey</div>
-  <h1>Ortaca <em>AC Service</em></h1>
-  <p class="hero-desc">AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all AC brands.</p>
-  <div class="cta-group">
-    <a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20ac%20service%20service%20in%20Ortaca.%20Could%20you%20give%20me%20more%20information%3F" class="btn-wa" target="_blank" rel="noopener" onclick="trackWhatsApp()">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-      Message on WhatsApp
-    </a>
-    <a href="tel:+905446529486" class="btn-tel" onclick="trackPhone()">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      0544 652 94 86
-    </a>
+  <svg class="hero-circuit" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><style>
+      @keyframes draw1{0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
+      @keyframes draw2{0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
+      @keyframes draw3{0%{stroke-dashoffset:700}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:700}}
+      @keyframes draw4{0%{stroke-dashoffset:550}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:550}}
+      @keyframes draw5{0%{stroke-dashoffset:620}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:620}}
+      @keyframes draw6{0%{stroke-dashoffset:530}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:530}}
+      @keyframes fdot{0%,20%{opacity:0}50%,70%{opacity:1}90%,100%{opacity:0}}
+    </style></defs>
+    <g stroke="#1A3060" stroke-width="0.8" opacity="0.18">
+      <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="400" x2="1200" y2="400"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/><line x1="0" y1="600" x2="1200" y2="600"/>
+      <line x1="200" y1="0" x2="200" y2="700"/><line x1="400" y1="0" x2="400" y2="700"/>
+      <line x1="600" y1="0" x2="600" y2="700"/><line x1="800" y1="0" x2="800" y2="700"/>
+      <line x1="1000" y1="0" x2="1000" y2="700"/>
+    </g>
+    <polyline points="180,80 360,80 360,180 540,180 540,100 720,100" stroke="#D97706" stroke-width="2.5" fill="none" stroke-dasharray="600" stroke-dashoffset="600" style="animation:draw1 5s ease-in-out 0s infinite"/>
+    <g style="animation:fdot 5s ease-in-out 0s infinite"><circle cx="360" cy="80" r="5" fill="#D97706"/><circle cx="360" cy="180" r="5" fill="#D97706"/><circle cx="540" cy="180" r="5" fill="#D97706"/><circle cx="540" cy="100" r="5" fill="#D97706"/></g>
+    <polyline points="820,200 980,200 980,300 1150,300 1150,220 1180,220" stroke="#D97706" stroke-width="2.5" fill="none" stroke-dasharray="500" stroke-dashoffset="500" style="animation:draw2 6s ease-in-out 1.2s infinite"/>
+    <g style="animation:fdot 6s ease-in-out 1.2s infinite"><circle cx="980" cy="200" r="5" fill="#D97706"/><circle cx="980" cy="300" r="5" fill="#D97706"/><circle cx="1150" cy="300" r="5" fill="#D97706"/></g>
+    <polyline points="500,420 660,420 660,520 820,520 820,440 1000,440" stroke="#D97706" stroke-width="2.5" fill="none" stroke-dasharray="700" stroke-dashoffset="700" style="animation:draw3 7s ease-in-out 2.8s infinite"/>
+    <g style="animation:fdot 7s ease-in-out 2.8s infinite"><circle cx="660" cy="420" r="5" fill="#D97706"/><circle cx="820" cy="520" r="5" fill="#D97706"/></g>
+    <polyline points="20,160 200,160 200,60 380,60 380,160 500,160" stroke="#1A3060" stroke-width="2.5" fill="none" stroke-dasharray="550" stroke-dashoffset="550" style="animation:draw4 5.5s ease-in-out 0.6s infinite"/>
+    <g style="animation:fdot 5.5s ease-in-out 0.6s infinite"><circle cx="200" cy="160" r="5" fill="#1A3060"/><circle cx="200" cy="60" r="5" fill="#1A3060"/><circle cx="380" cy="60" r="5" fill="#1A3060"/></g>
+    <polyline points="600,280 740,280 740,360 880,360 880,280 1060,280" stroke="#1A3060" stroke-width="2.5" fill="none" stroke-dasharray="620" stroke-dashoffset="620" style="animation:draw5 6.5s ease-in-out 2.1s infinite"/>
+    <g style="animation:fdot 6.5s ease-in-out 2.1s infinite"><circle cx="740" cy="280" r="5" fill="#1A3060"/><circle cx="880" cy="360" r="5" fill="#1A3060"/></g>
+    <polyline points="60,480 220,480 220,400 400,400 400,500 560,500" stroke="#1A3060" stroke-width="2.5" fill="none" stroke-dasharray="530" stroke-dashoffset="530" style="animation:draw6 5.8s ease-in-out 3.5s infinite"/>
+    <g style="animation:fdot 5.8s ease-in-out 3.5s infinite"><circle cx="220" cy="480" r="5" fill="#1A3060"/><circle cx="400" cy="400" r="5" fill="#1A3060"/></g>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-badge px" data-from="bottom" data-speed="1.0">24/7 At Your Service · Muğla, Turkey</div>
+    <h1 class="px" data-from="bottom" data-speed="0.95" data-delay="60">Ortaca <em>AC Service</em></h1>
+    <p class="hero-desc px" data-from="bottom" data-speed="0.9" data-delay="120">AC installation, maintenance, refrigerant refill and repair service in Ortaca. 24/7 service for all brands.</p>
+    <div class="cta-group px" data-from="bottom" data-speed="0.9" data-delay="180">
+      <a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20AC%20service%20in%20Ortaca." class="btn-wa" target="_blank" rel="noopener" onclick="trackWA()">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="tel:+905446529486" class="btn-tel" onclick="trackTel()">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +90 544 652 94 86
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
-  <div><div class="stat-num">15+</div><div class="stat-lbl">Years of Experience</div></div>
-  <div><div class="stat-num">2K+</div><div class="stat-lbl">Jobs Completed</div></div>
-  <div><div class="stat-num">7/24</div><div class="stat-lbl">Emergency Service</div></div>
+  <div class="stat-card amber px" data-from="left" data-speed="1.0" data-delay="0">
+    <div class="stat-num">15+</div>
+    <div class="stat-lbl">Years of Experience</div>
+  </div>
+  <div class="stat-card amber px" data-from="bottom" data-speed="0.9" data-delay="80">
+    <div class="stat-num">2K+</div>
+    <div class="stat-lbl">Jobs Completed</div>
+  </div>
+  <div class="stat-card navy px" data-from="bottom" data-speed="1.05" data-delay="40">
+    <div class="stat-num">7/24</div>
+    <div class="stat-lbl">Emergency Service</div>
+  </div>
+  <div class="stat-card navy px" data-from="right" data-speed="0.95" data-delay="120">
+    <div class="stat-num" style="font-size:.72rem;line-height:1.25;">ORTACA&#39;S<br>ALL NEIGHBOURHOODS</div>
+    <div class="stat-lbl">We Cover Every Area</div>
+  </div>
 </div>
 
-<!-- HİZMETLER -->
-<section class="hizmetler">
-  <div class="section-eyebrow">Our Services</div>
-  <h2 class="section-title">AC Service Services in Ortaca</h2>
+<section class="section bg2" style="padding-top:48px;">
+  <div class="sec-tag amber px" data-from="bottom" data-speed="1.0">Our Services</div>
+  <h2 class="sec-h2 px" data-from="bottom" data-speed="0.95" data-delay="40">AC Services in Ortaca</h2>
   <div class="hiz-grid">
-      <div class="hiz-card">
-        <div class="hiz-icon">❄️</div>
-        <h3>AC Installation</h3>
-        <p>All types installed: split, inverter, cassette</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">🔧</div>
-        <h3>AC Maintenance</h3>
-        <p>Filter cleaning, periodic maintenance and checks</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">💨</div>
-        <h3>Refrigerant Refill</h3>
-        <p>AC refrigerant refill and vacuuming</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">🛠️</div>
-        <h3>Fault Repair</h3>
-        <p>AC not heating, not cooling, or leaking water</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">🔄</div>
-        <h3>Removal & Reinstallation</h3>
-        <p>AC removal and reinstallation service</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">🏢</div>
-        <h3>Commercial Systems</h3>
-        <p>VRF and cassette-type commercial AC systems</p>
-      </div>
-      <div class="hiz-card">
-        <div class="hiz-icon">📋</div>
-        <h3>Free Site Survey</h3>
-        <p>Free project assessment and cost estimate</p>
-      </div>
+        <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="0">
+      <div class="hiz-icon">❄️</div>
+      <h3>AC Installation</h3>
+      <p>Split, inverter and cassette AC installation including infrastructure</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="40">
+      <div class="hiz-icon">🔧</div>
+      <h3>Maintenance & Repair</h3>
+      <p>AC servicing, refrigerant recharge, filter cleaning</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="80">
+      <div class="hiz-icon">🌡️</div>
+      <h3>Fault Service</h3>
+      <p>Immediate response for heating/cooling failures</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="120">
+      <div class="hiz-icon">🔄</div>
+      <h3>Refrigerant Recharge</h3>
+      <p>Refrigerant refill and recharge for all brands</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="160">
+      <div class="hiz-icon">📦</div>
+      <h3>Electrical Connection</h3>
+      <p>AC electrical infrastructure and distribution board connection</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="200">
+      <div class="hiz-icon">🏗️</div>
+      <h3>VRF & Cassette Systems</h3>
+      <p>Commercial VRF and cassette AC installation</p>
+    </div>
+    <div class="hiz-card px" data-from="bottom" data-speed="1.0" data-delay="240">
+      <div class="hiz-icon">📋</div>
+      <h3>Free Survey</h3>
+      <p>Free site survey and clear cost estimate</p>
+    </div>
   </div>
 </section>
 
-<!-- NEDEN BİZ -->
-<section class="neden">
-  <div class="section-eyebrow">Why Gün Elektrik & Klima?</div>
-  <h2 class="section-title">Reliable, Fast, Guaranteed</h2>
+<section class="section">
+  <div class="sec-tag navy px" data-from="bottom" data-speed="1.0">Why Gün Elektrik & Klima?</div>
+  <h2 class="sec-h2 px" data-from="bottom" data-speed="0.95" data-delay="40">Reliable, Fast, Guaranteed</h2>
   <div class="neden-grid">
-    <div class="neden-item">
+        <div class="neden-item px" data-from="bottom" data-speed="1.0" data-delay="0">
       <h4>24/7 Emergency Service</h4>
       <p>Available day or night, weekends included. Our on-call team is ready for emergencies.</p>
     </div>
-    <div class="neden-item">
+    <div class="neden-item px" data-from="bottom" data-speed="1.0" data-delay="60">
       <h4>Free Site Survey</h4>
       <p>We inspect on-site before starting and give you a clear price quote. No hidden costs.</p>
     </div>
-    <div class="neden-item">
+    <div class="neden-item px" data-from="bottom" data-speed="1.0" data-delay="120">
       <h4>15 Years of Experience</h4>
       <p>Since 2010, we've completed thousands of projects as Muğla's trusted technical service.</p>
     </div>
-    <div class="neden-item">
+    <div class="neden-item px" data-from="bottom" data-speed="1.0" data-delay="180">
       <h4>Guaranteed Workmanship</h4>
       <p>All our work is guaranteed. We use genuine materials and back our labor.</p>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
 <section class="cta-band">
-  <h2>Get In Touch, Get an Instant Solution</h2>
-  <p>Call us or message on WhatsApp for fast service in Ortaca and the surrounding area.</p>
-  <div class="cta-group">
-    <a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20ac%20service%20service%20in%20Ortaca.%20Could%20you%20give%20me%20more%20information%3F" class="btn-wa" target="_blank" rel="noopener" onclick="trackWhatsApp()">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+  <h2 class="px" data-from="bottom" data-speed="1.0">Get In Touch, Get an Instant Solution</h2>
+  <p class="px" data-from="bottom" data-speed="0.95" data-delay="40">Call us or message on WhatsApp for fast AC service in Ortaca and the surrounding area.</p>
+  <div class="cta-group px" data-from="bottom" data-speed="0.9" data-delay="80">
+    <a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20AC%20service%20in%20Ortaca." class="btn-wa" target="_blank" rel="noopener" onclick="trackWA()">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
       Message on WhatsApp
     </a>
-    <a href="tel:+905446529486" class="btn-tel" onclick="trackPhone()">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      0544 652 94 86
+    <a href="tel:+905446529486" class="btn-tel" onclick="trackTel()">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +90 544 652 94 86
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Gün Elektrik &amp; Klima</div>
   <div class="footer-links">
     <a href="/">Home</a>
-    <a href="/#hizmetler">Services</a>
-    <a href="/#iletisim">Contact</a>
+    <a href="/#s-hizmetler">Services</a>
+    <a href="/#s-iletisim">Contact</a>
   </div>
-  <div class="footer-copy">© 2026 Gün Elektrik & Klima</div>
+  <div class="footer-copy">© 2026 Gün Elektrik &amp; Klima</div>
 </footer>
 
-<!-- FLOATING WA -->
-<a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20ac%20service%20service%20in%20Ortaca.%20Could%20you%20give%20me%20more%20information%3F" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackWhatsApp()">
-  <span class="wa-pulse" aria-hidden="true"></span>
-  <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-</a>
+<div class="float-btns">
+  <a href="https://wa.me/905446529486?text=Hello%2C%20I%27d%20like%20to%20get%20AC%20service%20in%20Ortaca." class="float-btn float-btn-wa" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackWA()">
+    <span class="float-ring" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.322-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.385l-.36-.214-3.733.891.924-3.63-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="tel:+905446529486" class="float-btn float-btn-tel" aria-label="Telefon" onclick="trackTel()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
 
 <script>
-  // Language suggestion
-  (function() {
-    const storageKey = 'gunelektrik_lang_dismissed';
-    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    const isTurkish = browserLang.startsWith('tr');
-    const alreadyDismissed = sessionStorage.getItem(storageKey);
-    const shouldShow = isTurkish;
-
-    if (shouldShow && !alreadyDismissed) {
-      setTimeout(() => {
-        const box = document.getElementById('langSuggest');
-        if (box) box.classList.add('show');
-      }, 2500);
-    }
-  })();
-
-  function dismissLangSuggest() {
-    const box = document.getElementById('langSuggest');
-    if (box) box.classList.remove('show');
-    sessionStorage.setItem('gunelektrik_lang_dismissed', '1');
+(function(){
+  var SY=0,VH=0,dirty=false,collected=false,rafId=null,elems=[];
+  var ENTER=0.35,EXIT_S=0.65,ED=80,XD=60;
+  function collect(){
+    elems=[];SY=window.scrollY;VH=window.innerHeight;
+    var nodes=Array.from(document.querySelectorAll('.px[data-from]'));
+    var rects=nodes.map(function(el){return el.getBoundingClientRect();});
+    nodes.forEach(function(el,i){
+      elems.push({el:el,top:rects[i].top+SY,h:rects[i].height,from:el.dataset.from||'bottom',delay:parseInt(el.dataset.delay||'0',10)*0.5});
+    });
+    collected=true;
   }
+  function applyT(el,p,from){
+    var ty=0,tx=0,op=1;
+    if(p<=0){op=0;if(from==='bottom')ty=ED;else if(from==='left')tx=-ED;else if(from==='right')tx=ED;}
+    else if(p<ENTER){var t=p/ENTER;op=t;if(from==='bottom')ty=ED*(1-t);else if(from==='left')tx=-ED*(1-t);else if(from==='right')tx=ED*(1-t);}
+    else if(p<EXIT_S){}
+    else if(p<1){var t=(p-EXIT_S)/(1-EXIT_S);op=1-t;if(from==='left')tx=-XD*t;else if(from==='right')tx=XD*t;else ty=-XD*t;}
+    else{op=0;if(from==='left')tx=-XD;else if(from==='right')tx=XD;else ty=-XD;}
+    el.style.transform='translate('+tx+'px,'+ty+'px)';
+    el.style.opacity=op;
+  }
+  function tick(){rafId=null;if(!dirty||!collected)return;dirty=false;var sy=SY,vh=VH;elems.forEach(function(item){var range=vh+item.h;var raw=(sy-(item.top-vh-item.delay))/range;applyT(item.el,Math.max(0,Math.min(1,raw)),item.from);});}
+  function frame(){dirty=true;if(!rafId)rafId=requestAnimationFrame(tick);}
+  var pbar=document.getElementById('pbar');
+  function updatePbar(){if(!pbar)return;var dh=document.documentElement.scrollHeight-window.innerHeight;pbar.style.width=(dh>0?(window.scrollY/dh*100).toFixed(1):0)+'%';}
+  window.addEventListener('scroll',function(){SY=window.scrollY;frame();updatePbar();},{passive:true});
+  window.addEventListener('resize',function(){setTimeout(function(){collect();frame();},150);});
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('.px[data-from]').forEach(function(el){el.style.opacity='0';el.style.willChange='transform,opacity';});
+    collect();frame();
+  });
+  window.addEventListener('load',function(){collect();frame();});
+  var lang=(navigator.language||'').toLowerCase();
+  var detect=lang.startsWith("tr");
+  if(detect&&!sessionStorage.getItem('gk_lang')){
+    setTimeout(function(){var b=document.getElementById('lsBox');if(b)b.classList.add('on');},2500);
+  }
+})();
+function dismissLang(){var b=document.getElementById('lsBox');if(b)b.classList.remove('on');sessionStorage.setItem('gk_lang','1');}
 </script>
-
 </body>
 </html>
