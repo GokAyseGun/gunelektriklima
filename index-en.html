@@ -14,6 +14,7 @@
 <meta property="og:title" content="Gün Elektrik & Klima"/>
 <meta property="og:description" content="Muğla genelinde elektrik, klima, hidrofor ve uydu hizmetleri. 7/24 acil servis."/>
 <meta property="og:image" content="https://www.gunelektrikklima.com/og-image.jpg"/>
+<link rel="preload" as="font" type="font/woff2" href='/fonts/barlow-condensed-latin-700-normal.woff2' crossorigin>
 <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png"/>
@@ -24,13 +25,7 @@
 {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a 24/7 electrician available in Ortaca?","acceptedAnswer":{"@type":"Answer","text":"Yes, Gün Elektrik & Klima provides 24/7 emergency electrical services in Ortaca and the surrounding area."}},{"@type":"Question","name":"Do you charge for an air conditioning inspection visit?","acceptedAnswer":{"@type":"Answer","text":"No. All our survey visits are completely free of charge."}}]}
 ]}
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
-<script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-TXZ6DC22X2');gtag('config','AW-11041830318');
-function trackWA(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
-function trackTel(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
-</script>
+
 <style>
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
@@ -196,9 +191,7 @@ function trackTel(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMG
 /* Hero tüm text rengi */
 #s-hero .hero-sub{color:#334155 !important;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet"/>
+
 <style>
 /* ══════════════ TOKENS ══════════════ */
 :root{
@@ -554,6 +547,12 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
 .kpi-cy::after{display:none;}
 .kpi-mg::after{display:none;}
 </style>
+<style id="fonts-inline">
+/* Barlow Condensed — yerel (gerçek dosya isimleri) */
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
+/* Inter — sistem fontu (repo'da yok, system-ui fallback yeterli) */
+</style>
 </head>
 <body>
 
@@ -619,143 +618,28 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
   <div class="orb orb-mg" aria-hidden="true"></div>
   <div class="orb orb-cy" aria-hidden="true"></div>
   <svg class="circuit" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <defs>
-    <!-- Çizilme animasyonu: yavaş çizil, dur, silin, dur -->
-    <style>
-      @keyframes draw1  {0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
-      @keyframes draw2  {0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
-      @keyframes draw3  {0%{stroke-dashoffset:700}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:700}}
-      @keyframes draw4  {0%{stroke-dashoffset:550}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:550}}
-      @keyframes draw5  {0%{stroke-dashoffset:480}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:480}}
-      @keyframes draw6  {0%{stroke-dashoffset:620}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:620}}
-      @keyframes draw7  {0%{stroke-dashoffset:530}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:530}}
-      @keyframes draw8  {0%{stroke-dashoffset:460}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:460}}
-      @keyframes fadedot{0%,20%{opacity:0}50%,70%{opacity:1}90%,100%{opacity:0}}
-      @media(prefers-reduced-motion:reduce){
-        .cp,.cd{animation:none!important;}
-      }
-    </style>
-  </defs>
-
-  <!-- Arka plan grid — statik -->
-  <g stroke="#1A3060" stroke-width="0.8" opacity="0.18">
-    <line x1="0" y1="100" x2="1200" y2="100"/>
-    <line x1="0" y1="200" x2="1200" y2="200"/>
-    <line x1="0" y1="300" x2="1200" y2="300"/>
-    <line x1="0" y1="400" x2="1200" y2="400"/>
-    <line x1="0" y1="500" x2="1200" y2="500"/>
-    <line x1="0" y1="600" x2="1200" y2="600"/>
-    <line x1="200" y1="0" x2="200" y2="700"/>
-    <line x1="400" y1="0" x2="400" y2="700"/>
-    <line x1="600" y1="0" x2="600" y2="700"/>
-    <line x1="800" y1="0" x2="800" y2="700"/>
-    <line x1="1000" y1="0" x2="1000" y2="700"/>
-  </g>
-
-  <!-- AMBER DEVRELER — 4 path, her biri farklı süre ve delay -->
-  <!-- Amber 1 -->
-  <polyline class="cp" points="180,80 360,80 360,180 540,180 540,100 720,100"
-    stroke="#D97706" stroke-width="2.5" fill="none"
-    stroke-dasharray="600" stroke-dashoffset="600"
-    style="animation:draw1 5s ease-in-out 0s infinite"/>
-  <g class="cd" style="animation:fadedot 5s ease-in-out 0s infinite">
-    <circle cx="360" cy="80"  r="5" fill="#D97706"/>
-    <circle cx="360" cy="180" r="5" fill="#D97706"/>
-    <circle cx="540" cy="180" r="5" fill="#D97706"/>
-    <circle cx="540" cy="100" r="5" fill="#D97706"/>
-  </g>
-
-  <!-- Amber 2 -->
-  <polyline class="cp" points="820,200 980,200 980,300 1150,300 1150,220 1180,220"
-    stroke="#D97706" stroke-width="2.5" fill="none"
-    stroke-dasharray="500" stroke-dashoffset="500"
-    style="animation:draw2 6s ease-in-out 1.2s infinite"/>
-  <g class="cd" style="animation:fadedot 6s ease-in-out 1.2s infinite">
-    <circle cx="980" cy="200" r="5" fill="#D97706"/>
-    <circle cx="980" cy="300" r="5" fill="#D97706"/>
-    <circle cx="1150" cy="300" r="5" fill="#D97706"/>
-    <circle cx="1150" cy="220" r="5" fill="#D97706"/>
-  </g>
-
-  <!-- Amber 3 -->
-  <polyline class="cp" points="500,420 660,420 660,520 820,520 820,440 1000,440"
-    stroke="#D97706" stroke-width="2.5" fill="none"
-    stroke-dasharray="700" stroke-dashoffset="700"
-    style="animation:draw3 7s ease-in-out 2.8s infinite"/>
-  <g class="cd" style="animation:fadedot 7s ease-in-out 2.8s infinite">
-    <circle cx="660" cy="420" r="5" fill="#D97706"/>
-    <circle cx="660" cy="520" r="5" fill="#D97706"/>
-    <circle cx="820" cy="520" r="5" fill="#D97706"/>
-    <circle cx="820" cy="440" r="5" fill="#D97706"/>
-  </g>
-
-  <!-- Amber 4 -->
-  <polyline class="cp" points="900,580 1020,580 1020,640 1180,640"
-    stroke="#D97706" stroke-width="2.5" fill="none"
-    stroke-dasharray="480" stroke-dashoffset="480"
-    style="animation:draw5 4.5s ease-in-out 4.5s infinite"/>
-  <g class="cd" style="animation:fadedot 4.5s ease-in-out 4.5s infinite">
-    <circle cx="1020" cy="580" r="5" fill="#D97706"/>
-    <circle cx="1020" cy="640" r="5" fill="#D97706"/>
-  </g>
-
-  <!-- LAcivert DEVRELER — 4 path -->
-  <!-- Lacivert 1 -->
-  <polyline class="cp" points="20,160 200,160 200,60 380,60 380,160 500,160"
-    stroke="#1A3060" stroke-width="2.5" fill="none"
-    stroke-dasharray="550" stroke-dashoffset="550"
-    style="animation:draw4 5.5s ease-in-out 0.6s infinite"/>
-  <g class="cd" style="animation:fadedot 5.5s ease-in-out 0.6s infinite">
-    <circle cx="200" cy="160" r="5" fill="#1A3060"/>
-    <circle cx="200" cy="60"  r="5" fill="#1A3060"/>
-    <circle cx="380" cy="60"  r="5" fill="#1A3060"/>
-    <circle cx="380" cy="160" r="5" fill="#1A3060"/>
-  </g>
-
-  <!-- Lacivert 2 -->
-  <polyline class="cp" points="600,280 740,280 740,360 880,360 880,280 1060,280"
-    stroke="#1A3060" stroke-width="2.5" fill="none"
-    stroke-dasharray="620" stroke-dashoffset="620"
-    style="animation:draw6 6.5s ease-in-out 2.1s infinite"/>
-  <g class="cd" style="animation:fadedot 6.5s ease-in-out 2.1s infinite">
-    <circle cx="740" cy="280" r="5" fill="#1A3060"/>
-    <circle cx="740" cy="360" r="5" fill="#1A3060"/>
-    <circle cx="880" cy="360" r="5" fill="#1A3060"/>
-    <circle cx="880" cy="280" r="5" fill="#1A3060"/>
-  </g>
-
-  <!-- Lacivert 3 -->
-  <polyline class="cp" points="60,480 220,480 220,400 400,400 400,500 560,500"
-    stroke="#1A3060" stroke-width="2.5" fill="none"
-    stroke-dasharray="530" stroke-dashoffset="530"
-    style="animation:draw7 5.8s ease-in-out 3.5s infinite"/>
-  <g class="cd" style="animation:fadedot 5.8s ease-in-out 3.5s infinite">
-    <circle cx="220" cy="480" r="5" fill="#1A3060"/>
-    <circle cx="220" cy="400" r="5" fill="#1A3060"/>
-    <circle cx="400" cy="400" r="5" fill="#1A3060"/>
-    <circle cx="400" cy="500" r="5" fill="#1A3060"/>
-  </g>
-
-  <!-- Lacivert 4 -->
-  <polyline class="cp" points="100,600 280,600 280,640 460,640"
-    stroke="#1A3060" stroke-width="2.5" fill="none"
-    stroke-dasharray="460" stroke-dashoffset="460"
-    style="animation:draw8 4.8s ease-in-out 5.2s infinite"/>
-  <g class="cd" style="animation:fadedot 4.8s ease-in-out 5.2s infinite">
-    <circle cx="280" cy="600" r="5" fill="#1A3060"/>
-    <circle cx="280" cy="640" r="5" fill="#1A3060"/>
-  </g>
-
-  <!-- IC chip kutuları — statik -->
-  <g stroke="#D97706" stroke-width="1.5" fill="none" opacity="0.25">
-    <rect x="520" y="160" width="44" height="28" rx="4"/>
-    <rect x="798" y="504" width="44" height="28" rx="4"/>
-  </g>
-  <g stroke="#1A3060" stroke-width="1.5" fill="none" opacity="0.22">
-    <rect x="358" y="42" width="44" height="28" rx="4"/>
-    <rect x="858" y="342" width="44" height="28" rx="4"/>
-  </g>
-</svg>
+    <defs><style>
+      @keyframes draw1{0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
+      @keyframes draw2{0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
+      @keyframes draw3{0%{stroke-dashoffset:620}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:620}}
+      @keyframes draw4{0%{stroke-dashoffset:550}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:550}}
+    </style></defs>
+    <!-- Grid — statik, tek g elementi -->
+    <g stroke="#1A3060" stroke-width="0.8" opacity="0.18" fill="none">
+      <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="400" x2="1200" y2="400"/>
+      <line x1="0" y1="500" x2="1200" y2="500"/><line x1="0" y1="600" x2="1200" y2="600"/>
+      <line x1="200" y1="0" x2="200" y2="700"/><line x1="400" y1="0" x2="400" y2="700"/>
+      <line x1="600" y1="0" x2="600" y2="700"/><line x1="800" y1="0" x2="800" y2="700"/>
+      <line x1="1000" y1="0" x2="1000" y2="700"/>
+    </g>
+    <!-- 2 amber path -->
+    <polyline points="180,80 360,80 360,180 540,180 540,100 720,100" stroke="#D97706" stroke-width="2.5" fill="none" stroke-dasharray="600" stroke-dashoffset="600" style="animation:draw1 5s ease-in-out 0s infinite"/>
+    <polyline points="820,200 980,200 980,300 1150,300 1150,220 1180,220" stroke="#D97706" stroke-width="2.5" fill="none" stroke-dasharray="500" stroke-dashoffset="500" style="animation:draw2 6s ease-in-out 1.8s infinite"/>
+    <!-- 2 lacivert path -->
+    <polyline points="20,160 200,160 200,60 380,60 380,160 500,160" stroke="#1A3060" stroke-width="2.5" fill="none" stroke-dasharray="620" stroke-dashoffset="620" style="animation:draw3 6.5s ease-in-out 0.9s infinite"/>
+    <polyline points="60,480 220,480 220,400 400,400 400,500 560,500" stroke="#1A3060" stroke-width="2.5" fill="none" stroke-dasharray="550" stroke-dashoffset="550" style="animation:draw4 5.5s ease-in-out 3.2s infinite"/>
+  </svg>
 
   <div style="position:relative;z-index:2;">
     <!-- Hero'daki px elementleri scroll ile hafif yukarı kayar (parallax exit) -->
@@ -1781,6 +1665,15 @@ function dismissLang(){
   document.getElementById('lsBox')?.classList.remove('on');
   sessionStorage.setItem('gun_lang','1');
 }
+</script>
+
+<!-- Analytics deferred -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-TXZ6DC22X2');gtag('config','AW-11041830318');
+function trackWA(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
+function trackTel(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
 </script>
 </body>
 </html>
