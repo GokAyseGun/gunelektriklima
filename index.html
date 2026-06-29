@@ -321,7 +321,7 @@ nav{
 .orb-mg{width:65vw;height:65vw;max-width:580px;max-height:580px;top:-15%;right:-15%;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);animation:ofl 10s ease-in-out infinite;}
 .orb-cy{width:50vw;height:50vw;max-width:420px;max-height:420px;bottom:-10%;left:-10%;background:radial-gradient(circle,rgba(245,158,11,.10) 0%,transparent 70%);animation:ofl 13s ease-in-out infinite reverse;}
 @keyframes ofl{0%,100%{transform:translate(0,0);}40%{transform:translate(3%,-2%);}70%{transform:translate(-2%,3%);}}
-.circuit{position:absolute;inset:0;width:100%;height:100%;opacity:.08;pointer-events:none;}
+.circuit{position:absolute;inset:0;width:100%;height:100%;opacity:.22;pointer-events:none;}
 
 /* ══════════════ BÖLÜM ORTAK ══════════════ */
 .sec-tag{display:inline-flex;align-items:center;gap:7px;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.9rem;}
@@ -619,12 +619,143 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
   <div class="orb orb-mg" aria-hidden="true"></div>
   <div class="orb orb-cy" aria-hidden="true"></div>
   <svg class="circuit" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs><filter id="cf"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-    <g stroke="#D97706" stroke-width="1" fill="none" filter="url(#cf)"><polyline points="800,120 960,120 960,200 1100,200"/><polyline points="850,350 920,350 920,280 1050,280"/><polyline points="900,500 970,500 970,440 1150,440"/></g>
-    <g fill="#D97706" opacity=".55"><circle cx="960" cy="120" r="4"/><circle cx="960" cy="200" r="4"/><circle cx="920" cy="350" r="4"/></g>
-    <g stroke="#1A3060" stroke-width="1" fill="none" opacity=".5" filter="url(#cf)"><polyline points="80,350 110,200 140,500 170,200 200,500 230,350"/></g>
-    <g fill="#1A3060" opacity=".4"><circle cx="110" cy="200" r="3"/><circle cx="140" cy="500" r="3"/></g>
-  </svg>
+  <defs>
+    <!-- Çizilme animasyonu: yavaş çizil, dur, silin, dur -->
+    <style>
+      @keyframes draw1  {0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
+      @keyframes draw2  {0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
+      @keyframes draw3  {0%{stroke-dashoffset:700}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:700}}
+      @keyframes draw4  {0%{stroke-dashoffset:550}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:550}}
+      @keyframes draw5  {0%{stroke-dashoffset:480}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:480}}
+      @keyframes draw6  {0%{stroke-dashoffset:620}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:620}}
+      @keyframes draw7  {0%{stroke-dashoffset:530}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:530}}
+      @keyframes draw8  {0%{stroke-dashoffset:460}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:460}}
+      @keyframes fadedot{0%,20%{opacity:0}50%,70%{opacity:1}90%,100%{opacity:0}}
+      @media(prefers-reduced-motion:reduce){
+        .cp,.cd{animation:none!important;}
+      }
+    </style>
+  </defs>
+
+  <!-- Arka plan grid — statik -->
+  <g stroke="#1A3060" stroke-width="0.8" opacity="0.18">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+    <line x1="200" y1="0" x2="200" y2="700"/>
+    <line x1="400" y1="0" x2="400" y2="700"/>
+    <line x1="600" y1="0" x2="600" y2="700"/>
+    <line x1="800" y1="0" x2="800" y2="700"/>
+    <line x1="1000" y1="0" x2="1000" y2="700"/>
+  </g>
+
+  <!-- AMBER DEVRELER — 4 path, her biri farklı süre ve delay -->
+  <!-- Amber 1 -->
+  <polyline class="cp" points="180,80 360,80 360,180 540,180 540,100 720,100"
+    stroke="#D97706" stroke-width="2.5" fill="none"
+    stroke-dasharray="600" stroke-dashoffset="600"
+    style="animation:draw1 5s ease-in-out 0s infinite"/>
+  <g class="cd" style="animation:fadedot 5s ease-in-out 0s infinite">
+    <circle cx="360" cy="80"  r="5" fill="#D97706"/>
+    <circle cx="360" cy="180" r="5" fill="#D97706"/>
+    <circle cx="540" cy="180" r="5" fill="#D97706"/>
+    <circle cx="540" cy="100" r="5" fill="#D97706"/>
+  </g>
+
+  <!-- Amber 2 -->
+  <polyline class="cp" points="820,200 980,200 980,300 1150,300 1150,220 1180,220"
+    stroke="#D97706" stroke-width="2.5" fill="none"
+    stroke-dasharray="500" stroke-dashoffset="500"
+    style="animation:draw2 6s ease-in-out 1.2s infinite"/>
+  <g class="cd" style="animation:fadedot 6s ease-in-out 1.2s infinite">
+    <circle cx="980" cy="200" r="5" fill="#D97706"/>
+    <circle cx="980" cy="300" r="5" fill="#D97706"/>
+    <circle cx="1150" cy="300" r="5" fill="#D97706"/>
+    <circle cx="1150" cy="220" r="5" fill="#D97706"/>
+  </g>
+
+  <!-- Amber 3 -->
+  <polyline class="cp" points="500,420 660,420 660,520 820,520 820,440 1000,440"
+    stroke="#D97706" stroke-width="2.5" fill="none"
+    stroke-dasharray="700" stroke-dashoffset="700"
+    style="animation:draw3 7s ease-in-out 2.8s infinite"/>
+  <g class="cd" style="animation:fadedot 7s ease-in-out 2.8s infinite">
+    <circle cx="660" cy="420" r="5" fill="#D97706"/>
+    <circle cx="660" cy="520" r="5" fill="#D97706"/>
+    <circle cx="820" cy="520" r="5" fill="#D97706"/>
+    <circle cx="820" cy="440" r="5" fill="#D97706"/>
+  </g>
+
+  <!-- Amber 4 -->
+  <polyline class="cp" points="900,580 1020,580 1020,640 1180,640"
+    stroke="#D97706" stroke-width="2.5" fill="none"
+    stroke-dasharray="480" stroke-dashoffset="480"
+    style="animation:draw5 4.5s ease-in-out 4.5s infinite"/>
+  <g class="cd" style="animation:fadedot 4.5s ease-in-out 4.5s infinite">
+    <circle cx="1020" cy="580" r="5" fill="#D97706"/>
+    <circle cx="1020" cy="640" r="5" fill="#D97706"/>
+  </g>
+
+  <!-- LAcivert DEVRELER — 4 path -->
+  <!-- Lacivert 1 -->
+  <polyline class="cp" points="20,160 200,160 200,60 380,60 380,160 500,160"
+    stroke="#1A3060" stroke-width="2.5" fill="none"
+    stroke-dasharray="550" stroke-dashoffset="550"
+    style="animation:draw4 5.5s ease-in-out 0.6s infinite"/>
+  <g class="cd" style="animation:fadedot 5.5s ease-in-out 0.6s infinite">
+    <circle cx="200" cy="160" r="5" fill="#1A3060"/>
+    <circle cx="200" cy="60"  r="5" fill="#1A3060"/>
+    <circle cx="380" cy="60"  r="5" fill="#1A3060"/>
+    <circle cx="380" cy="160" r="5" fill="#1A3060"/>
+  </g>
+
+  <!-- Lacivert 2 -->
+  <polyline class="cp" points="600,280 740,280 740,360 880,360 880,280 1060,280"
+    stroke="#1A3060" stroke-width="2.5" fill="none"
+    stroke-dasharray="620" stroke-dashoffset="620"
+    style="animation:draw6 6.5s ease-in-out 2.1s infinite"/>
+  <g class="cd" style="animation:fadedot 6.5s ease-in-out 2.1s infinite">
+    <circle cx="740" cy="280" r="5" fill="#1A3060"/>
+    <circle cx="740" cy="360" r="5" fill="#1A3060"/>
+    <circle cx="880" cy="360" r="5" fill="#1A3060"/>
+    <circle cx="880" cy="280" r="5" fill="#1A3060"/>
+  </g>
+
+  <!-- Lacivert 3 -->
+  <polyline class="cp" points="60,480 220,480 220,400 400,400 400,500 560,500"
+    stroke="#1A3060" stroke-width="2.5" fill="none"
+    stroke-dasharray="530" stroke-dashoffset="530"
+    style="animation:draw7 5.8s ease-in-out 3.5s infinite"/>
+  <g class="cd" style="animation:fadedot 5.8s ease-in-out 3.5s infinite">
+    <circle cx="220" cy="480" r="5" fill="#1A3060"/>
+    <circle cx="220" cy="400" r="5" fill="#1A3060"/>
+    <circle cx="400" cy="400" r="5" fill="#1A3060"/>
+    <circle cx="400" cy="500" r="5" fill="#1A3060"/>
+  </g>
+
+  <!-- Lacivert 4 -->
+  <polyline class="cp" points="100,600 280,600 280,640 460,640"
+    stroke="#1A3060" stroke-width="2.5" fill="none"
+    stroke-dasharray="460" stroke-dashoffset="460"
+    style="animation:draw8 4.8s ease-in-out 5.2s infinite"/>
+  <g class="cd" style="animation:fadedot 4.8s ease-in-out 5.2s infinite">
+    <circle cx="280" cy="600" r="5" fill="#1A3060"/>
+    <circle cx="280" cy="640" r="5" fill="#1A3060"/>
+  </g>
+
+  <!-- IC chip kutuları — statik -->
+  <g stroke="#D97706" stroke-width="1.5" fill="none" opacity="0.25">
+    <rect x="520" y="160" width="44" height="28" rx="4"/>
+    <rect x="798" y="504" width="44" height="28" rx="4"/>
+  </g>
+  <g stroke="#1A3060" stroke-width="1.5" fill="none" opacity="0.22">
+    <rect x="358" y="42" width="44" height="28" rx="4"/>
+    <rect x="858" y="342" width="44" height="28" rx="4"/>
+  </g>
+</svg>
 
   <div style="position:relative;z-index:2;">
     <!-- Hero'daki px elementleri scroll ile hafif yukarı kayar (parallax exit) -->
