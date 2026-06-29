@@ -14,7 +14,6 @@
 <meta property="og:title" content="Gün Elektrik & Klima"/>
 <meta property="og:description" content="Muğla genelinde elektrik, klima, hidrofor ve uydu hizmetleri. 7/24 acil servis."/>
 <meta property="og:image" content="https://www.gunelektrikklima.com/og-image.jpg"/>
-<link rel="preload" as="font" type="font/woff2" href='/fonts/barlow-condensed-latin-700-normal.woff2' crossorigin>
 <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png"/>
@@ -27,8 +26,8 @@
 </script>
 
 <style>
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:optional;src:url('fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:optional;src:url('fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
 
 /* ══ PROGRESS BAR ══ */
 #progress-bar{position:fixed;top:0;left:0;z-index:9999;height:3px;width:0%;background:linear-gradient(90deg,#D97706,#F59E0B 50%,#FCD34D);pointer-events:none;box-shadow:0 0 8px rgba(217,119,6,.4);}
@@ -549,8 +548,8 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
 </style>
 <style id="fonts-inline">
 /* Barlow Condensed — yerel (gerçek dosya isimleri) */
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:swap;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
 /* Inter — sistem fontu (repo'da yok, system-ui fallback yeterli) */
 </style>
 </head>
@@ -617,7 +616,7 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
 <section id="s-hero">
   <div class="orb orb-mg" aria-hidden="true"></div>
   <div class="orb orb-cy" aria-hidden="true"></div>
-  <svg class="circuit" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="circuit" style="contain:strict;" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><style>
       @keyframes draw1{0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
       @keyframes draw2{0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
@@ -658,7 +657,7 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
         <span id="h3i" style="display:block;transform:translateY(110%);color:#3B82F6;">Teknik Çözümler.</span>
       </span>
     </h1>
-    <p class="hero-sub px" data-px-y="0" data-speed-exit="0.45" id="h4">
+    <p class="hero-sub px" fetchpriority="high" data-px-y="0" data-speed-exit="0.45" id="h4">
       Elektrik tesisatından klima montajına, çanak montajından internet arızalarına kadar tüm ihtiyaçlarınızda profesyonel çözümler sunuyoruz.
     </p>
     <!-- 4. Butonlar ayrı px — farklı yönlere dağılıyor -->
@@ -1411,13 +1410,14 @@ function initCounters() {
 /* ── BAŞLAT ── */
 document.addEventListener('DOMContentLoaded', () => {
   hideScrollEls();  // flash önle
-  collect();
-  frame();
+  requestAnimationFrame(() => { collect(); frame(); });
 });
 
 window.addEventListener('load', () => {
-  collect();        // font/img yüklenmesinden sonra yükseklikler değişebilir
-  frame();
+  requestAnimationFrame(() => {
+    collect();  // font/img yüklenmesinden sonra yükseklikler değişebilir
+    frame();
+  });
   heroIntro();
   initCounters();
 });
@@ -1668,7 +1668,7 @@ function dismissLang(){
 </script>
 
 <!-- Analytics deferred -->
-<script defer src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
+<script async defer src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-TXZ6DC22X2');gtag('config','AW-11041830318');
