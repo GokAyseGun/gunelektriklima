@@ -1,4 +1,21 @@
 User-agent: *
 Allow: /
+Allow: /landing/
 
+# Sitemap
 Sitemap: https://www.gunelektrikklima.com/sitemap.xml
+
+# Gereksiz parametreli URL'leri engelle
+Disallow: /*?*
+Disallow: /admin/
+Disallow: /api/
+
+# Faydasız bot trafiğini azalt
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
