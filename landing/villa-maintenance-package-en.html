@@ -954,6 +954,7 @@ function sendWhatsApp() {
   var encoded = encodeURIComponent(msg);
   window.open('https://wa.me/905446529486?text=' + encoded, '_blank');
   if (typeof trackWA === 'function') trackWA();
+  if (typeof trackVillaPackage === 'function') trackVillaPackage(count, price);
 }
 
 // ── PROGRESS BAR ──
@@ -1007,8 +1008,23 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'G-TXZ6DC22X2');
 gtag('config', 'AW-11041830318');
-function trackWA() { gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' }); }
-function trackTel() { gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' }); }
+function trackWA() {
+  gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' });
+  gtag('event', 'villa_wa_contact', { 'event_category': 'villa_maintenance', 'event_label': 'whatsapp' });
+}
+function trackTel() {
+  gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' });
+  gtag('event', 'villa_tel_contact', { 'event_category': 'villa_maintenance', 'event_label': 'telephone' });
+}
+function trackVillaPackage(count, price) {
+  gtag('event', 'villa_package_send', {
+    'event_category': 'villa_maintenance',
+    'event_label': 'whatsapp_package',
+    'value': price,
+    'currency': 'EUR',
+    'custom_service_count': count
+  });
+}
 </script>
 </body>
 </html>
