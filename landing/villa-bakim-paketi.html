@@ -20,6 +20,12 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Gün Elektrik & Klima","url":"https://www.gunelektrikklima.com","telephone":"+90-544-652-94-86","priceRange":"€€","address":{"@type":"PostalAddress","addressLocality":"Ortaca","addressRegion":"Muğla","addressCountry":"TR"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Villa Yıllık Bakım ve Yönetim Paketi","description":"Muğla'da villa yıllık bakım ve yönetim paketi. Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat dahil kapsamlı hizmet. Tek sözleşme, tek muhatap, 7/24 ulaşılabilirlik.","provider":{"@type":"LocalBusiness","name":"Gün Elektrik & Klima","telephone":"+90-544-652-94-86","address":{"@type":"PostalAddress","addressLocality":"Ortaca","addressRegion":"Muğla","addressCountry":"TR"}},"areaServed":{"@type":"Place","name":"Muğla, Türkiye"},"offers":{"@type":"Offer","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"100","minPrice":"100","maxPrice":"575","priceCurrency":"EUR","unitText":"MONTH"},"availability":"https://schema.org/InStock"},"serviceType":"Villa Maintenance","termsOfService":"Yıllık sözleşme, 12 eşit aylık ödeme"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Sözleşme ne zaman başlar?","acceptedAnswer":{"@type":"Answer","text":"Sözleşme imzalandıktan ve ilk ödeme alındıktan sonra 7 iş günü içinde hizmet başlar. Sezon açılışı hizmeti tercih edilmişse villa sahibinin belirlediği tarihte hazırlık tamamlanır."}},{"@type":"Question","name":"Malzeme masrafları pakete dahil mi?","acceptedAnswer":{"@type":"Answer","text":"Havuz kimyasalları, boya, cila, yedek parça ve sarf malzemeleri müşteri tarafından karşılanır veya ayrıca faturalandırılır. İşçilik bedeli pakete dahildir."}},{"@type":"Question","name":"Sezon dışında da hizmet veriliyor mu?","acceptedAnswer":{"@type":"Answer","text":"Evet. Yıllık bakım paketi 365 gün geçerlidir. Sezon dışında düzenli ziyaretler devam eder, villanın kış bakımı ve güvenliği sağlanır."}},{"@type":"Question","name":"Kaç kişilik ekip geliyor?","acceptedAnswer":{"@type":"Answer","text":"Haftada 2 gün, 2 kişilik profesyonel teknik ekip ziyaret gerçekleştirir. Yılda 104'ten fazla planlı ziyaret yapılır."}},{"@type":"Question","name":"Acil durumda ne kadar sürede müdahale edilir?","acceptedAnswer":{"@type":"Answer","text":"7/24 acil destek hattı ile her an ulaşılabilirsiniz. Paketinizde aylık 2 acil çağrı hakkı bulunmaktadır. Acil müdahale süresi bölgeye göre 1-3 saat arasındadır."}}]}
+</script>
 <style id="fonts-inline">
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
@@ -111,12 +117,22 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .svc-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.75rem;}
 .svc-card-icon{font-size:1.5rem;flex-shrink:0;line-height:1;}
 .svc-card-title{font-family:var(--fd);font-size:1.05rem;font-weight:800;color:#0F1E3C;line-height:1.2;flex:1;}
-.svc-check{width:22px;height:22px;border-radius:50%;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;color:transparent;font-size:.8rem;font-weight:800;}
+.svc-check-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
+.svc-check{width:22px;height:22px;border-radius:50%;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;transition:all .2s;color:transparent;font-size:.8rem;font-weight:800;}
+.svc-check-lbl{font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;line-height:1;transition:color .2s;}
+.svc-card.selected .svc-check{background:#15803D;border-color:#15803D;color:#fff;}
+.svc-card.selected .svc-check-lbl{color:#15803D;}
+.svc-card:hover .svc-check{border-color:#D97706;}
+.svc-card:hover .svc-check-lbl{color:#D97706;}
 .svc-card.selected .svc-check{background:#15803D;border-color:#15803D;color:#fff;}
 .svc-items{display:flex;flex-direction:column;gap:5px;}
 .svc-item{display:flex;align-items:flex-start;gap:7px;font-size:.78rem;color:#475569;line-height:1.55;}
 .svc-item::before{content:'·';color:#D97706;font-weight:900;flex-shrink:0;}
 
+
+/* TOAST */
+.touch-toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(20px);z-index:300;background:#0F1E3C;color:#fff;font-size:.8rem;font-weight:600;padding:.6rem 1.1rem;border-radius:100px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;box-shadow:0 4px 16px rgba(15,30,60,.25);}
+.touch-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 /* TÜMÜNÜ SEÇ KUTUSU */
 .svc-card-all{background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:2px dashed rgba(217,119,6,.45);border-top:3px solid #D97706;border-radius:var(--rad);padding:1.5rem 1.25rem 1.75rem;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;user-select:none;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;}
 .svc-card-all:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(217,119,6,.18);background:linear-gradient(135deg,#FEF3C7,#FDE68A);}
@@ -127,7 +143,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .svc-card-all.all-selected .svc-card-all-label{color:#15803D;}
 
 /* FİYAT PANELİ */
-.price-section{padding:0 5% 0;scroll-margin-top:70px;}
+.price-section{padding:0 5% 0;scroll-margin-top:74px;}
 .price-panel{max-width:900px;margin:0 auto;background:#fff;border:1.5px solid #E2E8F0;border-left:5px solid #D97706;border-radius:var(--rad);padding:2rem 2rem 1.75rem;display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;}
 .price-left{flex-shrink:0;}
 .price-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8;margin-bottom:.35rem;}
@@ -173,6 +189,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 /* YÜZEN ALT BAR */
 .float-bar{position:fixed;bottom:0;left:0;right:0;z-index:149;background:rgba(217,119,6,.10);backdrop-filter:blur(8px);border-top:1.5px solid rgba(217,119,6,.35);padding:.75rem 5%;text-align:center;font-size:.85rem;font-weight:600;color:#92400E;transition:color .3s;}
 .float-bar.has-selection{background:rgba(217,119,6,.15);border-top-color:rgba(217,119,6,.45);color:#78350F;}
+.float-bar-price{display:inline-block;background:#D97706;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;padding:.15rem .65rem;border-radius:100px;margin-left:.4rem;vertical-align:middle;letter-spacing:.04em;}
 
 /* LANG SUGGEST */
 .ls-box{position:fixed;bottom:1.5rem;left:1.5rem;z-index:250;max-width:300px;background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1rem 1.1rem;box-shadow:0 8px 32px rgba(15,30,60,.12);display:flex;flex-direction:column;gap:.6rem;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .4s,transform .4s;}
@@ -183,6 +200,9 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 .ls-no{padding:.38rem .8rem;border-radius:6px;background:transparent;border:1px solid #CBD5E1;color:#94A3B8;font-size:.72rem;font-weight:600;cursor:pointer;}
 
 @media(max-width:640px){
+  .tel-num{display:none !important;}
+  .nav-tel{padding:.4rem .55rem !important;}
+
   .cta-group{flex-direction:column;align-items:center;}
   .btn-wa,.btn-tel{width:100%;justify-content:center;}
   .cart-panel{width:100%;}
@@ -191,10 +211,41 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
   .contact-inner{padding:1.5rem;}
 }
 @media(prefers-reduced-motion:reduce){.float-ring{animation:none!important;}}
+/* TESTİMONIAL */
+.testi-section{padding:2.5rem 5% 0;}
+.testi-inner{max-width:900px;margin:0 auto;}
+.testi-title{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#0F1E3C;margin-bottom:1.25rem;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.testi-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1.25rem 1.4rem;position:relative;}
+.testi-card::before{content:'"';font-family:Georgia,serif;font-size:4rem;line-height:.8;color:#FDE68A;position:absolute;top:.6rem;left:1rem;}
+.testi-text{font-size:.88rem;color:#475569;line-height:1.7;padding-top:1.6rem;margin-bottom:.875rem;}
+.testi-meta{display:flex;align-items:center;gap:.6rem;}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FDE68A,#D97706);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1rem;font-weight:800;color:#92400E;flex-shrink:0;}
+.testi-name{font-size:.82rem;font-weight:700;color:#0F1E3C;}
+.testi-loc{font-size:.75rem;color:#94A3B8;}
+.testi-stars{color:#F59E0B;font-size:.8rem;letter-spacing:1px;margin-bottom:.2rem;}
+
+/* FAQ */
+.faq-section{padding:2.5rem 5% 0;}
+.faq-inner{max-width:900px;margin:0 auto;}
+.faq-title{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#0F1E3C;margin-bottom:1.25rem;}
+.faq-list{display:flex;flex-direction:column;gap:8px;}
+.faq-item{border:1px solid #E2E8F0;border-radius:10px;background:#fff;overflow:hidden;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem;background:none;border:none;cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:700;color:#0F1E3C;text-align:left;transition:background .2s;}
+.faq-q:hover{background:#F8FAFC;}
+.faq-q svg{flex-shrink:0;transition:transform .3s;color:#D97706;}
+.faq-item.open .faq-q svg{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s;}
+.faq-item.open .faq-a{max-height:200px;}
+.faq-a-inner{padding:0 1.25rem 1rem;font-size:.85rem;color:#475569;line-height:1.7;border-top:1px solid #F1F5F9;}
+
 </style>
 </head>
 <body>
 <div id="pbar"></div>
+
+<!-- TOAST -->
+<div class="touch-toast" id="touchToast">👆 Seçmek için kutulara dokunun</div>
 
 <!-- SEPET PANELİ -->
 <div class="cart-panel" id="cartPanel">
@@ -243,7 +294,7 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
     </div>
     <a href="tel:+905446529486" class="nav-tel" onclick="trackTel()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      +90 544 652 94 86
+      <span class="tel-num">+90 544 652 94 86</span>
     </a>
     <button class="cart-btn" id="cartBtn" onclick="toggleCart()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57L23 6H6"/></svg>
@@ -310,12 +361,15 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 <section class="services-section">
   <div class="sec-tag">Hizmet Seçimi</div>
   <h2 class="sec-h2">Paketinizi Özelleştirin</h2>
-  <p class="sec-sub">İstediğiniz hizmetleri seçin — toplam aylık paket bedeli otomatik hesaplanır.</p>
+  <p class="sec-sub">Kutulara tıklayarak istediğiniz hizmetleri seçin — toplam aylık paket bedeli otomatik hesaplanır. İstediğiniz kadar hizmet ekleyip çıkarabilirsiniz.</p>
   <div class="services-grid" id="servicesGrid">
 
     <!-- 1. Havuz Bakımı -->
     <div class="svc-card" data-id="1" data-title="Havuz Bakımı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🏊</span><span class="svc-card-title">Havuz Bakımı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🏊</span><span class="svc-card-title">Havuz Bakımı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Havuz suyu pH ve klor ölçümü, kimyasal dengeleme</div>
         <div class="svc-item">Kimyasal dozajlama, su sertliği ve alkalinite ayarları</div>
@@ -329,7 +383,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 2. Bahçe Bakımı -->
     <div class="svc-card" data-id="2" data-title="Bahçe Bakımı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🌿</span><span class="svc-card-title">Bahçe Bakımı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🌿</span><span class="svc-card-title">Bahçe Bakımı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Doğal çim biçme, sıkıştırma ve kenar düzeltme</div>
         <div class="svc-item">Otomatik sulama sistemi hat, başlık ve zamanlayıcı kontrolleri</div>
@@ -343,7 +400,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 3. Teknik Bakım & Genel Tamirat -->
     <div class="svc-card" data-id="3" data-title="Teknik Bakım & Genel Tamirat" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🔧</span><span class="svc-card-title">Teknik Bakım &amp; Genel Tamirat</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🔧</span><span class="svc-card-title">Teknik Bakım &amp; Genel Tamirat</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Tüm elektrik priz ve anahtar gruplarının sistematik kontrolleri</div>
         <div class="svc-item">Kapı menteşe, kilit mekanizması ve sürgülerin kontrol ve yağlaması</div>
@@ -357,7 +417,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 4. Elektrik Tesisatı Kontrol & Onarımı -->
     <div class="svc-card" data-id="4" data-title="Elektrik Tesisatı Kontrol & Onarımı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">⚡</span><span class="svc-card-title">Elektrik Tesisatı Kontrol &amp; Onarımı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">⚡</span><span class="svc-card-title">Elektrik Tesisatı Kontrol &amp; Onarımı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Tüm priz ve anahtarların işlevsel çalışma testleri</div>
         <div class="svc-item">Sigorta panosu genel kontrol, temizlik ve sıkılaştırma</div>
@@ -370,7 +433,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 5. Klima Temizlik & Teknik Kontrol & Onarımı -->
     <div class="svc-card" data-id="5" data-title="Klima Temizlik & Teknik Kontrol & Onarımı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">❄️</span><span class="svc-card-title">Klima Temizlik &amp; Teknik Kontrol &amp; Onarımı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">❄️</span><span class="svc-card-title">Klima Temizlik &amp; Teknik Kontrol &amp; Onarımı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Tüm iç ünitelerin filtre aksamının sökülmesi, yıkanması ve temizliği</div>
         <div class="svc-item">İç ünite evaporatör serpantininin ilaçlı, derinlemesine yıkama</div>
@@ -383,7 +449,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 6. Dış Cephe Ahşap Bakım & Onarımı -->
     <div class="svc-card" data-id="6" data-title="Dış Cephe Ahşap Bakım & Onarımı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🪵</span><span class="svc-card-title">Dış Cephe Ahşap Bakım &amp; Onarımı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🪵</span><span class="svc-card-title">Dış Cephe Ahşap Bakım &amp; Onarımı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Tüm dış cephe ahşap yüzeylerin kapsamlı durum değerlendirmesi</div>
         <div class="svc-item">Çatlak, çürüme ve hasar gösteren tahtaların tespiti ve onarımı</div>
@@ -396,7 +465,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 7. Boya & Badana İşleri -->
     <div class="svc-card" data-id="7" data-title="Boya & Badana İşleri" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🎨</span><span class="svc-card-title">Boya &amp; Badana İşleri</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🎨</span><span class="svc-card-title">Boya &amp; Badana İşleri</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">İç ve dış mekandaki tüm duvar yüzeylerinin hasar değerlendirmesi</div>
         <div class="svc-item">Çatlak, kabarma ve renk dökülmelerinin sıva, macun ve rötuş ile tamiri</div>
@@ -409,7 +481,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 8. Sezon Açılışı Hazırlık Hizmeti -->
     <div class="svc-card" data-id="8" data-title="Sezon Açılışı Hazırlık Hizmeti" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🏡</span><span class="svc-card-title">Sezon Açılışı Hazırlık Hizmeti</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🏡</span><span class="svc-card-title">Sezon Açılışı Hazırlık Hizmeti</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Villa sahibi gelmeden önce villanızın eksiksiz hazırlanması</div>
         <div class="svc-item">Tüm odaların detaylı temizliği ve havalandırılması</div>
@@ -424,7 +499,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 9. Ev İçi Detaylı Temizlik -->
     <div class="svc-card" data-id="9" data-title="Ev İçi Detaylı Temizlik (Sezonluk)" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🧹</span><span class="svc-card-title">Ev İçi Detaylı Temizlik <span style="font-size:.82rem;font-weight:600;color:#475569;">(Sezonluk)</span></span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🧹</span><span class="svc-card-title">Ev İçi Detaylı Temizlik <span style="font-size:.82rem;font-weight:600;color:#475569;">(Sezonluk)</span></span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Tüm odaların tavan, duvar ve zemin dahil ayrıntılı temizliği</div>
         <div class="svc-item">Tüm cam yüzeyler ve aynaların pırıl pırıl temizliği</div>
@@ -437,7 +515,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 10. Banyo & Mutfak Hazırlığı -->
     <div class="svc-card" data-id="10" data-title="Banyo & Mutfak Hazırlığı (Sezonluk)" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🚿</span><span class="svc-card-title">Banyo &amp; Mutfak Hazırlığı <span style="font-size:.82rem;font-weight:600;color:#475569;">(Sezonluk)</span></span></span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🚿</span><span class="svc-card-title">Banyo &amp; Mutfak Hazırlığı <span style="font-size:.82rem;font-weight:600;color:#475569;">(Sezonluk)</span></span></span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">Banyo ve tuvaletlerin derinlemesine hijyenik temizliği ve dezenfeksiyonu</div>
         <div class="svc-item">Fayans aralarının temizliği, kireç sökümü ve beyazlatma</div>
@@ -450,7 +531,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 11. Aylık 2 Acil Çağrı Hakkı -->
     <div class="svc-card" data-id="11" data-title="Aylık 2 Acil Çağrı Hakkı" onclick="toggleCard(this)">
-      <div class="svc-card-head"><span class="svc-card-icon">🚨</span><span class="svc-card-title">Aylık 2 Acil Çağrı Hakkı</span><span class="svc-check">✓</span></div>
+      <div class="svc-card-head"><span class="svc-card-icon">🚨</span><span class="svc-card-title">Aylık 2 Acil Çağrı Hakkı</span><div class="svc-check-wrap">
+          <span class="svc-check">✓</span>
+          <span class="svc-check-lbl">Seç</span>
+        </div></div>
       <div class="svc-items">
         <div class="svc-item">7/24 telefon ile ulaşılabilirlik ve acil destek koordinasyonu</div>
         <div class="svc-item">Acil su kaçağı ve tesisat arızalarına öncelikli saha müdahalesi</div>
@@ -463,6 +547,10 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 
     <!-- 12. TÜMÜNÜ SEÇ -->
     <div class="svc-card-all" id="selectAllCard" onclick="toggleSelectAll()">
+      <div style="display:inline-flex;align-items:center;gap:5px;background:#15803D;color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .65rem;border-radius:100px;margin-bottom:.4rem;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        En Popüler Paket
+      </div>
       <div class="svc-card-all-quote">"Kafam rahat etsin, hiç bir sorun ve işi düşünmek istemiyorum..."</div>
       <div class="svc-card-all-label">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -508,6 +596,102 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 <section class="note-section">
   <div class="note-box">
     <p><strong>Not:</strong> Malzeme hariç işçilik bedelidir. Havuz kimyasalları, boya, cila, yedek parça ve sarf malzemeleri müşteri tarafından karşılanır veya ayrıca faturalandırılır. Büyük tadilat ve yapısal işler kapsam dışıdır. Program dışı ilave günler ayrıca ücretlendirilir. Bu teklif 365 gün geçerlidir.</p>
+  </div>
+</section>
+
+<!-- MÜŞTERİ YORUMLARI -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <h2 class="testi-title">Müşterilerimiz Ne Diyor?</h2>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <p class="testi-text">Yazlık sezonunu kaçırmak istemiyorduk. Gün Teknik ekibi gelmeden önce her şeyi hazırladı — havuz temizdi, klimalar çalışıyordu, villa pırıl pırıldı. Artık her yıl aynı huzurla geliyoruz.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-name">Michael V.</div>
+            <div class="testi-loc">Hollanda · Dalyan Villa Sahibi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-text">İstanbul'dan uzaktan yönetmek çok zordu. Farklı ustalar, farklı faturalar, koordinasyon derdi... Gün Teknik ile tek telefon yeterli oluyor. İki yıldır çok memnunuz.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-name">Ayşe K.</div>
+            <div class="testi-loc">İstanbul · Ortaca Villa Sahibi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-text">We've had several maintenance companies before but none as reliable. They actually show up on time, document every visit and flag issues before they become problems. Highly recommended.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-name">Robert &amp; Susan H.</div>
+            <div class="testi-loc">İngiltere · Dalyan Villa Sahibi</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SSS -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2 class="faq-title">Sık Sorulan Sorular</h2>
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sözleşme ne zaman başlar?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Sözleşme imzalandıktan ve ilk ödeme alındıktan sonra 7 iş günü içinde hizmet başlar. Sezon açılışı hizmeti tercih edilmişse villa sahibinin belirlediği tarihte hazırlık tamamlanır.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Malzeme masrafları pakete dahil mi?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Havuz kimyasalları, boya, cila, yedek parça ve sarf malzemeleri müşteri tarafından karşılanır veya ayrıca faturalandırılır. İşçilik bedeli pakete dahildir.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Sezon dışında da hizmet veriliyor mu?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Evet. Yıllık bakım paketi 365 gün geçerlidir. Sezon dışında düzenli ziyaretler devam eder, villanızın kış bakımı ve güvenliği sağlanır.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kaç kişilik ekip geliyor, haftada kaç gün?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Haftada 2 gün, 2 kişilik profesyonel teknik ekip ziyaret gerçekleştirir. Yılda 104'ten fazla planlı ziyaret yapılır.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Acil durumda ne kadar sürede müdahale edilir?
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">7/24 acil destek hattı ile her an ulaşılabilirsiniz. Paketinizde aylık 2 acil çağrı hakkı bulunmaktadır. Acil müdahale süresi bölgeye göre 1-3 saat arasındadır.</div></div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -585,12 +769,15 @@ var selected = new Set();
 
 function toggleCard(el) {
   var id = parseInt(el.getAttribute('data-id'));
+  var lbl = el.querySelector('.svc-check-lbl');
   if (selected.has(id)) {
     selected.delete(id);
     el.classList.remove('selected');
+    if (lbl) lbl.textContent = 'Seç';
   } else {
     selected.add(id);
     el.classList.add('selected');
+    if (lbl) lbl.textContent = 'Seçildi';
   }
   updateAll();
 }
@@ -701,7 +888,7 @@ function updateAll() {
       bar.textContent = 'Aylık Paket Bedellerini Görmek İçin Lütfen Hizmet Seçimi Yapın...';
     } else {
       bar.classList.add('has-selection');
-      bar.textContent = count + ' Sayıda Hizmet Seçtiniz — Toplam Aylık Paket Bedelini Görmek İçin Sayfayı Kaydırın';
+      bar.innerHTML = count + ' Hizmet Seçildi &nbsp;&mdash;&nbsp; Aylık Paket: <span class="float-bar-price">&euro; ' + price + ' <small style="font-size:.72rem;opacity:.8;">+KDV</small></span>';
     }
   }
 
@@ -726,6 +913,24 @@ function sendWhatsApp() {
   var realIds = [];
   selected.forEach(function(id) { if (id >= 1 && id <= MAX_SVC) realIds.push(id); });
   realIds.sort(function(a, b) { return a - b; });
+  // Seçim yoksa uyar
+  if (realIds.length === 0) {
+    var btn = document.querySelector('.contact-wa-btn');
+    if (btn) {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '⚠ Lütfen önce en az bir hizmet seçin';
+      btn.style.background = 'rgba(239,68,68,.18)';
+      btn.style.borderColor = 'rgba(239,68,68,.45)';
+      btn.style.color = '#FCA5A5';
+      setTimeout(function(){
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2500);
+    }
+    return;
+  }
 
   var titles = realIds.map(function(id) {
     var card = document.querySelector('.svc-card[data-id="' + id + '"]');
@@ -759,6 +964,24 @@ function updatePbar() {
 }
 window.addEventListener('scroll', updatePbar, { passive: true });
 
+
+// TOAST — mobilde bir kez göster
+(function(){
+  if(window.innerWidth<=640&&!sessionStorage.getItem('gk_toast')){
+    setTimeout(function(){
+      var t=document.getElementById('touchToast');
+      if(t){t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+      sessionStorage.setItem('gk_toast','1');
+    },1200);
+  }
+})();
+
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
 // ── DİL ÖNERİSİ ──
 (function() {
   var lang = (navigator.language || '').toLowerCase();
