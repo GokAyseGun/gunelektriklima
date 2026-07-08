@@ -1280,7 +1280,7 @@ function renderVillaListe() {
   let liste = DB.villalar;
   if(turFiltre !== 'hepsi') liste = liste.filter(v=>v.tur===turFiltre);
   // kisi bilgisini ekle
-  liste = liste.map(v=>({...v, _kisi: DB.kisiler.find(k=>k.id===v.kisi_id)||{}}));
+  liste = liste.map(v=>({...v, _kisi: DB.kisiler.find(k=>String(k.id)===String(v.kisi_id))||{}}));
   if(!liste.length){
     el.innerHTML='<div class="empty"><div class="empty-icon">🏠</div><div class="empty-title">Kayıt yok</div><div class="empty-sub">Sağ üstten ekleyin</div></div>';
     return;
@@ -1310,7 +1310,7 @@ function renderVillaListe() {
 }
 
 async function selectVilla(id) {
-  seciliVilla = DB.villalar.find(v=>v.id===id);
+  seciliVilla = DB.villalar.find(v=>String(v.id)===String(id));
   if(!seciliVilla) return;
   const tabSecili = document.getElementById('tab-secili');
   tabSecili.style.display = 'block';
@@ -1323,7 +1323,7 @@ async function selectVilla(id) {
 // ══════════════ DETAY RENDER ══════════════
 function renderDetay() {
   if(!seciliVilla) return;
-  const k = DB.kisiler.find(k=>k.id===seciliVilla.kisi_id)||{};
+  const k = DB.kisiler.find(k=>String(k.id)===String(seciliVilla.kisi_id))||{};
   document.getElementById('det-firma').textContent = k.isim||k.firma_unvan||'—';
   // not alanında "muhatap · email · tur" formatında tutuluyor
   const notParts=(k.not||'').split(' · ');
@@ -1384,7 +1384,7 @@ async function villaEkle(btn) {
       adres,
       'not': [muhatap, email, tur].filter(Boolean).join(' · ')
     })});
-    const kisiId=Array.isArray(kisi)?kisi[0]?.id:kisi?.id;
+    const kisiId=Number(Array.isArray(kisi)?kisi[0]?.id:kisi?.id);
     // Sonra villa ekle
     await sbFetch('villa_oteller',{method:'POST',body:JSON.stringify({kisi_id:kisiId,tur})});
     closeModal('modal-villa-ekle');
