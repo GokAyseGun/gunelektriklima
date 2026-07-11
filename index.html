@@ -189,6 +189,16 @@
 #s-hero .bgh:hover{color:#D97706 !important;border-color:#D97706 !important;background:rgba(217,119,6,.1) !important;}
 /* Hero tüm text rengi */
 #s-hero .hero-sub{color:#334155 !important;}
+
+  .villa-hero-btn::before { animation: none !important; }
+  .villa-hero-btn .vring { animation: none !important; }
+}
+
+
+
+
+
+
 </style>
 
 <style>
@@ -333,7 +343,7 @@ nav{
   background:var(--bg);
 }
 @media(min-width:768px){#s-hero{padding:100px 5% 0;}}
-.hero-h1{font-family:var(--fd);font-size:clamp(2.2rem,8.5vw,5.2rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#0F1E3C;margin-bottom:1.2rem;}
+.hero-h1{font-family:var(--fd);font-size:clamp(1.75rem,6.8vw,4.6rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#0F1E3C;margin-bottom:1.2rem;}
 /* Her satır wrapper: overflow hidden ama alt tarafa padding bırak */
 .h1-line{display:block;overflow:hidden;padding-bottom:.08em;}
 .h-badge{display:inline-flex;align-items:center;gap:7px;padding:.34rem .9rem;border-radius:100px;background:rgba(217,119,6,.12);border:1px solid rgba(217,119,6,.30);font-size:.65rem;font-weight:700;letter-spacing:.16em;color:#92400E;text-transform:uppercase;margin-bottom:1.6rem;}
@@ -545,12 +555,64 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
 .kpi-mg .kpi-progress-fill{background:#D97706;}
 .kpi-cy::after{display:none;}
 .kpi-mg::after{display:none;}
+
+
+  .villa-hero-btn::before { animation: none !important; }
+  .villa-hero-btn::after  { animation: none !important; }
+}
 </style>
 <style id="fonts-inline">
 /* Barlow Condensed — yerel (gerçek dosya isimleri) */
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
 @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
 /* Inter — sistem fontu (repo'da yok, system-ui fallback yeterli) */
+</style>
+<style id="vsb-style">
+@keyframes vsbGlow{0%,100%{box-shadow:0 0 0 0 rgba(217,119,6,0),0 2px 10px rgba(217,119,6,.2)}50%{box-shadow:0 0 0 8px rgba(217,119,6,.2),0 6px 36px rgba(217,119,6,.55),inset 0 0 14px rgba(253,230,138,.3)}}
+@keyframes vsbShine{0%{left:-110%;opacity:0}8%{opacity:1}45%{left:130%;opacity:1}47%{opacity:0}100%{left:130%;opacity:0}}
+
+#vsBtn{
+  position:relative !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:.45rem !important;
+  padding:.85rem 1.6rem !important;
+  font-size:.95rem !important;
+  font-weight:800 !important;
+  color:#92400E !important;
+  background:rgba(253,230,138,.22) !important;
+  border:2px solid #D97706 !important;
+  border-radius:12px !important;
+  text-decoration:none !important;
+  cursor:pointer !important;
+  overflow:hidden !important;
+  letter-spacing:.02em !important;
+  white-space:nowrap !important;
+  animation:vsbGlow 1.8s ease-in-out infinite !important;
+  font-family:inherit !important;
+}
+#vsBtn:hover{
+  background:rgba(253,230,138,.42) !important;
+  color:#78350F !important;
+  transform:translateY(-2px) !important;
+}
+#vsBtn::before{
+  content:'' !important;
+  position:absolute !important;
+  top:0 !important;left:-110% !important;
+  width:60% !important;height:100% !important;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,0) 25%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 75%,transparent 100%) !important;
+  animation:vsbShine 2s ease-in-out infinite !important;
+  pointer-events:none !important;
+  z-index:1 !important;
+}
+
+#vsC{position:fixed;inset:0;pointer-events:none;z-index:9998;display:none}
+#vsC.on{display:block}
+@media(prefers-reduced-motion:reduce){
+  #vsBtn{animation:none !important}
+  #vsBtn::before{animation:none !important}
+}
 </style>
 </head>
 <body>
@@ -654,7 +716,7 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
         <span id="h2i" style="display:block;transform:translateY(110%);color:#1A3060;">Uydu-Çanak &amp; İnternet,</span>
       </span>
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.7" id="h3">
-        <span id="h3i" style="display:block;transform:translateY(110%);color:#1D4ED8;">Villa Bakım &amp; Yönetim,</span>
+        <span id="h3i" style="display:block;transform:translateY(110%);color:#1D4ED8;">Villa &amp; Otel Bakım Sistemi,</span>
       </span>
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.8" id="h4">
         <span id="h4i" style="display:block;transform:translateY(110%);color:#3B82F6;">Teknik Çözümler.</span>
@@ -673,8 +735,12 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         Bizi Arayın
       </a>
-      <a href="#s-hizmetler" class="bgh rip px" data-px-y="0" data-speed-exit="0.45" data-exit-x="18" style="color:#0F1E3C;border-color:#0F1E3C;background:rgba(15,30,60,.06);">Hizmetlerimiz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="/landing/villa-bakim-paketi.html" class="bgh rip px" data-px-y="0" data-speed-exit="0.45" data-exit-x="18" style="color:#D97706;border-color:#D97706;background:rgba(217,119,6,.08);">Villa Bakım Sistemi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+      <a href="#s-hizmetler" class="bgh rip px" data-px-y="0" data-speed-exit="0.45" data-exit-x="18" style="color:#0F1E3C !important;border-color:#0F1E3C !important;background:rgba(15,30,60,.08) !important;">Hizmetlerimiz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/landing/villa-bakim-paketi.html" class="vsb" id="vsBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Villa &amp; Otel Bakım Sistemi <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      
+      
+      
+      
     </div>
   </div>
 
@@ -796,10 +862,10 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
       <div class="svc-preview" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <div class="svc-num mg">09</div>
       <div class="svc-icon mg"><svg viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <h3 class="svc-h3">Villa Yıllık Bakım Sistemi</h3>
-      <p class="svc-short">Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat dahil kapsamlı villa bakım ve yönetim paketi.</p>
+      <h3 class="svc-h3">Villa &amp; Otel Bakım Sistemi</h3>
+      <p class="svc-short">Villa ve oteller için havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat dahil kapsamlı yıllık bakım ve yönetim paketi.</p>
       <div class="svc-more">
-        <p>Tek sözleşme, tek muhatap. Haftada 2 gün, 2 kişilik profesyonel teknik ekip. Yılda 104+ planlı ziyaret ile villanızın tüm sistemleri düzenli izlenir. Sezon açılışı, havuz bakımı, bahçe bakımı, elektrik ve klima kontrolü tek pakette. Sabit aylık bedelle tam güvence.</p>
+        <p>Tek sözleşme, tek muhatap. Haftada 2 gün, 2 kişilik profesyonel teknik ekip ile villa ve otellere yılda 104+ planlı ziyaret. Villalar için sezon açılışı hazırlığı, havuz ve bahçe bakımı, elektrik, klima ve ahşap işleri. Oteller için sezon öncesi teknik denetim, sarf malzeme tedariki, dekorasyon hazırlığı ve teknik bakım. Her iki tesis tipi için sabit aylık bedel ve tam güvence.</p>
         <a href="/landing/villa-bakim-paketi.html" style="display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 14px;border-radius:8px;background:rgba(217,119,6,.08);border:1.5px solid rgba(217,119,6,.30);color:#92400E;font-size:.82rem;font-weight:700;text-decoration:none;transition:all .2s;" onmouseenter="this.style.background='rgba(217,119,6,.16)'" onmouseleave="this.style.background='rgba(217,119,6,.08)'">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           Detaylı bilgi için sayfamızı ziyaret edin →
@@ -1526,7 +1592,11 @@ document.querySelectorAll('.svc-panel').forEach(p => {
     document.querySelectorAll('.svc-panel.open').forEach(o=>{o.classList.remove('open');o.setAttribute('aria-expanded','false');});
     if(!was){p.classList.add('open');p.setAttribute('aria-expanded','true');}
   };
-  p.addEventListener('click',toggle);
+  p.addEventListener('click', function(e) {
+    // svc-more içindeki linklere tıklanınca paneli açma/kapama
+    if (e.target.closest('a')) return;
+    toggle(e);
+  });
   p.addEventListener('keydown',toggle);
 });
 
@@ -1730,6 +1800,56 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
 gtag('js',new Date());gtag('config','G-TXZ6DC22X2');gtag('config','AW-11041830318');
 function trackWA(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
 function trackTel(){gtag('event','conversion',{'send_to':'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep','value':1.0,'currency':'TRY'});}
+</script>
+
+
+
+
+
+
+<canvas id="vsC"></canvas>
+<script>
+(function(){
+  function boom(btn){
+    var c=document.getElementById('vsC');
+    if(!c)return;
+    var x=c.getContext('2d');
+    c.width=window.innerWidth;c.height=window.innerHeight;c.classList.add('show');
+    var col=['#F59E0B','#FCD34D','#D97706','#0F1E3C','#FBBF24','#fff'];
+    var r=btn.getBoundingClientRect();
+    var cx=r.left+r.width/2,cy=r.top+r.height/2;
+    var ps=[];
+    for(var i=0;i<65;i++){
+      var a=Math.random()*Math.PI*2,s=3+Math.random()*9;
+      ps.push({x:cx,y:cy,vx:Math.cos(a)*s,vy:Math.sin(a)*s-4,
+        w:4+Math.random()*8,h:3+Math.random()*4,
+        col:col[~~(Math.random()*col.length)],
+        al:1,rot:Math.random()*360,rv:(Math.random()-.5)*10,
+        sh:Math.random()>.4});
+    }
+    var f;function draw(){
+      x.clearRect(0,0,c.width,c.height);
+      var alive=false;
+      ps.forEach(function(p){
+        if(p.al<=0)return;alive=true;
+        p.x+=p.vx;p.y+=p.vy;p.vy+=.28;p.al-=.016;p.rot+=p.rv;
+        x.save();x.globalAlpha=Math.max(0,p.al);
+        x.translate(p.x,p.y);x.rotate(p.rot*Math.PI/180);
+        x.fillStyle=p.col;
+        if(p.sh){x.fillRect(-p.w/2,-p.h/2,p.w,p.h);}
+        else{x.beginPath();x.arc(0,0,p.w/2,0,Math.PI*2);x.fill();}
+        x.restore();
+      });
+      if(alive){f=requestAnimationFrame(draw);}
+      else{c.classList.remove('show');}
+    }
+    if(f)cancelAnimationFrame(f);draw();
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('vsBtn');
+    if(b)b.addEventListener('click',function(){boom(b);});
+  });
+})();
 </script>
 </body>
 </html>
