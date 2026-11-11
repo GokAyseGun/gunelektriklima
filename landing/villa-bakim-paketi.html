@@ -17,14 +17,12 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png"/>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gün Elektrik & Klima","url":"https://www.gunelektrikklima.com","telephone":"+90-544-652-94-86","priceRange":"€€","address":{"@type":"PostalAddress","addressLocality":"Ortaca","addressRegion":"Muğla","addressCountry":"TR"}}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gün Teknik","url":"https://www.gunelektrikklima.com","telephone":"+90-544-652-94-86","priceRange":"€€","address":{"@type":"PostalAddress","addressLocality":"Ortaca","addressRegion":"Muğla","addressCountry":"TR"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Villa & Otel Yıllık Bakım ve Yönetim Paketi","description":"Muğla'da villa ve otel için kapsamlı yıllık bakım ve teknik yönetim hizmeti. Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat dahil. Tek sözleşme, tek muhatap, 7/24 ulaşılabilirlik.","provider":{"@type":"LocalBusiness","name":"Gün Elektrik & Klima","telephone":"+90-544-652-94-86"},"areaServed":{"@type":"Place","name":"Muğla, Türkiye"},"offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"100","highPrice":"780","offerCount":"24"}}
+{"@context":"https://schema.org","@type":"Service","name":"Villa & Otel Yıllık Bakım ve Yönetim Paketi","description":"Muğla'da villa ve otel için kapsamlı yıllık bakım ve teknik yönetim hizmeti. Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat dahil. Tek sözleşme, tek muhatap, 7/24 ulaşılabilirlik.","provider":{"@type":"LocalBusiness","name":"Gün Teknik","telephone":"+90-544-652-94-86"},"areaServed":{"@type":"Place","name":"Muğla, Türkiye"},"offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"100","highPrice":"780","offerCount":"24"}}
 </script>
 <style id="fonts-inline">
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
-@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
 </style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -289,8 +287,9 @@ nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-co
 }
 @media(prefers-reduced-motion:reduce){.float-ring{animation:none!important;}}
 </style>
+<link rel="stylesheet" href="/assets/site.css?v=d4fb0499"/>
 </head>
-<body>
+<body data-gt-bar="0" data-gt-wa="Merhaba, Villa ve Otel Yıllık Bakım paketi hakkında bilgi almak istiyorum.">
 <div id="pbar"></div>
 
 <!-- TOAST -->
@@ -1065,21 +1064,8 @@ function dismissLang() {
 </script>
 
 <!-- Analytics deferred -->
-<script async defer src="https://www.googletagmanager.com/gtag/js?id=G-TXZ6DC22X2"></script>
+<script src="/assets/site.js?v=d4fb0499" defer></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'G-TXZ6DC22X2');
-gtag('config', 'AW-11041830318');
-function trackWA() {
-  gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' });
-  gtag('event', 'villa_wa_contact', { 'event_category': 'villa_maintenance', 'event_label': 'whatsapp' });
-}
-function trackTel() {
-  gtag('event', 'conversion', { 'send_to': 'AW-11041830318/ETbWCMGP0L8cEK7rk5Ep', 'value': 1.0, 'currency': 'TRY' });
-  gtag('event', 'villa_tel_contact', { 'event_category': 'villa_maintenance', 'event_label': 'telephone' });
-}
 function trackVillaPackage(count, price) {
   gtag('event', 'villa_package_send', { 'event_category': 'villa_maintenance', 'event_label': 'whatsapp_package', 'value': price, 'currency': 'EUR', 'custom_service_count': count });
 }
