@@ -176,7 +176,6 @@ def sayfa(yol, title, desc, govde, graph, en=None, wa_metin="", uyari="genel", n
     <a href="tel:%(tel)s" class="nav-tel" aria-label="Telefonla ara: %(telg)s">%(ikon_tel)s<span>%(telk)s</span></a>
   </div>
 </nav>
-%(uyari)s
 <main id="icerik">
 %(govde)s
 </main>
@@ -191,8 +190,8 @@ def sayfa(yol, title, desc, govde, graph, en=None, wa_metin="", uyari="genel", n
 """ % dict(title=e(title), desc=e(desc), kanonik=kanonik, robots="noindex, follow" if noindex else "index, follow",
            hreflang=hreflang, ad=e(F["ad"]), site=SITE, v=V, ld=ld(graph) if graph else "", wa=e(wa_metin),
            bar="" if bar else ' data-gt-bar="0"', logo=LOGO, dil=dil, tel=F["tel"], telg=F["tel_gorunen"], telk=F["tel_kisa"],
-           ikon_tel=IKON_TEL, uyari='<div class="gt-uyari" role="note">%s</div>' % D.UYARI[uyari] if uyari else "",
-           govde=govde, altbilgi=altbilgi(), wa_href=wa_href(wa_metin or "Merhaba, bilgi almak istiyorum."))
+           ikon_tel=IKON_TEL,
+           govde=govde.replace("<!--UYARI-->", '<p class="gt-uyari" role="note">%s</p>' % D.UYARI[uyari] if uyari else ""), altbilgi=altbilgi(), wa_href=wa_href(wa_metin or "Merhaba, bilgi almak istiyorum."))
 
 
 def cta(wa_metin):
@@ -219,7 +218,8 @@ def istatistik(sure_buyuk, sure_alt):
   <div class="stat-card amber"><div class="stat-num">%s</div><div class="stat-lbl">Tamamlanan İş</div></div>
   <div class="stat-card navy"><div class="stat-num buyuk">7/24</div><div class="stat-lbl">Acil Servis</div></div>
   <div class="stat-card navy"><div class="stat-num buyuk">%s</div><div class="stat-lbl">%s</div></div>
-</div>""" % (F["tecrube"], F["is_sayisi"], e(sure_buyuk), e(sure_alt))
+</div>
+<!--UYARI-->""" % (F["tecrube"], F["is_sayisi"], e(sure_buyuk), e(sure_alt))
 
 
 def neden_html():

@@ -8,8 +8,8 @@
 @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
 
 /* ── Üst bilgi şeridi (özel servis / kesinti uyarısı) ── */
-.gt-uyari{background:#0F1E3C;color:#E2E8F0;font-size:.76rem;font-weight:500;line-height:1.45;padding:.5rem 5%;text-align:center;}
-.gt-uyari strong{color:#FCD34D;font-weight:700;}
+.gt-uyari{max-width:680px;margin:18px auto 0;padding:0 5%;color:#64748B;font-size:.78rem;font-weight:500;line-height:1.5;text-align:center;position:relative;z-index:1;}
+.gt-uyari strong{color:#0F1E3C;font-weight:700;}
 
 /* ── Mobil sabit alt çubuk: acil renkleriyle Ara + WhatsApp ── */
 .gt-bar{display:none;}
