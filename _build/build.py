@@ -44,14 +44,22 @@ ayar = {
     "cerezVarsayilan": D.OLCUM["cerez_varsayilan"], "sb": D.OLCUM["sb"], "sbKey": D.OLCUM["sb_key"],
 }
 SITE_JS = oku("_build/js/site.js").replace("__GT_CONFIG__", json.dumps(ayar, ensure_ascii=False))
-SITE_CSS = oku("_build/css/common.css")
-LANDING_CSS = oku("_build/_landing_base.css") + "\n" + oku("_build/css/landing.css")
+def kucult(c):
+    """CSS'i küçültür: yorumları ve gereksiz boşlukları atar."""
+    c = re.sub(r"/\*.*?\*/", "", c, flags=re.S)
+    c = re.sub(r"\s*\n\s*", " ", c)
+    return re.sub(r"\s*([{};,>])\s*", r"\1", c).replace(";}", "}")
+
+
+EK_CSS = ".gt-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}.gt-atla{position:absolute;left:-999px;top:0;z-index:10000;background:#0F1E3C;color:#fff;padding:10px 14px;border-radius:0 0 8px 0;}.gt-atla:focus{left:0;}.gt-metin{font-size:.92rem;line-height:1.75;color:#334155;}.gt-metin h2{font:700 1.2rem/1.3 'Barlow Condensed',system-ui,sans-serif;color:#0F1E3C;margin:1.6rem 0 .5rem;}.gt-metin p,.gt-metin ul{margin:0 0 .9rem;}.gt-metin ul{padding-left:1.2rem;}.gt-metin a{color:#0F1E3C;text-decoration:underline;}"
+SITE_CSS = kucult(oku("_build/css/common.css") + EK_CSS)
+LANDING_CSS = kucult(oku("_build/_landing_base.css") + "\n" + oku("_build/css/landing.css"))
 V = hashlib.md5((SITE_JS + SITE_CSS + LANDING_CSS).encode("utf-8")).hexdigest()[:8]
 
 IKON_TEL = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>'
 IKON_WA = '<svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.073-1.117l-.292-.174-3.024.858.829-2.955-.19-.303A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>'
 LOGO = '<svg viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/></linearGradient><linearGradient id="lg2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1E3A8A"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs><polygon points="47,6 24,58 38,58 30,114 47,73" fill="url(#lg1)"/><polygon points="47,6 47,73 60,114 66,58 52,58" fill="url(#lg2)"/></svg>'
-DEVRE = oku("_build/templates/_devre.svg")
+DEVRE = oku("_build/templates/_devre.svg").replace("<svg", '<svg data-gt-par="0.16"', 1)
 
 
 def wa_href(metin):
@@ -162,8 +170,9 @@ def sayfa(yol, title, desc, govde, graph, en=None, wa_metin="", uyari="genel", n
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#F8FAFC"/>
 <link rel="preload" href="/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=%(v)s"/>
-<link rel="stylesheet" href="/assets/landing.css?v=%(v)s"/>
+<script>document.documentElement.classList.add('gt-js');setTimeout(function(){if(!window.GT_AN)document.documentElement.classList.add('gt-all')},3500)</script>
+<style>%(css)s</style>
+<script src="/assets/site.js?v=%(v)s" defer></script>
 %(ld)s
 </head>
 <body data-gt-wa="%(wa)s"%(bar)s>
@@ -184,19 +193,18 @@ def sayfa(yol, title, desc, govde, graph, en=None, wa_metin="", uyari="genel", n
   <a href="%(wa_href)s" class="float-btn float-btn-wa" target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın"><span class="float-ring" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></a>
   <a href="tel:%(tel)s" class="float-btn float-btn-tel" aria-label="Telefonla arayın"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
 </div>
-<script src="/assets/site.js?v=%(v)s" defer></script>
 </body>
 </html>
 """ % dict(title=e(title), desc=e(desc), kanonik=kanonik, robots="noindex, follow" if noindex else "index, follow",
-           hreflang=hreflang, ad=e(F["ad"]), site=SITE, v=V, ld=ld(graph) if graph else "", wa=e(wa_metin),
+           hreflang=hreflang, ad=e(F["ad"]), site=SITE, v=V, css=SITE_CSS + LANDING_CSS, ld=ld(graph) if graph else "", wa=e(wa_metin),
            bar="" if bar else ' data-gt-bar="0"', logo=LOGO, dil=dil, tel=F["tel"], telg=F["tel_gorunen"], telk=F["tel_kisa"],
            ikon_tel=IKON_TEL,
            govde=govde.replace("<!--UYARI-->", '<p class="gt-uyari" role="note">%s</p>' % D.UYARI[uyari] if uyari else ""), altbilgi=altbilgi(), wa_href=wa_href(wa_metin or "Merhaba, bilgi almak istiyorum."))
 
 
 def cta(wa_metin):
-    return ('<div class="cta-group"><a href="tel:%s" class="btn-tel">%s %s</a>'
-            '<a href="%s" class="btn-wa" target="_blank" rel="noopener">%s WhatsApp\'ta Yazın</a></div>') % (
+    return ('<div class="cta-group"><a href="tel:%s" class="btn-tel gt-r">%s %s</a>'
+            '<a href="%s" class="btn-wa gt-r" target="_blank" rel="noopener">%s WhatsApp\'ta Yazın</a></div>') % (
         F["tel"], IKON_TEL, F["tel_gorunen"], wa_href(wa_metin), IKON_WA)
 
 
@@ -204,8 +212,8 @@ def kahraman(rozet, h1a, h1b, ozet, wa_metin):
     return """<section class="hero">
   %s
   <div class="hero-inner">
-    <div class="hero-badge">%s</div>
-    <h1>%s <em>%s</em></h1>
+    <div class="hero-badge gt-r">%s</div>
+    <h1 class="gt-r">%s <em>%s</em></h1>
     <p class="hero-desc">%s</p>
     %s
   </div>
@@ -214,10 +222,10 @@ def kahraman(rozet, h1a, h1b, ozet, wa_metin):
 
 def istatistik(sure_buyuk, sure_alt):
     return """<div class="stats">
-  <div class="stat-card amber"><div class="stat-num">%s</div><div class="stat-lbl">Yıllık Tecrübe</div></div>
-  <div class="stat-card amber"><div class="stat-num">%s</div><div class="stat-lbl">Tamamlanan İş</div></div>
-  <div class="stat-card navy"><div class="stat-num buyuk">7/24</div><div class="stat-lbl">Acil Servis</div></div>
-  <div class="stat-card navy"><div class="stat-num buyuk">%s</div><div class="stat-lbl">%s</div></div>
+  <div class="stat-card amber gt-r"><div class="stat-num">%s</div><div class="stat-lbl">Yıllık Tecrübe</div></div>
+  <div class="stat-card amber gt-r"><div class="stat-num">%s</div><div class="stat-lbl">Tamamlanan İş</div></div>
+  <div class="stat-card navy gt-r"><div class="stat-num buyuk">7/24</div><div class="stat-lbl">Acil Servis</div></div>
+  <div class="stat-card navy gt-r"><div class="stat-num buyuk">%s</div><div class="stat-lbl">%s</div></div>
 </div>
 <!--UYARI-->""" % (F["tecrube"], F["is_sayisi"], e(sure_buyuk), e(sure_alt))
 
@@ -401,7 +409,7 @@ metin_sayfa("404.html", "Sayfa Bulunamadı — %s" % F["ad"], "Aradığınız sa
 def doldur(s):
     degis = {
         "{{AD}}": e(F["ad"]), "{{TEL}}": F["tel"], "{{TEL_GORUNEN}}": F["tel_gorunen"], "{{WA}}": F["wa"],
-        "{{EPOSTA}}": F["eposta"], "{{YIL}}": str(YIL), "{{V}}": V, "{{YORUM_LINK}}": F["yorum_link"],
+        "{{EPOSTA}}": F["eposta"], "{{SITE_CSS}}": SITE_CSS, "{{YIL}}": str(YIL), "{{V}}": V, "{{YORUM_LINK}}": F["yorum_link"],
         "{{BOLGE_KISA}}": e(F["bolge_kisa"]), "{{BOLGE_METIN}}": e(F["bolge_metin"]),
         "{{UYARI_GENEL}}": D.UYARI["genel"],
         "{{ANA_SSS}}": sss_html(D.ANA_SSS),
@@ -423,7 +431,7 @@ for sablon, hedef in (("index.html", "index.html"), ("villa-bakim-paketi.html", 
     yaz(hedef, doldur(oku("_build/templates/" + sablon)))
 
 # ── Ortak dosyalar, site haritası, robots ─────────────────────────────────
-yaz("assets/site.css", SITE_CSS + "\n.gt-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}\n.gt-atla{position:absolute;left:-999px;top:0;z-index:10000;background:#0F1E3C;color:#fff;padding:10px 14px;border-radius:0 0 8px 0;}\n.gt-atla:focus{left:0;}\n.gt-metin{font-size:.92rem;line-height:1.75;color:#334155;}\n.gt-metin h2{font:700 1.2rem/1.3 'Barlow Condensed',system-ui,sans-serif;color:#0F1E3C;margin:1.6rem 0 .5rem;}\n.gt-metin p,.gt-metin ul{margin:0 0 .9rem;}\n.gt-metin ul{padding-left:1.2rem;}\n.gt-metin a{color:#0F1E3C;text-decoration:underline;}\n")
+yaz("assets/site.css", SITE_CSS)
 yaz("assets/landing.css", LANDING_CSS)
 yaz("assets/site.js", SITE_JS)
 

@@ -81,6 +81,16 @@
       bar.appendChild(t); bar.appendChild(wa);
       body.appendChild(bar);
       body.classList.add('gt-has-bar');
+      /* Kahramandaki düğmeler ekrandayken gizli; onlar yukarıda kaybolunca yavaşça belirir */
+      var cta = d.querySelector('#s-hero a[href^="tel:"]') || d.querySelector('.hero .cta-group') || d.querySelector('main a[href^="tel:"]');
+      var barBekle = false;
+      var barGuncel = function () {
+        barBekle = false;
+        var ac = cta ? cta.getBoundingClientRect().bottom < 60 : w.scrollY > 260;
+        body.classList.toggle('gt-bar-on', ac);
+      };
+      w.addEventListener('scroll', function () { if (!barBekle) { barBekle = true; w.requestAnimationFrame(barGuncel); } }, { passive: true });
+      barGuncel();
     }
 
     /* ───────── Çerez bildirimi (tek satır) ───────── */
@@ -206,22 +216,74 @@
       else if (btn) btn.addEventListener('click', gonder);
     });
 
-    /* ───────── Açılış sayfaları: ilerleme çubuğu ve tek yönlü belirme ───────── */
+    /* ───────── Akış: açılış sahnesi + kaydırınca tek seferlik, sıralı belirme ───────── */
+    var az = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var kok = d.documentElement;
+    w.GT_AN = 1;
+    if (az || !('IntersectionObserver' in w)) { kok.classList.add('gt-all'); }
+    else {
+      var ADIM = 75;
+      var yon = function (n) {
+        var f = n.getAttribute('data-from');
+        if (f === 'left') { n.style.setProperty('--gx', '-36px'); n.style.setProperty('--gy', '0px'); }
+        else if (f === 'right') { n.style.setProperty('--gx', '36px'); n.style.setProperty('--gy', '0px'); }
+        else if (f === 'scale') { n.style.setProperty('--gy', '0px'); n.style.setProperty('--gs', '.92'); }
+      };
+      var bitir = function (n, gecikme) {
+        setTimeout(function () { n.classList.add('gt-ok'); n.classList.remove('gt-an', 'gt-in'); n.style.removeProperty('--gd'); }, gecikme + 1100);
+      };
+      var goster = function (n, gecikme) {
+        n.style.setProperty('--gd', gecikme + 'ms');
+        n.classList.add('gt-in');
+        bitir(n, gecikme);
+      };
+
+      /* 1) Açılış sahnesi: kahraman bölümündeki parçalar sırayla */
+      var sahne = Array.prototype.slice.call(d.querySelectorAll('#s-hero .px[data-speed-exit], .gt-r'));
+      sahne.forEach(function (n) { if (!n.classList.contains('h1-line')) n.classList.add('gt-an'); });
+      void kok.offsetWidth;
+      w.requestAnimationFrame(function () {
+        sahne.forEach(function (n, i) { goster(n, 60 + Math.min(i, 11) * 55); });
+      });
+
+      /* 2) Kaydırınca belirenler */
+      var otomatik = '.section .sec-tag,.section .sec-h2,.section .sec-desc,.gt-fiyat,.gt-sss details,.gt-chips,.cta-band h2,.cta-band p,.cta-band .cta-group,.gt-metin>*,.acc-item,.teklif-wrap';
+      var hedefler = [];
+      Array.prototype.forEach.call(d.querySelectorAll('.px[data-from], .gt-bel'), function (n) { hedefler.push(n); });
+      Array.prototype.forEach.call(d.querySelectorAll(otomatik), function (n) {
+        /* zaten bir akış parçasının içindeyse ya da ekrandaysa dokunma (göz önünde kaybolup belirmesin) */
+        if (n.closest('.px[data-from], .gt-bel, .gt-r, #s-hero')) return;
+        if (n.getBoundingClientRect().top < w.innerHeight) return;
+        hedefler.push(n);
+      });
+      var io = new IntersectionObserver(function (es) {
+        var gelen = es.filter(function (x) { return x.isIntersecting; }).map(function (x) { return x.target; });
+        if (!gelen.length) return;
+        gelen.sort(function (a, b) { var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
+        gelen.forEach(function (n, i) { io.unobserve(n); goster(n, Math.min(i, 6) * ADIM); });
+      }, { rootMargin: '0px 0px -9% 0px', threshold: 0.06 });
+      hedefler.forEach(function (n) { yon(n); n.classList.add('gt-an'); io.observe(n); });
+
+      /* 3) Süs: arka plan çizgileri kaydırmayla hafifçe kayar (içeriğe dokunmaz) */
+      var par = Array.prototype.slice.call(d.querySelectorAll('[data-gt-par]'));
+      if (par.length) {
+        var parBekle = false;
+        w.addEventListener('scroll', function () {
+          if (parBekle) return; parBekle = true;
+          w.requestAnimationFrame(function () {
+            parBekle = false;
+            var sy = w.scrollY; if (sy > w.innerHeight * 1.6) return;
+            par.forEach(function (n) { n.style.transform = 'translate3d(0,' + (sy * parseFloat(n.getAttribute('data-gt-par'))).toFixed(1) + 'px,0)'; });
+          });
+        }, { passive: true });
+      }
+    }
+
     var pbar = d.getElementById('pbar');
     if (pbar) w.addEventListener('scroll', function () {
       var dh = d.documentElement.scrollHeight - w.innerHeight;
       pbar.style.width = (dh > 0 ? (w.scrollY / dh * 100).toFixed(1) : 0) + '%';
     }, { passive: true });
-    var az = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var bel = d.querySelectorAll('.gt-bel');
-    if (bel.length && !az && 'IntersectionObserver' in w) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('gt-gorundu'); io.unobserve(x.target); } });
-      }, { rootMargin: '0px 0px -8% 0px' });
-      Array.prototype.forEach.call(bel, function (n) {
-        if (n.getBoundingClientRect().top > w.innerHeight * 0.9) { n.classList.add('gt-bekle'); io.observe(n); }
-      });
-    }
 
     /* Yıl */
     Array.prototype.forEach.call(d.querySelectorAll('[data-gt-yil]'), function (n) { n.textContent = new Date().getFullYear(); });

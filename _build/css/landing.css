@@ -21,7 +21,4 @@ footer{flex-direction:column;align-items:center;text-align:center;gap:.9rem;padd
 .footer-bolge{font-size:.76rem;color:rgba(255,255,255,.55);}
 @media(max-width:767px){.float-btns{display:none;}}
 /* tek yönlü belirme: içerik varsayılan olarak görünür, betik çalışırsa yumuşak girer */
-.gt-bel{transition:opacity .5s ease,transform .5s ease;}
-.gt-bel.gt-bekle{opacity:0;transform:translateY(16px);}
-.gt-bel.gt-bekle.gt-gorundu{opacity:1;transform:none;}
-@media(prefers-reduced-motion:reduce){.gt-bel{transition:none;}.gt-bel.gt-bekle{opacity:1;transform:none;}.hero-badge::before,.float-ring,.hero-circuit *{animation:none !important;}}
+@media(prefers-reduced-motion:reduce){.hero-badge::before,.float-ring,.hero-circuit *{animation:none !important;}}

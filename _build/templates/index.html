@@ -24,7 +24,9 @@
 <meta name="theme-color" content="#F8FAFC"/>
 {{ANA_LD}}
 <link rel="preload" href="/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v={{V}}"/>
+<script>document.documentElement.classList.add('gt-js');setTimeout(function(){if(!window.GT_AN)document.documentElement.classList.add('gt-all')},3500)</script>
+<style>{{SITE_CSS}}</style>
+<script src="/assets/site.js?v={{V}}" defer></script>
 
 <style>
 
@@ -259,8 +261,6 @@ button{border:none;cursor:pointer;font-family:inherit;background:transparent;}
 ══════════════════════════════════════════════════════ */
 
 .px{
-  /* will-change sadece transform — GPU hızlandırma */
-  will-change:transform,opacity;
 }
 
 /* ══════════════ NAV ══════════════ */
@@ -389,8 +389,14 @@ nav{
 .section.bg2{background:var(--bg2);}
 
 /* ══════════════ HİZMETLER ══════════════ */
+@media(min-width:1100px){
+  #s-hizmetler{overflow:visible;overflow:clip;display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);column-gap:64px;align-items:start;}
+  #s-hizmetler .svc-head{position:sticky;top:104px;}
+  #s-hizmetler .svc-grid{margin-top:0 !important;grid-template-columns:1fr 1fr;}
+}
 .svc-grid{display:flex;flex-direction:column;gap:1px;background:var(--brd);border:1px solid var(--brd);border-radius:20px;overflow:hidden;margin-top:48px;}
 @media(min-width:768px){.svc-grid{display:grid;grid-template-columns:1fr 1fr;}}
+@media(min-width:768px){.svc-grid>.svc-panel:last-child:nth-child(odd){grid-column:1/-1;}}
 .svc-panel{background:var(--surf);padding:28px 24px;position:relative;overflow:hidden;cursor:pointer;transition:background .3s;}
 @media(min-width:768px){.svc-panel{padding:40px 36px;}}
 .svc-panel::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;}
@@ -454,7 +460,7 @@ nav{
 .fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
 .fdot.mg{background:#D97706;box-shadow:none;}
 .fdot.cy{background:#0F1E3C;box-shadow:none;}
-.feat-pt h4{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--tx);margin-bottom:3px;}
+.feat-pt h3{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--tx);margin-bottom:3px;}
 .feat-pt p{font-size:.79rem;color:var(--tx2);line-height:1.65;}
 
 /* Sahne orb */
@@ -526,8 +532,8 @@ footer{background:#0F1E3C;border-top:1px solid rgba(255,255,255,.1);padding:20px
 .ls-box.on{opacity:1;transform:none;pointer-events:auto;}
 .ls-box p{font-size:.76rem;color:var(--tx2);line-height:1.55;margin-bottom:.65rem;}
 .ls-btns{display:flex;gap:.45rem;}
-.ls-yes{padding:.35rem .8rem;border-radius:7px;background:var(--mg);color:#fff;font-size:.7rem;font-weight:700;}
-.ls-no{padding:.35rem .8rem;border-radius:7px;border:1px solid var(--brd2);color:var(--tx3);font-size:.7rem;font-weight:600;cursor:pointer;background:transparent;}
+.ls-yes{padding:.35rem .8rem;border-radius:7px;background:#B45309;color:#fff;font-size:.7rem;font-weight:700;}
+.ls-no{padding:.35rem .8rem;border-radius:7px;border:1px solid var(--brd2);color:#56657A;font-size:.7rem;font-weight:600;cursor:pointer;background:transparent;}
 
 @media(prefers-reduced-motion:reduce){
   .orb-mg,.orb-cy,.wa-ring,.h-dot{animation:none;}
@@ -702,7 +708,7 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
   </div>
 </div>
 
-<div class="ls-box" id="lsBox" role="dialog">
+<div class="ls-box" id="lsBox" role="dialog" aria-label="Dil önerisi">
   <p>Tarayıcı diliniz Türkçe değil. Bu sayfayı İngilizce görüntülemek ister misiniz?</p>
   <div class="ls-btns">
     <a href="/index-en.html" class="ls-yes rip">View in English</a>
@@ -716,7 +722,7 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
 <section id="s-hero">
   <div class="orb orb-mg" aria-hidden="true"></div>
   <div class="orb orb-cy" aria-hidden="true"></div>
-  <svg class="circuit" style="contain:strict;" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="circuit" data-gt-par="0.18" style="contain:strict;" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><style>
       @keyframes draw1{0%{stroke-dashoffset:600}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:600}}
       @keyframes draw2{0%{stroke-dashoffset:500}40%{stroke-dashoffset:0}70%{stroke-dashoffset:0}100%{stroke-dashoffset:500}}
@@ -748,22 +754,22 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
     <h1 class="hero-h1">
       <!-- Her satır ayrı px elementi — farklı hızlarda, Ç kuyruğu için padding-bottom -->
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.5" id="h1">
-        <span id="h1i" style="display:block;transform:translateY(110%);color:#0F1E3C;font-size:1.12em;opacity:1;text-shadow:0 0 40px rgba(15,30,60,.0), 0 0 0px rgba(15,30,60,.0);letter-spacing:.01em;">Elektrik &amp; Klima,</span>
+        <span id="h1i" style="display:block;color:#0F1E3C;font-size:1.12em;opacity:1;text-shadow:0 0 40px rgba(15,30,60,.0), 0 0 0px rgba(15,30,60,.0);letter-spacing:.01em;">Elektrik &amp; Klima,</span>
       </span>
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.6" id="h2">
-        <span id="h2i" style="display:block;transform:translateY(110%);color:#1E40AF;font-size:1.04em;opacity:0.92;text-shadow:0 0 20px rgba(30,64,175,.18), 0 0 60px rgba(30,64,175,.08);letter-spacing:-.005em;">Uydu-Çanak &amp; İnternet,</span>
+        <span id="h2i" style="display:block;color:#1E40AF;font-size:1.04em;opacity:0.92;text-shadow:0 0 20px rgba(30,64,175,.18), 0 0 60px rgba(30,64,175,.08);letter-spacing:-.005em;">Uydu-Çanak &amp; İnternet,</span>
       </span>
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.7" id="h3">
-        <span id="h3i" style="display:block;transform:translateY(110%);color:#1D4ED8;font-size:0.97em;opacity:0.82;text-shadow:0 0 30px rgba(29,78,216,.30), 0 0 80px rgba(29,78,216,.14);letter-spacing:-.01em;">Villa &amp; Otel Bakım Sistemi,</span>
+        <span id="h3i" style="display:block;color:#1D4ED8;font-size:0.97em;opacity:0.82;text-shadow:0 0 30px rgba(29,78,216,.30), 0 0 80px rgba(29,78,216,.14);letter-spacing:-.01em;">Villa &amp; Otel Bakım Sistemi,</span>
       </span>
       <span class="px h1-line" data-px-y="0" data-speed-exit="0.8" id="h4">
-        <span id="h4i" style="display:block;transform:translateY(110%);color:#3B82F6;font-size:0.88em;opacity:0.68;text-shadow:0 0 20px rgba(59,130,246,.35), 0 0 60px rgba(59,130,246,.18), 0 0 120px rgba(59,130,246,.08);letter-spacing:-.015em;">Teknik Çözümler.</span>
+        <span id="h4i" style="display:block;color:#3B82F6;font-size:0.88em;opacity:0.68;text-shadow:0 0 20px rgba(59,130,246,.35), 0 0 60px rgba(59,130,246,.18), 0 0 120px rgba(59,130,246,.08);letter-spacing:-.015em;">Teknik Çözümler.</span>
       </span>
     </h1>
     <p class="hero-loc px" data-px-y="0" data-speed-exit="0.45" data-exit-x="0">
       Dalyan&nbsp;·&nbsp;Ortaca&nbsp;·&nbsp;Köyceğiz&nbsp;·&nbsp;Dalaman
     </p>
-    <p class="hero-sub px" fetchpriority="high" data-px-y="0" data-speed-exit="0.45">
+    <p class="hero-sub">
       Elektrik tesisatından klima montajına, çanak montajından internet altyapısına, villa yıllık bakımından hidrofor kurulumuna kadar tüm ihtiyaçlarınızda profesyonel çözümler sunuyoruz.
     </p>
     <!-- 4. Butonlar ayrı px — farklı yönlere dağılıyor -->
@@ -813,6 +819,7 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
      - Durunca durur, devam edince devam eder
 ═══════════════════════════════════════════════════════ -->
 <section id="s-hizmetler" class="section bg2">
+  <div class="svc-head">
   <div class="px" data-from="bottom" data-speed="1.0">
     <div class="sec-tag mg">Hizmetlerimiz</div>
   </div>
@@ -821,6 +828,7 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
   </div>
   <div class="px" data-from="bottom" data-speed="0.9" data-delay="140">
     <p class="sec-desc">Muğla genelinde elektrik, klima, uydu, hidrofor ve villa yıllık bakım alanında kapsamlı hizmet. Bir paneli tıklayın, detayları görün.</p>
+  </div>
   </div>
 
   <div class="svc-grid" style="margin-top:48px;">
@@ -933,15 +941,15 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
       <div class="px" data-from="bottom" data-speed="0.95" data-delay="60"><h2 class="sec-h2">Lisanslı &amp; Güvenilir<br><span class="amg">Elektrik Ekibi</span></h2></div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="80">
         <div class="fdot mg"></div>
-        <div><h4>Lisanslı &amp; Sigortalı</h4><p>Tüm teknisyenlerimiz belgelenmiş eğitime sahip. Her iş iş güvenliği standartlarında yürütülür.</p></div>
+        <div><h3>Lisanslı &amp; Sigortalı</h3><p>Tüm teknisyenlerimiz belgelenmiş eğitime sahip. Her iş iş güvenliği standartlarında yürütülür.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="140">
         <div class="fdot mg"></div>
-        <div><h4>Zamanında Teslimat</h4><p>Söz verdiğimiz tarihe sadık kalıyoruz. İş bitmeden sahayı terk etmiyoruz.</p></div>
+        <div><h3>Zamanında Teslimat</h3><p>Söz verdiğimiz tarihe sadık kalıyoruz. İş bitmeden sahayı terk etmiyoruz.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="200">
         <div class="fdot mg"></div>
-        <div><h4>Şeffaf Fiyatlandırma</h4><p>Ücretsiz keşiften sonra net fiyat teklifi. Gizli maliyet yok, sürpriz fatura yok.</p></div>
+        <div><h3>Şeffaf Fiyatlandırma</h3><p>Ücretsiz keşiften sonra net fiyat teklifi. Gizli maliyet yok, sürpriz fatura yok.</p></div>
       </div>
     </div>
   </div>
@@ -961,15 +969,15 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
       <div class="px" data-from="bottom" data-speed="0.95" data-delay="60"><h2 class="sec-h2">Konforunuz İçin<br><span class="acy">Klimada Uzmanız</span></h2></div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="80">
         <div class="fdot cy"></div>
-        <div><h4>Tüm Marka Desteği</h4><p>Daikin, Mitsubishi, Samsung, LG, Vestel ve diğer tüm markalar için özel servis: montaj, bakım ve arıza. Garanti ve sıfır ürün için direkt marka ile görüşünüz.</p></div>
+        <div><h3>Tüm Marka Desteği</h3><p>Daikin, Mitsubishi, Samsung, LG, Vestel ve diğer tüm markalar için özel servis: montaj, bakım ve arıza. Garanti ve sıfır ürün için direkt marka ile görüşünüz.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="140">
         <div class="fdot cy"></div>
-        <div><h4>Mevsimlik Bakım Paketi</h4><p>Yıllık sözleşme ile öncelikli servis, indirimli yedek parça ve garanti uzatma avantajı.</p></div>
+        <div><h3>Mevsimlik Bakım Paketi</h3><p>Yıllık sözleşme ile öncelikli servis, indirimli yedek parça ve garanti uzatma avantajı.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="200">
         <div class="fdot cy"></div>
-        <div><h4>Malzeme Garantisi</h4><p>Kullandığımız tüm ürünler orijinal ve üretici garantilidir. İşçiliğimiz 15 gün garantilidir.</p></div>
+        <div><h3>Malzeme Garantisi</h3><p>Kullandığımız tüm ürünler orijinal ve üretici garantilidir. İşçiliğimiz 15 gün garantilidir.</p></div>
       </div>
     </div>
   </div>
@@ -989,15 +997,15 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
       <div class="px" data-from="bottom" data-speed="0.95" data-delay="60"><h2 class="sec-h2">Villanız Emin Ellerde<br><span class="amg">Yıllık Bakım Paketi</span></h2></div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="80">
         <div class="fdot mg"></div>
-        <div><h4>Kapsamlı Hizmet</h4><p>Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat. Tüm branşlar tek çatı altında.</p></div>
+        <div><h3>Kapsamlı Hizmet</h3><p>Havuz, bahçe, elektrik, klima, ahşap, boya ve genel tamirat. Tüm branşlar tek çatı altında.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="140">
         <div class="fdot mg"></div>
-        <div><h4>Sezon Açılışı Garantisi</h4><p>Villa sahibi gelmeden önce her şey hazır. Havuz kimyasal dengede, klimalar çalışır, villa temiz.</p></div>
+        <div><h3>Sezon Açılışı Garantisi</h3><p>Villa sahibi gelmeden önce her şey hazır. Havuz kimyasal dengede, klimalar çalışır, villa temiz.</p></div>
       </div>
       <div class="feat-pt px" data-from="bottom" data-speed="1.0" data-delay="200">
         <div class="fdot mg"></div>
-        <div><h4>Sabit Aylık Bedel</h4><p>Sürpriz fatura yok. Seçtiğiniz hizmet paketine göre sabit aylık ödeme. Yıllık sözleşme.</p></div>
+        <div><h3>Sabit Aylık Bedel</h3><p>Sürpriz fatura yok. Seçtiğiniz hizmet paketine göre sabit aylık ödeme. Yıllık sözleşme.</p></div>
       </div>
     </div>
   </div>
@@ -1272,7 +1280,7 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
     </svg>
     {{AD}}
   </div>
-  <div class="ft-addr">{{BOLGE_METIN}} / MUĞLA &nbsp;|&nbsp; <a href="tel:{{TEL}}" style="color:var(--tx3);">{{TEL_GORUNEN}}</a></div>
+  <div class="ft-addr">{{BOLGE_METIN}} / MUĞLA &nbsp;|&nbsp; <a href="tel:{{TEL}}" style="color:var(--tx3);text-decoration:underline;">{{TEL_GORUNEN}}</a></div>
   <div class="ft-copy">© {{YIL}} {{AD}}</div>
   {{ALT_BAGLANTI}}
 </footer>
@@ -1290,241 +1298,26 @@ footer .gt-ft-links{width:100%;margin-top:6px;color:var(--tx3);}
 </div>
 
 <script>
-(function() {
-'use strict';
-
-/* ── SABITLER ── */
-const ENTER  = 0.40;
-const EXIT_S = 0.60;
-const ENTER_D = 110;
-const EXIT_D  = 90;
-
-/* ── DURUM ── */
-let SY = 0, VH = 0, heroH = 0;
-let rafId = null, dirty = false, collected = false;
-let elems = [], heroEls = [];
-
-/* ── FLASH ÖNLEME: Sayfa açılır açılmaz scroll elementleri gizle ── */
-// Bu script body'den önce değil body'de, bu yüzden DOMContentLoaded içinde
-function hideScrollEls() {
-  document.querySelectorAll('.px[data-from]').forEach(el => {
-    el.style.opacity = '0';
-    el.style.willChange = 'transform, opacity';
-  });
-  // Hero exit elementleri heroIntro'ya bırak
-  document.querySelectorAll('#s-hero .px[data-speed-exit]').forEach(el => {
-    el.style.opacity = '0';
-  });
-}
-
-/* ── ELEMENT TOPLAMA: Tek pass, batch read ── */
-function collect() {
-  elems = []; heroEls = [];
-  SY = window.scrollY;
-  VH = window.innerHeight;
-
-  const pxNodes   = Array.from(document.querySelectorAll('.px[data-from]'));
-  const heroNodes = Array.from(document.querySelectorAll('#s-hero .px[data-speed-exit]'));
-
-  // Tüm rect'leri tek seferde oku (single reflow)
-  const pxRects   = pxNodes.map(el => el.getBoundingClientRect());
-  const heroRects = heroNodes.map(el => el.getBoundingClientRect());
-
-  pxNodes.forEach((el, i) => {
-    const r = pxRects[i];
-    elems.push({
-      el,
-      top:   r.top + SY,
-      h:     r.height,
-      from:  el.dataset.from || 'bottom',
-      delay: parseInt(el.dataset.delay || '0', 10) * 0.5,
-      exitX: parseFloat(el.dataset.exitX || '0'),
-    });
-  });
-  elems.sort((a, b) => a.top - b.top);
-
-  heroNodes.forEach((el, i) => {
-    heroEls.push({
-      el,
-      speed: parseFloat(el.dataset.speedExit || '0.4'),
-      exitX: parseFloat(el.dataset.exitX     || '0'),
-    });
-  });
-
-  const sec = document.getElementById('s-hero');
-  heroH = sec ? sec.offsetHeight : VH;
-  collected = true;
-}
-
-/* ── TRANSFORM UYGULA ── */
-function applyT(el, p, from, exitX) {
-  let ty = 0, tx = 0, sc = 1, op = 1;
-  if (p <= 0) {
-    op = 0;
-    if      (from === 'bottom') ty =  ENTER_D;
-    else if (from === 'left')   tx = -ENTER_D;
-    else if (from === 'right')  tx =  ENTER_D;
-    else if (from === 'scale')  sc = 0.82;
-  } else if (p < ENTER) {
-    const t = p / ENTER;
-    op = t;
-    if      (from === 'bottom') ty =  ENTER_D * (1 - t);
-    else if (from === 'left')   tx = -ENTER_D * (1 - t);
-    else if (from === 'right')  tx =  ENTER_D * (1 - t);
-    else if (from === 'scale')  sc = 0.82 + 0.18 * t;
-  } else if (p < EXIT_S) {
-    // Tam görünür — hareket yok
-  } else if (p < 1) {
-    const t = (p - EXIT_S) / (1 - EXIT_S);
-    op = 1 - t;
-    ty = -EXIT_D * t;
-    tx =  exitX  * t;
-  } else {
-    op = 0; ty = -EXIT_D; tx = exitX;
-  }
-  el.style.transform = `translate(${tx}px,${ty}px) scale(${sc})`;
-  el.style.opacity   = op;
-}
-
-/* ── ANA RAF DÖNGÜSÜ ── */
-function tick() {
-  rafId = null;
-  if (!dirty || !collected) return;
-  dirty = false;
-  const sy = SY, vh = VH;
-
-  // Hero exit parallax
-  if (sy < heroH * 1.2) {
-    const p = Math.min(sy / (heroH * 0.65), 1);
-    heroEls.forEach(({ el, speed, exitX }) => {
-      el.style.transform = `translate(${exitX * p}px,${-sy * speed}px)`;
-      el.style.opacity   = Math.max(0, 1 - p * 1.5);
-    });
-  }
-
-  // Scroll elementleri
-  elems.forEach(({ el, top, h, from, delay, exitX }) => {
-    const range = vh + h;
-    const raw   = (sy - (top - vh - delay)) / range;
-    applyT(el, Math.max(0, Math.min(1, raw)), from, exitX);
-  });
-}
-
-function frame() {
-  dirty = true;
-  if (!rafId) rafId = requestAnimationFrame(tick);
-}
-
-/* ── HERO AÇILIŞ ANİMASYONU ── */
-function heroIntro() {
-  const ease = 'cubic-bezier(0.16,1,0.3,1)';
-  const DUR  = '1.1s';
-
-  // [selector, başlangıç transform, başlangıç opacity, gecikme ms]
-  const items = [
-    ['.h-badge',                        'translateY(28px)',      '0', 80 ],
-    ['#h1i',                            'translateY(110%)',      '1', 160],
-    ['#h2i',                            'translateY(110%)',      '1', 280],
-    ['#h3i',                            'translateY(110%)',      '1', 400],
-    ['#h4i',                            'translateY(110%)',      '1', 520],
-    ['.hero-sub',                       'translateY(32px)',      '0', 500],
-    ['#s-hero .bmg.px',                 'translate(-24px,26px)','0', 620],
-    ['#s-hero .bcy.px',                 'translateY(26px)',      '0', 690],
-    ['#s-hero .bgh.px',                 'translate(24px,26px)', '0', 760],
-    ['.hero-loc',                       'translateY(24px)',      '0', 580],
-    ['#s-hero .vsb.px',                 'translate(12px,26px)', '0', 730],
-    ['#s-hero .brev.px',                'translate(24px,26px)', '0', 800],
-    ['#s-hero .stat-card:nth-child(1)', 'translate(-32px,28px)','0', 880],
-    ['#s-hero .stat-card:nth-child(2)', 'translate(-14px,28px)','0', 940],
-    ['#s-hero .stat-card:nth-child(3)', 'translate(14px,28px)', '0', 940],
-    ['#s-hero .stat-card:nth-child(4)', 'translate(32px,28px)', '0', 880],
-  ];
-
-  items.forEach(([sel, initT, initOp, delay]) => {
-    document.querySelectorAll(sel).forEach(el => {
-      el.style.transition = 'none';
-      el.style.transform  = initT;
-      el.style.opacity    = initOp;
-
-      setTimeout(() => {
-        // H1 satırları sadece transform animate olur (overflow:hidden içinde)
-        const isLine = sel.startsWith('#h') && (sel === '#h1i' || sel === '#h2i' || sel === '#h3i' || sel === '#h4i');
-        if (isLine) {
-          el.style.transition = `transform ${DUR} ${ease}`;
-          el.style.transform  = 'translateY(0)';
-        } else {
-          el.style.transition = `opacity ${DUR} ${ease}, transform ${DUR} ${ease}`;
-          el.style.transform  = 'none';
-          el.style.opacity    = '1';
-        }
-      }, delay);
-    });
-  });
-
-  // Animasyon bittikten sonra hero exit moduna geç (transition kaldır)
-  setTimeout(() => {
-    heroEls.forEach(({ el }) => {
-      el.style.transition = '';
-    });
-    frame();
-  }, 2100);
-}
-
-/* ── COUNTER ── */
-function initCounters() {
-  const cio = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el  = e.target;
-      const end = parseInt(el.dataset.count, 10);
-      const suf = el.dataset.suffix || '';
-      const fmt = v => end >= 1000 ? (v >= 1000 ? Math.floor(v/1000)+'K'+suf : v+suf) : v+suf;
-      const st  = performance.now();
-      const DUR = 2200;
-      const ease = p => 1 - Math.pow(1 - p, 3);
-      (function run(now) {
-        const p = Math.min((now - st) / DUR, 1);
-        el.textContent = fmt(Math.round(ease(p) * end));
-        if (p < 1) requestAnimationFrame(run);
+/* Kaydırma akışı ve açılış sahnesi /assets/site.js içindedir. Burada yalnızca sayaçlar kalır. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var az = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(az) return;
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target, end = parseInt(el.dataset.count,10), suf = el.dataset.suffix || '';
+      var fmt = function(v){ return end >= 1000 ? (v >= 1000 ? Math.floor(v/1000)+'K'+suf : v+suf) : v+suf; };
+      var st = performance.now(), DUR = 1600;
+      (function run(now){
+        var p = Math.min((now - st) / DUR, 1);
+        el.textContent = fmt(Math.round((1 - Math.pow(1 - p, 3)) * end));
+        if(p < 1) requestAnimationFrame(run);
       })(st);
       cio.unobserve(el);
     });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
-}
-
-/* ── BAŞLAT ── */
-document.addEventListener('DOMContentLoaded', () => {
-  hideScrollEls();  // flash önle
-  requestAnimationFrame(() => { collect(); frame(); });
-});
-
-window.addEventListener('load', () => {
-  requestAnimationFrame(() => {
-    collect();  // font/img yüklenmesinden sonra yükseklikler değişebilir
-    frame();
-  });
-  heroIntro();
-  initCounters();
-});
-
-window.addEventListener('scroll', () => {
-  SY = window.scrollY;
-  frame();
-}, { passive: true });
-
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => { collect(); frame(); }, 150);
-});
-
-/* Nav solid */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  /* nav rengi sabit, toggle yok */
-}, { passive: true });
-
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
 })();
 
 const ham = document.getElementById('navHam');
@@ -1667,7 +1460,6 @@ function dismissLang(){
 }
 </script>
 
-<script src="/assets/site.js?v={{V}}" defer></script>
 
 
 
