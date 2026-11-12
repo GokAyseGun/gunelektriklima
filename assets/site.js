@@ -4,6 +4,9 @@
   var GT = {"ad": "Gün Teknik", "tel": "+905446529486", "telGorunen": "+90 544 652 94 86", "wa": "905446529486", "yorumLink": "https://g.page/r/Cdq32mSn9e6KEBE/review", "ga": "G-TXZ6DC22X2", "aw": "AW-11041830318", "donusum": {"tel": "ETbWCMGP0L8cEK7rk5Ep", "wa": "rMx_CIiE1bYdEK7rk5Ep", "form": "wYgiCIuE1bYdEK7rk5Ep"}, "cerezVarsayilan": "acik", "sb": "https://zfflnrerdevnflchscqe.supabase.co", "sbKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmZmxucmVyZGV2bmZsY2hzY3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MzQ3MjUsImV4cCI6MjA5NjQxMDcyNX0.uby8MidaKpnsceel5E_zTJm3LTYwoMrbKUryr5ZszcI"};
   window.GT = GT;
   var d = document, w = window;
+  /* <html lang="en"> sayfalarda (index-en.html) İngilizce metinler */
+  var EN = (d.documentElement.lang || '').slice(0, 2) === 'en';
+  function T(tr, en) { return EN ? en : tr; }
 
   /* ───────── Çerez tercihi + Google etiketi ───────── */
   var tercih = null;
@@ -74,9 +77,9 @@
     if (body.getAttribute('data-gt-bar') !== '0') {
       var bar = el('div', 'gt-bar');
       bar.setAttribute('role', 'complementary');
-      bar.setAttribute('aria-label', 'Hızlı iletişim');
-      bar.appendChild(el('span', 'gt-bar-acil', '7/24 Acil Servis'));
-      var t = el('a', 'gt-bar-tel'); t.href = 'tel:' + GT.tel; t.innerHTML = IKON_TEL + '<span>Hemen Ara</span>';
+      bar.setAttribute('aria-label', T('Hızlı iletişim', 'Quick contact'));
+      bar.appendChild(el('span', 'gt-bar-acil', T('7/24 Acil Servis', '24/7 Emergency')));
+      var t = el('a', 'gt-bar-tel'); t.href = 'tel:' + GT.tel; t.innerHTML = IKON_TEL + '<span>' + T('Hemen Ara', 'Call now') + '</span>';
       var wa = el('a', 'gt-bar-wa'); wa.href = waLink(body.getAttribute('data-gt-wa')); wa.target = '_blank'; wa.rel = 'noopener'; wa.innerHTML = IKON_WA + '<span>WhatsApp</span>';
       bar.appendChild(t); bar.appendChild(wa);
       body.appendChild(bar);
@@ -96,12 +99,12 @@
     /* ───────── Çerez bildirimi (tek satır) ───────── */
     if (!tercih) {
       var c = el('div', 'gt-cerez');
-      c.setAttribute('role', 'region'); c.setAttribute('aria-label', 'Çerez bildirimi');
+      c.setAttribute('role', 'region'); c.setAttribute('aria-label', T('Çerez bildirimi', 'Cookie notice'));
       var sp = el('span');
-      sp.appendChild(d.createTextNode('Ölçüm için çerez kullanıyoruz. '));
-      var lk = el('a', null, 'Ayrıntı'); lk.href = '/gizlilik.html'; sp.appendChild(lk);
-      var ok = el('button', 'gt-cerez-ok', 'Tamam'); ok.type = 'button';
-      var no = el('button', 'gt-cerez-no', 'Reddet'); no.type = 'button';
+      sp.appendChild(d.createTextNode(T('Ölçüm için çerez kullanıyoruz. ', 'We use cookies for measurement. ')));
+      var lk = el('a', null, T('Ayrıntı', 'Details')); lk.href = '/gizlilik.html'; sp.appendChild(lk);
+      var ok = el('button', 'gt-cerez-ok', T('Tamam', 'OK')); ok.type = 'button';
+      var no = el('button', 'gt-cerez-no', T('Reddet', 'Decline')); no.type = 'button';
       function sec(v) {
         try { localStorage.setItem('gt_cerez', v ? 'ok' : 'no'); } catch (e) {}
         gtag('consent', 'update', izinDurum(v)); izin = v; c.hidden = true;
@@ -130,16 +133,16 @@
       k.textContent = '';
       var ozet = el('div', 'gt-yorum-ozet');
       if (v && v.puan && v.adet) {
-        ozet.appendChild(el('div', 'gt-yorum-puan', Number(v.puan).toFixed(1).replace('.', ',')));
+        ozet.appendChild(el('div', 'gt-yorum-puan', (EN ? Number(v.puan).toFixed(1) : Number(v.puan).toFixed(1).replace('.', ','))));
         var orta = el('div');
-        var y = el('div', 'gt-yildiz', yildiz(v.puan)); y.setAttribute('aria-label', '5 üzerinden ' + v.puan + ' puan');
+        var y = el('div', 'gt-yildiz', yildiz(v.puan)); y.setAttribute('aria-label', T('5 üzerinden ' + v.puan + ' puan', v.puan + ' out of 5'));
         orta.appendChild(y);
-        orta.appendChild(el('div', 'gt-yorum-say', 'Google\'da ' + v.adet + ' değerlendirme'));
+        orta.appendChild(el('div', 'gt-yorum-say', T('Google\'da ' + v.adet + ' değerlendirme', v.adet + ' reviews on Google')));
         ozet.appendChild(orta);
       } else {
-        ozet.appendChild(el('div', 'gt-yorum-say', 'Hizmetimizden memnun kaldıysanız Google\'da değerlendirmeniz bize çok yardımcı olur.'));
+        ozet.appendChild(el('div', 'gt-yorum-say', T('Hizmetimizden memnun kaldıysanız Google\'da değerlendirmeniz bize çok yardımcı olur.', 'If you were happy with our work, a Google review helps us a lot.')));
       }
-      var b = el('a', 'gt-yorum-btn', 'Google\'da Bizi Değerlendirin'); b.href = GT.yorumLink; b.target = '_blank'; b.rel = 'noopener';
+      var b = el('a', 'gt-yorum-btn', T('Google\'da Bizi Değerlendirin', 'Review us on Google')); b.href = GT.yorumLink; b.target = '_blank'; b.rel = 'noopener';
       ozet.appendChild(b);
       k.appendChild(ozet);
       var liste = (v && v.yorumlar) || [];
@@ -149,18 +152,18 @@
         liste.slice(0, enFazla).forEach(function (yr) {
           var kart = el('article', 'gt-yorum-kart');
           var ad;
-          if (yr.profil && /^https:\/\//.test(yr.profil)) { ad = el('a', 'gt-yorum-ad', yr.ad || 'Google kullanıcısı'); ad.href = yr.profil; ad.target = '_blank'; ad.rel = 'noopener nofollow'; }
-          else ad = el('div', 'gt-yorum-ad', yr.ad || 'Google kullanıcısı');
+          if (yr.profil && /^https:\/\//.test(yr.profil)) { ad = el('a', 'gt-yorum-ad', yr.ad || T('Google kullanıcısı', 'Google user')); ad.href = yr.profil; ad.target = '_blank'; ad.rel = 'noopener nofollow'; }
+          else ad = el('div', 'gt-yorum-ad', yr.ad || T('Google kullanıcısı', 'Google user'));
           kart.appendChild(ad);
-          var ys = el('div', 'gt-yildiz', yildiz(yr.puan)); ys.setAttribute('aria-label', yr.puan + ' yıldız'); kart.appendChild(ys);
+          var ys = el('div', 'gt-yildiz', yildiz(yr.puan)); ys.setAttribute('aria-label', yr.puan + T(' yıldız', ' stars')); kart.appendChild(ys);
           kart.appendChild(el('p', 'gt-yorum-metin', yr.metin));
-          kart.appendChild(el('div', 'gt-yorum-alt', (yr.zaman || '') + ' · Google yorumu'));
+          kart.appendChild(el('div', 'gt-yorum-alt', (yr.zaman || '') + T(' · Google yorumu', ' · Google review')));
           grid.appendChild(kart);
         });
         k.appendChild(grid);
         var kay = el('div', 'gt-yorum-kaynak');
-        kay.appendChild(d.createTextNode('Yorumlar Google İşletme Profilimizden alınmıştır. '));
-        if (v.url) { var tum = el('a', null, 'Tümünü Google\'da görün'); tum.href = v.url; tum.target = '_blank'; tum.rel = 'noopener'; kay.appendChild(tum); }
+        kay.appendChild(d.createTextNode(T('Yorumlar Google İşletme Profilimizden alınmıştır. ', 'Reviews are taken from our Google Business Profile. ')));
+        if (v.url) { var tum = el('a', null, T('Tümünü Google\'da görün', 'See all on Google')); tum.href = v.url; tum.target = '_blank'; tum.rel = 'noopener'; kay.appendChild(tum); }
         k.appendChild(kay);
       }
     }
@@ -181,11 +184,11 @@
         var ad = al('ad'), tel = al('tel'), hizmet = al('hizmet'), bolge = al('bolge'), acik = al('aciklama');
         var rakam = tel.replace(/\D/g, '');
         var eksik = [];
-        if (ad.length < 2) eksik.push('adınızı');
-        if (rakam.length < 10) eksik.push('telefon numaranızı');
-        if (f.querySelector('[name="hizmet"]') && !hizmet) eksik.push('hizmet türünü');
-        if (f.querySelector('[name="bolge"]') && !bolge) eksik.push('bölgeyi');
-        if (eksik.length) { goster('hata', ['Lütfen ' + eksik.join(', ') + ' yazın.']); return; }
+        if (ad.length < 2) eksik.push(T('adınızı', 'your name'));
+        if (rakam.length < 10) eksik.push(T('telefon numaranızı', 'your phone number'));
+        if (f.querySelector('[name="hizmet"]') && !hizmet) eksik.push(T('hizmet türünü', 'the service'));
+        if (f.querySelector('[name="bolge"]') && !bolge) eksik.push(T('bölgeyi', 'the area'));
+        if (eksik.length) { goster('hata', [T('Lütfen ' + eksik.join(', ') + ' yazın.', 'Please enter ' + eksik.join(', ') + '.')]); return; }
         if (al('web')) return; /* botlar için gizli alan */
         if (btn) btn.disabled = true;
         var veri = { ad: ad, tel: tel, hizmet: hizmet, bolge: bolge, aciklama: acik, sayfa: location.pathname, reklam: reklam };
@@ -195,21 +198,21 @@
           body: JSON.stringify({ p: veri })
         }).then(function (r) { return r.ok ? r.json() : { ok: false }; }).then(function (s) {
           if (btn) btn.disabled = false;
-          var metin = 'Merhaba, fiyat teklifi almak istiyorum.\nAd: ' + ad + '\nTel: ' + tel + (hizmet ? '\nHizmet: ' + hizmet : '') + (bolge ? '\nBölge: ' + bolge : '') + (acik ? '\nNot: ' + acik : '');
-          var wl = el('a', null, 'WhatsApp\'tan da yazın'); wl.href = waLink(metin); wl.target = '_blank'; wl.rel = 'noopener'; wl.style.textDecoration = 'underline'; wl.style.color = 'inherit';
+          var metin = T('Merhaba, fiyat teklifi almak istiyorum.\nAd: ', 'Hello, I would like a quote.\nName: ') + ad + '\nTel: ' + tel + (hizmet ? T('\nHizmet: ', '\nService: ') + hizmet : '') + (bolge ? T('\nBölge: ', '\nArea: ') + bolge : '') + (acik ? T('\nNot: ', '\nNote: ') + acik : '');
+          var wl = el('a', null, T('WhatsApp\'tan da yazın', 'message us on WhatsApp')); wl.href = waLink(metin); wl.target = '_blank'; wl.rel = 'noopener'; wl.style.textDecoration = 'underline'; wl.style.color = 'inherit';
           if (s && s.ok) {
             if (izin) { try { var e164 = rakam.length === 10 ? '+90' + rakam : (rakam.length === 11 && rakam[0] === '0' ? '+9' + rakam : '+' + rakam); gtag('set', 'user_data', { phone_number: e164 }); } catch (x) {} }
             donusum(GT.donusum.form, 'form_gonderimi');
-            goster('ok', ['Talebiniz bize ulaştı, en kısa sürede sizi arayacağız. Fotoğraf göndermek isterseniz ', wl, '.']);
+            goster('ok', [T('Talebiniz bize ulaştı, en kısa sürede sizi arayacağız. Fotoğraf göndermek isterseniz ', 'We have your request and will call you shortly. To send photos, '), wl, '.']);
             if (f.reset) f.reset();
           } else {
             var ara = el('a', null, GT.telGorunen); ara.href = 'tel:' + GT.tel; ara.style.textDecoration = 'underline'; ara.style.color = 'inherit';
-            goster('hata', ['Talep şu an kaydedilemedi. Lütfen bizi arayın: ', ara, ' ya da ', wl, '.']);
+            goster('hata', [T('Talep şu an kaydedilemedi. Lütfen bizi arayın: ', 'Your request could not be saved right now. Please call us: '), ara, T(' ya da ', ' or '), wl, '.']);
           }
         }).catch(function () {
           if (btn) btn.disabled = false;
           var ara2 = el('a', null, GT.telGorunen); ara2.href = 'tel:' + GT.tel; ara2.style.textDecoration = 'underline'; ara2.style.color = 'inherit';
-          goster('hata', ['Bağlantı kurulamadı. Lütfen bizi arayın: ', ara2, '.']);
+          goster('hata', [T('Bağlantı kurulamadı. Lütfen bizi arayın: ', 'Could not connect. Please call us: '), ara2, '.']);
         });
       }
       if (f.tagName === 'FORM') f.addEventListener('submit', gonder);

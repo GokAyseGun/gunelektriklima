@@ -7,6 +7,8 @@ const FINE=W.matchMedia('(pointer:fine)').matches;
 const TOUCH=W.matchMedia('(pointer:coarse)').matches;
 const MOB=W.matchMedia('(max-width:760px)').matches;
 const SCRUB=1.25;
+/* Dil: <html lang="en"> ise İngilizce metinler (index-en.html) */
+const EN=(R.lang||'').slice(0,2)==='en',L$=(tr,en)=>EN?en:tr;
 const clamp=(a,b,v)=>Math.min(b,Math.max(a,v));
 const NS='http://www.w3.org/2000/svg';
 const sv=(tag,attrs={},parent)=>{const e=D.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;};
@@ -21,16 +23,16 @@ const P=(a,r)=>{const t=a*Math.PI/180;return (100+Math.cos(t)*r).toFixed(1)+' '+
 const snowA=(()=>{let d='';for(let k=0;k<6;k++){const t=k*60-90;d+=(k?'L':'M')+P(t-30,22)+' L'+P(t-6,76)+' L'+P(t,90)+' L'+P(t+6,76)+' ';}return d+'Z';})();
 const snowB=(()=>{let d='';for(let k=0;k<6;k++){const t=k*60-90;d+='M'+P(t-16,66)+' L'+P(t,50)+' L'+P(t+16,66)+' ';}return d.trim();})();
 const SH=[
- {a:'M103 19 L68.5 97 L89.5 97 L77.5 181 L103 119.5 L122.5 181 L131.5 97 L110.5 97 Z',b:'M103 19 L103 119.5 M36 64 L50 70 M164 132 L150 126',c:'#E9FF3B',l:'CH1 · Elektrik'},
- {a:snowA,b:snowB,c:'#3FF2DF',l:'CH2 · Klima'},
- {a:'M30 58 C34 132 104 170 172 136 C148 120 70 84 30 58 Z',b:'M62 96 L146 52 M140 44 L156 60 M104 140 L98 184 M78 184 H120',c:'#E6F2E8',l:'CH3 · Uydu çanak'},
- {a:'M24 70 L148 50 L158 100 L34 120 Z',b:'M158 74 L178 70 M96 112 L102 152 M76 156 L126 156 M42 86 L50 85',c:'#E0541A',l:'CH4 · Güvenlik'},
- {a:'M66 22 L134 22 L128 42 L110 42 L104 176 L100 188 L96 176 L90 42 L72 42 Z',b:'M90 62 L112 56 M91 82 L111 76 M92 102 L109 96 M93 122 L108 116 M94 142 L106 138 M58 66 V156 L74 168 M142 66 V156 L126 168',c:'#E9FF3B',l:'CH5 · Montaj'}
+ {a:'M103 19 L68.5 97 L89.5 97 L77.5 181 L103 119.5 L122.5 181 L131.5 97 L110.5 97 Z',b:'M103 19 L103 119.5 M36 64 L50 70 M164 132 L150 126',c:'#E9FF3B',l:L$('CH1 · Elektrik','CH1 · Electrical')},
+ {a:snowA,b:snowB,c:'#3FF2DF',l:L$('CH2 · Klima','CH2 · Air conditioning')},
+ {a:'M30 58 C34 132 104 170 172 136 C148 120 70 84 30 58 Z',b:'M62 96 L146 52 M140 44 L156 60 M104 140 L98 184 M78 184 H120',c:'#E6F2E8',l:L$('CH3 · Uydu çanak','CH3 · Satellite')},
+ {a:'M24 70 L148 50 L158 100 L34 120 Z',b:'M158 74 L178 70 M96 112 L102 152 M76 156 L126 156 M42 86 L50 85',c:'#E0541A',l:L$('CH4 · Güvenlik','CH4 · Security')},
+ {a:'M66 22 L134 22 L128 42 L110 42 L104 176 L100 188 L96 176 L90 42 L72 42 Z',b:'M90 62 L112 56 M91 82 L111 76 M92 102 L109 96 M93 122 L108 116 M94 142 L106 138 M58 66 V156 L74 168 M142 66 V156 L126 168',c:'#E9FF3B',l:L$('CH5 · Montaj','CH5 · Installation')}
 ];
 (function(){const r=$('#embR');for(let i=4;i>=0;i--){const s=sv('svg',{class:'emb-l'+(i?'':' f'),viewBox:'0 0 200 200'},r);s.style.transform=`translateZ(${-i*5}px)`;sv('path',{class:'ea',d:SH[0].a},s);sv('path',{class:'eb',d:SH[0].b},s);}})();
 
 /* ════════ İÇERİK ════════ */
-const words=['ELEKTRİK','KLİMA','UYDU','KAMERA','ALARM','MONTAJ','TESİSAT','PANO','ŞOFBEN','KORNİŞ'];
+const words=EN?['ELECTRICAL','AIR CON','SATELLITE','CCTV','ALARM','INSTALLATION','WIRING','PANELS','WATER HEATERS','CURTAIN RAILS']:['ELEKTRİK','KLİMA','UYDU','KAMERA','ALARM','MONTAJ','TESİSAT','PANO','ŞOFBEN','KORNİŞ'];
 const mk=a=>{const s=a.map(w=>`${w}<i>/</i>`).join('');return `<span>${s}</span><span>${s}</span>`;};
 $('#mqA').innerHTML=mk(words);$('#mqB').innerHTML=mk([...words].reverse());
 $('#fisNo').textContent='GT-'+String(Date.now()%10000).padStart(4,'0');
@@ -48,7 +50,8 @@ $('#fisNo').textContent='GT-'+String(Date.now()%10000).padStart(4,'0');
 })();
 
 /* Şematik harita: radar haritanın ortasında */
-const ZN=[['Dalyan',134,185,'~1 saat'],['Ortaca',300,181,'~1 saat'],['Dalaman',352,254,'~2 saat'],['Köyceğiz',193,52,'~2 saat']];
+const H1=L$('~1 saat','~1 hour'),H2=L$('~2 saat','~2 hours');
+const ZN=[['Dalyan',134,185,H1],['Ortaca',300,181,H1],['Dalaman',352,254,H2],['Köyceğiz',193,52,H2]];
 const MC=[240,180];
 (function(){
   const COAST='M0 262 C22 255 44 246 60 236 L66 233 C90 231 116 232 140 238 C160 248 178 270 196 290 C210 304 226 310 248 309 C280 307 310 312 336 313 C352 313 362 318 372 316 C400 310 430 300 480 296';
@@ -64,7 +67,7 @@ const MC=[240,180];
   <path class="riv" d="M122 140 C128 156 118 166 128 176 C138 186 126 198 120 210 C114 222 110 228 104 233"/>
   <path class="riv" d="M452 40 C430 90 400 130 380 170 C366 200 356 230 358 262 C360 290 364 304 366 314"/>
   <path class="road" d="M193 52 C230 90 270 150 300 181 C320 205 340 232 352 254"/><path class="road" d="M300 181 C250 180 180 186 134 185"/>
-  <text class="lbl" x="104" y="104">KÖYCEĞİZ G.</text><text class="lbl" x="250" y="345">AKDENİZ</text><text class="lbl" x="66" y="252">İZTUZU</text>
+  <text class="lbl" x="104" y="104">${L$('KÖYCEĞİZ G.','KÖYCEĞİZ L.')}</text><text class="lbl" x="250" y="345">${L$('AKDENİZ','MEDITERRANEAN')}</text><text class="lbl" x="66" y="252">İZTUZU</text>
   <path class="wire" id="mWire" pathLength="1" d="M-30 150 C80 150 180 162 ${MC[0]} ${MC[1]}"/>
   <path class="bolt" id="mBolt" pathLength="1" d="M0 0" style="opacity:0"/>
   </g>`;
@@ -74,12 +77,12 @@ const MC=[240,180];
 
 /* ════════ DEFTER ════════ */
 const fig={
- ankara:`<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink" cx="95" cy="130" r="64"/><circle class="ink" cx="95" cy="130" r="20"/><path class="ink t" d="M95 66 V110 M95 150 V194 M31 130 H75 M115 130 H159"/><path class="ink cu" d="M95 194 C120 240 180 250 210 220 C230 200 236 186 230 170"/><path class="ink" d="M190 80 C194 130 228 158 268 142 C250 130 220 106 190 80 Z"/><path class="ink" d="M212 116 L252 92 M228 150 L224 186 M208 186 H244"/><text x="150" y="285" text-anchor="middle">makara, çanak · 2010</text></svg>`,
- antalya:`<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink cu" cx="232" cy="58" r="26"/><path class="ink cu" d="M232 18 v-12 M232 98 v12 M192 58 h-12 M272 58 h12 M204 30 l-8 -8 M260 86 l8 8 M260 30 l8 -8 M204 86 l-8 8"/><rect class="ink" x="36" y="118" width="196" height="122" rx="8"/><circle class="ink" cx="102" cy="179" r="44"/><path class="ink t" d="M102 135 v88 M58 179 h88 M71 148 l62 62 M133 148 l-62 62"/><path class="ink" d="M168 140 h46 M168 156 h46 M168 172 h46 M168 188 h46 M168 204 h46"/><path class="ink" d="M58 240 v18 M210 240 v18"/><text x="150" y="292" text-anchor="middle">kırk derece, dış ünite</text></svg>`,
+ ankara:`<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink" cx="95" cy="130" r="64"/><circle class="ink" cx="95" cy="130" r="20"/><path class="ink t" d="M95 66 V110 M95 150 V194 M31 130 H75 M115 130 H159"/><path class="ink cu" d="M95 194 C120 240 180 250 210 220 C230 200 236 186 230 170"/><path class="ink" d="M190 80 C194 130 228 158 268 142 C250 130 220 106 190 80 Z"/><path class="ink" d="M212 116 L252 92 M228 150 L224 186 M208 186 H244"/><text x="150" y="285" text-anchor="middle">${L$('makara, çanak · 2010','cable reel, dish · 2010')}</text></svg>`,
+ antalya:`<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink cu" cx="232" cy="58" r="26"/><path class="ink cu" d="M232 18 v-12 M232 98 v12 M192 58 h-12 M272 58 h12 M204 30 l-8 -8 M260 86 l8 8 M260 30 l8 -8 M204 86 l-8 8"/><rect class="ink" x="36" y="118" width="196" height="122" rx="8"/><circle class="ink" cx="102" cy="179" r="44"/><path class="ink t" d="M102 135 v88 M58 179 h88 M71 148 l62 62 M133 148 l-62 62"/><path class="ink" d="M168 140 h46 M168 156 h46 M168 172 h46 M168 188 h46 M168 204 h46"/><path class="ink" d="M58 240 v18 M210 240 v18"/><text x="150" y="292" text-anchor="middle">${L$('kırk derece, dış ünite','forty degrees, outdoor unit')}</text></svg>`,
  mugla:(()=>{const pp=(x,s)=>`<circle class="ink" cx="${x}" cy="${200-62*s}" r="${11*s}"/><path class="ink" d="M${x-20*s} 200 C${x-20*s} ${200-28*s} ${x-14*s} ${200-44*s} ${x} ${200-46*s} C${x+14*s} ${200-44*s} ${x+20*s} ${200-28*s} ${x+20*s} 200"/>`;
-   return `<svg viewBox="0 0 300 300" aria-hidden="true">${pp(44,.7)}${pp(104,.85)}${pp(170,1)}${pp(240,1.15)}<path class="ink cu" d="M20 226 C90 222 170 214 280 196 M280 196 l-14 -6 M280 196 l-10 10"/><path class="ink t" d="M20 210 H282"/><text x="150" y="282" text-anchor="middle">ekip büyüyor</text></svg>`;})(),
+   return `<svg viewBox="0 0 300 300" aria-hidden="true">${pp(44,.7)}${pp(104,.85)}${pp(170,1)}${pp(240,1.15)}<path class="ink cu" d="M20 226 C90 222 170 214 280 196 M280 196 l-14 -6 M280 196 l-10 10"/><path class="ink t" d="M20 210 H282"/><text x="150" y="282" text-anchor="middle">${L$('ekip büyüyor','the team grows')}</text></svg>`;})(),
  bugun:(()=>{let s='';SH.forEach((x,i)=>{const a=(i*72-90)*Math.PI/180,cx=150+Math.cos(a)*92,cy=138+Math.sin(a)*92;s+=`<g transform="translate(${(cx-26).toFixed(1)} ${(cy-26).toFixed(1)}) scale(.26)"><path class="ink${i===0?' cu':''}" d="${x.a}" style="stroke-width:8"/></g><path class="ink t" d="M150 138 L${(150+Math.cos(a)*62).toFixed(1)} ${(138+Math.sin(a)*62).toFixed(1)}"/>`;});
-   return `<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink" cx="150" cy="138" r="14"/><circle class="ink t" cx="150" cy="138" r="122"/>${s}<text x="150" y="290" text-anchor="middle">beş kanal, tek ekip</text></svg>`;})()
+   return `<svg viewBox="0 0 300 300" aria-hidden="true"><circle class="ink" cx="150" cy="138" r="14"/><circle class="ink t" cx="150" cy="138" r="122"/>${s}<text x="150" y="290" text-anchor="middle">${L$('beş kanal, tek ekip','five channels, one team')}</text></svg>`;})()
 };
 const DD={
   v220:{w:110,h:40,s:`<svg viewBox="0 0 110 40"><text x="0" y="30">220 V ~</text></svg>`,txt:1},
@@ -100,6 +103,19 @@ const PAGES=[
   dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['star','left:calc(var(--mg)/2 - 20px);top:58%']],
   blots:[['48%','12%',.8,.5]]}
 ];
+const PAGES_EN=[
+ {run:"Gün Teknik's notebook · I",
+  ents:[{date:'Ankara · 2010–2016',h:'Apprenticeship',p:"Our story began with an apprenticeship in Ankara. We ran wiring, put dishes up on rooftops, connected our first camera systems and went out on installation jobs. Those years taught us *never to touch before measuring* and to leave every job cleaner than we found it.",fig:fig.ankara},
+        {date:'Antalya · 2016–2020',h:'Journeyman years',p:"We spent our journeyman years out in the field, in the Antalya heat. Next to electrics *we added air conditioning:* installation, servicing, gas, repairs. That is where we learned a fault is found in the whole system, not in a single part.",fig:fig.antalya}],
+  dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
+  blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
+ {run:"Gün Teknik's notebook · II",
+  ents:[{date:"Muğla · 2020 to today",h:'Master craftsmen',p:"In 2020 we came to Muğla and grew Gün Teknik here. We started as a small team; as the work grew, *so did the team.* Today we work as one team across five trades, from Ortaca to Dalyan and from Dalaman to Köyceğiz.",fig:fig.mugla},
+        {date:'Today',h:'The road goes on',p:"Our promises are the same as on day one: we don't replace parts before finding the fault, we don't start before giving a clear price, and we leave the place clean. *And we are still learning, growing and improving.*",fig:fig.bugun}],
+  dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['star','left:calc(var(--mg)/2 - 20px);top:58%']],
+  blots:[['48%','12%',.8,.5]]}
+];
+if(EN)PAGES.splice(0,PAGES.length,...PAGES_EN);
 const blotSvg=seed=>{let r=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};let d='';const n=16;for(let i=0;i<=n;i++){const a=i/n*Math.PI*2,rr=16+r()*8;d+=(i?'L':'M')+(30+Math.cos(a)*rr).toFixed(1)+' '+(30+Math.sin(a)*rr).toFixed(1);}
   let drops='';for(let i=0;i<4;i++){const a=r()*Math.PI*2,dd=30+r()*16;drops+=`<circle cx="${(30+Math.cos(a)*dd).toFixed(1)}" cy="${(30+Math.sin(a)*dd).toFixed(1)}" r="${(1.5+r()*3).toFixed(1)}"/>`;}
   return `<svg viewBox="-10 -10 80 80" width="70" height="70"><path d="${d}Z"/>${drops}</svg>`;};
@@ -199,7 +215,7 @@ const S=(function(){
       setTimeout(()=>tone(f*2,0,'sine',.035,.4,.02),1450);}
   };
 })();
-$('#snd').addEventListener('click',()=>{const b=$('#snd');const on=S.toggle();b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'Sesi kapat':'Sesi aç');hz(8);});
+$('#snd').addEventListener('click',()=>{const b=$('#snd');const on=S.toggle();b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?L$('Sesi kapat','Sound off'):L$('Sesi aç','Sound on'));hz(8);});
 D.addEventListener('pointerover',e=>{if(e.target.closest&&e.target.closest('a,button,summary,.node'))S.hover();});
 D.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('a,button,summary,.node')){S.click();hz(8);}});
 
@@ -380,11 +396,11 @@ if(FINE){
     if(parts.length){for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.x+=p.vx;p.y+=p.vy;p.l-=.02;if(p.l<=0){parts.splice(i,1);continue;}ic.fillStyle=`rgba(63,242,223,${(p.l*.55).toFixed(2)})`;ic.beginPath();ic.arc(p.x,p.y,1.2+p.l*1.6,0,7);ic.fill();}}
     if(m==='def')rdT.textContent=`${(px/innerWidth*10-5).toFixed(2)} ms · ${(230+(.5-py/innerHeight)*12).toFixed(1)} V`;
     else if(m==='probe'){const t=performance.now()/1000;let pts='';for(let x=0;x<=96;x+=3)pts+=`${x},${(13-Math.sin(x*.16+t*8)*10).toFixed(1)} `;rdW.setAttribute('points',pts);rdT.textContent=`CH 01 · ${(229.5+Math.random()).toFixed(1)} V`;}
-    else if(m==='thermo'){thermo.style.setProperty('--tq',clamp(.1,1,(inst.temp-14)/20).toFixed(2));rdT.textContent=`${inst.temp.toFixed(1)}°C · serinliyor`;}
+    else if(m==='thermo'){thermo.style.setProperty('--tq',clamp(.1,1,(inst.temp-14)/20).toFixed(2));rdT.textContent=`${inst.temp.toFixed(1)}°C · ${L$('serinliyor','cooling')}`;}
     else if(m==='sat'){let s=0;if(schC){const r=schC.getBoundingClientRect(),d=Math.hypot(px-(r.left+r.width*.35),py-(r.top+r.height*.5));s=clamp(0,1,1-d/420);}inst.sig+=(s-inst.sig)*.15;
       const n=Math.round(inst.sig*5);sbs.forEach((b,i)=>b.classList.toggle('on',i<n));if(inst.sig>.9&&!inst.lock){inst.lock=true;S.lock();}if(inst.sig<.8)inst.lock=false;
-      rdT.textContent=inst.lock?'TÜRKSAT 42°D · KİLİTLENDİ':`TÜRKSAT 42°D · %${Math.round(inst.sig*100)}`;}
-    else if(m==='cam'){const d=new Date();rdT.textContent=`● REC ${d.toTimeString().slice(0,8)}${FD.mv>8?' · HAREKET':''}`;}
+      rdT.textContent=inst.lock?L$('TÜRKSAT 42°D · KİLİTLENDİ','TÜRKSAT 42°E · LOCKED'):(EN?`TÜRKSAT 42°E · ${Math.round(inst.sig*100)}%`:`TÜRKSAT 42°D · %${Math.round(inst.sig*100)}`);}
+    else if(m==='cam'){const d=new Date();rdT.textContent=`● REC ${d.toTimeString().slice(0,8)}${FD.mv>8?L$(' · HAREKET',' · MOTION'):''}`;}
     else if(m==='level'){inst.bub+=(clamp(-1,1,vx/14)-inst.bub)*.1;bubC.setAttribute('cx',(36+inst.bub*8).toFixed(1));rdT.textContent=`${(inst.bub*4).toFixed(1)}°`;}
   });
   D.documentElement.addEventListener('pointerleave',()=>gsap.to(c,{opacity:0,duration:.3}));D.documentElement.addEventListener('pointerenter',()=>gsap.to(c,{opacity:1,duration:.3}));
@@ -429,7 +445,7 @@ function relight(ox,oy){
 }
 function power(off){
   if(off===FD.off)return;
-  $$('[data-sw]').forEach(b=>b.setAttribute('aria-label',off?'Işıkları aç':'Işıkları kapat'));$('#msw').setAttribute('aria-pressed',off);$('#msw').setAttribute('aria-label',off?'Işıkları aç':'Işıkları kapat');
+  $$('[data-sw]').forEach(b=>b.setAttribute('aria-label',off?L$('Işıkları aç','Lights on'):L$('Işıkları kapat','Lights off')));$('#msw').setAttribute('aria-pressed',off);$('#msw').setAttribute('aria-label',off?L$('Işıkları aç','Lights on'):L$('Işıkları kapat','Lights off'));
   if(DESK){
     if(off){S.off();hz(40);FD.off=true;
       const a=anchor();
@@ -582,7 +598,7 @@ else{
 
 /* ════════ SÜREÇ: devre ════════ */
 (function(){
-  const sec=$('#surec'),pin=$('#procPin'),steps=$('#steps'),lis=$$('li',steps),big=$('#pBig'),bl=$('#pBigL'),ok=$('#pOk'),pd=$('#pDesc'),L=['Arayın','Keşif','Net fiyat','İşçilik','Garanti'];
+  const sec=$('#surec'),pin=$('#procPin'),steps=$('#steps'),lis=$$('li',steps),big=$('#pBig'),bl=$('#pBigL'),ok=$('#pOk'),pd=$('#pDesc'),L=EN?['Call','Survey','Clear price','Workmanship','Warranty']:['Arayın','Keşif','Net fiyat','İşçilik','Garanti'];
   const svg=sv('svg',{class:'cir','aria-hidden':'true'});steps.prepend(svg);
   let seg=[],flw=[],cmp=[],lever,halo,meterN;const X=MOB?40:46,XR=6;
   const cur={P:0,i:-1};
@@ -641,7 +657,7 @@ else{
   // ibre: voltmetre ekrana tam girdiğinde 0, ekranın tepesine vardığında 230
   gsap.fromTo(o,{v:0},{v:230,ease:'power1.inOut',onUpdate:set,scrollTrigger:{trigger:g,start:'bottom bottom',end:'top top',scrub:SCRUB}});
   const stats=$$('.stat'),bs=stats.map(s=>s.querySelector('b'));
-  const put=(b,v)=>{if('dec' in b.dataset){b.textContent=v.toFixed(1).replace('.',',');return;}const k='k' in b.dataset,pre=b.dataset.pre||'',suf=b.dataset.suf||'';v=Math.round(v);b.textContent=pre+(k&&v>=1000?Math.floor(v/1000)+'K':v)+suf;};
+  const put=(b,v)=>{if('dec' in b.dataset){b.textContent=(EN?v.toFixed(1):v.toFixed(1).replace('.',','));return;}const k='k' in b.dataset,pre=b.dataset.pre||'',suf=b.dataset.suf||'';v=Math.round(v);b.textContent=pre+(k&&v>=1000?Math.floor(v/1000)+'K':v)+suf;};
   const cs=bs.map(b=>({n:0,b}));
   life($('#stats'),(tl,a,d)=>{tl.fromTo(stats,{opacity:0,y:70,rotationX:-50,transformPerspective:900,transformOrigin:'50% 0%'},{opacity:1,y:0,rotationX:0,duration:d*.6,stagger:{amount:d*.35},ease:'power2.out'},a);
       cs.forEach((c,i)=>{tl.fromTo(c,{n:0},{n:()=>+c.b.dataset.to,duration:d*.55,ease:'power2.out',onUpdate:()=>put(c.b,c.n)},a+d*.1+i*d*.08);});},
@@ -842,7 +858,7 @@ else{
       const lvl0=22*(1-inkUsed/TOT*.6),lvl1=22*(1-(inkUsed+e.chars.length)/TOT*.6);inkUsed+=e.chars.length;
       pos+=240;
       const wlen=Math.max(520,e.chars.length*UNIT),o={v:0};
-      tl.to(o,{v:1,duration:wlen,onUpdate:()=>write(e,o.v),onStart:()=>{$('#bkN').textContent=`Sayfa ${i+1} / ${pages.length}`;},onReverseComplete:()=>write(e,0)},pos);
+      tl.to(o,{v:1,duration:wlen,onUpdate:()=>write(e,o.v),onStart:()=>{$('#bkN').textContent=`${L$('Sayfa','Page')} ${i+1} / ${pages.length}`;},onReverseComplete:()=>write(e,0)},pos);
       tl.fromTo(lv,{attr:{y:52-lvl0,height:lvl0}},{attr:{y:52-lvl1,height:lvl1},duration:wlen,immediateRender:false},pos);
       tl.to(e.draws,{drawSVG:'100%',duration:wlen*.85,stagger:wlen*.5/Math.max(1,e.draws.length),ease:'power1.inOut'},pos+wlen*.1);
       tl.to(e.txt,{opacity:1,duration:wlen*.2},pos+wlen*.78);
@@ -851,7 +867,7 @@ else{
     DDs[i].forEach((d,k)=>{if(d.classList.contains('tx'))tl.to(d,{clipPath:'inset(0% 0% 0% 0%)',duration:220,ease:'power1.inOut'},pos+k*90);else tl.to($$('.ink',d),{drawSVG:'100%',duration:220,stagger:40,ease:'power1.inOut'},pos+k*90);});
     BL[i].forEach(b=>{tl.fromTo(b,{scale:0,opacity:0},{scale:+b.dataset.s,opacity:.9,duration:90,ease:'back.out(2)'},pStart+(pos-pStart)*+b.dataset.at);});
     pos+=DDs[i].length*90+260;
-    if(i<pages.length-1){const t={s:0};tl.to(t,{s:1,duration:900,ease:'power1.inOut',onUpdate:()=>turn(i,t.s),onStart:()=>{$('#bkN').textContent=`Sayfa ${i+2} / ${pages.length}`;},onReverseComplete:()=>{turn(i,0);$('#bkN').textContent=`Sayfa ${i+1} / ${pages.length}`;}},pos);pos+=1000;}
+    if(i<pages.length-1){const t={s:0};tl.to(t,{s:1,duration:900,ease:'power1.inOut',onUpdate:()=>turn(i,t.s),onStart:()=>{$('#bkN').textContent=`${L$('Sayfa','Page')} ${i+2} / ${pages.length}`;},onReverseComplete:()=>{turn(i,0);$('#bkN').textContent=`${L$('Sayfa','Page')} ${i+1} / ${pages.length}`;}},pos);pos+=1000;}
   });
   tl.to({},{duration:300});
   ScrollTrigger.create({trigger:'#defter',start:'top top',end:()=>'+='+Math.round(tl.duration()*(MOB?.92:1)),pin:'#bookStage',scrub:SCRUB,animation:tl,anticipatePin:1,

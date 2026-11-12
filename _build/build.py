@@ -598,7 +598,7 @@ def url_ekle(yol, en, oncelik, sik="monthly"):
                '<xhtml:link rel="alternate" hreflang="x-default" href="%s"/>') % (tr_u, en_u, tr_u)
     satirlar.append("<url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq><priority>%s</priority>%s</url>" % (tr_u, BUGUN, sik, oncelik, alt))
     if en:
-        en_tarih = "2026-07-12"  # İngilizce sayfalar bu tarihten beri değişmedi; güncellenince burası da güncellenir
+        en_tarih = "2026-11-12"  # İngilizce sayfalar bu tarihten beri değişmedi; güncellenince burası da güncellenir
         satirlar.append("<url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq><priority>%s</priority>%s</url>" % (en_u, en_tarih, sik, oncelik, alt))
 
 
