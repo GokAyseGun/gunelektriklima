@@ -36,7 +36,7 @@ FAQ = [
     ("Do you guarantee your work?", "Yes. Our workmanship has a 15-day warranty; materials are covered by the manufacturer's own warranty."),
 ]
 LD = {"@context": "https://schema.org", "@graph": [
-    {"@type": ["Electrician", "HVACBusiness"], "@id": SITE + "/#isletme", "name": "Gün Teknik", "alternateName": "Gün Elektrik & Klima",
+    {"@type": ["Electrician", "HVACBusiness"], "@id": SITE + "/#isletme", "name": "Gün Technic", "alternateName": ["Gün Teknik", "Gün Elektrik & Klima"],
      "url": SITE + "/index-en.html", "telephone": "+905446529486", "email": "info@gunelektrikklima.com", "foundingDate": "2010", "priceRange": "₺₺",
      "image": SITE + "/og-image.jpg",
      "description": "Licensed technical service for electrical, air conditioning, satellite dish, security system and installation work in Dalyan, Ortaca, Dalaman and Köyceğiz. 24/7 emergency service.",
@@ -46,13 +46,13 @@ LD = {"@context": "https://schema.org", "@graph": [
      "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"},
      "sameAs": ["https://maps.google.com/?cid=10011209120991590362"]},
     {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
-    {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Gün Teknik", "inLanguage": "en"}]}
+    {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/index-en.html", "name": "Gün Technic", "inLanguage": "en"}]}
 
 # ── Gövdedeki parçalar (bağlamıyla birlikte, birebir) ─────────────────────
 PARCA = [
     # dil düğmesi: İngilizcede Türkçeye götürür
-    ('<a class="lang gizli" href="/index-en.html" hreflang="en" lang="en" tabindex="-1" aria-hidden="true">EN</a>',
-     '<a class="lang gizli" href="/" hreflang="tr" lang="tr" tabindex="-1" aria-hidden="true">TR</a>'),
+    ('<a class="lang" href="/index-en.html" hreflang="en" lang="en" aria-label="English">EN</a>',
+     '<a class="lang" href="/" hreflang="tr" lang="tr" aria-label="Türkçe">TR</a>'),
     ('<span class="w">GÜN TEKNİK</span><span class="e" id="hE">Elektrik · Klima · Uydu Çanak · Güvenlik Sistemleri · Montaj</span>',
      '<span class="w">GÜN TEKNİK</span><span class="e" id="hE">Electrical · Air Con · Satellite · Security · Installation</span>'),
     ('Ortaca, Dalyan, Dalaman ve Köyceğiz\'de elektrik, klima, uydu çanak, güvenlik sistemleri ve montaj işleri. <em>7/24</em> geliyoruz; keşif ücretsiz, işçilik 15 gün garantili.',
@@ -258,6 +258,9 @@ def cevir(h):
         govde = re.sub(r'(>\s*)' + re.escape(tr) + r'(\s*<)', lambda m: m.group(1) + en + m.group(2), govde)
     for tr, en in ATTR.items():
         govde = re.sub(r'((?:aria-label|placeholder)=")' + re.escape(tr) + '"', lambda m: m.group(1) + en + '"', govde)
+    # İngilizcede marka adı: Gün Technic (yalnızca "Gün" özel isim)
+    bas = bas.replace("Gün Teknik", "Gün Technic").replace('"name": "Gün Technic", "alternateName": ["Gün Technic"', '"name": "Gün Technic", "alternateName": ["Gün Teknik"')
+    govde = govde.replace("GÜN TEKNİK", "GÜN TECHNIC").replace("Gün Teknik", "Gün Technic")
     h = bas + govde
     # Çevrilmemiş Türkçe kalmasın
     kalan = []
@@ -274,7 +277,7 @@ def cevir(h):
 
 
 # Türkçe harf içerse de çevrilmeyen özel adlar
-OZEL_AD = ["GÜN TEKNİK", "Gün Teknik", "Köyceğiz", "Muğla", "Türksat", "Arçelik", "İztuzu", "Türkiye"]
+OZEL_AD = ["GÜN TECHNIC", "Gün Technic", "Türkçe", "Köyceğiz", "Muğla", "Türksat", "Arçelik", "İztuzu", "Türkiye"]
 
 
 def _turkce(t):

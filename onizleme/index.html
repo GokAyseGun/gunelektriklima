@@ -102,7 +102,15 @@ html.booted #boot{display:none}
 .top.min .hx{opacity:0;max-width:0;pointer-events:none;margin-left:-10px}
 .top.dock .nav{opacity:0;pointer-events:none}
 .lang{flex:none;display:inline-flex;align-items:center;justify-content:center;height:42px;min-width:42px;padding:0 10px;border-radius:999px;border:1px solid rgba(230,242,232,.22);font:500 11px/1 var(--f-mono);letter-spacing:.12em}
-.lang.gizli{opacity:0;pointer-events:none;visibility:hidden;width:0;min-width:0;padding:0;border:0;margin-left:-10px}
+.lang:hover{border-color:var(--sig);color:var(--sig)}
+.dil-kutu{position:fixed;right:16px;top:84px;z-index:88;max-width:340px;padding:14px 16px;border-radius:14px;background:rgba(12,22,16,.96);border:1px solid rgba(63,242,223,.35);box-shadow:0 18px 50px rgba(0,0,0,.45);color:var(--phos);font:400 13.5px/1.5 var(--f-body);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .45s,transform .45s}
+.dil-kutu.on{opacity:1;transform:none;pointer-events:auto}
+.dil-kutu p{margin:0 0 10px}
+.dil-kutu div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dil-kutu .ev{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:var(--sig);color:#0C1610;font:600 13px/1 var(--f-body);text-decoration:none}
+.dil-kutu button{height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(230,242,232,.25);background:none;color:var(--phos);font:500 12.5px/1 var(--f-body);cursor:pointer}
+@media(max-width:760px){.dil-kutu{left:12px;right:12px;top:calc(72px + env(safe-area-inset-top,0px));max-width:none}}
+html.dark .dil-kutu{display:none}
 .snd,.msw{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border-radius:999px;border:1px solid rgba(230,242,232,.22);font:500 10.5px/1 var(--f-mono);letter-spacing:.14em;flex:none}
 .top.paper .snd,.top.paper .msw{border-color:rgba(20,21,26,.25)}
 .snd i{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
@@ -116,7 +124,9 @@ html.off .msw .k::after{transform:translateY(9px);background:var(--phos-2);box-s
 .top.paper .call{background:var(--ink);color:var(--paper)}
 @media(max-width:1100px){.nav{display:none}}
 @media(max-width:860px){.call span{display:none}.call{width:42px;padding:0;justify-content:center}.snd,.msw{width:42px;padding:0;justify-content:center}.snd em,.msw em{display:none}.top .in{gap:6px}.tr-r{gap:6px}.mini{display:none}}
-@media(max-width:400px){.brand b{font-size:17px}.brand .lg{width:22px;height:30px}}
+@media(max-width:860px){.lang{min-width:38px;padding:0 8px}}
+@media(max-width:480px){.brand b{font-size:17px}html[lang=en] .brand b{font-size:15px}}
+@media(max-width:400px){.brand b{font-size:15.5px}html[lang=en] .brand b{font-size:14px}.brand .lg{width:22px;height:30px}.tr-r{gap:4px}}
 
 /* Kablo */
 .rail{position:fixed;left:max(8px,env(safe-area-inset-left,0px));top:0;bottom:0;width:12px;z-index:40;pointer-events:none;transition:opacity .8s}
@@ -622,7 +632,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
       <a href="#hizmetler" data-scr>Hizmetler</a><a href="#surec" data-scr>Süreç</a><a href="#bolgeler" data-scr>Bölgeler</a><a href="#teklif" data-scr>Teklif</a><a href="#defter" data-scr>Hikâye</a>
     </nav>
     <div class="tr-r">
-      <a class="lang gizli" href="/index-en.html" hreflang="en" lang="en" tabindex="-1" aria-hidden="true">EN</a>
+      <a class="lang" href="/index-en.html" hreflang="en" lang="en" aria-label="English">EN</a>
       <button class="msw" id="msw" type="button" aria-pressed="false" aria-label="Işıkları kapat"><span class="k"></span><em>IŞIK</em></button>
       <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Sesi aç"><i><b></b><b></b><b></b></i><em>SES</em></button>
       <a class="call" id="call" href="tel:+905446529486" data-magnet aria-label="Ara: 0544 652 94 86"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>0544 652 94 86</span></a>
@@ -940,6 +950,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=7cac4d03"></script>
+<script src="/assets/gt/ana.js?v=41e09622"></script>
 </body>
 </html>

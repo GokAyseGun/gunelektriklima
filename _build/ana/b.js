@@ -18,6 +18,22 @@ const railX0=()=>(MOB?1:8)+5.5;
 const marginX=()=>Math.max(48,innerWidth*.07)+.75;
 const railEnd=()=>MOB?railX0():marginX();
 
+/* ════════ DİL ÖNERİSİ ════════
+   Tarayıcı dili sayfanın diline uymuyorsa altta küçük bir öneri çıkar (Türkçe sayfada Türkçe olmayan tarayıcıya İngilizce,
+   İngilizce sayfada Türkçe tarayıcıya Türkçe). Kapatılınca o oturumda bir daha çıkmaz. */
+(function(){
+  const dl=((navigator.languages&&navigator.languages[0])||navigator.language||'').toLowerCase(),trK=dl.slice(0,2)==='tr';
+  if(!dl||EN!==trK)return;
+  try{if(sessionStorage.getItem('gt_dil'))return;}catch(e){}
+  const k=D.createElement('div');k.className='dil-kutu';k.setAttribute('role','dialog');
+  k.setAttribute('aria-label',EN?'Dil önerisi':'Language suggestion');
+  k.innerHTML=EN?'<p>Tarayıcınızın dili Türkçe. Bu sayfayı Türkçe görüntülemek ister misiniz?</p><div><a class="ev" href="/" hreflang="tr" lang="tr">Türkçe görüntüle</a><button type="button">Hayır, teşekkürler</button></div>'
+                :'<p lang="en">Your browser language is not Turkish. Would you like to view this page in English?</p><div><a class="ev" href="/index-en.html" hreflang="en" lang="en">View in English</a><button type="button" lang="en">No, thanks</button></div>';
+  const kapat=()=>{k.classList.remove('on');try{sessionStorage.setItem('gt_dil','1');}catch(e){}};
+  k.querySelector('button').addEventListener('click',kapat);k.querySelector('a').addEventListener('click',()=>{try{sessionStorage.setItem('gt_dil','1');}catch(e){}});
+  D.body.appendChild(k);setTimeout(()=>k.classList.add('on'),2800);
+})();
+
 /* ════════ DÖNÜŞEN AMBLEM ŞEKİLLERİ ════════ */
 const P=(a,r)=>{const t=a*Math.PI/180;return (100+Math.cos(t)*r).toFixed(1)+' '+(100+Math.sin(t)*r).toFixed(1);};
 const snowA=(()=>{let d='';for(let k=0;k<6;k++){const t=k*60-90;d+=(k?'L':'M')+P(t-30,22)+' L'+P(t-6,76)+' L'+P(t,90)+' L'+P(t+6,76)+' ';}return d+'Z';})();
@@ -104,13 +120,13 @@ const PAGES=[
   blots:[['48%','12%',.8,.5]]}
 ];
 const PAGES_EN=[
- {run:"Gün Teknik's notebook · I",
+ {run:"Gün Technic's notebook · I",
   ents:[{date:'Ankara · 2010–2016',h:'Apprenticeship',p:"Our story began with an apprenticeship in Ankara. We ran wiring, put dishes up on rooftops, connected our first camera systems and went out on installation jobs. Those years taught us *never to touch before measuring* and to leave every job cleaner than we found it.",fig:fig.ankara},
         {date:'Antalya · 2016–2020',h:'Journeyman years',p:"We spent our journeyman years out in the field, in the Antalya heat. Next to electrics *we added air conditioning:* installation, servicing, gas, repairs. That is where we learned a fault is found in the whole system, not in a single part.",fig:fig.antalya}],
   dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
   blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
- {run:"Gün Teknik's notebook · II",
-  ents:[{date:"Muğla · 2020 to today",h:'Master craftsmen',p:"In 2020 we came to Muğla and grew Gün Teknik here. We started as a small team; as the work grew, *so did the team.* Today we work as one team across five trades, from Ortaca to Dalyan and from Dalaman to Köyceğiz.",fig:fig.mugla},
+ {run:"Gün Technic's notebook · II",
+  ents:[{date:"Muğla · 2020 to today",h:'Master craftsmen',p:"In 2020 we came to Muğla and grew Gün Technic here. We started as a small team; as the work grew, *so did the team.* Today we work as one team across five trades, from Ortaca to Dalyan and from Dalaman to Köyceğiz.",fig:fig.mugla},
         {date:'Today',h:'The road goes on',p:"Our promises are the same as on day one: we don't replace parts before finding the fault, we don't start before giving a clear price, and we leave the place clean. *And we are still learning, growing and improving.*",fig:fig.bugun}],
   dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['star','left:calc(var(--mg)/2 - 20px);top:58%']],
   blots:[['48%','12%',.8,.5]]}
@@ -392,7 +408,7 @@ if(FINE){
     if(FD.off)return;
     if(++frame%8===0&&Math.abs(vel())>.1)pick();
     const m=inst.mode;
-    if(ink.classList.contains('on')){ic.globalCompositeOperation='destination-out';ic.fillStyle=m==='thermo'?'rgba(0,0,0,.12)':'rgba(0,0,0,.045)';ic.fillRect(0,0,innerWidth,innerHeight);ic.globalCompositeOperation='source-over';}
+    if(ink.classList.contains('on')&&(m==='thermo'||frame%2===0)){ic.globalCompositeOperation='destination-out';ic.fillStyle=m==='thermo'?'rgba(0,0,0,.12)':'rgba(0,0,0,.045)';ic.fillRect(0,0,innerWidth,innerHeight);ic.globalCompositeOperation='source-over';}
     if(parts.length){for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.x+=p.vx;p.y+=p.vy;p.l-=.02;if(p.l<=0){parts.splice(i,1);continue;}ic.fillStyle=`rgba(63,242,223,${(p.l*.55).toFixed(2)})`;ic.beginPath();ic.arc(p.x,p.y,1.2+p.l*1.6,0,7);ic.fill();}}
     if(m==='def')rdT.textContent=`${(px/innerWidth*10-5).toFixed(2)} ms · ${(230+(.5-py/innerHeight)*12).toFixed(1)} V`;
     else if(m==='probe'){const t=performance.now()/1000;let pts='';for(let x=0;x<=96;x+=3)pts+=`${x},${(13-Math.sin(x*.16+t*8)*10).toFixed(1)} `;rdW.setAttribute('points',pts);rdT.textContent=`CH 01 · ${(229.5+Math.random()).toFixed(1)} V`;}
