@@ -546,8 +546,14 @@ html.dark .msw .k::after{transform:translateY(9px);background:var(--phos-2);box-
 
 /* Bilgisayarda elektrik kesintisi: her şey donar, griye döner, el feneriyle görülür */
 #torch{position:fixed;inset:0;z-index:96;pointer-events:none;display:none;--tx:50vw;--ty:50vh;
-  background:radial-gradient(circle at var(--tx) var(--ty),rgba(255,255,255,.95) 0,rgba(255,255,255,.95) 2px,rgba(255,255,255,0) 3.5px),radial-gradient(circle at var(--tx) var(--ty),rgba(255,236,200,.08) 0,rgba(255,236,200,.03) 100px,rgba(2,4,3,.45) 170px,rgba(2,4,3,.88) 250px,rgba(1,2,1,.975) 340px)}
+  background:radial-gradient(circle at var(--tx) var(--ty),rgba(255,255,255,.95) 0,rgba(255,255,255,.95) 2px,rgba(255,255,255,0) 3.5px),radial-gradient(circle at var(--tx) var(--ty),rgba(255,236,200,.09) 0,rgba(255,236,200,.035) 140px,rgba(2,4,3,.42) 235px,rgba(2,4,3,.86) 340px,rgba(1,2,1,.975) 460px)}
 html.dark #torch{display:block}
+#relit{position:fixed;inset:0;z-index:97;pointer-events:none;display:none;background:#020403;--x:50vw;--y:50vh;--r:0px;
+  -webkit-mask:radial-gradient(circle at var(--x) var(--y),transparent var(--r),#000 calc(var(--r) + 120px));mask:radial-gradient(circle at var(--x) var(--y),transparent var(--r),#000 calc(var(--r) + 120px))}
+#relitH{position:fixed;left:0;right:0;bottom:calc(30px + env(safe-area-inset-bottom,0px));z-index:98;pointer-events:none;display:none;text-align:center;font:500 11px/1 var(--f-mono);letter-spacing:.3em;color:var(--cy);text-shadow:0 0 8px rgba(0,229,255,.5)}
+#relitH b{color:var(--sig);font-weight:500;text-shadow:0 0 10px rgba(233,255,59,.6)}
+html.relit #relit,html.relit #relitH{display:block}
+@media(max-width:760px){#relitH{bottom:auto;top:calc(76px + env(safe-area-inset-top,0px))}}
 html.dark #torch.fl{animation:torchfl .62s steps(1) forwards}
 @keyframes torchfl{0%{opacity:1}12%{opacity:0}22%{opacity:1}34%{opacity:.15}46%{opacity:1}60%{opacity:0}72%{opacity:.6}84%{opacity:0}100%{opacity:0}}
 html.dark .cur,html.dark .inktrail,html.dark #crt,html.dark #flash,html.dark .rail,html.dark svg.tap,html.dark #field,html.dark .gt-cerez,html.dark .spark,html.dark .bus{display:none!important}
@@ -617,6 +623,8 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <div id="crt" aria-hidden="true"><div class="sc"></div><div class="rl" id="crtRoll"></div><div class="ns" id="crtNoise"></div><div class="vg"></div></div>
 <div id="flash" aria-hidden="true"><i></i></div>
 <div id="torch" aria-hidden="true"></div>
+<div id="relit" aria-hidden="true"></div>
+<div id="relitH" aria-hidden="true">ŞEBEKE · <b id="relV">0</b> V · <b id="relHz">0</b> Hz</div>
 
 <div class="cur" id="cur" data-m="def" aria-hidden="true">
   <div class="xh"><i class="h"></i><i class="v"></i></div><div class="ring"></div>
@@ -919,6 +927,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=249d30c3"></script>
+<script src="/assets/gt/ana.js?v=fcb32676"></script>
 </body>
 </html>

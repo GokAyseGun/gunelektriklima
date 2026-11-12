@@ -158,7 +158,7 @@ const S=(function(){
   /* Tek ses: koyu bölümlerde 160 Hz'lik saf bir sinüs, kaydırınca 240 Hz'e kadar yükselir.
      Defterde 110 Hz'lik, daha kısık ve yumuşak bir sinüs, kaydırınca 150 Hz'e kadar. Harmonik, bas, filtre yok.
      Glitch'te aynı ton kesik kesik bozulur. Küçük düğme sesleri kısa ve hafiftir. */
-  let ac=null,master,chop,dk,dkG,pp,ppG,on=false,spd=0,lastFlk=0;
+  let ac=null,master,chop,dk,dkG,pp,ppG,on=false,spd=0,lastFlk=0,bootT=-9;
   const gain=v=>{const g=ac.createGain();g.gain.value=v;return g;};
   function init(){
     ac=new (W.AudioContext||W.webkitAudioContext)();
@@ -174,12 +174,12 @@ const S=(function(){
   return {
     toggle(){if(!ac)init();on=!on;if(on)ac.resume();master.gain.setTargetAtTime(on?1:0,ac.currentTime,.25);return on;},
     tick(){if(!on)return;const t=ac.currentTime,v=Math.min(1,Math.abs(vel())/35),mob=TOUCH?1.5:1,pap=paperOn(),E=FD.E;spd+=(v-spd)*.05;
-      const live=!FD.off;
-      dkG.gain.setTargetAtTime(live&&!pap?.15*mob:0,t,.35);
+      const live=!FD.off,bf=Math.min(1,Math.max(0,(t-bootT-1.1)/1.3));
+      dkG.gain.setTargetAtTime(live&&!pap?.15*mob*bf:0,t,.35);
       const wob=E>.02?1+(Math.random()-.5)*E*.3:1;
       dk.frequency.setTargetAtTime(160*(1+spd*.5)*wob,t,E>.02?.006:.2);
       chop.gain.setTargetAtTime(E>.03&&Math.random()<E*.5?.05:1,t,.004);
-      ppG.gain.setTargetAtTime(live&&pap?.085*mob:0,t,.6);
+      ppG.gain.setTargetAtTime(live&&pap?.085*mob*bf:0,t,.6);
       pp.frequency.setTargetAtTime(110*(1+spd*.36),t,.35);},
     hover(){if(!ok())return;paperOn()?tone(440,0,'sine',.02,.14,.01):tone(1800+Math.random()*400,0,'triangle',.028,.03);},
     click(){if(!ok())return;paperOn()?tone(330,0,'sine',.045,.25,.01):tone(150,70,'sine',.16,.12);},
@@ -189,7 +189,14 @@ const S=(function(){
     zap(){if(ok())tone(320,160,'triangle',.05,.1);},
     lock(){if(ok()){tone(1320,0,'sine',.04,.08);setTimeout(()=>tone(1760,0,'sine',.04,.1),90);}},
     off(){if(on)tone(160,40,'sine',.18,.6);},
-    pwr(){if(!on)return;[0,.12,.2,.34].forEach(d=>setTimeout(()=>tone(160,0,'sine',.1,.05),d*1000));}
+    pwr(){if(!on)return;[0,.12,.2,.34].forEach(d=>setTimeout(()=>tone(160,0,'sine',.1,.05),d*1000));},
+    /* ışık geri gelince: röle tıkı, kısa cızırtılar, 40 Hz'den ana tona yükselen dalga; ana ton arkasından yavaşça girer */
+    boot(){if(!on)return;const t=ac.currentTime,f=paperOn()?110:160;bootT=t;
+      [0,.06,.55].forEach(d=>setTimeout(()=>{tone(2400,0,'square',.022,.012);tone(120,60,'sine',.12,.08);},d*1000));
+      for(let i=0;i<7;i++)setTimeout(()=>tone(1700+Math.random()*1600,0,'square',.012,.01),90+Math.random()*700);
+      const o=ac.createOscillator(),g=gain(0);o.type='sine';o.frequency.setValueAtTime(40,t);o.frequency.exponentialRampToValueAtTime(f,t+1.5);
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.15,t+1.3);g.gain.linearRampToValueAtTime(0,t+2.5);o.connect(g).connect(master);o.start(t);o.stop(t+2.6);
+      setTimeout(()=>tone(f*2,0,'sine',.035,.4,.02),1450);}
   };
 })();
 $('#snd').addEventListener('click',()=>{const b=$('#snd');const on=S.toggle();b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'Sesi kapat':'Sesi aç');hz(8);});
@@ -403,6 +410,23 @@ let frozen=[];
 // sayfa düzeni değişirken ekrandaki içerik yerinde kalsın
 const anchor=()=>{let el=D.elementFromPoint(innerWidth/2,innerHeight*.45);if(!el||el===torch)el=$('main');return {el,top:el.getBoundingClientRect().top};};
 const keep=a=>{const dy=a.el.getBoundingClientRect().top-a.top;if(Math.abs(dy)<1)return;const y=scrollY+dy;W.scrollTo(0,y);if(lenis){lenis.resize();lenis.scrollTo(y,{immediate:true,force:true});}};
+const relit=$('#relit');
+/* Işık geri gelir: önce tüp gibi birkaç kez çakar, sonra ışık bastığın yerden ekrana yayılır.
+   Işık ulaştıkça butonlar sırayla pır pır yanar, altta şebeke 0'dan 230 V'a çıkar. */
+function relight(ox,oy){
+  const far=Math.hypot(Math.max(ox,innerWidth-ox),Math.max(oy,innerHeight-oy))+140,T0=.75,TR=1.7;
+  const hv=$('#relV'),hh=$('#relHz'),o={v:0};
+  const tl=gsap.timeline({onComplete:()=>{R.classList.remove('relit');gsap.set(relit,{'--r':'0px',opacity:1});gsap.set('#relitH',{opacity:1});}});
+  tl.set(relit,{'--r':'150px'},.05).set(relit,{opacity:.15},.12).set(relit,{opacity:1},.17).set(relit,{opacity:.4},.3).set(relit,{opacity:1},.36)
+    .set(relit,{opacity:.25},.5).set(relit,{opacity:.9},.56).set(relit,{opacity:1},.64)
+    .to(relit,{'--r':far+'px',duration:TR,ease:'power2.in'},T0)
+    .to(o,{v:1,duration:T0+TR*.9,ease:'power3.out',onUpdate:()=>{hv.textContent=Math.round(o.v*230);hh.textContent=Math.round(o.v*50);}},0)
+    .to('#relitH',{opacity:0,duration:.5},T0+TR-.2);
+  // ekrandaki butonlar ışık ulaşınca sırayla yansın
+  pills.forEach(b=>{const r=b.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight||(+b.style.getPropertyValue('--on')||0)<.5)return;
+    const d=Math.hypot(r.left+r.width/2-ox,r.top+r.height/2-oy),rr=Math.max(0,d-60),p=Math.sqrt(Math.min(1,rr/far)),at=T0+TR*p;
+    setOn(b,0);const q={t:0};tl.to(q,{t:1,duration:1.1,ease:'none',onUpdate:()=>setOn(b,q.t>=1?1:step(FLK_ON,q.t))},at);});
+}
 function power(off){
   if(off===FD.off)return;
   $$('[data-sw]').forEach(b=>b.setAttribute('aria-label',off?'Işıkları aç':'Işıkları kapat'));$('#msw').setAttribute('aria-pressed',off);$('#msw').setAttribute('aria-label',off?'Işıkları aç':'Işıkları kapat');
@@ -414,11 +438,13 @@ function power(off){
       SCR.forEach(x=>x.full());
       R.classList.add('dark');torch.classList.remove('fl');
       keep(a);
-    }else{S.pwr();hz([10,40,10,30]);
-      torch.classList.add('fl');
-      setTimeout(()=>{const a=anchor();R.classList.remove('dark');torch.classList.remove('fl');
-        frozen.forEach(t=>t.enable(false,false));frozen=[];ScrollTrigger.refresh();keep(a);
-        FD.off=false;gsap.globalTimeline.resume();ScrollTrigger.update();},620);
+    }else{S.boot();hz([10,40,10,30]);
+      const ox=parseFloat(torch.style.getPropertyValue('--tx'))||innerWidth/2,oy=parseFloat(torch.style.getPropertyValue('--ty'))||innerHeight/2;
+      gsap.set(relit,{'--x':ox+'px','--y':oy+'px','--r':'0px',opacity:1});R.classList.add('relit');
+      const a=anchor();R.classList.remove('dark');
+      frozen.forEach(t=>t.enable(false,false));frozen=[];ScrollTrigger.refresh();keep(a);
+      FD.off=false;gsap.globalTimeline.resume();ScrollTrigger.update();
+      relight(ox,oy);
     }
     return;
   }
@@ -428,9 +454,11 @@ function power(off){
       .to('#offCv',{scaleY:.004,duration:.2,ease:'power2.in'}).to('#offCv',{scaleX:0,duration:.24,ease:'power2.in'}).set('#offCv',{opacity:0})
       .to('#off .box',{opacity:1,duration:.9,ease:'power2.out'},'+=.25');
     setTimeout(()=>{const b=$('#off .bigsw');b&&b.focus({preventScroll:true});},700);
-  }else{S.pwr();hz([10,40,10,30]);
-    gsap.timeline({onComplete:()=>{R.classList.remove('off');gsap.set('#off',{opacity:1});lenis&&lenis.start();}})
-      .to('#off',{opacity:0,duration:.05}).to('#off',{opacity:1,duration:.05}).to('#off',{opacity:0,duration:.04}).to('#off',{opacity:.7,duration:.08}).to('#off',{opacity:0,duration:.35});
+  }else{S.boot();hz([10,40,10,30]);
+    const sb=$('#off .bigsw svg'),r=sb?sb.getBoundingClientRect():null,ox=r?r.left+r.width/2:innerWidth/2,oy=r?r.top+r.height/2:innerHeight/2;
+    gsap.set(relit,{'--x':ox+'px','--y':oy+'px','--r':'0px',opacity:1});R.classList.add('relit');
+    R.classList.remove('off');gsap.set('#off',{opacity:1});lenis&&lenis.start();
+    relight(ox,oy);
   }
 }
 $$('[data-sw]').forEach(b=>b.addEventListener('click',()=>power(!FD.off)));
