@@ -491,7 +491,17 @@ function heroScroll(){
   const masks=heroChars.map(c=>c.parentElement),fld=$('#field');
   const qs=masks.map(m=>[gsap.quickTo(m,'x',{duration:.9,ease:'power3'}),gsap.quickTo(m,'y',{duration:.9,ease:'power3'})]);
   gsap.ticker.add(()=>{if(!M.on||!FD.heroVis)return;const hr=fld.getBoundingClientRect();masks.forEach((m,i)=>{const r=m.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;const dx=M.x+hr.left-cx,dy=M.y+hr.top-cy,d=Math.hypot(dx,dy)||1,f=FD.heroP>.002?0:Math.exp(-(d*d)/(260*260))*M.on;qs[i][0](dx/d*f*14);qs[i][1](dy/d*f*11);});});
-  const lead=new SplitText('#hLead',{type:'lines',mask:'lines',linesClass:'lm'});
+  const lead=new SplitText('#hLead',{type:'lines,words',mask:'lines',linesClass:'lm',wordsClass:'lw'});
+  const eS=new SplitText('#hE',{type:'words,chars',charsClass:'ec'});
+  // imleç branş satırını ve açıklama metnini de yumuşakça iter: harfler/kelimeler imleçten kaçar, yakındakiler parlar
+  const soft=[...eS.chars.map(el=>({el,ax:7,ay:6,r:170})),...lead.words.map(el=>({el,ax:7,ay:0,r:190}))];
+  soft.forEach(o=>{o.qx=gsap.quickTo(o.el,'x',{duration:1.1,ease:'power3'});o.qy=o.ay?gsap.quickTo(o.el,'y',{duration:1.1,ease:'power3'}):null;o.n=0;});
+  gsap.ticker.add(()=>{if(!FD.heroVis||FD.off)return;const hr=fld.getBoundingClientRect(),live=M.on>.01&&FD.heroP<=.002;
+    soft.forEach(o=>{let f=0,dx=0,dy=0,d=1;
+      if(live){const r=o.el.getBoundingClientRect(),cx=r.left+r.width/2-(gsap.getProperty(o.el,'x')||0),cy=r.top+r.height/2-(o.ay?gsap.getProperty(o.el,'y')||0:0);
+        dx=cx-(M.x+hr.left);dy=cy-(M.y+hr.top);d=Math.hypot(dx,dy)||1;f=Math.exp(-(d*d)/(o.r*o.r))*M.on;}
+      o.qx(dx/d*f*o.ax);if(o.qy)o.qy(dy/d*f*o.ay);
+      const n=o.n+(f-o.n)*.1;if(Math.abs(n-o.n)>.002||(n===0&&o.n!==0)){o.n=n<.003?0:n;o.el.style.setProperty('--n',o.n.toFixed(3));}});});
   const hudF=scrambler($('#hHud')),eF=scrambler($('#hE'));
   const rnd=gsap.utils.random;
   const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:SCRUB,onUpdate:s=>{FD.heroP=s.progress;heroCycle=s.progress<.6;}}});
