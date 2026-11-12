@@ -99,7 +99,6 @@ const MC=[240,180];
   <path class="riv" d="M452 40 C430 90 400 130 380 170 C366 200 356 230 358 262 C360 290 364 304 366 314"/>
   <path class="road" d="M193 52 C230 90 270 150 300 181 C320 205 340 232 352 254"/><path class="road" d="M300 181 C250 180 180 186 134 185"/>
   <text class="lbl" x="104" y="104">${L$('KÖYCEĞİZ G.','KÖYCEĞİZ L.')}</text><text class="lbl" x="250" y="345">${L$('AKDENİZ','MEDITERRANEAN')}</text><text class="lbl" x="66" y="252">İZTUZU</text>
-  <path class="wire" id="mWire" pathLength="1" d="M-30 150 C80 150 180 162 ${MC[0]} ${MC[1]}"/>
   <path class="bolt" id="mBolt" pathLength="1" d="M0 0" style="opacity:0"/>
   </g>`;
   ZN.forEach((z,i)=>{const [n,x,y,t]=z,l=i===0;h+=`<g class="node" data-z="${i}" tabindex="0" role="button" aria-label="${n}, ${t}"><circle class="p" cx="${x}" cy="${y}" r="9"/><circle class="c" cx="${x}" cy="${y}" r="6"/><text x="${l?x-14:x+14}" y="${y-4}" text-anchor="${l?'end':'start'}">${n.toUpperCase()}</text><text class="t" x="${l?x-14:x+14}" y="${y+14}" text-anchor="${l?'end':'start'}">${t}</text></g>`;});
@@ -202,72 +201,109 @@ const vel=()=>lenis?lenis.velocity:0;
 const hz=ms=>{try{if(navigator.vibrate&&(!navigator.userActivation||navigator.userActivation.hasBeenActive))navigator.vibrate(ms);}catch(e){}};
 const paperOn=()=>R.classList.contains('paper-on');
 const S=(function(){
-  /* Müzik: kendi sentezimiz (dosya yok). Derin uzay ambiyansı: pad, alt bas, yavaş arpej, uzak çanlar, yankı ve gecikme.
-     Bölüme göre ton ve doku değişir (değişim ölçü başında, yumuşak). Kaydırma hızı tempoyu artırır.
-     Defterde org tınılı, saat tikli, yumuşak bir ostinato (özgün motif). Glitch'te müzik kesik kesik bozulur.
-     Düğme, çivi, bip gibi küçük efektler ayrı kalır. */
-  let ac=null,master,chop,musIn,musF,musG,rvS,dlS,noise,on=false,spd=0,lastFlk=0,bootT=-9;
+  /* Müzik: kendi sentezimiz (dosya yok). Epik ve karanlık uzay: derin drone, bakır üflemeli şişmeler, timpani gümlemeleri,
+     yaylı ostinato, saat tiki ve gerilim tınısı. Bölüme göre ton/yoğunluk değişir (ölçü başında). Kaydırma hızı tempoyu,
+     parlaklığı ve yoğunluğu artırır. Defterde kilise orgu ostinatosu ve saat tiki; hızlanınca katmanlar eklenir (özgün motif).
+     Glitch müziği kesik kesik bozar. Küçük efektler ayrı kalır. */
+  let ac=null,master,chop,musIn,musF,musG,rvS,dlS,noise,humO,humF,humG,lastAk=0,on=false,spd=0,lastFlk=0,bootT=-9;
+  const AE=[0,2,3,5,7,8,10],HM=[0,2,3,5,7,8,11];
   const MS={
-    hero:{r:38,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[3,5,0],[6,1,3]],bpm:60,dv:2,cut:900,arp:.045,bell:.14},
-    svc:{r:41,s:[0,2,4,6,7,9,11],p:[[0,2,4],[1,3,5],[4,6,1],[5,0,2]],bpm:68,dv:4,cut:1500,arp:.035,bell:.16},
-    proc:{r:36,s:[0,2,3,5,7,9,10],p:[[0,2,4],[3,5,0],[4,6,1],[0,2,4]],bpm:72,dv:4,cut:1200,arp:.03,bell:.06,pulse:1},
-    glow:{r:40,s:[0,2,4,7,9],p:[[0,1,2],[3,4,1],[2,3,0],[4,0,2]],bpm:62,dv:2,cut:1800,arp:.04,bell:.3},
-    dark:{r:43,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[6,1,3],[4,6,1]],bpm:56,dv:2,cut:650,arp:.03,bell:.08},
-    paper:{r:45,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[3,5,0],[4,6,1]],bpm:54,dv:2,cut:2400,arp:0,bell:0,organ:1}
+    hero:{r:33,s:AE,p:[[0,2,4],[5,0,2],[3,5,0],[4,6,1]],bpm:58,dv:2,cut:1300,ost:.15,boom:2,tick:1,brass:.03,hi:.007,acc:1},
+    svc:{r:36,s:AE,p:[[0,2,4],[5,0,2],[6,1,3],[4,6,1]],bpm:64,dv:4,cut:1500,ost:.55,boom:2,tick:0,brass:.026,hi:.005,acc:1},
+    proc:{r:31,s:HM,p:[[0,2,4],[3,5,0],[4,6,1],[0,2,4]],bpm:70,dv:4,cut:1400,ost:.9,boom:1,tick:1,brass:.022,hi:.006,acc:.9},
+    glow:{r:35,s:AE,p:[[0,2,4],[2,4,6],[5,0,2],[4,6,1]],bpm:60,dv:2,cut:2000,ost:.35,boom:4,tick:0,brass:.03,hi:.012,acc:1},
+    dark:{r:29,s:HM,p:[[0,2,4],[5,0,2],[1,3,5],[4,6,1]],bpm:52,dv:2,cut:900,ost:.6,boom:1,tick:1,brass:.034,hi:.005,acc:1},
+    paper:{r:33,s:AE,p:[[0,2,4],[5,0,2],[2,4,6],[6,1,3]],bpm:46,dv:2,cut:4200,organ:1,acc:1.6}
   };
   const SECT=[['bas','hero'],['hizmetler','svc'],['surec','proc'],['olcum','glow'],['yorumlar','glow'],['bolgeler','glow'],['teklif','dark'],['maniSec','dark'],['mq','dark'],['sss','dark'],['shift','dark']];
   let scK='hero',pendK='hero',sc=MS.hero,nT=0,stp=0,bar=0,chord=MS.hero.p[0],fr=0;
   const gain=v=>{const g=ac.createGain();g.gain.value=v;return g;};
   const mtof=m=>440*Math.pow(2,(m-69)/12);
   const nota=(d,o)=>{const L=sc.s.length;return mtof(sc.r+12*(o+Math.floor(d/L))+sc.s[((d%L)+L)%L]);};
-  function ir(sec){const n=ac.sampleRate*sec|0,b=ac.createBuffer(2,n,ac.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.8);}return b;}
-  function ses(f,t,dur,o){const x=ac.createOscillator(),g=gain(0);x.type=o.type||'sine';x.frequency.value=f;if(o.det)x.detune.value=o.det;x.connect(g);g.connect(musIn);
+  function ir(sec){const n=ac.sampleRate*sec|0,b=ac.createBuffer(2,n,ac.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.6);}return b;}
+  function ses(f,t,dur,o){const x=ac.createOscillator(),g=gain(0);x.type=o.type||'sine';x.frequency.value=f;if(o.det)x.detune.value=o.det;x.connect(g);g.connect(o.out||musIn);
     if(o.rv){const r=gain(o.rv);g.connect(r);r.connect(rvS);}if(o.dl){const q=gain(o.dl);g.connect(q);q.connect(dlS);}
     const a=o.att||.01,rl=o.rel||.5;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(o.vol,t+a);g.gain.setTargetAtTime(0,t+a+dur,rl/3);x.start(t);x.stop(t+a+dur+rl*2);}
-  function org(f,t,dur,vol){[[1,1],[2,.55],[3,.32],[4,.2],[6,.09]].forEach(([h,a])=>ses(f*h,t,dur,{vol:vol*a,att:.06,rel:.7,rv:.75}));}
-  function tik(t,v){const b=ac.createBufferSource(),h=ac.createBiquadFilter(),g=gain(0);b.buffer=noise;h.type='highpass';h.frequency.value=3500;b.connect(h).connect(g).connect(musIn);
-    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.035);b.start(t);b.stop(t+.05);}
+  function nzM(t,v,f,len,typ,out){const b=ac.createBufferSource(),h=ac.createBiquadFilter(),g=gain(0);b.buffer=noise;h.type=typ||'highpass';h.frequency.value=f;b.connect(h).connect(g).connect(out||musG);
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+len);b.start(t,Math.random()*.5);b.stop(t+len+.02);}
+  const tik=(t,v)=>nzM(t,v,3800,.03,'highpass',musG);
+  /* bakır üflemeli şişme: üç kalın testere, kendi süzgeci açılıp kapanır */
+  function brs(f,t,dur,vol){const lp=ac.createBiquadFilter();lp.type='lowpass';lp.Q.value=1.4;lp.frequency.setValueAtTime(120,t);lp.frequency.linearRampToValueAtTime(650+spd*2200,t+dur*.55);lp.frequency.linearRampToValueAtTime(180,t+dur*1.1);
+    const g=gain(0);lp.connect(g);g.connect(musIn);const r=gain(.75);g.connect(r);r.connect(rvS);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol*(1+spd*.6),t+dur*.5);g.gain.linearRampToValueAtTime(0,t+dur*1.15);
+    [-10,0,10].forEach(dt=>{const o=ac.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=dt;o.connect(lp);o.start(t);o.stop(t+dur*1.2);});}
+  /* timpani / derin gümleme */
+  function boom(t,v){const o=ac.createOscillator(),g=gain(0);o.frequency.setValueAtTime(72,t);o.frequency.exponentialRampToValueAtTime(31,t+.7);o.connect(g);g.connect(musG);const r=gain(.6);g.connect(r);r.connect(rvS);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+1.8);o.start(t);o.stop(t+1.9);nzM(t,v*.5,420,.09,'lowpass',musG);}
+  /* kilise orgu: 16' 8' 4' 2 2/3' 2' 1 1/3' 1' kayıtları; parlaklık hızla açılır */
+  function org(f,t,dur,vol,br){[[.5,.55],[1,1],[2,.62],[3,.3],[4,.34],[6,.12+.2*br],[8,.08+.24*br]].forEach(([h,a],i)=>ses(f*h,t,dur,{vol:vol*a,att:.03,rel:1.1,rv:.85,det:i%2?3:-3}));}
   function olcu(t,len){chord=sc.p[bar%sc.p.length];bar++;
-    if(sc.organ){org(nota(chord[0],-1),t,len*.95,.03);return;}
-    chord.forEach((d,k)=>{const f=nota(d,0);ses(f,t,len*.7,{type:'sawtooth',vol:.016,att:len*.35,rel:len*.8,rv:.85,det:-7});ses(f,t,len*.7,{type:'sawtooth',vol:.016,att:len*.35,rel:len*.8,rv:.85,det:7});});
-    ses(nota(chord[0],-1),t,len*.8,{vol:.07,att:1.2,rel:1.6});}
+    if(sc.organ){const br=Math.min(1,spd*1.4);org(nota(chord[0],0),t,len*.97,.03+.012*br,br);if(spd>.35)org(nota(chord[2],1),t,len*.9,.012*br,br);return;}
+    ses(nota(chord[0],0),t,len*.85,{vol:.06,att:len*.25,rel:len*.5});
+    ses(nota(chord[0],0),t,len*.85,{type:'sawtooth',vol:.012,att:len*.3,rel:len*.5,rv:.5,det:-6});
+    chord.forEach(d=>brs(nota(d,1),t+.02,len*.92,sc.brass/3*2));
+    if(bar%sc.boom===1||spd>.55)boom(t,.32+spd*.25);
+    ses(nota(chord[0],4),t,len*.8,{vol:sc.hi,att:len*.4,rel:len*.6,rv:.9});ses(nota(chord[0],4)*1.029,t,len*.8,{vol:sc.hi*.8,att:len*.4,rel:len*.6,rv:.9});}
   function adim(t,sd,k){const beat=k%sc.dv===0;
-    if(sc.organ){const o=[nota(chord[0],1),nota(chord[2],1),nota(chord[1],1),nota(chord[2],1)];org(o[k%4],t,sd*.85,.017);if(beat)tik(t,.03);return;}
-    if(sc.pulse)ses(nota(chord[0],0),t,sd*.4,{vol:.03,att:.004,rel:.25,rv:.3});
-    if(k%2===0||Math.random()<.35+spd*.5){const idx=(k>>(sc.dv>2?0:1))%6,d=chord[idx%3]+(idx>2?7:0);ses(nota(d,2),t,.05,{type:'triangle',vol:sc.arp,att:.005,rel:1.3,rv:.55,dl:.45});}
-    if(beat&&Math.random()<sc.bell)ses(nota(chord[(Math.random()*3)|0],3),t,.02,{vol:.028,att:.003,rel:3.2,rv:.9,dl:.5});}
+    if(sc.organ){const br=Math.min(1,spd*1.4),pat=[chord[0],chord[2],chord[0]+7,chord[2],chord[1],chord[2],chord[0]+7,chord[2]];
+      org(nota(pat[k%8],1),t,sd*.88,.016+.008*br,br);
+      if(spd>.2&&k%2===1)org(nota(chord[1]+7,1),t,sd*.85,.008+.008*br,br);
+      if(beat)tik(t,.05+.05*spd);else if(spd>.45)tik(t,.03);return;}
+    if(sc.tick&&beat)tik(t,.05);
+    if(Math.random()<sc.ost+spd*.9){const pat=[0,0,1,0,2,0,1,2],d=chord[pat[k%8]];ses(nota(d,1),t,sd*.45,{type:'sawtooth',vol:.016*(.6+spd),att:.006,rel:.18,rv:.35});}
+    if(spd>.5&&beat)ses(nota(chord[0],0),t,sd*.6,{vol:.05,att:.004,rel:.3});}
   function sched(){if(!on||!ac||FD.off)return;const t=ac.currentTime;if(nT<t)nT=t+.06;
-    while(nT<t+.16){const sd=60/(sc.bpm*(1+spd*.9))/sc.dv,spb=4*sc.dv,k=stp%spb;
+    while(nT<t+.16){const sd=60/(sc.bpm*(1+spd*sc.acc))/sc.dv,spb=4*sc.dv,k=stp%spb;
       if(k===0){if(pendK!==scK){scK=pendK;sc=MS[scK];}olcu(nT,sd*spb);}
       adim(nT,sd,k);nT+=sd;stp++;}}
   function init(){
     ac=new (W.AudioContext||W.webkitAudioContext)();
-    const lim=ac.createDynamicsCompressor();lim.threshold.value=-3;lim.knee.value=0;lim.ratio.value=8;lim.attack.value=.003;lim.release.value=.15;
+    const lim=ac.createDynamicsCompressor();lim.threshold.value=-6;lim.knee.value=4;lim.ratio.value=10;lim.attack.value=.003;lim.release.value=.2;
     master=gain(0);master.connect(lim);lim.connect(ac.destination);
     chop=gain(1);chop.connect(master);
     musIn=gain(1);musF=ac.createBiquadFilter();musF.type='lowpass';musF.frequency.value=900;musF.Q.value=.6;musG=gain(0);musIn.connect(musF);musF.connect(musG);musG.connect(chop);
-    const cv=ac.createConvolver();cv.buffer=ir(4.8);rvS=gain(1);rvS.connect(cv);const rr=gain(.6);cv.connect(rr);rr.connect(musIn);
+    const cv=ac.createConvolver();cv.buffer=ir(5.5);rvS=gain(1);rvS.connect(cv);const rr=gain(.6);cv.connect(rr);rr.connect(musIn);
     const dl=ac.createDelay(2);dl.delayTime.value=.42;const fb=gain(.38),df=ac.createBiquadFilter();df.type='lowpass';df.frequency.value=1800;dlS=gain(1);dlS.connect(dl);dl.connect(df);df.connect(fb);fb.connect(dl);const dr=gain(.35);df.connect(dr);dr.connect(musIn);
-    noise=ac.createBuffer(1,ac.sampleRate*.06|0,ac.sampleRate);const nd=noise.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+    noise=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);const nd=noise.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+    humO=ac.createOscillator();humO.type='sawtooth';humO.frequency.value=50;humF=ac.createBiquadFilter();humF.type='bandpass';humF.Q.value=3;humF.frequency.value=200;humG=gain(0);humO.connect(humF);humF.connect(humG);humG.connect(chop);humO.start();
     setInterval(sched,30);
   }
   function tone(f1,f2,type,peak,dur,a){const o=ac.createOscillator(),g=gain(0),t=ac.currentTime;o.type=type;o.frequency.setValueAtTime(f1,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
     g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+(a||.004));g.gain.exponentialRampToValueAtTime(.0001,t+(a||.004)+dur);o.connect(g).connect(master);o.start();o.stop(t+dur+.1);}
   const ok=()=>on&&!FD.off;
+  /* süzgeçli gürültü patlaması (efektler için, doğrudan ana çıkışa) */
+  function nz(v,f,len,typ,q){const t=ac.currentTime,b=ac.createBufferSource(),h=ac.createBiquadFilter(),g=gain(0);b.buffer=noise;h.type=typ;h.frequency.value=f;if(q)h.Q.value=q;b.connect(h).connect(g).connect(master);
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+len);b.start(t,Math.random()*.5);b.stop(t+len+.02);}
   return {
     toggle(){if(!ac)init();on=!on;if(on)ac.resume();master.gain.setTargetAtTime(on?1:0,ac.currentTime,.25);return on;},
     tick(){if(!on)return;const t=ac.currentTime,v=Math.min(1,Math.abs(vel())/35),mob=TOUCH?1.5:1,pap=paperOn(),E=FD.E;spd+=(v-spd)*.05;
       if(++fr%15===0){let k='hero';if(pap)k='paper';else{const y=innerHeight/2;for(const [id,n] of SECT){const el=D.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=y&&r.bottom>=y){k=n;break;}}}pendK=k;}
       const live=!FD.off,bf=Math.min(1,Math.max(0,(t-bootT-1.1)/1.3));
-      musG.gain.setTargetAtTime(live?(scK==='paper'?.3:.36)*mob*bf:0,t,.5);
+      musG.gain.setTargetAtTime(live?(scK==='paper'?.75:.9)*mob*bf:0,t,.5);
       musF.frequency.setTargetAtTime(E>.03?200+Math.random()*3200:sc.cut*(1+spd*1.3),t,E>.03?.005:.35);
-      chop.gain.setTargetAtTime(E>.03&&Math.random()<E*.5?.05:1,t,.004);},
+      chop.gain.setTargetAtTime(E>.03&&Math.random()<E*.5?.05:1,t,.004);
+      if(humG&&performance.now()-lastAk>90)humG.gain.setTargetAtTime(0,t,.08);},
     hover(){if(!ok())return;paperOn()?tone(440,0,'sine',.02,.14,.01):tone(1800+Math.random()*400,0,'triangle',.028,.03);},
     click(){if(!ok())return;paperOn()?tone(330,0,'sine',.045,.25,.01):tone(150,70,'sine',.16,.12);},
     flick(){if(!ok())return;const n=performance.now();if(n-lastFlk<40)return;lastFlk=n;tone(2600+Math.random()*700,0,'square',.018,.015);tone(160,0,'sine',.05,.05);},
     thump(){if(ok()&&!paperOn())tone(90,45,'sine',.18,.3);},
     beep(){if(!ok())return;tone(2300,0,'sine',.05,.09);setTimeout(()=>tone(2300,0,'sine',.05,.12),140);},
-    nail(){if(!ok())return;tone(2100+Math.random()*500,0,'triangle',.05,.05);tone(240,110,'sine',.09,.09);},
+    /* çekiç: tok "tak" (ahşaba vuruş) */
+    nail(){if(!ok())return;tone(165+Math.random()*20,62,'sine',.34,.17);tone(480,260,'triangle',.05,.05);nz(.24,1000,.05,'bandpass',1.3);},
+    /* matkap ucu ekrana değer: iki tok gümleme */
+    gum(){if(!ok())return;const h=()=>{tone(96,36,'sine',.42,.42);tone(190,70,'sine',.12,.12);nz(.3,380,.13,'lowpass');};h();setTimeout(()=>{if(ok()){tone(88,34,'sine',.3,.38);nz(.2,360,.11,'lowpass');}},170);},
+    /* süreç devresi: çizgi ilerledikçe akım vızıltısı, perdesi devre boyunca yükselir */
+    akim(dP,P){if(!ok()||!humG)return;const t=ac.currentTime;lastAk=performance.now();humO.frequency.setTargetAtTime(50+P*14,t,.06);humF.frequency.setTargetAtTime(160+P*120,t,.06);humG.gain.setTargetAtTime(Math.min(.07,Math.abs(dP)*2.2),t,.04);},
+    /* her elemana özgü temas sesi: pil, şalter, voltmetre, direnç, bobin, lamba, devre kapanışı */
+    devre(k){if(!ok())return;const t=ac.currentTime;
+      if(k===0){tone(85,40,'sine',.24,.22);tone(240,960,'sine',.035,.45,.03);}
+      else if(k===1){nz(.2,2600,.035,'bandpass',2);tone(1500,0,'square',.025,.012);tone(120,55,'sine',.22,.1);}
+      else if(k===2){tone(300,1100,'sine',.05,.5,.04);setTimeout(()=>{if(ok()){tone(2700,0,'sine',.035,.03);nz(.06,5000,.02,'highpass');}},480);}
+      else if(k===3){tone(70,70,'sawtooth',.07,.4,.01);nz(.12,2400,.35,'bandpass',.8);[0,60,140,230].forEach(d=>setTimeout(()=>{if(ok())nz(.08,4500,.02,'highpass');},d));}
+      else if(k===4){const o=ac.createOscillator(),l=ac.createOscillator(),lg=gain(18),g=gain(0);o.type='triangle';o.frequency.setValueAtTime(55,t);o.frequency.exponentialRampToValueAtTime(140,t+.6);l.frequency.value=7;l.connect(lg);lg.connect(o.frequency);o.connect(g);g.connect(master);
+        g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.12);g.gain.exponentialRampToValueAtTime(.0001,t+.9);o.start(t);l.start(t);o.stop(t+1);l.stop(t+1);}
+      else if(k===5){tone(1760,0,'sine',.045,1.3,.004);tone(2637,0,'sine',.022,.9,.004);tone(110,0,'sawtooth',.03,.9,.12);nz(.05,6000,.04,'highpass');}
+      else {[0,110,220].forEach((d,i)=>setTimeout(()=>{if(ok())tone(mtof(sc.r+36+[0,7,12][i]),0,'sine',.05,.6,.01);},d));}},
     swish(){if(ok())tone(110,150,'sine',.05,.5,.08);},
     zap(){if(ok())tone(320,160,'triangle',.05,.1);},
     lock(){if(ok()){tone(1320,0,'sine',.04,.08);setTimeout(()=>tone(1760,0,'sine',.04,.1),90);}},
@@ -494,7 +530,8 @@ if(FINE){
 const kTemp=$('#kTemp'),bub=$('#bub'),bars=$$('#hizmetler .ch[data-i="3"] .bar');let svcAct=false,liveI=0;
 let autoSig=0,liveT=0,lastLive=0;
 gsap.ticker.add(()=>{if(kaydir)kaydir.tick(svcAct);});
-const navNot=$('#navNot');if(navNot)gsap.ticker.add(()=>navNot.classList.toggle('gz',FD.heroP>.04||scrollY>innerHeight*.5));
+/* üst çubuk notu: hero'dan aşağı inince kaybolur, geri dönünce gelir */
+const navNot=$('#navNot');let navNotHazir=0,navGz=false;if(navNot)gsap.ticker.add(()=>{if(!navNotHazir)return;const g=FD.heroP>.04||scrollY>innerHeight*.5;if(g!==navGz){navGz=g;gsap.to(navNot,{autoAlpha:g?0:1,y:g?-8:0,duration:.6,overwrite:true});}});
 // yana kaydırma denenirse işaret sallanır
 addEventListener('wheel',e=>{if(svcAct&&kaydir&&Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>4)kaydir.nudge();},{passive:true});
 (function(){let sx=0,sy=0;addEventListener('touchstart',e=>{const p=e.touches[0];sx=p.clientX;sy=p.clientY;},{passive:true});
@@ -588,7 +625,7 @@ function intro(){
     .to(o,{l:1,duration:1.6,ease:'none',onUpdate:()=>leadF(o.l)},'-=1.3');
   const bt0=tl.duration()-1.3;
   heroBtns.forEach((b,i)=>{const p=b.querySelector('.bo path'),q={t:0},at=bt0+i*.75;tl.to(p,{autoRound:false,strokeDashoffset:0,duration:.8,ease:'power2.inOut'},at).to(q,{t:1,duration:1.6,ease:'none',onUpdate:()=>setOn(b,q.t>=1?1:step(FLK_ON,q.t))},at+.55);});
-  tl.from('.top .in>*',{opacity:0,y:-18,stagger:.1,duration:1.4},.4).add(()=>{leadF(1);heroScroll();gsap.delayedCall(1.4,embStep);});
+  tl.from('.top .in>*:not(.nav-not)',{opacity:0,y:-18,stagger:.1,duration:1.4},.4).fromTo('#navNot',{autoAlpha:0,y:-18},{autoAlpha:1,y:0,duration:1.4,onComplete:()=>{navNotHazir=1;}},.5).add(()=>{leadF(1);heroScroll();gsap.delayedCall(1.4,embStep);});
 }
 function heroScroll(){
   const masks=heroChars.map(c=>c.parentElement),fld=$('#field');
@@ -727,7 +764,8 @@ else{
   tl.to({},{duration:10},0);
   // giriş çizgisi: bölüm ekrana girerken soldan akarak devreye ulaşır (sabitlenmeden önce başlar)
   const tpTl=gsap.timeline({defaults:{ease:'none'},onUpdate:()=>tp.upd(),scrollTrigger:{trigger:pin,start:'top 85%',end:'top 10%',scrub:SCRUB}});tp.inTl(tpTl,0,1);
-  tl.fromTo(o,{P:0},{P:6,duration:8.6,onUpdate:()=>render(o.P)},.8);
+  const TH=[.05,.5,1.5,2.5,3.5,4.5,5.7];
+  tl.fromTo(o,{P:0},{P:6,duration:8.6,onUpdate:()=>{const p0=cur.P;render(o.P);S.akim(o.P-p0,o.P);TH.forEach((h,k)=>{if(p0<h&&o.P>=h)S.devre(k);});}},.8);
   const left=pin.firstElementChild;
   life(sec,(tl2,a,d)=>tl2.fromTo(left,{opacity:0,y:60,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:d,ease:'power2.out'},a).fromTo(steps,{opacity:0,x:40},{opacity:1,x:0,duration:d,ease:'power2.out'},a+d*.15),
           (tl2,a,d)=>tl2.to(left,{opacity:0,y:-60,filter:'blur(8px)',duration:d,ease:'power1.in'},a).to(steps,{opacity:0,x:-30,duration:d,ease:'power1.in'},a),{ein:.5,eout:.4});
@@ -794,17 +832,15 @@ else{
   const sec=$('#bolgeler'),map=$('#map'),lis=$$('#zlist li');
   izle($('#dishT'),$('#dishR'),120,80,160,{base:200,off:180,d:.9});
   autoFx(sec.querySelector('.sh'));autoFx(sec.querySelector('.wrap>div'));
-  const nodes=$$('.node',map),bolt=$('#mBolt'),wire=$('#mWire'),sweep=$('#mSweep');
+  const nodes=$$('.node',map),bolt=$('#mBolt'),sweep=$('#mSweep');
   const pt=(x,y)=>{const m=map.getScreenCTM();if(!m)return {x:0,y:0};const p=map.createSVGPoint();p.x=x;p.y=y;return p.matrixTransform(m);};
-  const tp=tap(sec,s=>{const a=pt(-30,150);return hline(railX0()-s.left,a.y-s.top,a.x-s.left);});
-  life(map,(tl,a,d)=>{tp.inTl(tl,a,d*.5);
+  life(map,(tl,a,d)=>{
       tl.fromTo('#mSea',{opacity:0},{opacity:1,duration:d*.4},a).fromTo('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'0%'},{drawSVG:'100%',duration:d*.5,stagger:{amount:d*.25},ease:'power1.inOut'},a+d*.05)
         .fromTo('#mRadar',{scale:.2,opacity:0,transformOrigin:`${MC[0]}px ${MC[1]}px`},{scale:1,opacity:1,duration:d*.45,ease:'power2.out'},a+d*.3)
-        .fromTo(wire,{autoRound:false,strokeDashoffset:1,strokeDasharray:'1 1'},{autoRound:false,strokeDashoffset:0,duration:d*.3},a+d*.5)
         .fromTo(nodes,{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:d*.22,stagger:{amount:d*.3},ease:'back.out(2.5)'},a+d*.6)
         .fromTo('.map .lbl',{opacity:0},{opacity:1,duration:d*.3},a+d*.75);},
-    (tl,a,d)=>{tl.to(nodes,{scale:0,duration:d*.3,stagger:{amount:d*.2,from:'end'},immediateRender:false},a).to(wire,{autoRound:false,strokeDashoffset:-1,duration:d*.4,immediateRender:false},a)
-        .to('#mRadar',{scale:.2,opacity:0,duration:d*.5,immediateRender:false},a+d*.2).to('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'100% 100%',duration:d*.6,immediateRender:false},a+d*.3).to('#mSea,.map .lbl',{opacity:0,duration:d*.4,immediateRender:false},a+d*.5);tp.outTl(tl,a,d*.6);},{s0:.02,ein:1,eout:.3});
+    (tl,a,d)=>{tl.to(nodes,{scale:0,duration:d*.3,stagger:{amount:d*.2,from:'end'},immediateRender:false},a)
+        .to('#mRadar',{scale:.2,opacity:0,duration:d*.5,immediateRender:false},a+d*.2).to('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'100% 100%',duration:d*.6,immediateRender:false},a+d*.3).to('#mSea,.map .lbl',{opacity:0,duration:d*.4,immediateRender:false},a+d*.5);},{s0:.02,ein:1,eout:.3});
   life($('#zlist'),(tl,a,d)=>{tl.fromTo(lis,{opacity:0,x:60,clipPath:'inset(0% 100% 0% 0%)'},{opacity:1,x:0,clipPath:'inset(0% 0% 0% 0%)',duration:d*.6,stagger:{amount:d*.35},ease:'power2.out'},a);},
     (tl,a,d)=>{tl.to(lis,{opacity:0,x:-40,clipPath:'inset(0% 0% 0% 100%)',duration:d*.6,stagger:{amount:d*.35,from:'end'},ease:'power1.in'},a);});
   const on=i=>lis.forEach(l=>l.classList.toggle('on',+l.dataset.z===i));
@@ -938,7 +974,7 @@ else{
       gsap.fromTo(g.querySelectorAll('path'),{drawSVG:'0%'},{drawSVG:'100%',duration:1.1,ease:'power2.out',stagger:.03});};
     const burst=()=>{for(let i=0;i<11;i++){const c=sv('circle',{cx:2,cy:45,r:(.8+Math.random()*1.5).toFixed(1)},spk);
       gsap.to(c,{attr:{cx:6+Math.random()*60,cy:45+(Math.random()-.5)*70},opacity:0,duration:.45+Math.random()*.5,ease:'power2.out',onComplete:()=>c.remove()});}};
-    const cz=()=>{rail.classList.remove('cz');void rail.offsetWidth;rail.classList.add('cz');S.zap();};
+    const cz=()=>{rail.classList.remove('cz');void rail.offsetWidth;rail.classList.add('cz');S.gum();};
     const dtl=gsap.timeline({repeat:-1,paused:true});
     dtl.set(rig,{x:20}).to(rig,{x:0,duration:.35,ease:'power2.in'}).add(()=>{crack();burst();cz();})
        .to(rig,{x:-2.5,duration:1.2,ease:'none'}).add(burst,'-=.6').to(rig,{x:20,duration:.5,ease:'power2.out'}).to({},{duration:.7});
