@@ -162,22 +162,37 @@ svg.tap.ink .t{stroke:var(--cu);filter:none;stroke-width:2.2}svg.tap.ink circle{
   .cur .xh{position:absolute;inset:0;mix-blend-mode:difference;transition:opacity .5s}
   .cur .xh i{position:absolute;background:rgba(63,242,223,.38)}
   .cur .h{left:0;right:0;height:1px;top:0}.cur .v{top:0;bottom:0;width:1px;left:0}
-  .cur .ring{position:absolute;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:1.5px solid var(--sig);border-radius:50%;transition:width .35s,height .35s,margin .35s,background .35s,opacity .4s}
+  .cur .xh,.cur .rd{display:none!important}
+  .cur .ring{position:absolute;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border:1.5px solid var(--sig);border-radius:50%;background:var(--sig);box-shadow:0 0 14px rgba(233,255,59,.55);transition:width .35s,height .35s,margin .35s,background .35s,box-shadow .35s,opacity .4s}
   .cur .ring::after{content:'';position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:var(--sig);opacity:0;transition:opacity .3s}
-  .cur.hot .ring{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(233,255,59,.12)}
+  .cur[data-m="hero"] .ring{width:30px;height:30px;margin:-15px 0 0 -15px;background:transparent;box-shadow:none}
+  .cur[data-m="hero"] .ring::after{opacity:1}
+  .cur.hot .ring{width:46px;height:46px;margin:-23px 0 0 -23px;background:rgba(233,255,59,.14);box-shadow:none}
+  .cur.hot .ring::after{opacity:1}
   .cur .rd{position:absolute;left:0;top:0;font:500 10px/1.3 var(--f-mono);color:var(--cy);letter-spacing:.06em;white-space:nowrap;transform:translate(20px,18px);transition:opacity .4s}
   .cur .rd svg{display:none;width:96px;height:26px;margin-top:4px;overflow:visible}
   .cur .rd svg polyline{fill:none;stroke:var(--sig);stroke-width:1.6;filter:drop-shadow(0 0 3px var(--sig))}
   .cur .tool{position:absolute;left:0;top:0;width:0;height:0}
   .cur .tool>svg{position:absolute;opacity:0;transform:scale(.6);transition:opacity .35s,transform .45s cubic-bezier(.3,1.6,.5,1);overflow:visible}
   .cur[data-m="magnet"] .t-magnet,.cur[data-m="probe"] .t-probe,.cur[data-m="tester"] .t-tester,.cur[data-m="radar"] .t-radar,.cur[data-m="quill"] .t-quill,.cur[data-m="thermo"] .t-thermo,.cur[data-m="sat"] .t-sat,.cur[data-m="cam"] .t-cam,.cur[data-m="level"] .t-level{opacity:1;transform:none}
-  .cur:not([data-m="def"]) .ring{opacity:0}
+  .cur:not([data-m="def"]):not([data-m="hero"]) .ring{opacity:0}
+  .cur[data-m="sil"] .t-sil,.cur[data-m="kbd"] .t-kbd,.cur[data-m="screw"] .t-screw{opacity:1;transform:none}
+  .t-num{position:absolute;left:0;top:0;opacity:0;transform:translate(-50%,-50%) scale(.6);transition:opacity .3s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+  .t-num span{display:block;font:900 38px/.86 var(--f-disp);font-stretch:125%;color:var(--sig);font-variant-numeric:tabular-nums;letter-spacing:-.02em;text-shadow:0 0 18px rgba(233,255,59,.45)}
+  .cur[data-m="num"] .t-num{opacity:1;transform:translate(-50%,-50%)}
+  .t-tester .bulb{stroke:var(--sig);fill:none;opacity:calc(.25 + var(--hot,0)*.75);filter:drop-shadow(0 0 calc(var(--hot,0)*7px) var(--sig))}
+  .t-sil{left:-30px;top:-46px;width:60px;height:84px;filter:blur(1.3px) drop-shadow(0 0 7px rgba(230,242,232,.32)) drop-shadow(0 0 2px rgba(230,242,232,.25))}
+  .t-sil .sf{transform-box:view-box;transform-origin:30px 44px;transition:transform .45s cubic-bezier(.3,1.2,.5,1)}
+  .t-kbd{left:-6px;top:10px;width:100px;height:42px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+  .t-kbd .k{fill:rgba(63,242,223,.06);stroke:rgba(63,242,223,.5);stroke-width:.7;transition:fill .25s}
+  .t-kbd .k.on{fill:var(--sig);stroke:var(--sig);transition:none}
+  .cur.cur.cur[data-m="kbd"] .ring{opacity:1;width:8px;height:8px;margin:-4px 0 0 -4px}
+  .t-screw{left:-15px;top:-68px;width:30px;height:70px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))}
   .cur[data-m="quill"] .xh,.cur[data-m="quill"] .rd,.cur[data-m="radar"] .rd,.cur[data-m="magnet"] .rd,.cur[data-m="tester"] .rd,.cur[data-m="cam"] .xh{opacity:0}
   .cur[data-m="probe"] .rd svg{display:block}
   .t-magnet{left:-15px;top:-6px;width:30px;height:34px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.5))}
   .t-probe{left:-2px;top:-56px;width:58px;height:58px;filter:drop-shadow(0 0 6px rgba(63,242,223,.4))}
   .t-tester{left:-3px;top:-60px;width:62px;height:62px}
-  .t-tester .bulb{fill:var(--sig);opacity:calc(.15 + var(--hot,0)*.85);filter:drop-shadow(0 0 calc(var(--hot,0)*10px) var(--sig))}
   .t-radar{left:-34px;top:-34px;width:68px;height:68px}
   .t-radar .sw{transform-origin:34px 34px;animation:rsw 1.6s linear infinite}
   @keyframes rsw{to{transform:rotate(360deg)}}
@@ -740,6 +755,12 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
     <svg class="t-sat" viewBox="0 0 56 46"><rect x="1" y="6" width="40" height="38" rx="5" fill="#111E16" stroke="#3FF2DF" stroke-width="1.4"/><rect x="6" y="11" width="30" height="13" rx="2" fill="#0C1610" stroke="rgba(63,242,223,.4)"/><rect class="sb" x="8" y="19" width="4" height="3"/><rect class="sb" x="13" y="17" width="4" height="5"/><rect class="sb" x="18" y="15" width="4" height="7"/><rect class="sb" x="23" y="13" width="4" height="9"/><rect class="sb" x="28" y="12" width="4" height="10"/><circle cx="21" cy="34" r="5" fill="none" stroke="#E9FF3B" stroke-width="1.4"/><path d="M41 22 C50 20 54 12 55 2" stroke="#9DB5A3" stroke-width="1.6" fill="none"/></svg>
     <svg class="t-cam" viewBox="0 0 92 68"><path d="M2 16 V2 H16 M76 2 H90 V16 M90 52 V66 H76 M16 66 H2 V52" fill="none" stroke="#E6F2E8" stroke-width="2"/><circle class="rec" cx="12" cy="12" r="3" fill="#ff3b30"/><path d="M42 34 h8 M46 30 v8" stroke="#E6F2E8" stroke-width="1.2"/></svg>
     <svg class="t-level" viewBox="0 0 72 20"><rect x="1" y="2" width="70" height="16" rx="3" fill="#C9A227" stroke="#14151A" stroke-width="1"/><rect x="24" y="5" width="24" height="10" rx="5" fill="#d9f7a1" stroke="#14151A" stroke-width="1"/><path d="M33 5 v10 M39 5 v10" stroke="#14151A" stroke-width=".8"/><circle id="bubC" cx="36" cy="10" r="3.4" fill="#fff" opacity=".9"/></svg>
+    <svg class="t-tester" viewBox="0 0 62 62"><path d="M3 59 L12.5 49.5" stroke="#E6F2E8" stroke-width="2.2" stroke-linecap="round"/><path d="M10.2 46.2 L47.2 9.2 A4 4 0 0 1 52.8 14.8 L15.8 51.8 Z" fill="rgba(12,22,16,.94)" stroke="#3FF2DF" stroke-width="1.4" stroke-linejoin="round"/><path class="bulb" d="M20 42 L33 29" stroke-width="4.4" stroke-linecap="round"/><path d="M41.2 15.2 L46.8 20.8" stroke="#3FF2DF" stroke-width="1.2"/><path d="M44 20.5 L37 27.5" stroke="#9DB5A3" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <svg class="t-radar" viewBox="0 0 68 68"><defs><radialGradient id="crG" cx="34" cy="34" r="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E9FF3B" stop-opacity=".04"/><stop offset="1" stop-color="#F3FF9A" stop-opacity=".55"/></radialGradient></defs><circle cx="34" cy="34" r="30" fill="rgba(233,255,59,.04)" stroke="rgba(233,255,59,.35)" stroke-width="1"/><circle cx="34" cy="34" r="18" fill="none" stroke="rgba(233,255,59,.2)" stroke-width="1"/><g class="sw"><path d="M34 34 L64 34 A30 30 0 0 0 58.8 17.1 Z" fill="url(#crG)"/><path d="M34 34 L64 34" stroke="#F3FF9A" stroke-width="1.2" opacity=".8"/></g><circle cx="34" cy="34" r="3.6" fill="#E9FF3B"/></svg>
+    <svg class="t-sil" viewBox="0 0 60 84"><g class="sf"><path fill="#050807" d="M30 4 C38 4 44 10 44 18 L42 20 C43 23 42 26 39 27 C44 29 47 32 49 36 L55 44 C56 46 54 48 52 47 L45 41 C45 48 44 54 42 60 L46 83 L38 84 L31 64 L22 84 L14 83 L18 60 C12 50 12 38 18 30 C17 22 20 6 30 4 Z"/></g></svg>
+    <svg class="t-kbd" viewBox="0 0 100 42"><rect x="1" y="1" width="98" height="40" rx="5" fill="rgba(12,22,16,.92)" stroke="#3FF2DF" stroke-width="1.2"/><rect class="k" x="5" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="15" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="25" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="35" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="45" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="55" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="65" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="75" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="85" y="5" width="8" height="7" rx="1.6"/><rect class="k" x="10" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="20" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="30" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="40" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="50" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="60" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="70" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="80" y="14" width="8" height="7" rx="1.6"/><rect class="k" x="15" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="25" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="35" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="45" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="55" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="65" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="75" y="23" width="8" height="7" rx="1.6"/><rect class="k" x="26" y="32" width="48" height="6" rx="1.6"/></svg>
+    <svg class="t-screw" viewBox="0 0 30 70"><defs><clipPath id="scC"><path d="M10 9 H20 V55 L15 68 L10 55 Z"/></clipPath><linearGradient id="scM" x1="0" x2="1"><stop offset="0" stop-color="#7d8a80"/><stop offset=".45" stop-color="#eef3ee"/><stop offset="1" stop-color="#6b7a70"/></linearGradient></defs><path d="M10 9 H20 V55 L15 68 L10 55 Z" fill="url(#scM)"/><g clip-path="url(#scC)"><g class="thr" stroke="#3d4a42" stroke-width="1.5" fill="none"><path d="M6 -4.8 L24 -8"/><path d="M6 0.20000000000000018 L24 -3"/><path d="M6 5.2 L24 2"/><path d="M6 10.2 L24 7"/><path d="M6 15.2 L24 12"/><path d="M6 20.2 L24 17"/><path d="M6 25.2 L24 22"/><path d="M6 30.2 L24 27"/><path d="M6 35.2 L24 32"/><path d="M6 40.2 L24 37"/><path d="M6 45.2 L24 42"/><path d="M6 50.2 L24 47"/><path d="M6 55.2 L24 52"/><path d="M6 60.2 L24 57"/><path d="M6 65.2 L24 62"/><path d="M6 70.2 L24 67"/><path d="M6 75.2 L24 72"/><path d="M6 80.2 L24 77"/></g></g><rect x="3" y="1.5" width="24" height="8" rx="2.5" fill="url(#scM)" stroke="#55635a" stroke-width=".8"/><rect class="slot" x="14" y="1.5" width="2" height="4.5" fill="#1b2420"/></svg>
+    <div class="t-num"><span id="tNum">01</span></div>
   </div>
 </div>
 <canvas class="inktrail" id="ink" aria-hidden="true"></canvas>
@@ -758,7 +779,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 <main>
 <!-- KAHRAMAN -->
-<section class="hero" id="bas">
+<section class="hero" id="bas" data-cur="hero">
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="in" id="heroIn">
     <div class="emb" id="emb" aria-hidden="true"><div class="emb-t" id="embT"><div class="emb-r" id="embR"></div></div><div class="emb-lbl hud" id="embL">CH1 · Elektrik</div></div>
@@ -867,7 +888,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 </section>
 
 <!-- SÜREÇ -->
-<section class="proc in" id="surec">
+<section class="proc in" id="surec" data-cur="num">
   <div class="pin" id="procPin">
     <div>
       <div class="hud">— Süreç · devre</div>
@@ -890,7 +911,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <section class="meter in" id="olcum" aria-label="Rakamlarla Gün Teknik">
   <div class="sh"><h2 class="rgb" data-fx="chars">Ölç<span>ü</span>m</h2><p data-fx="rise">Rakamlar kendini anlatır.</p></div>
   <div class="wrap">
-    <svg class="gauge" id="gauge" viewBox="0 0 400 260" role="img" aria-label="Voltmetre: 230 volt"></svg>
+    <svg class="gauge" id="gauge" data-cur="tester" viewBox="0 0 400 260" role="img" aria-label="Voltmetre: 230 volt"></svg>
     <div>
       <div class="stats" id="stats">
         <div class="stat"><b class="rgb" data-to="15" data-suf="+">15+</b><span>Yıllık tecrübe</span></div>
@@ -901,7 +922,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
       <div class="hud stat-not" data-fx="decode">Lisanslı ekip · ustalık belgeli elektrik · işçilik 15 gün garantili</div>
     </div>
     <div class="ac" id="acBox">
-      <svg class="acu" id="acu" viewBox="0 0 340 230" aria-hidden="true">
+      <svg class="acu" id="acu" data-cur="thermo" viewBox="0 0 340 230" aria-hidden="true">
         <defs>
           <linearGradient id="acBd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22362b"/><stop offset=".5" stop-color="#14231a"/><stop offset="1" stop-color="#0b150f"/></linearGradient>
           <linearGradient id="acSh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".09"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
@@ -927,14 +948,14 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 </section>
 
 <!-- YORUMLAR -->
-<section class="yorum in" id="yorumlar" aria-label="Google yorumları">
+<section class="yorum in" id="yorumlar" data-cur="sil" aria-label="Google yorumları">
   <svg class="cctv" id="camT" viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="camCone" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#E9FF3B" stop-opacity=".28"/><stop offset="1" stop-color="#E9FF3B" stop-opacity="0"/></linearGradient></defs><rect class="c-pl" x="142" y="52" width="14" height="56" rx="3"/><circle class="c-sc" cx="149" cy="60" r="1.8"/><circle class="c-sc" cx="149" cy="100" r="1.8"/><path class="c-arm" d="M142 80 H120"/><g id="camR"><path class="c-cone" d="M42 80 L-170 22 L-170 138 Z"/><path class="c-hood" d="M116 63 H42 L34 70 H116 Z"/><rect class="c-b" x="42" y="66" width="76" height="28" rx="7"/><path class="c-ln" d="M64 74 H106"/><circle class="c-rec" cx="106" cy="86" r="2.6"/><circle class="c-lens" cx="42" cy="80" r="11"/><circle class="c-gl" id="camGl" cx="42" cy="80" r="5.5"/><circle class="c-gt" cx="39" cy="77" r="1.8"/><circle class="c-pv" cx="120" cy="80" r="5"/></g></svg>
   <div class="sh sh-alt"><h2 class="rgb" data-fx="chars">Saha <span>raporları</span></h2><p data-fx="rise">Google İşletme Profilimizdeki gerçek değerlendirmeler.</p></div>
   <div class="yorumlar" id="yorumKutu" data-gt-yorumlar="6"><p class="hud">Yorumlar yükleniyor…</p></div>
 </section>
 
 <!-- BÖLGELER -->
-<section class="zones in" id="bolgeler">
+<section class="zones in" id="bolgeler" data-cur="radar">
   <svg class="dish wm" id="dishT" viewBox="0 0 160 160" aria-hidden="true"><rect class="c-pl" x="142" y="52" width="14" height="56" rx="3"/><circle class="c-sc" cx="149" cy="60" r="1.8"/><circle class="c-sc" cx="149" cy="100" r="1.8"/><path class="d-st" d="M142 80 H124"/><g id="dishR"><path class="d-w w1" d="M58 68 A16 16 0 0 0 58 92"/><path class="d-w w2" d="M48 60 A26 26 0 0 0 48 100"/><path class="d-w w3" d="M38 52 A36 36 0 0 0 38 108"/><path class="d-b" d="M116 36 C136 56 136 104 116 124 Z"/><path class="d-r" d="M116 36 C126 56 126 104 116 124"/><path class="d-a" d="M122 80 L76 80 M116 40 L76 80 M116 120 L76 80"/><rect class="d-l" x="63" y="73" width="14" height="14" rx="3"/><circle class="d-p" cx="120" cy="80" r="5"/></g></svg>
   <div class="sh sh-alt"><h2 class="rgb" data-fx="chars">Bölge<span>ler</span></h2><p data-fx="rise">Ortaca, Dalaman, Köyceğiz ve bağlı tüm mahalleler. Dalyan dahil.</p></div>
   <div class="wrap">
@@ -952,7 +973,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 </section>
 
 <!-- TEKLİF -->
-<section class="teklif in" id="teklif" aria-label="Ücretsiz fiyat teklifi">
+<section class="teklif in" id="teklif" data-cur="kbd" aria-label="Ücretsiz fiyat teklifi">
   <div class="sh"><h2 class="rgb" data-fx="chars">Talep <span>Formu</span></h2><p data-fx="rise">Formu doldurun, sizi arayalım. Keşif ücretsiz, teklif net.</p></div>
   <div class="tk-grid">
   <form class="fis" id="fis" data-gt-form novalidate>
@@ -986,7 +1007,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <section class="mq" id="mq" aria-hidden="true"><div class="row a rgb" id="mqA"></div><div class="row b" id="mqB"></div></section>
 
 <!-- SSS -->
-<section class="faq in" id="sss" aria-label="Sık sorulanlar">
+<section class="faq in" id="sss" data-cur="screw" aria-label="Sık sorulanlar">
   <div class="wrap">
     <div class="sh" style="display:block"><h2 class="rgb nail" id="faqH">Sık<br>sorul<span>an</span></h2>
       <svg class="drill" id="drill" viewBox="0 0 232 110" aria-hidden="true"><g id="crk"></g><g id="drRig"><g class="jit"><path class="bit" d="M0 45 H62"/><path class="bit-s" d="M0 45 H62"/><rect class="chuck" x="62" y="35" width="24" height="20" rx="4"/><path class="body" d="M86 27 H190 a18 18 0 0 1 0 36 H86 Z"/><path class="grip" d="M148 63 L166 63 L174 106 L144 106 Z"/><rect class="trig" x="138" y="65" width="8" height="14" rx="3"/><path class="vent" d="M160 37 V53 M168 37 V53 M176 37 V53"/><circle class="led" cx="102" cy="45" r="3"/></g></g><g id="drSpk"></g></svg></div>
