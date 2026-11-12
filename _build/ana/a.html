@@ -297,7 +297,10 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .dish .w2{animation-delay:.3s}.dish .w3{animation-delay:.6s}
 
 @keyframes dishW{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
-.cctv{flex:none;width:clamp(82px,10vw,160px);height:auto;overflow:visible;margin-bottom:-2px}
+.yorum{position:relative}
+.cctv{position:absolute;right:0;top:clamp(40px,9vh,96px);width:clamp(84px,10vw,160px);height:auto;overflow:visible;z-index:2;pointer-events:none}
+.sh.sh-alt{display:block}.sh.sh-alt p{margin-top:14px;max-width:46ch}
+@media(max-width:760px){.cctv{top:4px;width:74px}.sh.sh-alt{padding-top:64px}}
 .cctv .c-pl{fill:#17261C;stroke:var(--phos-2);stroke-width:2}.cctv .c-sc{fill:var(--phos-2)}
 .cctv .c-arm{stroke:var(--phos-2);stroke-width:6;stroke-linecap:round}
 .cctv .c-cone{fill:url(#camCone);opacity:.75}
@@ -422,10 +425,10 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .acu .u-ln{stroke:#3FF2DF;stroke-width:1.6;stroke-linecap:round;opacity:.12;transition:opacity 1s}
 .acu.on .u-ln{opacity:.7;filter:drop-shadow(0 0 4px #3FF2DF)}
 .acu .u-s{fill:url(#acGl);stroke:rgba(63,242,223,.35);stroke-width:1}
-.acu .u-t{font:600 19px var(--f-mono);fill:#3FF2DF;opacity:.25;transition:opacity .4s}
-.acu.on .u-t{opacity:1;filter:drop-shadow(0 0 5px rgba(63,242,223,.75))}
+.acu .u-t{font:600 19px var(--f-mono);fill:#3FF2DF;opacity:.25}
+.acu.on .u-t{opacity:1;fill:#9ffcf2;filter:drop-shadow(0 0 4px rgba(63,242,223,.95)) drop-shadow(0 0 10px rgba(63,242,223,.6))}
 .acu .u-ic path{fill:none;stroke:#3FF2DF;stroke-width:1.4;stroke-linecap:round}.acu .u-ic .fb{fill:#3FF2DF}
-.acu .u-ic{opacity:0;transition:opacity .5s .3s}.acu.on .u-ic{opacity:.85}
+.acu .u-ic{opacity:0;transition:opacity .5s .3s}.acu.on .u-ic{opacity:.5}
 .acu.on .fb{animation:acFb 1.2s ease-in-out infinite}.acu .b2{animation-delay:.15s!important}.acu .b3{animation-delay:.3s!important}
 .acu .led{fill:#1f3a2c;transition:fill .3s}.acu.on .led{fill:#3FF2DF;filter:drop-shadow(0 0 4px #3FF2DF)}
 .acu .u-o{stroke:rgba(0,0,0,.6);stroke-width:3;stroke-linecap:round}
@@ -506,7 +509,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .faq details{position:relative;border-bottom:1px solid rgba(63,242,223,.16)}
 .nail .nc{display:inline-block;position:relative;will-change:transform}
 .nail .nl{position:absolute;left:50%;top:-.06em;width:.2em;height:.25em;margin-left:-.1em;overflow:visible;transform-origin:50% 100%;filter:drop-shadow(.03em .05em .02em rgba(0,0,0,.55));pointer-events:none}
-.drill{display:block;width:min(240px,62%);margin:clamp(22px,4vh,44px) 0 0 clamp(40px,6vw,90px);overflow:visible}
+.drill{display:block;width:min(232px,60vw);margin:clamp(22px,4vh,44px) 0 0;overflow:visible;position:relative;z-index:3}
 .drill .bit{stroke:#9DB5A3;stroke-width:6;stroke-linecap:round}
 .drill .bit-s{stroke:#0C1610;stroke-width:6;stroke-dasharray:3 6;animation:drBit .16s linear infinite}
 .drill .chuck{fill:#22332a;stroke:#9DB5A3;stroke-width:1.5}
@@ -912,14 +915,15 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
         <path class="u-o" d="M40 94 H300"/>
         <g id="acFlap"><rect class="flap" x="44" y="95" width="252" height="7" rx="3.5"/></g>
       </svg>
-      <div class="hud ac-l"><span id="acM">Soğutma · salınım</span><span id="acR">Oda 40.0°C</span></div>
+      <div class="hud ac-l"><span id="acM">Soğutma · ısıtma</span><span id="acR">Oda 40.0°C</span></div>
     </div>
   </div>
 </section>
 
 <!-- YORUMLAR -->
 <section class="yorum in" id="yorumlar" aria-label="Google yorumları">
-  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Saha <span>raporları</span></h2><svg class="cctv" id="camT" viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="camCone" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9FF3B" stop-opacity=".28"/><stop offset="1" stop-color="#E9FF3B" stop-opacity="0"/></linearGradient></defs><rect class="c-pl" x="6" y="52" width="12" height="56" rx="3"/><circle class="c-sc" cx="12" cy="60" r="1.8"/><circle class="c-sc" cx="12" cy="100" r="1.8"/><path class="c-arm" d="M18 80 H40"/><g id="camR"><path class="c-cone" d="M118 80 L330 22 L330 138 Z"/><path class="c-hood" d="M44 63 H118 L126 70 H44 Z"/><rect class="c-b" x="42" y="66" width="76" height="28" rx="7"/><path class="c-ln" d="M54 74 H96"/><circle class="c-rec" cx="54" cy="86" r="2.6"/><circle class="c-lens" cx="118" cy="80" r="11"/><circle class="c-gl" id="camGl" cx="118" cy="80" r="5.5"/><circle class="c-gt" cx="115" cy="77" r="1.8"/><circle class="c-pv" cx="40" cy="80" r="5"/></g></svg></div><p data-fx="rise">Google İşletme Profilimizdeki gerçek değerlendirmeler.</p></div>
+  <svg class="cctv" id="camT" viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="camCone" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#E9FF3B" stop-opacity=".28"/><stop offset="1" stop-color="#E9FF3B" stop-opacity="0"/></linearGradient></defs><rect class="c-pl" x="142" y="52" width="14" height="56" rx="3"/><circle class="c-sc" cx="149" cy="60" r="1.8"/><circle class="c-sc" cx="149" cy="100" r="1.8"/><path class="c-arm" d="M142 80 H120"/><g id="camR"><path class="c-cone" d="M42 80 L-170 22 L-170 138 Z"/><path class="c-hood" d="M116 63 H42 L34 70 H116 Z"/><rect class="c-b" x="42" y="66" width="76" height="28" rx="7"/><path class="c-ln" d="M64 74 H106"/><circle class="c-rec" cx="106" cy="86" r="2.6"/><circle class="c-lens" cx="42" cy="80" r="11"/><circle class="c-gl" id="camGl" cx="42" cy="80" r="5.5"/><circle class="c-gt" cx="39" cy="77" r="1.8"/><circle class="c-pv" cx="120" cy="80" r="5"/></g></svg>
+  <div class="sh sh-alt"><h2 class="rgb" data-fx="chars">Saha <span>raporları</span></h2><p data-fx="rise">Google İşletme Profilimizdeki gerçek değerlendirmeler.</p></div>
   <div class="yorumlar" id="yorumKutu" data-gt-yorumlar="6"><p class="hud">Yorumlar yükleniyor…</p></div>
 </section>
 
@@ -967,7 +971,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <section class="mani" id="maniSec" aria-label="Yaklaşımımız">
   <div class="in" id="maniIn">
     <div class="hud">— Ölçüm 01 · kontrol kalemi</div>
-    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
+    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#C68A52">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
   </div>
   <div class="spark" id="spark"></div>
 </section>
@@ -978,7 +982,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <section class="faq in" id="sss" aria-label="Sık sorulanlar">
   <div class="wrap">
     <div class="sh" style="display:block"><h2 class="rgb nail" id="faqH">Sık<br>sorul<span>an</span></h2>
-      <svg class="drill" id="drill" viewBox="0 0 240 110" aria-hidden="true"><g id="crk"></g><g id="drRig"><g class="jit"><path class="bit" d="M8 45 H70"/><path class="bit-s" d="M8 45 H70"/><rect class="chuck" x="70" y="35" width="24" height="20" rx="4"/><path class="body" d="M94 27 H198 a18 18 0 0 1 0 36 H94 Z"/><path class="grip" d="M156 63 L174 63 L182 106 L152 106 Z"/><rect class="trig" x="146" y="65" width="8" height="14" rx="3"/><path class="vent" d="M168 37 V53 M176 37 V53 M184 37 V53"/><circle class="led" cx="110" cy="45" r="3"/></g></g><g id="drSpk"></g></svg></div>
+      <svg class="drill" id="drill" viewBox="0 0 232 110" aria-hidden="true"><g id="crk"></g><g id="drRig"><g class="jit"><path class="bit" d="M0 45 H62"/><path class="bit-s" d="M0 45 H62"/><rect class="chuck" x="62" y="35" width="24" height="20" rx="4"/><path class="body" d="M86 27 H190 a18 18 0 0 1 0 36 H86 Z"/><path class="grip" d="M148 63 L166 63 L174 106 L144 106 Z"/><rect class="trig" x="138" y="65" width="8" height="14" rx="3"/><path class="vent" d="M160 37 V53 M168 37 V53 M176 37 V53"/><circle class="led" cx="102" cy="45" r="3"/></g></g><g id="drSpk"></g></svg></div>
     <div id="faqList">
       <details><summary>Hangi bölgelere hizmet veriyorsunuz?</summary><p>Ortaca, Dalaman, Köyceğiz ve bu ilçelere bağlı tüm mahallelere geliyoruz; Dalyan dahil.</p></details>
       <details><summary>Ne kadar sürede geliyorsunuz?</summary><p>Dalyan ve Ortaca'ya 1 saat, Dalaman ve Köyceğiz'e 2 saat içinde ulaşmayı hedefliyoruz. 7/24 çalışıyoruz.</p></details>

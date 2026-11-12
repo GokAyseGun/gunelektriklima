@@ -124,7 +124,7 @@ const DD={
 };
 const PAGES=[
  {run:"Gün Teknik'in defteri · I",
-  ents:[{date:'Ankara · 2010–2016',h:'Çıraklık',p:"Hikâyemiz Ankara'da çıraklıkla başladı. Tesisat çektik, çatılara çanak kurduk, ilk kamera sistemlerini bağladık, montajlara gittik. *Ölçmeden dokunmamayı* ve işi bulduğumuzdan temiz bırakmayı o yıllarda öğrendik.",fig:fig.ankara},
+  ents:[{date:'Ankara · 2010–2016',h:'Çıraklık',p:"Hikayemiz Ankara'da; en iyi ustalardan biri olan Emre Kapan'ın yanında başladı. Tesisat çektik, arızaya gittik, çanaklar kurduk, ilk kamera sistemlerini bağladık. *Ölçmeden dokunmamayı* ve işi bulduğumuzdan temiz bırakmayı o yıllarda öğrendik. Bizi yetiştiren ustamıza derin saygı ve sevgiyle...",fig:fig.ankara},
         {date:'Antalya · 2016–2020',h:'Kalfalık',p:"Kalfalık yıllarımızı Antalya'nın sıcağında, sahada geçirdik. Elektriğin yanına *klimayı ekledik:* montaj, bakım, gaz, arıza. Bir sorunun tek bir parçada değil, bütün sistemde arandığını orada öğrendik.",fig:fig.antalya}],
   dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
   blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
@@ -136,7 +136,7 @@ const PAGES=[
 ];
 const PAGES_EN=[
  {run:"Gün Technic's notebook · I",
-  ents:[{date:'Ankara · 2010–2016',h:'Apprenticeship',p:"Our story began with an apprenticeship in Ankara. We ran wiring, put dishes up on rooftops, connected our first camera systems and went out on installation jobs. Those years taught us *never to touch before measuring* and to leave every job cleaner than we found it.",fig:fig.ankara},
+  ents:[{date:'Ankara · 2010–2016',h:'Apprenticeship',p:"Our story began in Ankara, at the side of Emre Kapan, one of the finest masters of the trade. We ran wiring, went out to faults, put up satellite dishes and connected our first camera systems. Those years taught us *never to touch before measuring* and to leave every job cleaner than we found it. With deep respect and love for the master who trained us...",fig:fig.ankara},
         {date:'Antalya · 2016–2020',h:'Journeyman years',p:"We spent our journeyman years out in the field, in the Antalya heat. Next to electrics *we added air conditioning:* installation, servicing, gas, repairs. That is where we learned a fault is found in the whole system, not in a single part.",fig:fig.antalya}],
   dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
   blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
@@ -308,11 +308,11 @@ const izleyen=[];let izX=null,izY=null,izT=0;
 addEventListener('pointermove',e=>{izX=e.clientX;izY=e.clientY;izT=performance.now();},{passive:true});
 addEventListener('pointerdown',e=>{izX=e.clientX;izY=e.clientY;izT=performance.now();},{passive:true});
 function izle(svg,grp,ox,oy,vw,o={}){
-  if(!svg||!grp||AZ)return;gsap.set(grp,{svgOrigin:ox+' '+oy});const q=gsap.quickTo(grp,'rotation',{duration:o.d||.8,ease:'power3'});let cur=o.base||0;
+  if(!svg||!grp||AZ)return;gsap.set(grp,{svgOrigin:ox+' '+oy});const q=gsap.quickTo(grp,'rotation',{duration:o.d||.8,ease:'power3'});let cur=o.base||0;q(cur-(o.off||0));
   gsap.ticker.add(()=>{if(FD.off)return;const r=svg.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight||!r.width)return;const k=r.width/vw,px=r.left+ox*k,py=r.top+oy*k;
     const takip=izX!==null&&(FINE||performance.now()-izT<4000);
     const a=takip?Math.atan2(izY-py,izX-px)*180/Math.PI:(o.base||-30)+Math.sin(performance.now()/1500)*40;
-    let d=a-cur;d=((d%360)+540)%360-180;cur+=d;q(cur);
+    let d=a-cur;d=((d%360)+540)%360-180;cur+=d;q(cur-(o.off||0));
     if(o.yakin)o.yakin(takip?Math.hypot(izX-px,izY-py):999);});
 }
 const taps=[];
@@ -320,7 +320,7 @@ function tap(sec,geo,o={}){
   const svg=sv('svg',{class:'tap'+(o.ink?' ink':''),'aria-hidden':'true'});sec.prepend(svg);
   const p=sv('path',{class:'t',pathLength:'1','stroke-dasharray':'1 1','stroke-dashoffset':'1'},svg),f=sv('path',{class:'tf'},svg);
   const n1=sv('circle',{r:4.5},svg),n2=sv('circle',{r:4},svg);
-  const t={svg,p,f,upd(){const g=geo(sec.getBoundingClientRect());if(!g)return;p.setAttribute('d',g.d);f.setAttribute('d',g.d);n1.setAttribute('cx',g.x1);n1.setAttribute('cy',g.y1);n2.setAttribute('cx',g.x2);n2.setAttribute('cy',g.y2);}};
+  const t={svg,p,f,upd(){const g=geo(sec.getBoundingClientRect());/*canlı*/if(!g)return;p.setAttribute('d',g.d);f.setAttribute('d',g.d);n1.setAttribute('cx',g.x1);n1.setAttribute('cy',g.y1);n2.setAttribute('cx',g.x2);n2.setAttribute('cy',g.y2);}};
   t.upd();taps.push(t);
   t.inTl=(tl,a,d)=>{tl.fromTo(p,{autoRound:false,strokeDashoffset:1},{autoRound:false,strokeDashoffset:0,duration:d,ease:'power2.inOut'},a).fromTo([n1,n2],{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:d*.3,stagger:d*.7,ease:'back.out(3)'},a).fromTo(f,{opacity:0},{opacity:.85,duration:d*.3},a+d*.7);};
   t.outTl=(tl,a,d)=>{tl.to(f,{opacity:0,duration:d*.2,immediateRender:false},a).to(p,{autoRound:false,strokeDashoffset:-1,duration:d,ease:'power2.inOut',immediateRender:false},a).to([n2,n1],{scale:0,duration:d*.3,stagger:d*.6,immediateRender:false},a);};
@@ -691,7 +691,7 @@ else{
   const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:pin,start:'top top',end:'+=380%',pin:true,scrub:SCRUB,onRefresh:()=>{build();tp.upd();}}});
   tl.to({},{duration:10},0);
   // giriş çizgisi: bölüm ekrana girerken soldan akarak devreye ulaşır (sabitlenmeden önce başlar)
-  const tpTl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:pin,start:'top 85%',end:'top 10%',scrub:SCRUB}});tp.inTl(tpTl,0,1);
+  const tpTl=gsap.timeline({defaults:{ease:'none'},onUpdate:()=>tp.upd(),scrollTrigger:{trigger:pin,start:'top 85%',end:'top 10%',scrub:SCRUB}});tp.inTl(tpTl,0,1);
   tl.fromTo(o,{P:0},{P:6,duration:8.6,onUpdate:()=>render(o.P)},.8);
   const left=pin.firstElementChild;
   life(sec,(tl2,a,d)=>tl2.fromTo(left,{opacity:0,y:60,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:d,ease:'power2.out'},a).fromTo(steps,{opacity:0,x:40},{opacity:1,x:0,duration:d,ease:'power2.out'},a+d*.15),
@@ -723,7 +723,7 @@ else{
     const tO={t:40};const tSet=()=>{if(acOn)aT.textContent=Math.round(tO.t)+'°';aR.textContent=L$('Oda ','Room ')+tO.t.toFixed(1)+'°C';};tSet();
     gsap.fromTo(tO,{t:40},{t:20,ease:'none',onUpdate:tSet,scrollTrigger:{trigger:acu,start:'bottom bottom',end:'top 15%',scrub:SCRUB}});
     const on=()=>{if(acOn)return;acOn=true;acu.classList.add('on');S.beep();aT.textContent='--';
-      gsap.timeline().to(aT,{opacity:.2,duration:.12,repeat:3,yoyo:true}).add(()=>{tSet();})
+      gsap.timeline().fromTo(aT,{opacity:1},{opacity:.15,duration:.12,repeat:3,yoyo:true}).set(aT,{clearProps:'opacity'}).add(()=>{tSet();})
         .to(flap,{scaleY:1.2,duration:1.4,ease:'power2.inOut'},0).add(()=>flapL.play(),1.4)
         .to(ribs,{opacity:i=>i%2?.35:.5,duration:1.6,stagger:.15},.8);
       loops.play();ribL.forEach(x=>x.play());snowL.forEach(x=>x.play());};
@@ -748,7 +748,7 @@ else{
   autoFx(sec.querySelector('.sh'));
   const f=FX.clip(box);life(box,f.enter,f.exit);
   // Güvenlik kamerası: imleci 360° izler, yaklaştıkça lens parlar
-  const gl=$('#camGl');izle($('#camT'),$('#camR'),40,80,160,{base:-20,yakin:d=>{if(gl)gl.style.opacity=(.3+.65*clamp(0,1,1-d/320)).toFixed(2);}});
+  const gl=$('#camGl');izle($('#camT'),$('#camR'),120,80,160,{base:200,off:180,yakin:d=>{if(gl)gl.style.opacity=(.3+.65*clamp(0,1,1-d/320)).toFixed(2);}});
   // site.js yorumları çizince: puanı ölçüme yaz, sayfayı yeniden ölç
   let rt;new MutationObserver(()=>{const pu=box.querySelector('.gt-yorum-puan');if(pu){const v=parseFloat(pu.textContent.replace(',','.'));if(v>0)$('#gPuan').dataset.to=v;}
     clearTimeout(rt);rt=setTimeout(()=>ScrollTrigger.refresh(),250);}).observe(box,{childList:true});
@@ -830,9 +830,9 @@ else{
   const FL=[1,.1,.85,.05,.6,.15,.4,0];
   gzW.forEach(w=>{const li=lineOf(w),o={t:0};tl.fromTo(o,{t:0},{t:1,duration:.9,immediateRender:false,onUpdate:()=>{if(o.t<=0){w.style.textShadow='';return;}const I=samp(FL,o.t);w.style.color=gsap.utils.interpolate(GREY,LIT,I*(1-o.t*.6));w.style.textShadow=I>.3?`0 0 ${(I*18).toFixed(1)}px rgba(230,242,232,.6)`:'';}},1.2+(li+1)*span+.15);});
   // "çalışır." ampul gibi yanar; kontrol kalemi yaklaşınca daha da parlar
-  const okI=[0,1,.15,1,.85],okO={t:0},yel=gsap.utils.interpolate(LIT,'rgba(233,255,59,1)');
+  const okI=[0,1,.15,1,.85],okO={t:0},yel=gsap.utils.interpolate(LIT,'rgba(255,255,255,1)');
   const okLine=lineOf(okW);
-  tl.fromTo(okO,{t:0},{t:1,duration:.9,immediateRender:false,onUpdate:()=>{const I=samp(okI,okO.t);if(okO.t<=0){okW.style.textShadow='';return;}okW.style.color=yel(Math.min(1,okO.t*3)*(.4+.6*I));okW.style.textShadow=`0 0 calc(${(I*46).toFixed(1)}px + var(--n,0)*40px) rgba(233,255,59,${(I*.95).toFixed(2)})`;}},1.2+(okLine+1)*span-.1);
+  tl.fromTo(okO,{t:0},{t:1,duration:.9,immediateRender:false,onUpdate:()=>{const I=samp(okI,okO.t);if(okO.t<=0){okW.style.textShadow='';return;}okW.style.color=yel(Math.min(1,okO.t*3)*(.4+.6*I));okW.style.textShadow=`0 0 calc(${(I*46).toFixed(1)}px + var(--n,0)*40px) rgba(255,255,255,${(I*.85).toFixed(2)})`;}},1.2+(okLine+1)*span-.1);
   tl.to(lines,{yPercent:-60,opacity:0,filter:'blur(8px)',duration:1.2,stagger:.15,ease:'power1.in'},8.5).to({p:1},{p:0,duration:.8,onUpdate(){hudF(this.targets()[0].p);}},8.6);
   tp.outTl(tl,8.4,1.2);
   if(FINE){const ws=split.words;let raf=0,ex=0,ey=0;
@@ -857,7 +857,24 @@ else{
     // gerçekçi çivi: başlık, biraz dışarıda kalan gövde, gölge; her biri biraz farklı açıda
     const nl=cs.map(c=>{const g=sv('svg',{class:'nl',viewBox:'0 0 24 30'});
       g.innerHTML='<ellipse cx="12" cy="27.4" rx="3.6" ry="1.3" fill="rgba(0,0,0,.6)"/><rect class="sk" x="10.4" y="9" width="3.2" height="18.4" fill="url(#nailS)"/><g class="hd"><ellipse cx="12" cy="9" rx="9" ry="3.6" fill="url(#nailH)" stroke="#3c4741" stroke-width=".8"/><ellipse cx="9.4" cy="8.1" rx="3.4" ry="1.05" fill="#fff" opacity=".75"/></g>';
-      c.appendChild(g);gsap.set(g,{rotation:gsap.utils.random(-16,16),transformOrigin:'50% 100%'});return {g,sk:g.querySelector('.sk'),hd:g.querySelector('.hd')};});
+      c.appendChild(g);gsap.set(g,{rotation:gsap.utils.random(-14,14),transformOrigin:'50% 91%'});return {g,sk:g.querySelector('.sk'),hd:g.querySelector('.hd')};});
+    const cv=D.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
+    const yerles=()=>{const cs0=getComputedStyle(H),fs=parseFloat(cs0.fontSize);
+      cx.font=`${cs0.fontStyle} ${cs0.fontWeight} ${fs}px ${cs0.fontFamily}`;try{cx.fontStretch='expanded';}catch(e){}
+      cs.forEach((c,i)=>{const ch=c.firstChild&&c.firstChild.nodeType===3?c.firstChild.nodeValue:c.textContent;const W=Math.ceil(fs*1.4),Hh=Math.ceil(fs*1.6),bx=Math.round(fs*.1),by=Math.round(fs*1.2);
+        cv.width=W;cv.height=Hh;cx.font=`${cs0.fontStyle} ${cs0.fontWeight} ${fs}px ${cs0.fontFamily}`;try{cx.fontStretch='expanded';}catch(e){}cx.textBaseline='alphabetic';cx.fillStyle='#000';cx.fillText(ch,bx,by);
+        const m=cx.measureText(ch),d=cx.getImageData(0,0,W,Hh).data,ink=(x,y)=>d[(y*W+x)*4+3]>110;
+        const row=y=>{for(let x=0;x<W;x++)if(ink(x,y))return true;return false;};
+        let top=-1;for(let y=0;y<Hh;y++)if(row(y)){top=y;break;}if(top<0)return;
+        // i, ü, ö, ğ gibi harflerde nokta/şapka atlanır, gövdenin tepesi bulunur
+        let gap=-1;for(let y=top;y<Math.min(Hh,top+fs*.3);y++)if(!row(y)){gap=y;break;}
+        if(gap>0){for(let y=gap;y<Math.min(Hh,top+fs*.45);y++)if(row(y)){top=y;break;}}
+        const yy=top+Math.round(fs*.03);let best=null;for(let x=0;x<W;){if(ink(x,yy)){let x2=x;while(x2<W&&ink(x2,yy))x2++;const mid=(x+x2)/2;if(!best||Math.abs(mid-(bx+m.width/2))<Math.abs(best-(bx+m.width/2)))best=mid;x=x2;}else x++;}
+        if(best===null)best=bx+m.width/2;
+        const asc=m.fontBoundingBoxAscent,des=m.fontBoundingBoxDescent,lh=c.offsetHeight,base=(lh-(asc+des))/2+asc;
+        const yDom=base-(by-top),xDom=best-bx,nw=fs*.2,nh=fs*.25;
+        Object.assign(nl[i].g.style,{left:(xDom-nw/2).toFixed(1)+'px',top:(yDom-nh*.91+fs*.012).toFixed(1)+'px',marginLeft:'0'});});};
+    (D.fonts&&D.fonts.ready?D.fonts.ready:Promise.resolve()).then(yerles);addEventListener('resize',()=>{clearTimeout(yerles.t);yerles.t=setTimeout(yerles,200);});
     const rot=cs.map(()=>gsap.utils.random(-5,5)),fall=cs.map(()=>gsap.utils.random(-30,30));
     const tl=gsap.timeline({paused:true});
     cs.forEach((c,i)=>{const t=i*.2,n=nl[i];
@@ -867,26 +884,29 @@ else{
         .to(n.hd,{y:0,duration:.06,ease:'power3.in',onStart:()=>S.nail()},t+.52).to(n.sk,{attr:{y:9,height:18.4},duration:.06,ease:'power3.in'},t+.52)
         .fromTo(c,{x:0},{x:()=>gsap.utils.random(-3,3),duration:.04,repeat:3,yoyo:true,ease:'none'},t+.58).set(c,{x:0},t+.74);});
     if(AZ)tl.progress(1);
-    else ScrollTrigger.create({trigger:H,start:'top 82%',onEnter:()=>tl.restart(),onLeaveBack:()=>tl.pause(0)});
+    else ScrollTrigger.create({trigger:H,start:'top 82%',onEnter:()=>{yerles();tl.restart();},onLeaveBack:()=>tl.pause(0)});
+    if(D.fonts)D.fonts.addEventListener('loadingdone',yerles);
   }
   // Matkap ekranı deler: uç değince çatlak yayılır, kıvılcım saçılır, yandaki kablo cızırdar
   const drl=$('#drill');
+  const drKenar=()=>{if(!drl)return;const r=drl.parentElement.getBoundingClientRect(),pl=parseFloat(getComputedStyle(drl.parentElement).paddingLeft)||0;drl.style.marginLeft=(-(r.left+pl))+'px';};
+  drKenar();addEventListener('resize',drKenar);ScrollTrigger.addEventListener('refresh',drKenar);
   if(drl&&!AZ){const rig=$('#drRig'),crk=$('#crk'),spk=$('#drSpk'),gens=[];
     const crack=()=>{const g=sv('g',{},crk);const n=5+(Math.random()*3|0);
-      for(let i=0;i<n;i++){let a=Math.random()*Math.PI*2,x=8,y=45,d=`M8 45`;const L=28+Math.random()*70,st=4+(Math.random()*3|0);
+      for(let i=0;i<n;i++){let a=(Math.random()-.5)*Math.PI*.95,x=0,y=45+(Math.random()-.5)*10,d=`M0 ${y.toFixed(1)}`;const L=40+Math.random()*110,st=4+(Math.random()*3|0);
         for(let k=1;k<=st;k++){a+=(Math.random()-.5)*.8;x+=Math.cos(a)*L/st;y+=Math.sin(a)*L/st;d+=` L${x.toFixed(1)} ${y.toFixed(1)}`;
           if(k===2&&Math.random()<.55){const b=a+(Math.random()<.5?-1:1)*(.5+Math.random()*.6),bl=10+Math.random()*22;sv('path',{d:`M${x.toFixed(1)} ${y.toFixed(1)} L${(x+Math.cos(b)*bl).toFixed(1)} ${(y+Math.sin(b)*bl).toFixed(1)}`,'stroke-width':'.6'},g);}}
         sv('path',{d,'stroke-width':(.7+Math.random()*.9).toFixed(2)},g);}
-      sv('circle',{cx:8,cy:45,r:(4+Math.random()*4).toFixed(1),'stroke-width':'.8'},g);
+      sv('path',{d:'M0 30 Q7 45 0 60','stroke-width':'1.1'},g);
       gens.push(g);if(gens.length>4)gens.shift().remove();
       gens.forEach((x,k)=>gsap.to(x,{opacity:k===gens.length-1?1:.12+.14*k,duration:.5}));
       gsap.fromTo(g.querySelectorAll('path'),{drawSVG:'0%'},{drawSVG:'100%',duration:1.1,ease:'power2.out',stagger:.03});};
-    const burst=()=>{for(let i=0;i<9;i++){const c=sv('circle',{cx:8,cy:45,r:(.8+Math.random()*1.4).toFixed(1)},spk);
-      gsap.to(c,{attr:{cx:8+Math.random()*34-8,cy:45+(Math.random()-.4)*44},opacity:0,duration:.45+Math.random()*.5,ease:'power2.out',onComplete:()=>c.remove()});}};
+    const burst=()=>{for(let i=0;i<11;i++){const c=sv('circle',{cx:2,cy:45,r:(.8+Math.random()*1.5).toFixed(1)},spk);
+      gsap.to(c,{attr:{cx:6+Math.random()*60,cy:45+(Math.random()-.5)*70},opacity:0,duration:.45+Math.random()*.5,ease:'power2.out',onComplete:()=>c.remove()});}};
     const cz=()=>{rail.classList.remove('cz');void rail.offsetWidth;rail.classList.add('cz');S.zap();};
     const dtl=gsap.timeline({repeat:-1,paused:true});
-    dtl.set(rig,{x:18}).to(rig,{x:0,duration:.35,ease:'power2.in'}).add(()=>{crack();burst();cz();})
-       .to(rig,{x:-2.5,duration:1.2,ease:'none'}).add(burst,'-=.6').to(rig,{x:18,duration:.5,ease:'power2.out'}).to({},{duration:.7});
+    dtl.set(rig,{x:20}).to(rig,{x:0,duration:.35,ease:'power2.in'}).add(()=>{crack();burst();cz();})
+       .to(rig,{x:-2.5,duration:1.2,ease:'none'}).add(burst,'-=.6').to(rig,{x:20,duration:.5,ease:'power2.out'}).to({},{duration:.7});
     ScrollTrigger.create({trigger:drl,start:'top bottom',end:'bottom top',onToggle:t=>t.isActive?dtl.play():dtl.pause()});
     life(drl,(tl,a,d)=>tl.fromTo(drl,{opacity:0,x:-40},{opacity:1,x:0,duration:d*.7,ease:'power2.out'},a),(tl,a,d)=>tl.to(drl,{opacity:0,x:-30,duration:d*.6,ease:'power1.in'},a+d*.4));}
   $$('#faqList details').forEach(d=>{const f=FX.clip(d);life(d,f.enter,f.exit);});

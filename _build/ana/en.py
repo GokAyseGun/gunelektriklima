@@ -65,8 +65,8 @@ PARCA = [
     ('Sık<br>sorul<span>an</span>', 'Fre<span>que</span>ntly<br>asked'),
     ('Yolumuz bir çırak defteriyle başladı.<span class="sub" id="shiftS">Gün Teknik\'in defteri · 2010</span>',
      'Our road began with an apprentice\'s notebook.<span class="sub" id="shiftS">Gün Teknik\'s notebook · 2010</span>'),
-    ('<p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>',
-     '<p id="mani">Good work is <span class="gz">invisible:</span> the <span class="kw" data-c="#E9FF3B">light</span> comes on, the room <span class="kw" data-c="#3FF2DF">cools,</span> the <span class="kw" data-c="#E6F2E8">signal</span> arrives, the <span class="kw" data-c="#E0541A">camera</span> keeps watch, the <span class="kw" data-c="#E9FF3B">shelf</span> stays put. Every day, without a second thought, it all <span class="ok">just works.</span></p>'),
+    ('<p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#C68A52">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>',
+     '<p id="mani">Good work is <span class="gz">invisible:</span> the <span class="kw" data-c="#E9FF3B">light</span> comes on, the room <span class="kw" data-c="#3FF2DF">cools,</span> the <span class="kw" data-c="#E6F2E8">signal</span> arrives, the <span class="kw" data-c="#E0541A">camera</span> keeps watch, the <span class="kw" data-c="#C68A52">shelf</span> stays put. Every day, without a second thought, it all <span class="ok">just works.</span></p>'),
     ('<div class="hud">Şebeke · <b>0.0 V</b> · kesinti</div>', '<div class="hud">Mains · <b>0.0 V</b> · outage</div>'),
     ('ŞEBEKE · <b id="relV">0</b> V', 'MAINS · <b id="relV">0</b> V'),
     ('<span>5 kanal · <b id="hv">', '<span>5 channels · <b id="hv">'),
@@ -172,7 +172,7 @@ METIN = {
     "Google İşletme Profilimizdeki gerçek değerlendirmeler.": "Real reviews from our Google Business Profile.", "Yorumlar yükleniyor…": "Loading reviews…",
     # Bölgeler
     "Ortaca, Dalaman, Köyceğiz ve bağlı tüm mahalleler. Dalyan dahil.": "Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.",
-    "Soğutma · salınım": "Cooling · swing", "Oda 40.0°C": "Room 40.0°C",
+    "Soğutma · ısıtma": "Cooling · heating", "Oda 40.0°C": "Room 40.0°C",
     "~1 saat": "~1 hour", "~2 saat": "~2 hours", "Şematik harita · varış süreleri yaklaşıktır": "Schematic map · arrival times are approximate",
     # Teklif
     "Formu doldurun, sizi arayalım. Keşif ücretsiz, teklif net.": "Fill in the form and we'll call you. Free survey, clear quote.",
