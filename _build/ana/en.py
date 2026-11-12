@@ -172,7 +172,7 @@ METIN = {
     "Google İşletme Profilimizdeki gerçek değerlendirmeler.": "Real reviews from our Google Business Profile.", "Yorumlar yükleniyor…": "Loading reviews…",
     # Bölgeler
     "Ortaca, Dalaman, Köyceğiz ve bağlı tüm mahalleler. Dalyan dahil.": "Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.",
-    "Soğutma · salınım": "Cooling · swing", "Oda 30.0°C": "Room 30.0°C",
+    "Soğutma · salınım": "Cooling · swing", "Oda 40.0°C": "Room 40.0°C",
     "~1 saat": "~1 hour", "~2 saat": "~2 hours", "Şematik harita · varış süreleri yaklaşıktır": "Schematic map · arrival times are approximate",
     # Teklif
     "Formu doldurun, sizi arayalım. Keşif ücretsiz, teklif net.": "Fill in the form and we'll call you. Free survey, clear quote.",

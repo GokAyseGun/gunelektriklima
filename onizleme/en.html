@@ -111,7 +111,7 @@ html.booted #boot{display:none}
 .dil-kutu button{height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(230,242,232,.25);background:none;color:var(--phos);font:500 12.5px/1 var(--f-body);cursor:pointer}
 @media(max-width:760px){.dil-kutu{left:12px;right:12px;top:calc(72px + env(safe-area-inset-top,0px));max-width:none}}
 html.dark .dil-kutu{display:none}
-html.dark main :is(.acu,.dish,.drill){filter:grayscale(1) brightness(.75)}
+html.dark main :is(.acu,.dish,.cctv,.drill){filter:grayscale(1) brightness(.75)}
 #kaydir{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;opacity:0;transform:translate(-50%,14px);transition:opacity .5s,transform .5s,bottom .4s;color:var(--phos-2)}
 #kaydir.on{opacity:.55;transform:translate(-50%,0)}
 #kaydir.on.idle,#kaydir.on.svc,#kaydir.on.nudge{opacity:1}
@@ -301,6 +301,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .sh{position:relative;display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:40px;z-index:1}
 .sh h2{font:900 clamp(40px,7vw,112px)/.9 var(--f-disp);font-stretch:118%;letter-spacing:-.02em;margin:0}
 .sh h2 span{color:var(--sig)}
+.ln-mask,.lm-mask,.wd-mask{padding:.12em 0 .2em;margin:-.12em 0 -.2em}
 .sh-l{display:flex;align-items:flex-end;gap:clamp(10px,2vw,30px)}
 .dish{flex:none;width:clamp(74px,9vw,150px);height:auto;overflow:visible;margin-bottom:-4px}
 .dish .d-st{fill:none;stroke:var(--phos-2);stroke-width:3;stroke-linecap:round}
@@ -313,6 +314,18 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .dish .w2{animation-delay:.3s}.dish .w3{animation-delay:.6s}
 
 @keyframes dishW{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+.cctv{flex:none;width:clamp(82px,10vw,160px);height:auto;overflow:visible;margin-bottom:-2px}
+.cctv .c-pl{fill:#17261C;stroke:var(--phos-2);stroke-width:2}.cctv .c-sc{fill:var(--phos-2)}
+.cctv .c-arm{stroke:var(--phos-2);stroke-width:6;stroke-linecap:round}
+.cctv .c-cone{fill:url(#camCone);opacity:.75}
+.cctv .c-hood{fill:#22332a;stroke:#E6F2E8;stroke-width:1.6;stroke-linejoin:round}
+.cctv .c-b{fill:#0f1c14;stroke:#E6F2E8;stroke-width:2.4}
+.cctv .c-ln{stroke:rgba(230,242,232,.3);stroke-width:2;stroke-linecap:round}
+.cctv .c-rec{fill:#ff3b30;filter:drop-shadow(0 0 4px #ff3b30);animation:camRec 1.4s steps(2) infinite}
+.cctv .c-lens{fill:#07100b;stroke:var(--sig);stroke-width:2.4}
+.cctv .c-gl{fill:var(--sig);opacity:.35;filter:drop-shadow(0 0 6px var(--sig))}
+.cctv .c-gt{fill:#fff;opacity:.8}.cctv .c-pv{fill:#22332a;stroke:var(--phos-2);stroke-width:2}
+@keyframes camRec{0%{opacity:1}100%{opacity:.15}}
 .svc .sh h2{font-size:clamp(34px,5.3vw,86px)}
 .sh p{max-width:40ch;margin:0;color:var(--phos-2)}
 
@@ -402,7 +415,8 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 
 /* Ölçüm */
 .meter{position:relative;padding-block:16vh}
-.meter .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center;z-index:1}
+.meter .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr) minmax(0,.72fr);gap:clamp(36px,6vw,110px);align-items:center;z-index:1}
+.meter .gauge{max-width:380px;justify-self:center}.meter .ac{max-width:330px;width:100%;justify-self:center}
 .gauge{width:100%;max-width:620px;overflow:visible}
 .gauge .arc{fill:none;stroke:rgba(63,242,223,.2);stroke-width:2}
 .gauge .tk{stroke:var(--phos-2);stroke-width:1.5}.gauge .tk.m{stroke:var(--phos);stroke-width:2.5}
@@ -420,23 +434,24 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 @media(max-width:860px){.meter .wrap{grid-template-columns:1fr}.meter .gauge{max-width:420px;justify-self:center}}
 .ac{position:relative}
 .acu{display:block;width:100%;overflow:visible}
-.acu .u-b{fill:#0f1c14;stroke:#3FF2DF;stroke-width:2}
-.acu .u-d{stroke:rgba(63,242,223,.28);stroke-width:2;stroke-linecap:round}
-.acu .u-s{fill:#07100b;stroke:rgba(63,242,223,.5);stroke-width:1.2}
-.acu .u-t{font:700 22px var(--f-mono);fill:#3FF2DF;filter:drop-shadow(0 0 6px rgba(63,242,223,.7))}
-.acu .u-o{stroke:rgba(230,242,232,.35);stroke-width:2;stroke-linecap:round}
-.acu .flap{fill:#17261C;stroke:#3FF2DF;stroke-width:1.4;transform-box:fill-box;transform-origin:50% 0;animation:acFlap 3.2s ease-in-out infinite alternate}
-.acu .led{fill:#3FF2DF;filter:drop-shadow(0 0 4px #3FF2DF);animation:acLed 2.4s ease-in-out infinite}
-.acu .sway{transform-box:view-box;transform-origin:160px 104px;animation:acSway 4.2s ease-in-out infinite alternate}
-.acu .air{fill:none;stroke:url(#acG);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:16 18;animation:acAir 1.3s linear infinite}
-.acu .air.t{stroke-width:1.3;stroke-dasharray:6 22;animation-duration:.9s;opacity:.7}
-.acu .sn{fill:none;stroke:#E6F2E8;stroke-width:1.3;stroke-linecap:round;opacity:0;animation:acSn 4s linear infinite}
-.ac-l{display:flex;justify-content:space-between;gap:10px;margin-top:6px;color:var(--cy)}
-@keyframes acFlap{from{transform:scaleY(.55)}to{transform:scaleY(1.6)}}
-@keyframes acLed{0%,100%{opacity:1}50%{opacity:.35}}
-@keyframes acSway{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
-@keyframes acAir{to{stroke-dashoffset:-34}}
-@keyframes acSn{0%{opacity:0;transform:translate(0,0) rotate(0)}12%{opacity:.9}85%{opacity:.5}100%{opacity:0;transform:translate(var(--dx),150px) rotate(160deg)}}
+.acu .u-b{fill:url(#acBd);stroke:rgba(63,242,223,.55);stroke-width:1.6}
+.acu .u-sh{fill:url(#acSh)}
+.acu .u-ln{stroke:#3FF2DF;stroke-width:1.6;stroke-linecap:round;opacity:.12;transition:opacity 1s}
+.acu.on .u-ln{opacity:.7;filter:drop-shadow(0 0 4px #3FF2DF)}
+.acu .u-s{fill:url(#acGl);stroke:rgba(63,242,223,.35);stroke-width:1}
+.acu .u-t{font:600 19px var(--f-mono);fill:#3FF2DF;opacity:.25;transition:opacity .4s}
+.acu.on .u-t{opacity:1;filter:drop-shadow(0 0 5px rgba(63,242,223,.75))}
+.acu .u-ic path{fill:none;stroke:#3FF2DF;stroke-width:1.4;stroke-linecap:round}.acu .u-ic .fb{fill:#3FF2DF}
+.acu .u-ic{opacity:0;transition:opacity .5s .3s}.acu.on .u-ic{opacity:.85}
+.acu.on .fb{animation:acFb 1.2s ease-in-out infinite}.acu .b2{animation-delay:.15s!important}.acu .b3{animation-delay:.3s!important}
+.acu .led{fill:#1f3a2c;transition:fill .3s}.acu.on .led{fill:#3FF2DF;filter:drop-shadow(0 0 4px #3FF2DF)}
+.acu .u-o{stroke:rgba(0,0,0,.6);stroke-width:3;stroke-linecap:round}
+.acu .flap{fill:#1b2c22;stroke:rgba(63,242,223,.6);stroke-width:1.2}
+.acu .air{fill:none;stroke:url(#acAr);stroke-linecap:round}
+.acu .sn{fill:none;stroke:#E6F2E8;stroke-width:1.1;stroke-linecap:round;opacity:0}
+.ac-l{display:flex;justify-content:space-between;gap:10px;margin-top:4px;color:var(--cy)}
+@keyframes acFb{0%,100%{transform:scaleY(.5)}50%{transform:scaleY(1)}}
+.acu .fb{transform-box:fill-box;transform-origin:50% 100%}
 
 /* Yorumlar */
 .yorum{position:relative;padding-block:8vh 12vh}
@@ -507,25 +522,23 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .faq .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,6vw,90px);z-index:1}
 .faq details{position:relative;border-bottom:1px solid rgba(63,242,223,.16)}
 .nail .nc{display:inline-block;position:relative;will-change:transform}
-.nail .nh{position:absolute;left:50%;top:.14em;width:.13em;height:.13em;margin-left:-.065em;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#9DB5A3 45%,#46504a 75%);box-shadow:0 .02em .04em rgba(0,0,0,.6);transform:scale(0)}
-.drill{display:block;width:min(380px,88%);margin-top:clamp(18px,3vh,36px);overflow:visible}
-.drill .wall rect{fill:#14211a;stroke:rgba(63,242,223,.3)}.drill .wall path{stroke:rgba(63,242,223,.18);stroke-width:1.4}
-.drill .hole{fill:#050a07;stroke:rgba(230,242,232,.3)}
+.nail .nl{position:absolute;left:50%;top:-.06em;width:.2em;height:.25em;margin-left:-.1em;overflow:visible;transform-origin:50% 100%;filter:drop-shadow(.03em .05em .02em rgba(0,0,0,.55));pointer-events:none}
+.drill{display:block;width:min(240px,62%);margin:clamp(22px,4vh,44px) 0 0 clamp(40px,6vw,90px);overflow:visible}
 .drill .bit{stroke:#9DB5A3;stroke-width:6;stroke-linecap:round}
-.drill .bit-s{stroke:#0C1610;stroke-width:6;stroke-dasharray:3 6;animation:drBit .18s linear infinite}
+.drill .bit-s{stroke:#0C1610;stroke-width:6;stroke-dasharray:3 6;animation:drBit .16s linear infinite}
 .drill .chuck{fill:#22332a;stroke:#9DB5A3;stroke-width:1.5}
-.drill .body{fill:#0f1c14;stroke:var(--sig);stroke-width:2.4;stroke-linejoin:round}
-.drill .grip{fill:#0f1c14;stroke:var(--sig);stroke-width:2.4;stroke-linejoin:round}
+.drill .body,.drill .grip{fill:#0f1c14;stroke:var(--sig);stroke-width:2.4;stroke-linejoin:round}
 .drill .trig{fill:var(--cu)}
 .drill .vent{stroke:rgba(233,255,59,.45);stroke-width:2;stroke-linecap:round}
 .drill .led{fill:var(--sig);filter:drop-shadow(0 0 4px var(--sig))}
-.drill .rig{animation:drJit .07s steps(2) infinite}
-.drill .push{animation:drPush 2.6s ease-in-out infinite}
-.drill .dust circle{fill:#9DB5A3;opacity:0;animation:drDust 1.4s ease-out infinite}
+.drill .jit{animation:drJit .07s steps(2) infinite}
+.drill #crk path{fill:none;stroke:rgba(230,242,232,.75);stroke-linecap:round;stroke-linejoin:round}
+.drill #crk circle{fill:none;stroke:rgba(230,242,232,.55)}
+.drill #drSpk circle{fill:var(--sig)}
 @keyframes drBit{to{stroke-dashoffset:-9}}
 @keyframes drJit{0%{transform:translate(0,0)}50%{transform:translate(.6px,-.5px)}100%{transform:translate(-.5px,.5px)}}
-@keyframes drPush{0%,100%{transform:translateX(8px)}45%,70%{transform:translateX(-6px)}}
-@keyframes drDust{0%{opacity:0;transform:translate(0,0)}15%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.rail.cz{animation:railCz .55s steps(7)}
+@keyframes railCz{0%{opacity:1;transform:translateX(0);filter:none}15%{opacity:.25;transform:translateX(2px);filter:brightness(2.2) hue-rotate(40deg)}30%{opacity:1;transform:translateX(-2px)}45%{opacity:.4;transform:translateX(1px);filter:brightness(1.8)}60%{opacity:1;transform:translateX(-1px)}80%{opacity:.6;transform:translateX(0)}100%{opacity:1;filter:none}}
 .faq summary{list-style:none;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font:700 clamp(18px,1.8vw,22px)/1.3 var(--f-body);cursor:pointer}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:'+';font:400 26px/1 var(--f-mono);color:var(--sig);transition:transform .4s}
@@ -599,6 +612,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .end .hud{color:var(--cu)}
 .end h2{margin:14px 0 26px;font:700 clamp(44px,8vw,120px)/.92 var(--f-serif);letter-spacing:-.02em}
 .end .num{display:inline-block;font:900 clamp(34px,6vw,84px)/1 var(--f-disp);font-stretch:118%;letter-spacing:.01em;margin-bottom:34px}
+html[lang=en] .end .num{font-size:clamp(26px,6.4vw,84px);white-space:nowrap}
 .end .ctas{justify-content:center}
 .end .btn.p{background:rgba(20,21,26,var(--on));color:rgba(239,221,178,var(--on));box-shadow:0 0 calc(var(--on)*26px) rgba(20,21,26,calc(var(--on)*.25))}
 .end .btn.p .bo path{stroke:var(--ink)}
@@ -607,17 +621,18 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .end .bigsw{margin-top:56px}
 
 /* Hizmet notları (Google için) */
-.notlar{position:relative;background:var(--paper);color:var(--ink);padding-block:4vh 10vh}
-.notlar h2{margin:0 0 6px;font:700 clamp(32px,4vw,52px)/1 var(--f-serif)}
-.notlar .alt{margin:0 0 26px;color:var(--ink-2);max-width:60ch}
+.notlar{position:relative;background:var(--paper);color:var(--ink);padding-block:2vh 6vh}
+.notlar .in{opacity:.78}
+.notlar h2{margin:0 0 4px;font:700 20px/1.1 var(--f-serif)}
+.notlar .alt{margin:0 0 12px;color:var(--ink-2);max-width:60ch;font-size:12.5px}
 .notlar details{border-top:1px solid rgba(20,21,26,.16)}
 .notlar details:last-of-type{border-bottom:1px solid rgba(20,21,26,.16)}
-.notlar summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font:700 18px/1.3 var(--f-body);cursor:pointer}
+.notlar summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;font:600 13px/1.3 var(--f-body);cursor:pointer}
 .notlar summary::-webkit-details-marker{display:none}
-.notlar summary::after{content:'+';font:400 24px/1 var(--f-mono);color:var(--cu);transition:transform .4s}
+.notlar summary::after{content:'+';font:400 16px/1 var(--f-mono);color:var(--cu);transition:transform .4s}
 .notlar details[open] summary::after{transform:rotate(45deg)}
-.notlar details p{margin:0 0 20px;color:var(--ink-2);max-width:80ch;font-size:15px}
-.notlar .bol{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;font:500 12px/1.6 var(--f-mono);letter-spacing:.04em}
+.notlar details p{margin:0 0 12px;color:var(--ink-2);max-width:90ch;font-size:12.5px;line-height:1.55}
+.notlar .bol{margin-top:14px;display:flex;flex-wrap:wrap;gap:4px 14px;font:500 12px/1.5 var(--f-mono);letter-spacing:.03em}
 .notlar .bol a{text-decoration:underline;text-decoration-color:rgba(224,84,26,.5);text-underline-offset:3px}
 .notlar .bol-g{display:flex;flex-wrap:wrap;gap:4px 16px;width:100%}.notlar .bol-g .g{font-weight:700}
 .foot{background:var(--paper);color:var(--ink-2);border-top:1px solid rgba(20,21,26,.16);padding-block:28px calc(28px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 12px/1.7 var(--f-mono);letter-spacing:.04em}
@@ -678,7 +693,7 @@ html.dark main :is(#map path,.steps svg path,.bigsw .pl,.bigsw .sc,.bigsw .rk pa
 html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 @media (prefers-reduced-motion:reduce){
-  .acu *,.dish *,.drill *,#kaydir *,#kaydir{animation:none!important}
+  .acu *,.dish *,.cctv *,.drill *,#kaydir *,#kaydir{animation:none!important}
   #boot,#crt,#flash{display:none}
   .mani .w{color:var(--phos)!important}
   .track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px}.ch{scroll-snap-align:start}
@@ -719,6 +734,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <div id="flash" aria-hidden="true"><i></i></div>
 <div id="torch" aria-hidden="true"></div>
 <div id="relit" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="nailH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#b9c6bd"/><stop offset="1" stop-color="#4c5852"/></linearGradient><linearGradient id="nailS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5d6a63"/><stop offset=".45" stop-color="#e3ebe5"/><stop offset="1" stop-color="#56625b"/></linearGradient></defs></svg>
 <div id="kaydir" aria-hidden="true"><span class="kd-t" id="kdT">Scroll</span><span class="kd-w"><i></i></span><svg class="kd-c" viewBox="0 0 20 22"><path d="M3 3 L10 10 L17 3"/><path d="M3 11 L10 18 L17 11"/></svg></div>
 <div id="relitH" aria-hidden="true">MAINS · <b id="relV">0</b> V · <b id="relHz">0</b> Hz</div>
 
@@ -893,32 +909,40 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
       <div class="hud stat-not" data-fx="decode">Licensed team · master-certified electrics · 15-day workmanship warranty</div>
     </div>
     <div class="ac" id="acBox">
-      <svg class="acu" id="acu" viewBox="0 0 320 300" aria-hidden="true">
-        <defs><linearGradient id="acG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FF2DF" stop-opacity=".95"/><stop offset=".7" stop-color="#3FF2DF" stop-opacity=".25"/><stop offset="1" stop-color="#3FF2DF" stop-opacity="0"/></linearGradient>
-          <clipPath id="acC"><rect x="0" y="104" width="320" height="196"/></clipPath></defs>
-        <g clip-path="url(#acC)"><g class="sway" id="acSway"></g><g id="acSnow"></g></g>
-        <rect class="u-b" x="14" y="16" width="292" height="92" rx="18"/>
-        <path class="u-d" d="M30 36 H200 M30 46 H200 M30 56 H200"/>
-        <rect class="u-s" x="222" y="32" width="68" height="36" rx="6"/>
-        <text class="u-t" id="acT" x="256" y="58" text-anchor="middle">30°</text>
-        <path class="u-o" d="M28 96 H292"/>
-        <rect class="flap" x="30" y="99" width="260" height="7" rx="3.5"/>
-        <circle class="led" cx="292" cy="82" r="2.6"/>
+      <svg class="acu" id="acu" viewBox="0 0 340 230" aria-hidden="true">
+        <defs>
+          <linearGradient id="acBd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22362b"/><stop offset=".5" stop-color="#14231a"/><stop offset="1" stop-color="#0b150f"/></linearGradient>
+          <linearGradient id="acSh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".09"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <linearGradient id="acAr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FF2DF" stop-opacity=".55"/><stop offset="1" stop-color="#3FF2DF" stop-opacity="0"/></linearGradient>
+          <linearGradient id="acGl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1712"/><stop offset="1" stop-color="#050b08"/></linearGradient>
+          <filter id="acBl" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
+          <clipPath id="acC"><rect x="0" y="98" width="340" height="132"/></clipPath>
+        </defs>
+        <g clip-path="url(#acC)"><g id="acAir" filter="url(#acBl)"></g><g id="acSnow"></g></g>
+        <path class="u-b" d="M22 28 Q22 12 40 12 H300 Q318 12 318 28 V74 Q318 92 296 94 H44 Q22 92 22 74 Z"/>
+        <path class="u-sh" d="M40 15 H300 Q314 15 314 28 V34 H26 V28 Q26 15 40 15 Z"/>
+        <path class="u-ln" id="acLine" d="M44 80 H218"/>
+        <rect class="u-s" x="232" y="33" width="72" height="38" rx="8"/>
+        <text class="u-t" id="acT" x="279" y="59" text-anchor="middle">--</text>
+        <g class="u-ic" id="acIc"><path d="M245 40 V50 M240 42.5 L250 47.5 M240 47.5 L250 42.5"/><rect class="fb b1" x="240" y="58" width="2.6" height="5" rx="1"/><rect class="fb b2" x="244" y="56" width="2.6" height="7" rx="1"/><rect class="fb b3" x="248" y="54" width="2.6" height="9" rx="1"/></g>
+        <circle class="led" id="acLed" cx="300" cy="80" r="2.6"/>
+        <path class="u-o" d="M40 94 H300"/>
+        <g id="acFlap"><rect class="flap" x="44" y="95" width="252" height="7" rx="3.5"/></g>
       </svg>
-      <div class="hud ac-l"><span>Cooling · swing</span><span id="acR">Room 30.0°C</span></div>
+      <div class="hud ac-l"><span id="acM">Cooling · swing</span><span id="acR">Room 40.0°C</span></div>
     </div>
   </div>
 </section>
 
 <!-- YORUMLAR -->
 <section class="yorum in" id="yorumlar" aria-label="Google reviews">
-  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Field <span>reports</span></h2><svg class="dish" id="dishT" viewBox="0 0 150 150" aria-hidden="true"><path class="d-st" d="M54 144 L64 104 L74 144 M44 144 H84 M64 104 L57 74"/><g id="dishR"><path class="d-w w1" d="M118 58 A16 16 0 0 1 118 82"/><path class="d-w w2" d="M128 50 A26 26 0 0 1 128 90"/><path class="d-w w3" d="M138 42 A36 36 0 0 1 138 98"/><path class="d-b" d="M60 26 C40 46 40 94 60 114 Z"/><path class="d-r" d="M60 26 C50 46 50 94 60 114"/><path class="d-a" d="M54 70 L100 70 M60 30 L100 70 M60 110 L100 70"/><rect class="d-l" x="99" y="63" width="14" height="14" rx="3"/><circle class="d-p" cx="56" cy="70" r="5"/></g></svg></div><p data-fx="rise">Real reviews from our Google Business Profile.</p></div>
+  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Field <span>reports</span></h2><svg class="cctv" id="camT" viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="camCone" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9FF3B" stop-opacity=".28"/><stop offset="1" stop-color="#E9FF3B" stop-opacity="0"/></linearGradient></defs><rect class="c-pl" x="6" y="52" width="12" height="56" rx="3"/><circle class="c-sc" cx="12" cy="60" r="1.8"/><circle class="c-sc" cx="12" cy="100" r="1.8"/><path class="c-arm" d="M18 80 H40"/><g id="camR"><path class="c-cone" d="M118 80 L330 22 L330 138 Z"/><path class="c-hood" d="M44 63 H118 L126 70 H44 Z"/><rect class="c-b" x="42" y="66" width="76" height="28" rx="7"/><path class="c-ln" d="M54 74 H96"/><circle class="c-rec" cx="54" cy="86" r="2.6"/><circle class="c-lens" cx="118" cy="80" r="11"/><circle class="c-gl" id="camGl" cx="118" cy="80" r="5.5"/><circle class="c-gt" cx="115" cy="77" r="1.8"/><circle class="c-pv" cx="40" cy="80" r="5"/></g></svg></div><p data-fx="rise">Real reviews from our Google Business Profile.</p></div>
   <div class="yorumlar" id="yorumKutu" data-gt-yorumlar="6"><p class="hud">Loading reviews…</p></div>
 </section>
 
 <!-- BÖLGELER -->
 <section class="zones in" id="bolgeler">
-  <div class="sh"><h2 class="rgb" data-fx="chars">Are<span>as</span></h2><p data-fx="rise">Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.</p></div>
+  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Are<span>as</span></h2><svg class="dish" id="dishT" viewBox="0 0 150 150" aria-hidden="true"><path class="d-st" d="M54 144 L64 104 L74 144 M44 144 H84 M64 104 L57 74"/><g id="dishR"><path class="d-w w1" d="M118 58 A16 16 0 0 1 118 82"/><path class="d-w w2" d="M128 50 A26 26 0 0 1 128 90"/><path class="d-w w3" d="M138 42 A36 36 0 0 1 138 98"/><path class="d-b" d="M60 26 C40 46 40 94 60 114 Z"/><path class="d-r" d="M60 26 C50 46 50 94 60 114"/><path class="d-a" d="M54 70 L100 70 M60 30 L100 70 M60 110 L100 70"/><rect class="d-l" x="99" y="63" width="14" height="14" rx="3"/><circle class="d-p" cx="56" cy="70" r="5"/></g></svg></div><p data-fx="rise">Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.</p></div>
   <div class="wrap">
     <svg class="map" id="map" viewBox="0 0 480 360" role="img" aria-label="Service areas: Dalyan, Ortaca, Dalaman, Köyceğiz"></svg>
     <div>
@@ -971,7 +995,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <section class="faq in" id="sss" aria-label="Frequently asked questions">
   <div class="wrap">
     <div class="sh" style="display:block"><h2 class="rgb nail" id="faqH">Fre<span>que</span>ntly<br>asked</h2>
-      <svg class="drill" id="drill" viewBox="0 0 300 120" aria-hidden="true"><g class="wall"><rect x="0" y="0" width="34" height="120"/><path d="M0 14 L34 0 M0 40 L34 26 M0 66 L34 52 M0 92 L34 78 M0 118 L34 104"/></g><circle class="hole" cx="34" cy="52" r="6"/><g class="dust" id="drDust"></g><g class="rig"><g class="push"><path class="bit" d="M30 52 H96"/><path class="bit-s" d="M30 52 H96"/><rect class="chuck" x="96" y="42" width="26" height="20" rx="4"/><path class="body" d="M122 34 H238 a18 18 0 0 1 0 36 H122 Z"/><path class="grip" d="M196 70 L214 70 L222 114 L194 114 Z"/><rect class="trig" x="186" y="72" width="8" height="14" rx="3"/><path class="vent" d="M206 44 V60 M214 44 V60 M222 44 V60"/><circle class="led" cx="140" cy="52" r="3"/></g></g></svg></div>
+      <svg class="drill" id="drill" viewBox="0 0 240 110" aria-hidden="true"><g id="crk"></g><g id="drRig"><g class="jit"><path class="bit" d="M8 45 H70"/><path class="bit-s" d="M8 45 H70"/><rect class="chuck" x="70" y="35" width="24" height="20" rx="4"/><path class="body" d="M94 27 H198 a18 18 0 0 1 0 36 H94 Z"/><path class="grip" d="M156 63 L174 63 L182 106 L152 106 Z"/><rect class="trig" x="146" y="65" width="8" height="14" rx="3"/><path class="vent" d="M168 37 V53 M176 37 V53 M184 37 V53"/><circle class="led" cx="110" cy="45" r="3"/></g></g><g id="drSpk"></g></svg></div>
     <div id="faqList">
       <details><summary>Which areas do you serve?</summary><p>Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, including Dalyan.</p></details>
       <details><summary>How quickly can you come?</summary><p>We aim to reach Dalyan and Ortaca within 1 hour, Dalaman and Köyceğiz within 2 hours. We work 24/7.</p></details>
@@ -1039,6 +1063,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=a5000617"></script>
+<script src="/assets/gt/ana.js?v=307417c4"></script>
 </body>
 </html>
