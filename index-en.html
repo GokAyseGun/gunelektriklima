@@ -111,6 +111,26 @@ html.booted #boot{display:none}
 .dil-kutu button{height:36px;padding:0 12px;border-radius:999px;border:1px solid rgba(230,242,232,.25);background:none;color:var(--phos);font:500 12.5px/1 var(--f-body);cursor:pointer}
 @media(max-width:760px){.dil-kutu{left:12px;right:12px;top:calc(72px + env(safe-area-inset-top,0px));max-width:none}}
 html.dark .dil-kutu{display:none}
+html.dark main :is(.acu,.dish,.drill){filter:grayscale(1) brightness(.75)}
+#kaydir{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;opacity:0;transform:translate(-50%,14px);transition:opacity .5s,transform .5s,bottom .4s;color:var(--phos-2)}
+#kaydir.on{opacity:.55;transform:translate(-50%,0)}
+#kaydir.on.idle,#kaydir.on.svc,#kaydir.on.nudge{opacity:1}
+#kaydir.cb{bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+#kaydir .kd-t{font:500 10px/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;padding:6px 10px;border-radius:999px;background:rgba(12,22,16,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#kaydir .kd-w{position:relative;width:2px;height:30px;background:rgba(63,242,223,.22);border-radius:2px;overflow:hidden}
+#kaydir .kd-w i{position:absolute;left:-2px;top:-8px;width:6px;height:8px;border-radius:3px;background:var(--sig);box-shadow:0 0 8px var(--sig);animation:kdFlow 1.5s cubic-bezier(.5,0,.6,1) infinite}
+#kaydir .kd-c{width:18px;height:20px;fill:none;stroke:var(--sig);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+#kaydir .kd-c path{animation:kdChev 1.5s ease-in-out infinite}#kaydir .kd-c path+path{animation-delay:.2s}
+#kaydir.idle .kd-c,#kaydir.svc .kd-c,#kaydir.nudge .kd-c{animation:kdBob 1s ease-in-out infinite}
+#kaydir.svc .kd-t,#kaydir.nudge .kd-t{color:#0C1610;background:var(--sig);box-shadow:0 0 18px rgba(233,255,59,.45)}
+#kaydir.nudge{animation:kdNudge .5s ease-in-out 2}
+html.paper-on #kaydir{color:var(--ink-2)}html.paper-on #kaydir .kd-t{background:rgba(239,221,178,.85)}html.paper-on #kaydir .kd-w{background:rgba(20,21,26,.2)}
+html.paper-on #kaydir .kd-w i{background:var(--cu);box-shadow:none}html.paper-on #kaydir .kd-c{stroke:var(--cu)}
+html.dark #kaydir{display:none}
+@keyframes kdFlow{to{top:100%}}
+@keyframes kdChev{0%,100%{opacity:.25}40%{opacity:1}}
+@keyframes kdBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes kdNudge{0%,100%{transform:translate(-50%,0)}25%{transform:translate(calc(-50% - 6px),0)}75%{transform:translate(calc(-50% + 6px),0)}}
 .snd,.msw{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border-radius:999px;border:1px solid rgba(230,242,232,.22);font:500 10.5px/1 var(--f-mono);letter-spacing:.14em;flex:none}
 .top.paper .snd,.top.paper .msw{border-color:rgba(20,21,26,.25)}
 .snd i{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
@@ -217,7 +237,7 @@ html.off #off{display:grid}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:.75}
 .hero::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(120% 80% at 50% 40%,transparent 45%,rgba(5,10,7,.78) 100%)}
 .hero .in{width:100%;padding-block:120px 48px}
-.hero .hud-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.hero .hud-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:clamp(26px,3.6vw,58px)}
 .emb{position:absolute;right:max(7vw,28px);top:14vh;width:min(34vh,26vw);aspect-ratio:1;perspective:900px;pointer-events:none;z-index:-1}
 .emb-t{position:absolute;inset:0;transform-style:preserve-3d}
 .emb-r{position:absolute;inset:0;transform-style:preserve-3d;--ec:#E9FF3B}
@@ -281,6 +301,19 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .sh{position:relative;display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:40px;z-index:1}
 .sh h2{font:900 clamp(40px,7vw,112px)/.9 var(--f-disp);font-stretch:118%;letter-spacing:-.02em;margin:0}
 .sh h2 span{color:var(--sig)}
+.sh-l{display:flex;align-items:flex-end;gap:clamp(10px,2vw,30px)}
+.dish{flex:none;width:clamp(74px,9vw,150px);height:auto;overflow:visible;margin-bottom:-4px}
+.dish .d-st{fill:none;stroke:var(--phos-2);stroke-width:3;stroke-linecap:round}
+.dish .d-b{fill:#0f1c14;stroke:#E6F2E8;stroke-width:2.6;stroke-linejoin:round}
+.dish .d-r{fill:none;stroke:rgba(230,242,232,.35);stroke-width:1.4}
+.dish .d-a{fill:none;stroke:var(--phos-2);stroke-width:2;stroke-linecap:round}
+.dish .d-l{fill:#17261C;stroke:var(--sig);stroke-width:2}
+.dish .d-p{fill:var(--sig)}
+.dish .d-w{fill:none;stroke:var(--sig);stroke-width:2.4;stroke-linecap:round;opacity:0;animation:dishW 1.8s ease-out infinite}
+.dish .w2{animation-delay:.3s}.dish .w3{animation-delay:.6s}
+
+@keyframes dishW{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+.svc .sh h2{font-size:clamp(34px,5.3vw,86px)}
 .sh p{max-width:40ch;margin:0;color:var(--phos-2)}
 
 /* Kanallar (hizmetler) */
@@ -344,8 +377,8 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 /* Süreç: devre */
 .proc{position:relative;padding-top:14vh}
 .proc .pin{position:relative;min-height:100svh;padding:76px 0 24px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,6vw,100px);align-items:center}
-.proc .bigw{position:relative;height:min(22vw,30svh,330px);overflow:hidden}
-.proc .big{position:absolute;left:0;top:0;font:900 min(24vw,34svh,360px)/.86 var(--f-disp);font-stretch:125%;color:var(--sig);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(233,255,59,.35),calc(var(--e)*-12px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*12px) 0 rgba(63,242,223,calc(var(--e)*.85))}
+.proc .bigw{position:relative;box-sizing:content-box;height:min(22vw,30svh,330px);padding:70px 90px;margin:-70px -90px;overflow:hidden;-webkit-mask-image:linear-gradient(#0000,#000 70px,#000 calc(100% - 70px),#0000);mask-image:linear-gradient(#0000,#000 70px,#000 calc(100% - 70px),#0000)}
+.proc .big{position:absolute;left:90px;top:70px;font:900 min(24vw,34svh,360px)/.86 var(--f-disp);font-stretch:125%;color:var(--sig);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(233,255,59,.35),calc(var(--e)*-12px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*12px) 0 rgba(63,242,223,calc(var(--e)*.85))}
 .proc .big-l{margin-top:14px}
 .proc .ok{margin-top:22px;font:700 12px/1 var(--f-mono);letter-spacing:.3em;color:var(--sig);text-shadow:0 0 12px var(--sig);opacity:0}
 .steps{position:relative;list-style:none;margin:0;padding:0 0 0 78px;display:grid;gap:clamp(10px,2.4svh,26px)}
@@ -369,7 +402,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 
 /* Ölçüm */
 .meter{position:relative;padding-block:16vh}
-.meter .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,6vw,90px);align-items:center;z-index:1}
+.meter .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center;z-index:1}
 .gauge{width:100%;max-width:620px;overflow:visible}
 .gauge .arc{fill:none;stroke:rgba(63,242,223,.2);stroke-width:2}
 .gauge .tk{stroke:var(--phos-2);stroke-width:1.5}.gauge .tk.m{stroke:var(--phos);stroke-width:2.5}
@@ -383,7 +416,27 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .stat b{display:block;font:900 clamp(44px,5.5vw,80px)/.9 var(--f-disp);font-stretch:118%;color:var(--phos);font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:10px;font:500 11px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--phos-2)}
 .stat-not{margin-top:14px}
-@media(max-width:860px){.meter .wrap{grid-template-columns:1fr}}
+@media(max-width:1100px){.meter .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.meter .ac{grid-column:1/-1;justify-self:center;width:min(440px,100%)}}
+@media(max-width:860px){.meter .wrap{grid-template-columns:1fr}.meter .gauge{max-width:420px;justify-self:center}}
+.ac{position:relative}
+.acu{display:block;width:100%;overflow:visible}
+.acu .u-b{fill:#0f1c14;stroke:#3FF2DF;stroke-width:2}
+.acu .u-d{stroke:rgba(63,242,223,.28);stroke-width:2;stroke-linecap:round}
+.acu .u-s{fill:#07100b;stroke:rgba(63,242,223,.5);stroke-width:1.2}
+.acu .u-t{font:700 22px var(--f-mono);fill:#3FF2DF;filter:drop-shadow(0 0 6px rgba(63,242,223,.7))}
+.acu .u-o{stroke:rgba(230,242,232,.35);stroke-width:2;stroke-linecap:round}
+.acu .flap{fill:#17261C;stroke:#3FF2DF;stroke-width:1.4;transform-box:fill-box;transform-origin:50% 0;animation:acFlap 3.2s ease-in-out infinite alternate}
+.acu .led{fill:#3FF2DF;filter:drop-shadow(0 0 4px #3FF2DF);animation:acLed 2.4s ease-in-out infinite}
+.acu .sway{transform-box:view-box;transform-origin:160px 104px;animation:acSway 4.2s ease-in-out infinite alternate}
+.acu .air{fill:none;stroke:url(#acG);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:16 18;animation:acAir 1.3s linear infinite}
+.acu .air.t{stroke-width:1.3;stroke-dasharray:6 22;animation-duration:.9s;opacity:.7}
+.acu .sn{fill:none;stroke:#E6F2E8;stroke-width:1.3;stroke-linecap:round;opacity:0;animation:acSn 4s linear infinite}
+.ac-l{display:flex;justify-content:space-between;gap:10px;margin-top:6px;color:var(--cy)}
+@keyframes acFlap{from{transform:scaleY(.55)}to{transform:scaleY(1.6)}}
+@keyframes acLed{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes acSway{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+@keyframes acAir{to{stroke-dashoffset:-34}}
+@keyframes acSn{0%{opacity:0;transform:translate(0,0) rotate(0)}12%{opacity:.9}85%{opacity:.5}100%{opacity:0;transform:translate(var(--dx),150px) rotate(160deg)}}
 
 /* Yorumlar */
 .yorum{position:relative;padding-block:8vh 12vh}
@@ -453,6 +506,26 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .faq{position:relative;padding-block:12vh}
 .faq .wrap{position:relative;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,6vw,90px);z-index:1}
 .faq details{position:relative;border-bottom:1px solid rgba(63,242,223,.16)}
+.nail .nc{display:inline-block;position:relative;will-change:transform}
+.nail .nh{position:absolute;left:50%;top:.14em;width:.13em;height:.13em;margin-left:-.065em;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#9DB5A3 45%,#46504a 75%);box-shadow:0 .02em .04em rgba(0,0,0,.6);transform:scale(0)}
+.drill{display:block;width:min(380px,88%);margin-top:clamp(18px,3vh,36px);overflow:visible}
+.drill .wall rect{fill:#14211a;stroke:rgba(63,242,223,.3)}.drill .wall path{stroke:rgba(63,242,223,.18);stroke-width:1.4}
+.drill .hole{fill:#050a07;stroke:rgba(230,242,232,.3)}
+.drill .bit{stroke:#9DB5A3;stroke-width:6;stroke-linecap:round}
+.drill .bit-s{stroke:#0C1610;stroke-width:6;stroke-dasharray:3 6;animation:drBit .18s linear infinite}
+.drill .chuck{fill:#22332a;stroke:#9DB5A3;stroke-width:1.5}
+.drill .body{fill:#0f1c14;stroke:var(--sig);stroke-width:2.4;stroke-linejoin:round}
+.drill .grip{fill:#0f1c14;stroke:var(--sig);stroke-width:2.4;stroke-linejoin:round}
+.drill .trig{fill:var(--cu)}
+.drill .vent{stroke:rgba(233,255,59,.45);stroke-width:2;stroke-linecap:round}
+.drill .led{fill:var(--sig);filter:drop-shadow(0 0 4px var(--sig))}
+.drill .rig{animation:drJit .07s steps(2) infinite}
+.drill .push{animation:drPush 2.6s ease-in-out infinite}
+.drill .dust circle{fill:#9DB5A3;opacity:0;animation:drDust 1.4s ease-out infinite}
+@keyframes drBit{to{stroke-dashoffset:-9}}
+@keyframes drJit{0%{transform:translate(0,0)}50%{transform:translate(.6px,-.5px)}100%{transform:translate(-.5px,.5px)}}
+@keyframes drPush{0%,100%{transform:translateX(8px)}45%,70%{transform:translateX(-6px)}}
+@keyframes drDust{0%{opacity:0;transform:translate(0,0)}15%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
 .faq summary{list-style:none;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font:700 clamp(18px,1.8vw,22px)/1.3 var(--f-body);cursor:pointer}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:'+';font:400 26px/1 var(--f-mono);color:var(--sig);transition:transform .4s}
@@ -605,6 +678,7 @@ html.dark main :is(#map path,.steps svg path,.bigsw .pl,.bigsw .sc,.bigsw .rk pa
 html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 @media (prefers-reduced-motion:reduce){
+  .acu *,.dish *,.drill *,#kaydir *,#kaydir{animation:none!important}
   #boot,#crt,#flash{display:none}
   .mani .w{color:var(--phos)!important}
   .track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px}.ch{scroll-snap-align:start}
@@ -645,6 +719,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <div id="flash" aria-hidden="true"><i></i></div>
 <div id="torch" aria-hidden="true"></div>
 <div id="relit" aria-hidden="true"></div>
+<div id="kaydir" aria-hidden="true"><span class="kd-t" id="kdT">Scroll</span><span class="kd-w"><i></i></span><svg class="kd-c" viewBox="0 0 20 22"><path d="M3 3 L10 10 L17 3"/><path d="M3 11 L10 18 L17 11"/></svg></div>
 <div id="relitH" aria-hidden="true">MAINS · <b id="relV">0</b> V · <b id="relHz">0</b> Hz</div>
 
 <div class="cur" id="cur" data-m="def" aria-hidden="true">
@@ -693,7 +768,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 <!-- KANALLAR -->
 <section class="svc" id="hizmetler">
-  <div class="in sh"><h2 class="rgb" data-fx="chars">Five channels, <span>one team</span></h2><p data-fx="rise">From electrics to air conditioning, from satellite to security and installation: every technical job at home or at work, from one team.</p></div>
+  <div class="in sh"><h2 class="rgb" data-fx="chars">Five Trades, <span>One Expert Team</span></h2><p data-fx="rise">From electrics to air conditioning, from satellite to security and installation: every technical job at home or at work, from one team.</p></div>
   <div class="stage" id="svcStage">
     <div class="track" id="track">
       <article class="ch" data-i="1" data-cur="probe" style="--cc:#E9FF3B">
@@ -817,12 +892,27 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
       </div>
       <div class="hud stat-not" data-fx="decode">Licensed team · master-certified electrics · 15-day workmanship warranty</div>
     </div>
+    <div class="ac" id="acBox">
+      <svg class="acu" id="acu" viewBox="0 0 320 300" aria-hidden="true">
+        <defs><linearGradient id="acG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FF2DF" stop-opacity=".95"/><stop offset=".7" stop-color="#3FF2DF" stop-opacity=".25"/><stop offset="1" stop-color="#3FF2DF" stop-opacity="0"/></linearGradient>
+          <clipPath id="acC"><rect x="0" y="104" width="320" height="196"/></clipPath></defs>
+        <g clip-path="url(#acC)"><g class="sway" id="acSway"></g><g id="acSnow"></g></g>
+        <rect class="u-b" x="14" y="16" width="292" height="92" rx="18"/>
+        <path class="u-d" d="M30 36 H200 M30 46 H200 M30 56 H200"/>
+        <rect class="u-s" x="222" y="32" width="68" height="36" rx="6"/>
+        <text class="u-t" id="acT" x="256" y="58" text-anchor="middle">30°</text>
+        <path class="u-o" d="M28 96 H292"/>
+        <rect class="flap" x="30" y="99" width="260" height="7" rx="3.5"/>
+        <circle class="led" cx="292" cy="82" r="2.6"/>
+      </svg>
+      <div class="hud ac-l"><span>Cooling · swing</span><span id="acR">Room 30.0°C</span></div>
+    </div>
   </div>
 </section>
 
 <!-- YORUMLAR -->
 <section class="yorum in" id="yorumlar" aria-label="Google reviews">
-  <div class="sh"><h2 class="rgb" data-fx="chars">Field <span>reports</span></h2><p data-fx="rise">Real reviews from our Google Business Profile.</p></div>
+  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Field <span>reports</span></h2><svg class="dish" id="dishT" viewBox="0 0 150 150" aria-hidden="true"><path class="d-st" d="M54 144 L64 104 L74 144 M44 144 H84 M64 104 L57 74"/><g id="dishR"><path class="d-w w1" d="M118 58 A16 16 0 0 1 118 82"/><path class="d-w w2" d="M128 50 A26 26 0 0 1 128 90"/><path class="d-w w3" d="M138 42 A36 36 0 0 1 138 98"/><path class="d-b" d="M60 26 C40 46 40 94 60 114 Z"/><path class="d-r" d="M60 26 C50 46 50 94 60 114"/><path class="d-a" d="M54 70 L100 70 M60 30 L100 70 M60 110 L100 70"/><rect class="d-l" x="99" y="63" width="14" height="14" rx="3"/><circle class="d-p" cx="56" cy="70" r="5"/></g></svg></div><p data-fx="rise">Real reviews from our Google Business Profile.</p></div>
   <div class="yorumlar" id="yorumKutu" data-gt-yorumlar="6"><p class="hud">Loading reviews…</p></div>
 </section>
 
@@ -880,7 +970,8 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <!-- SSS -->
 <section class="faq in" id="sss" aria-label="Frequently asked questions">
   <div class="wrap">
-    <div class="sh" style="display:block"><h2 class="rgb" data-fx="chars">Fre<span>que</span>ntly<br>asked</h2></div>
+    <div class="sh" style="display:block"><h2 class="rgb nail" id="faqH">Fre<span>que</span>ntly<br>asked</h2>
+      <svg class="drill" id="drill" viewBox="0 0 300 120" aria-hidden="true"><g class="wall"><rect x="0" y="0" width="34" height="120"/><path d="M0 14 L34 0 M0 40 L34 26 M0 66 L34 52 M0 92 L34 78 M0 118 L34 104"/></g><circle class="hole" cx="34" cy="52" r="6"/><g class="dust" id="drDust"></g><g class="rig"><g class="push"><path class="bit" d="M30 52 H96"/><path class="bit-s" d="M30 52 H96"/><rect class="chuck" x="96" y="42" width="26" height="20" rx="4"/><path class="body" d="M122 34 H238 a18 18 0 0 1 0 36 H122 Z"/><path class="grip" d="M196 70 L214 70 L222 114 L194 114 Z"/><rect class="trig" x="186" y="72" width="8" height="14" rx="3"/><path class="vent" d="M206 44 V60 M214 44 V60 M222 44 V60"/><circle class="led" cx="140" cy="52" r="3"/></g></g></svg></div>
     <div id="faqList">
       <details><summary>Which areas do you serve?</summary><p>Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, including Dalyan.</p></details>
       <details><summary>How quickly can you come?</summary><p>We aim to reach Dalyan and Ortaca within 1 hour, Dalaman and Köyceğiz within 2 hours. We work 24/7.</p></details>
@@ -948,6 +1039,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=41e09622"></script>
+<script src="/assets/gt/ana.js?v=a5000617"></script>
 </body>
 </html>

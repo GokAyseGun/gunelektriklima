@@ -57,7 +57,7 @@ PARCA = [
      '<span class="w">GÜN TEKNİK</span><span class="e" id="hE">Electrical · Air Con · Satellite · Security · Installation</span>'),
     ('Ortaca, Dalyan, Dalaman ve Köyceğiz\'de elektrik, klima, uydu çanak, güvenlik sistemleri ve montaj işleri. <em>7/24</em> geliyoruz; keşif ücretsiz, işçilik 15 gün garantili.',
      'Electrical, air conditioning, satellite, security systems and installation work in Dalyan, Ortaca, Dalaman and Köyceğiz. We come <em>24/7</em>; free site survey, 15-day workmanship warranty.'),
-    ('Beş kanal, <span>tek ekip</span>', 'Five channels, <span>one team</span>'),
+    ('Beş Branş, <span>Profesyonel Ekip</span>', 'Five Trades, <span>One Expert Team</span>'),
     ('Ölç<span>ü</span>m', 'Mea<span>su</span>re'),
     ('Saha <span>raporları</span>', 'Field <span>reports</span>'),
     ('Bölge<span>ler</span>', 'Are<span>as</span>'),
@@ -172,6 +172,7 @@ METIN = {
     "Google İşletme Profilimizdeki gerçek değerlendirmeler.": "Real reviews from our Google Business Profile.", "Yorumlar yükleniyor…": "Loading reviews…",
     # Bölgeler
     "Ortaca, Dalaman, Köyceğiz ve bağlı tüm mahalleler. Dalyan dahil.": "Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.",
+    "Soğutma · salınım": "Cooling · swing", "Oda 30.0°C": "Room 30.0°C",
     "~1 saat": "~1 hour", "~2 saat": "~2 hours", "Şematik harita · varış süreleri yaklaşıktır": "Schematic map · arrival times are approximate",
     # Teklif
     "Formu doldurun, sizi arayalım. Keşif ücretsiz, teklif net.": "Fill in the form and we'll call you. Free survey, clear quote.",
