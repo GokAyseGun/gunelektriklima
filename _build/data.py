@@ -63,7 +63,7 @@ MARKALAR = ["Daikin", "Mitsubishi", "Gree", "Samsung", "LG", "Vestel", "Arçelik
 BOLGE = {
     "ortaca": {
         "ad": "Ortaca", "de": "Ortaca'da", "nin": "Ortaca'nın", "ye": "Ortaca'ya", "sure": "1 saat",
-        "mahalle": ["Ortaca merkez", "Gölbaşı", "Dikmekavak", "Dereköy", "Sarıgerme", "Güzelyurt", "Fevziye", "Akıncı", "Mergenli", "Okçular", "Eskiköy"],
+        "mahalle": ["Atatürk", "Bahçelievler", "Cumhuriyet", "Akıncı", "Arıkbaşı", "Beşköprü", "Çaylı", "Dalaklı", "Dalyan", "Dereköy", "Dikmekavak", "Ekşiliyurt", "Eskiköy", "Fevziye", "Gökbel", "Gölbaşı", "Güzelyurt", "Karaburun", "Karadonlar", "Kemaliye", "Mergenli", "Okçular", "Sarıgerme", "Tepearası", "Terzialiler", "Yerbelen", "Yeşilyurt"],
         "tanitim": "Ortaca bizim merkezimiz. Çarşı içindeki iş yerlerinden Sarıgerme'deki yazlıklara kadar ilçenin her mahallesine aynı gün içinde ulaşıyoruz.",
     },
     "dalyan": {
@@ -73,13 +73,13 @@ BOLGE = {
     },
     "dalaman": {
         "ad": "Dalaman", "de": "Dalaman'da", "nin": "Dalaman'ın", "ye": "Dalaman'a", "sure": "2 saat",
-        "mahalle": ["Dalaman merkez", "Gürköy", "Fevziye", "Kapıkargın", "Şerefler", "Kargınkürü"],
-        "tanitim": "Dalaman merkezindeki konut ve iş yerlerine, havalimanı çevresine ve Kapıkargın tarafındaki mahallelere hizmet veriyoruz.",
+        "mahalle": ["Merkez", "Atakent", "Ege", "Hürriyet", "Akçataş", "Altıntaş", "Bezkese", "Bozbel", "Çöğmen", "Darıyeri", "Elcik", "Gürköy", "Gürlek", "Kapıkargın", "Karacaağaç", "Karaçalı", "Kargınkürü", "Kavacık", "Kayadibi", "Kızılkaya", "Narlı", "Sabunlu", "Şerefler", "Söğütlüyurt", "Taşbaşı"],
+        "tanitim": "Dalaman merkezindeki konut ve iş yerlerine, havalimanı çevresine, Kapıkargın ve Gürköy tarafından Akçataş ve Sabunlu'ya kadar ilçenin bütün mahallelerine hizmet veriyoruz.",
     },
     "koycegiz": {
         "ad": "Köyceğiz", "de": "Köyceğiz'de", "nin": "Köyceğiz'in", "ye": "Köyceğiz'e", "sure": "2 saat",
-        "mahalle": ["Köyceğiz merkez", "Toparlar", "Yangı", "Zeytinalanı", "Döğüşbelen", "Hamitköy", "Zaferler", "Sultaniye", "Ekincik", "Çandır"],
-        "tanitim": "Köyceğiz merkezinden göl çevresindeki mahallelere, Toparlar'dan Sultaniye ve Ekincik'e kadar geliyoruz.",
+        "mahalle": ["Köyceğiz", "Ulucami", "Gelişim", "Yeni", "Akköprü", "Balcılar", "Beyobası", "Çandır", "Çayhisar", "Döğüşbelen", "Ekincik", "Gülpınar", "Hamitköy", "Karaçam", "Kavakarası", "Otmanlar", "Pınar", "Sazak", "Sultaniye", "Toparlar", "Yangı", "Yayla", "Yeşilköy", "Zaferler", "Zeytinalanı"],
+        "tanitim": "Köyceğiz merkezinden göl çevresindeki mahallelere, Toparlar ve Yangı'dan Sultaniye ve Ekincik'e, Beyobası ve Yayla tarafındaki köylere kadar geliyoruz.",
     },
 }
 
@@ -295,3 +295,111 @@ ANA_SSS = [
     ("Yaptığınız işe garanti veriyor musunuz?", "Evet. İşçiliğimiz 15 gün garantilidir; kullanılan malzemeler üreticinin kendi garantisi kapsamındadır."),
     ("Klima bakım, montaj ve gaz dolumu ücretleri ne kadar?", "Bahar Kampanyası ile klima bakım ve temizlik 2.500 TL yerine 1.500 TL, klima montajı 4.000 TL yerine 3.000 TL. Gaz dolumunda gramı 2 TL, işçilik 1.000 TL."),
 ]
+
+# ══════════════════════════════════════════════════════════════════════════
+#  BRANŞ SİTELERİ (2026-11): 5 branş × (1 genel + 4 bölge)
+# ══════════════════════════════════════════════════════════════════════════
+UYARI["sade"] = "<strong>Özel teknik servis.</strong> Keşif ücretsiz, işçiliğimiz 15 gün garantilidir."
+
+TUR["uydu"] = {
+    "baslik": "Uydu ve Çanak Anten", "h2": "Uydu ve Anten Hizmetleri", "hizmet_adi": "uydu ve çanak anten servisi", "schema": "LocalBusiness",
+    "title_ek": "Montaj, Ayar ve Arıza", "uyari": "sade",
+    "ozet": "{de} çanak anten montajı, sinyal ölçerle yön ayarı, LNB değişimi, merkezi uydu sistemi ve TV kanal kurulumu.",
+    "kartlar": [
+        ("Çanak Anten Montajı", "Tekli ve çiftli çanak kurulumu, sinyal ölçer ile yön ayarı.", ""),
+        ("LNB ve Alıcı", "LNB ve uydu alıcısı değişimi, ince ayar.", ""),
+        ("TV Kanal Kurulumu", "Televizyonda kanal arama, sıralama ve uydu ayarları.", ""),
+        ("Merkezi Sistem", "Bina, site, otel ve pansiyonlar için merkezi uydu sistemi ve multiswitch.", ""),
+        ("Sinyal Arızası", "Sinyal yok, görüntü donuyor, bazı kanallar çıkmıyor sorunları.", ""),
+        ("Kablo ve Konnektör", "Uydu kablosu çekimi, su alan konnektörlerin yenilenmesi.", ""),
+        ("Söküm ve Taşıma", "Taşınmada çanak söküm, yeni yerinde montaj ve ayar.", ""),
+    ],
+    "fiyatlar": ["kesif"],
+    "isler": {
+        "ortaca": ["Apartman ve sitelerde merkezi uydu sistemi kurulumu ve arızası", "Yeni taşınılan evlerde çanak montajı ve kanal kurulumu", "Fırtına sonrası yönü kayan çanaklarda yeniden ayar", "Sarıgerme yazlıklarında sezon öncesi uydu kontrolü"],
+        "dalyan": ["Villa ve pansiyonlarda her odaya ayrı yayın için multiswitch kurulumu", "Yabancı ev sahipleri için Astra ve Hotbird kanal ayarı", "Kışın kapalı kalan evlerde sezon açılışı uydu kontrolü", "Nem ve tuzlu havada bozulan LNB ve konnektörlerin yenilenmesi"],
+        "dalaman": ["Konut ve apartmanlarda çanak montajı ve yön ayarı", "Otel, pansiyon ve kafelerde çoklu TV uydu dağıtımı", "Sinyal gitmesi ve donan görüntü arızaları", "Kiralık dairelerde çanak söküm ve yeniden montaj"],
+        "koycegiz": ["Göl çevresi ve uzak mahallelerde çanak montajı ve ayar", "Pansiyon ve apartlarda çoklu TV uydu dağıtımı", "Rüzgârda kayan çanakların sabitlenmesi ve ayarı", "Eskiyen LNB ve kabloların yenilenmesi"],
+    },
+}
+TUR["guvenlik"] = {
+    "baslik": "Güvenlik Kamerası ve Alarm", "h2": "Güvenlik Sistemleri", "hizmet_adi": "güvenlik kamerası ve alarm kurulumu", "schema": "LocalBusiness",
+    "title_ek": "Kamera, Alarm ve Diafon", "uyari": "sade",
+    "ozet": "{de} güvenlik kamerası kurulumu, telefondan izleme, alarm sistemi, görüntülü diafon ve kamera arıza servisi.",
+    "kartlar": [
+        ("Güvenlik Kamerası Kurulumu", "Ev, villa, iş yeri ve şantiyeler için IP ve analog kamera sistemleri.", ""),
+        ("Telefondan İzleme", "Kayıt cihazının internete bağlanması, telefondan canlı izleme ve geçmiş kayıt.", ""),
+        ("Alarm Sistemi", "Kapı-pencere sensörü, hareket dedektörü ve siren ile alarm kurulumu.", ""),
+        ("Kayıt Cihazı ve Disk", "Kayıt cihazı kurulumu, disk değişimi ve kayıt süresi ayarı.", ""),
+        ("Arıza ve Bakım", "Görüntü gelmeyen, kayıt yapmayan kameralarda arıza tespiti ve onarım.", ""),
+        ("Kablolama ve Altyapı", "Kamera kablosu, enerji hattı ve kablo kanalı; yeni yapılarda altyapı.", ""),
+        ("Görüntülü Diafon", "Kapı zili, görüntülü diafon ve kapı açma sistemleri.", ""),
+    ],
+    "fiyatlar": ["kesif"],
+    "isler": {
+        "ortaca": ["Çarşıdaki dükkân ve iş yerlerinde kamera sistemi", "Müstakil evlerde bahçe ve giriş kamerası", "Sarıgerme yazlıklarında boş kalan evler için telefondan izleme", "Mevcut kamera sistemlerinde arıza ve ek kamera"],
+        "dalyan": ["Villa ve pansiyonlarda havuz, bahçe ve giriş kameraları", "Yurt dışındaki ev sahiplerinin evini telefondan izleyebilmesi", "Kışın boş kalan evlerde alarm sistemi", "Tekne iskelesi ve iş yerlerinde gece görüşlü kamera"],
+        "dalaman": ["Mağaza, ofis ve depolarda kamera ve kayıt sistemi", "Apartman girişlerinde kamera ve görüntülü diafon", "Müstakil evlerde alarm ve kamera", "Kiralık dairelerde giriş kapısı kamerası"],
+        "koycegiz": ["Narenciye bahçeleri ve arazilerde kamera sistemi", "Göl çevresindeki pansiyonlarda kamera ve alarm", "Uzak mahallelerde telefondan izlenebilir kamera", "Mevcut sistemlerde disk değişimi ve arıza"],
+    },
+}
+TUR["montaj"] = {
+    "baslik": "Montaj İşleri", "h2": "Montaj Hizmetleri", "hizmet_adi": "montaj ustası", "schema": "HomeAndConstructionBusiness",
+    "title_ek": "Korniş, TV Askı, Avize, Mobilya", "uyari": "sade",
+    "ozet": "{de} korniş ve perde, TV askısı, avize, raf, ayna, mobilya montajı, demir ve ahşap işleri ile şofben montajı.",
+    "kartlar": [
+        ("Korniş ve Perde", "Korniş, rustik, stor ve zebra perde montajı.", ""),
+        ("TV Duvar Askısı", "Sabit ve hareketli TV askısı montajı, kablo düzenleme.", ""),
+        ("Avize ve Aydınlatma", "Avize, sarkıt, aplik ve LED montajı; elektrik bağlantısı dahil.", ""),
+        ("Raf, Ayna ve Tablo", "Duvar rafı, ayna, tablo ve dolap asma; duvara uygun dübelle.", ""),
+        ("Mobilya Montajı", "Hazır mobilya, gardırop, yatak ve dolap kurulumu.", ""),
+        ("Demir ve Ahşap İşleri", "Küçük demir ve ahşap işleri, tamir ve sabitleme.", ""),
+        ("Şofben Montajı", "Elektrikli şofben montajı ve ayrı sigorta hattı.", ""),
+    ],
+    "fiyatlar": ["kesif"],
+    "isler": {
+        "ortaca": ["Yeni taşınılan evlerde korniş, avize ve TV askısı montajı", "Hazır mobilya ve gardırop kurulumu", "Raf, ayna ve dolap asma", "Elektrikli şofben montajı ve hattı"],
+        "dalyan": ["Sezon öncesi villa ve pansiyonlarda perde, ayna ve aydınlatma yenileme", "Kiralık evlerde mobilya kurulumu ve tamiri", "Bahçe ve teras için ahşap ve demir işleri", "Odalarda TV askısı montajı"],
+        "dalaman": ["Apartman dairelerinde korniş ve stor perde montajı", "Mağaza ve ofislerde raf ve tabela sabitleme", "TV askısı ve avize montajı", "Şofben değişimi ve montajı"],
+        "koycegiz": ["Pansiyon ve apartlarda oda hazırlığı: perde, ayna, aydınlatma", "Mobilya montajı ve kapı-dolap tamiri", "Bahçe ve arazilerde demir ve ahşap işleri", "Uzak mahallelerde tek seferde toplu montaj işleri"],
+    },
+}
+# Klima bölge sayfalarındaki kartlar artık klima genel sitesine bağlanır
+TUR["klima"]["kartlar"] = [(a, b, "/landing/klima-servisi.html" if c else "") for a, b, c in TUR["klima"]["kartlar"]]
+
+SSS["uydu"] = [
+    ("Çanak ayarını kendim yapabilir miyim?", "Küçük kaymalarda mümkün, ancak sinyal ölçer olmadan doğru açıyı yakalamak zordur. Yerinde ölçüm cihazıyla ayar yapıyor, kanalları kurup teslim ediyoruz."),
+    ("Yağmurda ya da rüzgârda görüntü neden gidiyor?", "Genellikle çanağın yönü kaymış, LNB yıpranmış ya da kablo ve konnektörlere su girmiştir. Sinyal ölçerle yerinde ölçüp nedenini buluyoruz."),
+    ("Birden fazla televizyona uydu bağlanabilir mi?", "Evet. Çiftli LNB ya da multiswitch ile her televizyon kendi kanalını bağımsız izleyebilir. Bina, site ve pansiyonlarda merkezi sistem kuruyoruz."),
+    "sure", "garanti", "kesif", "mahalle",
+]
+SSS["guvenlik"] = [
+    ("Kameraları telefondan izleyebilir miyim?", "Evet. Kurulumda kayıt cihazını internete bağlıyor, telefonunuza uygulamayı kurup canlı izleme ve geçmiş kayıtları açıyoruz."),
+    ("Kayıtlar ne kadar süre saklanır?", "Kamera sayısına, çözünürlüğe ve kayıt cihazındaki diskin boyutuna bağlıdır. İhtiyacınıza göre disk seçip kurulumda süreyi birlikte ayarlıyoruz."),
+    ("Var olan kamera sistemime bakım ya da ek kamera yapıyor musunuz?", "Evet. Görüntü gelmeyen, kayıt yapmayan kameraların arızasına bakıyor, mevcut sisteme yeni kamera ekliyoruz."),
+    ("Alarm sistemi kuruyor musunuz?", "Evet. Kapı ve pencere sensörleri, hareket dedektörü ve siren ile alarm sistemi kuruyor; telefondan kurma ve bildirim ayarlarını yapıyoruz."),
+    "sure", "garanti", "kesif", "mahalle",
+]
+SSS["montaj"] = [
+    ("Hangi montaj işlerini yapıyorsunuz?", "Korniş ve perde, TV duvar askısı, avize ve aydınlatma, raf, ayna, tablo, mobilya montajı, demir ve ahşap işleri ile şofben montajı."),
+    ("Duvarın beton ya da alçıpan olması fark eder mi?", "Evet. Beton, tuğla, gazbeton ve alçıpan için farklı dübel ve vida kullanılır. Duvara uygun bağlantı elemanıyla sağlam montaj yapıyoruz."),
+    ("TV askısı montajında kabloları topluyor musunuz?", "Evet. Kabloları kablo kanalıyla düzenli şekilde topluyoruz; duvar içinden geçirme mümkünse keşifte söyleriz."),
+    ("Şofben montajı da yapıyor musunuz?", "Evet. Elektrikli şofbenin montajını, bağlantısını ve gerekiyorsa ayrı sigorta hattını aynı ekip yapar."),
+    "sure", "garanti", "kesif", "mahalle",
+]
+
+# Dosya adları: bölge sayfaları ve branş genel siteleri
+DOSYA = {"klima": "%s-klima.html", "elektrik": "%s-elektrikci.html", "uydu": "%s-uydu-canak.html",
+         "guvenlik": "%s-guvenlik-kamera.html", "montaj": "%s-montaj-isleri.html"}
+GENEL = {"elektrik": "elektrikci.html", "klima": "klima-servisi.html", "uydu": "uydu-canak-anten.html",
+         "guvenlik": "guvenlik-kamera.html", "montaj": "montaj-isleri.html"}
+GENEL_AD = {"elektrik": "Elektrikçi", "klima": "Klima Servisi", "uydu": "Uydu ve Çanak Anten",
+            "guvenlik": "Güvenlik Kamerası ve Alarm", "montaj": "Montaj İşleri"}
+# Kapatılan sayfalar: adres → yönlendirilecek yer
+KAPANAN = {
+    "landing/klima-bakim-temizlik.html": "/landing/klima-servisi.html",
+    "landing/klima-ariza-gaz-dolumu.html": "/landing/klima-servisi.html",
+    "landing/klima-montaj.html": "/landing/klima-servisi.html",
+    "landing/hidrofor-pompa.html": "/",
+    "landing/hidrofor-pompa-en.html": "/index-en.html",
+}
