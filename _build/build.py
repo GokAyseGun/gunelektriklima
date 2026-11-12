@@ -574,7 +574,8 @@ def doldur(s):
     return s
 
 
-for sablon, hedef in (("index.html", "index.html"), ("villa-bakim-paketi.html", "landing/villa-bakim-paketi.html"), ("onay.html", "onay.html")):
+# Ana sayfa (index.html) artık _build/ana/yap.py --yayin ile üretilir; eski şablon yalnızca branş sitelerinin kaynağıdır.
+for sablon, hedef in (("villa-bakim-paketi.html", "landing/villa-bakim-paketi.html"), ("onay.html", "onay.html")):
     yaz(hedef, doldur(oku("_build/templates/" + sablon)))
 
 for yol, h in BRANS_URET:
