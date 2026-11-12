@@ -138,7 +138,7 @@ let lenis=null;
 if(W.Lenis){
   lenis=new Lenis({lerp:.075,wheelMultiplier:.9,touchMultiplier:1.2,smoothWheel:true,syncTouch:true,syncTouchLerp:.075,touchInertiaMultiplier:30});
   // hız tavanı: hedef, o anki konumun en fazla G piksel önünde tutulur (lerp ile ≈ 3000 px/sn); kalan mesafe kaybolmaz, sırayla verilir
-  const VMAX=2500,G=VMAX/(.075*60),sTo=lenis.scrollTo.bind(lenis);let want=null,lastNT=null;
+  const VMAX=2200,G=VMAX/(.075*60),sTo=lenis.scrollTo.bind(lenis);let want=null,lastNT=null;
   lenis.scrollTo=(t,o={})=>{if(o.programmatic===false&&typeof t==='number'){const base=want??lenis.targetScroll;want=clamp(0,lenis.limit,base+(t-lenis.targetScroll));const c=lenis.animatedScroll;const r=sTo(c+clamp(-G,G,want-c),o);lastNT=lenis.targetScroll;return r;}want=null;lastNT=null;return sTo(t,o);};
   gsap.ticker.add(()=>{if(want===null)return;
     // kaydırma çubuğu, klavye ya da bağlantıyla dışarıdan atlanırsa bekleyen hedefi bırak
@@ -273,12 +273,12 @@ let docked=false;
 function dock(on){if(on===docked)return;docked=on;top.classList.toggle('dock',on);}
 
 /* ════════ ENERJİ: glitch yalnızca gerçekten hızlı kaydırmada ════════ */
-// Kaydırma en fazla 2500 px/sn. Glitch 2300 px/sn'nin üstünde en az 0,1 sn sürerse başlar; 2500'de tam güç.
+// Kaydırma en fazla 2200 px/sn. Glitch 2000 px/sn'nin üstünde en az 0,1 sn sürerse başlar; ~2180'de tam güç.
 const crt=$('#crt'),roll=$('#crtRoll'),nz=$('#crtNoise');let rollY=0,lastE=-1,fastT=0;
 gsap.ticker.add((time,dt)=>{
   const dr=gsap.ticker.deltaRatio(60)||1,pxs=Math.abs(vel())*60/dr;
-  if(pxs>2300)fastT+=dt/1000;else fastT=Math.max(0,fastT-dt/500);
-  const tg=fastT>.1?clamp(0,1,(pxs-2300)/180):0;
+  if(pxs>2000)fastT+=dt/1000;else fastT=Math.max(0,fastT-dt/500);
+  const tg=fastT>.1?clamp(0,1,(pxs-2000)/180):0;
   FD.E=FD.off?0:(tg>FD.E?FD.E+(tg-FD.E)*.3:FD.E*.985);if(FD.E<.004)FD.E=0;
   const e=FD.E*FD.E*(3-2*FD.E);
   if(Math.abs(e-lastE)>.004){R.style.setProperty('--e',e.toFixed(3));crt.style.opacity=Math.min(1,e*1.2).toFixed(3);lastE=e;}
