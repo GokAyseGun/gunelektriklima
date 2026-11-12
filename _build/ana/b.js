@@ -263,9 +263,7 @@ const hline=(rx,y,x2)=>({d:`M${rx} ${y} H${x2}`,x1:rx,y1:y,x2,y2:y});
 /* ════════ ÜST ÇUBUK ════════ */
 const top=$('#top'),rail=$('#rail'),brand=$('#brand');
 let docked=false;
-const dockX=()=>{const bx=gsap.getProperty(brand,'x');const b=brand.getBoundingClientRect(),c=$('#snd').getBoundingClientRect();return c.left-14-(b.right-bx);};
-function dock(on){if(on===docked)return;docked=on;top.classList.toggle('dock',on);gsap.to(brand,{x:on?dockX():0,duration:1.5,ease:'expo.inOut',overwrite:true});}
-addEventListener('resize',()=>{if(docked)gsap.set(brand,{x:dockX()});});
+function dock(on){if(on===docked)return;docked=on;top.classList.toggle('dock',on);}
 
 /* ════════ ENERJİ: glitch yalnızca gerçekten hızlı kaydırmada ════════ */
 // Kaydırma en fazla 2500 px/sn. Glitch 2300 px/sn'nin üstünde en az 0,1 sn sürerse başlar; 2500'de tam güç.

@@ -529,7 +529,7 @@ html.dark .msw .k::after{transform:translateY(9px);background:var(--phos-2);box-
 
 /* Bilgisayarda elektrik kesintisi: her şey donar, griye döner, el feneriyle görülür */
 #torch{position:fixed;inset:0;z-index:96;pointer-events:none;display:none;--tx:50vw;--ty:50vh;
-  background:radial-gradient(circle at var(--tx) var(--ty),rgba(255,236,200,.08) 0,rgba(255,236,200,.03) 100px,rgba(2,4,3,.45) 170px,rgba(2,4,3,.88) 250px,rgba(1,2,1,.975) 340px)}
+  background:radial-gradient(circle at var(--tx) var(--ty),rgba(255,255,255,.95) 0,rgba(255,255,255,.95) 2px,rgba(255,255,255,0) 3.5px),radial-gradient(circle at var(--tx) var(--ty),rgba(255,236,200,.08) 0,rgba(255,236,200,.03) 100px,rgba(2,4,3,.45) 170px,rgba(2,4,3,.88) 250px,rgba(1,2,1,.975) 340px)}
 html.dark #torch{display:block}
 html.dark #torch.fl{animation:torchfl .62s steps(1) forwards}
 @keyframes torchfl{0%{opacity:1}12%{opacity:0}22%{opacity:1}34%{opacity:.15}46%{opacity:1}60%{opacity:0}72%{opacity:.6}84%{opacity:0}100%{opacity:0}}
