@@ -473,6 +473,7 @@ let heroChars=[],titleSplit=null;
 function fitTitle(){const h=$('#hTitle'),w=h.querySelector('.w'),hi=$('#heroIn');h.style.fontSize='';const cs=parseFloat(getComputedStyle(h).fontSize),st=getComputedStyle(hi);
   const avail=hi.clientWidth-parseFloat(st.paddingLeft)-parseFloat(st.paddingRight),ww=w.getBoundingClientRect().width;if(ww>0)h.style.fontSize=Math.min(cs*avail/ww*.975,cs*1.6)+'px';}
 function intro(){
+  R.classList.add('hb');
   titleSplit=new SplitText('#hTitle .w',{type:'chars',mask:'chars',charsClass:'hc'});heroChars=titleSplit.chars;fitTitle();
   const leadF=scrambler($('#hLead')),hudF=scrambler($('#hHud')),eF=scrambler($('#hE'));leadF(0);hudF(0);eF(0);
   const o={l:0,h:0,e:0};
@@ -489,18 +490,33 @@ function intro(){
 function heroScroll(){
   const masks=heroChars.map(c=>c.parentElement),fld=$('#field');
   const qs=masks.map(m=>[gsap.quickTo(m,'x',{duration:.9,ease:'power3'}),gsap.quickTo(m,'y',{duration:.9,ease:'power3'})]);
-  gsap.ticker.add(()=>{if(!M.on||!FD.heroVis)return;const hr=fld.getBoundingClientRect();masks.forEach((m,i)=>{const r=m.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;const dx=M.x+hr.left-cx,dy=M.y+hr.top-cy,d=Math.hypot(dx,dy)||1,f=Math.exp(-(d*d)/(260*260))*M.on;qs[i][0](dx/d*f*14);qs[i][1](dy/d*f*11);});});
+  gsap.ticker.add(()=>{if(!M.on||!FD.heroVis)return;const hr=fld.getBoundingClientRect();masks.forEach((m,i)=>{const r=m.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;const dx=M.x+hr.left-cx,dy=M.y+hr.top-cy,d=Math.hypot(dx,dy)||1,f=FD.heroP>.002?0:Math.exp(-(d*d)/(260*260))*M.on;qs[i][0](dx/d*f*14);qs[i][1](dy/d*f*11);});});
   const lead=new SplitText('#hLead',{type:'lines',mask:'lines',linesClass:'lm'});
   const hudF=scrambler($('#hHud')),eF=scrambler($('#hE'));
   const rnd=gsap.utils.random;
   const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:SCRUB,onUpdate:s=>{FD.heroP=s.progress;heroCycle=s.progress<.6;}}});
+  // isim: kahramandan topbara uçuş. Uçarken asıl başlık gizlenir, sabit bir kopyası küçülerek topbardaki yerine gider.
+  const h1=$('#hTitle'),hw=h1.querySelector('.w'),bb=$('#brand b');
+  const fly=D.createElement('div');fly.className='h-big h-fly';fly.setAttribute('aria-hidden','true');fly.textContent=hw.textContent;D.body.appendChild(fly);
+  R.classList.add('hb');
+  const fo={k:0};let fsH=0,fsB=0;const fsz=()=>{fsH=parseFloat(getComputedStyle(h1).fontSize);fsB=parseFloat(getComputedStyle(bb).fontSize);fly.style.fontSize=fsH+'px';};fsz();addEventListener('resize',()=>{fsz();place();});
+  function place(){if(FD.off)return;const k=fo.k;
+    if(k<=.001){fly.style.visibility='hidden';hw.style.visibility='';R.classList.remove('hb-on');return;}
+    if(k>=.999){fly.style.visibility='hidden';hw.style.visibility='hidden';R.classList.add('hb-on');return;}
+    R.classList.remove('hb-on');hw.style.visibility='hidden';fly.style.visibility='visible';
+    const n=h1.getBoundingClientRect(),t=bb.getBoundingClientRect(),sc=Math.pow(fsB/fsH,k);
+    const x=n.left+(t.left-n.left)*k,y=n.top+(t.top+.1*fsB-n.top)*k;
+    fly.style.transform=`translate3d(${x}px,${y}px,0) scale(${sc})`;
+    fly.style.letterSpacing=(-.02+.05*k).toFixed(4)+'em';fly.style.fontStretch=(125-3*k).toFixed(2)+'%';}
+  gsap.ticker.add(()=>{if(fo.k>.001&&fo.k<.999)place();});
   tl.to({},{duration:1},0)
-    .to(masks,{yPercent:()=>rnd(-170,-50),xPercent:()=>rnd(-40,40),rotation:()=>rnd(-35,35),opacity:0,filter:'blur(10px)',duration:.6,stagger:{amount:.3,from:'random'},ease:'power2.in'},.08)
+    .to(fo,{k:1,duration:.5,ease:'power2.inOut',onUpdate:place},0)
     .to(emb,{yPercent:-40,scale:.6,opacity:0,filter:'blur(6px)',duration:.5,ease:'power2.in'},.05)
     .to({p:1},{p:0,duration:.45,onUpdate(){eF(this.targets()[0].p);}},.04)
     .to({p:1},{p:0,duration:.4,onUpdate(){hudF(this.targets()[0].p);}},0)
     .to(lead.lines,{yPercent:-110,opacity:0,filter:'blur(6px)',duration:.4,stagger:.06,ease:'power1.in'},.05);
   heroBtns.forEach((b,i)=>fluoOut(tl,b,.12+i*.08,.5));
+  place();
 }
 let seen=false;try{seen=sessionStorage.getItem('gt-boot')==='1';sessionStorage.setItem('gt-boot','1');}catch(e){}
 if(seen){R.classList.add('booted');intro();}

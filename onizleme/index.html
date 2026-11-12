@@ -221,6 +221,11 @@ html.off #off{display:grid}
 .h-big{font:900 clamp(56px,15vw,260px)/.8 var(--f-disp);font-stretch:125%;letter-spacing:-.02em;margin:0;color:var(--phos);white-space:nowrap;
   text-shadow:0 0 22px rgba(233,255,59,.08),calc(var(--e)*-10px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*10px) 0 rgba(63,242,223,calc(var(--e)*.85))}
 .h-big .w{display:block;width:max-content}
+/* kahramandaki isim aşağı inerken küçülüp topbardaki yerine uçar */
+.h-fly{position:fixed;left:0;top:0;z-index:62;pointer-events:none;visibility:hidden;transform-origin:0 0;will-change:transform;line-height:.8!important;margin:0}
+html.hb:not(.hb-on) .brand b,html.hb:not(.hb-on) .brand small,html.hb:not(.hb-on) .brand .mini{opacity:0}
+html.hb.hb-on .brand small,html.hb.hb-on .brand .mini{transition:opacity .9s .1s}
+html.dark .h-fly{display:none!important}html.dark #hTitle .w{visibility:visible!important}html.dark .brand b,html.dark .brand small,html.dark .brand .mini{opacity:1!important}
 .h-big .e{display:block;font:700 clamp(13px,1.75vw,25px)/1.35 var(--f-mono);letter-spacing:.26em;text-transform:uppercase;color:var(--sig);margin:1.4em 0 0 .3em;text-shadow:0 0 14px rgba(233,255,59,.45);white-space:normal}
 .h-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-top:30px}
 .lead{max-width:50ch;font-size:clamp(14px,1.2vw,16.5px);color:var(--phos);margin:0}
@@ -927,6 +932,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=fcb32676"></script>
+<script src="/assets/gt/ana.js?v=a55ba190"></script>
 </body>
 </html>
