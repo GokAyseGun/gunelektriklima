@@ -200,6 +200,7 @@ html.off #off{display:grid}
 .emb-l.f path{stroke-width:3.4;filter:drop-shadow(0 0 7px var(--ec))}
 .emb-l:not(.f) path{opacity:.32}
 .emb-lbl{position:absolute;left:0;right:0;bottom:-30px;text-align:center;color:var(--ec)}
+@media(min-width:761px){.emb-lbl{left:auto;right:calc(100% + 22px);top:50%;bottom:auto;transform:translateY(-50%);text-align:right;white-space:nowrap}}
 .h-big{font:900 clamp(56px,15vw,260px)/.8 var(--f-disp);font-stretch:125%;letter-spacing:-.02em;margin:0;color:var(--phos);white-space:nowrap;
   text-shadow:0 0 22px rgba(233,255,59,.08),calc(var(--e)*-10px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*10px) 0 rgba(63,242,223,calc(var(--e)*.85))}
 .h-big .w{display:block;width:max-content}
@@ -291,7 +292,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .bus{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
 .bus .dr{fill:none;stroke:rgba(233,255,59,.7);stroke-width:2}
 .bus circle{fill:var(--sig)}
-.svc .prog{display:flex;align-items:center;gap:14px;margin:20px var(--gutr) 0 var(--gut)}
+.svc .prog{order:-1;display:flex;align-items:center;gap:14px;margin:0 var(--gutr) 18px var(--gut)}
 .svc .prog .bar{flex:1;height:1px;background:rgba(63,242,223,.18);position:relative}
 .svc .prog .bar i{position:absolute;inset:0;background:var(--sig);transform-origin:left;transform:scaleX(0)}
 
@@ -701,15 +702,6 @@ html.off .bigsw .rk{transform:scaleY(-1)}
   <button class="bigsw dk" type="button" data-sw id="sw1b" aria-label="Işıkları kapat"><svg viewBox="0 0 120 170" aria-hidden="true"><rect class="pl" x="4" y="4" width="112" height="162" rx="10"/><circle class="sc" cx="60" cy="18" r="4"/><circle class="sc" cx="60" cy="152" r="4"/><rect class="sc" x="34" y="40" width="52" height="90" rx="6"/><g class="rk"><path d="M38 44 h44 v36 l-4 6 h-36 l-4 -6 z"/></g><circle class="led" cx="60" cy="122" r="3"/></svg><small>Işıkları kapatın</small></button>
 </section>
 
-<!-- MANİFESTO -->
-<section class="mani" id="maniSec" aria-label="Yaklaşımımız">
-  <div class="in" id="maniIn">
-    <div class="hud">— Ölçüm 01 · kontrol kalemi</div>
-    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
-  </div>
-  <div class="spark" id="spark"></div>
-</section>
-
 <!-- SÜREÇ -->
 <section class="proc in" id="surec">
   <div class="pin" id="procPin">
@@ -788,6 +780,15 @@ html.off .bigsw .rk{transform:scaleY(-1)}
     <div class="fis-alt"><button class="btn p" type="submit" data-gt-gonder>Teklif iste, sizi arayalım</button><div class="kv">Formu göndererek bilgilerinizin size dönüş yapılması amacıyla işlenmesini kabul edersiniz. <a href="/kvkk.html">KVKK Aydınlatma Metni</a></div></div>
     <div class="gt-form-msg" role="status" aria-live="polite" hidden></div>
   </form>
+</section>
+
+<!-- MANİFESTO -->
+<section class="mani" id="maniSec" aria-label="Yaklaşımımız">
+  <div class="in" id="maniIn">
+    <div class="hud">— Ölçüm 01 · kontrol kalemi</div>
+    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
+  </div>
+  <div class="spark" id="spark"></div>
 </section>
 
 <section class="mq" id="mq" aria-hidden="true"><div class="row a rgb" id="mqA"></div><div class="row b" id="mqB"></div></section>
