@@ -55,9 +55,9 @@
   --rl:30px;--e:0;color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{background:var(--scope)}
+html{background:var(--scope);overscroll-behavior-y:none}
 main{overflow-x:clip}
-body{margin:0;background:var(--scope);color:var(--phos);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{margin:0;overscroll-behavior-y:none;background:var(--scope);color:var(--phos);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 ::selection{background:var(--sig);color:var(--scope)}
@@ -112,13 +112,6 @@ html.booted #boot{display:none}
 .msw .k{position:relative;width:16px;height:24px;border-radius:4px;border:1.5px solid currentColor}
 .msw .k::after{content:'';position:absolute;left:2px;right:2px;top:2px;height:9px;border-radius:2px;background:var(--sig);box-shadow:0 0 8px var(--sig);transition:transform .25s cubic-bezier(.5,1.8,.5,1),background .25s}
 html.off .msw .k::after{transform:translateY(9px);background:var(--phos-2);box-shadow:none}
-.tilt{display:none;flex:none;align-items:center;gap:8px;height:42px;padding:0 12px;border-radius:999px;border:1px solid rgba(63,242,223,.4);color:var(--cy);font:500 10.5px/1 var(--f-mono);letter-spacing:.1em;white-space:nowrap}
-html.touch .tilt{display:inline-flex}
-.tilt svg{width:18px;height:18px;flex:none;animation:tiltw 2.4s ease-in-out infinite;transform-origin:50% 60%}
-.tilt span{display:inline-block;overflow:hidden;max-width:140px;transition:max-width .9s cubic-bezier(.65,0,.35,1),opacity .6s}
-.tilt.short{padding:0;width:42px;justify-content:center}.tilt.short span{max-width:0;opacity:0}
-.tilt.on{background:rgba(63,242,223,.12)}
-@keyframes tiltw{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
 .call{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;background:var(--sig);color:var(--scope);font:700 13px/1 var(--f-body);white-space:nowrap;flex:none}
 .top.paper .call{background:var(--ink);color:var(--paper)}
 @media(max-width:1100px){.nav{display:none}}
@@ -227,20 +220,20 @@ html.off #off{display:grid}
 .h-big{font:900 clamp(56px,15vw,260px)/.8 var(--f-disp);font-stretch:125%;letter-spacing:-.02em;margin:0;color:var(--phos);white-space:nowrap;
   text-shadow:0 0 22px rgba(233,255,59,.08),calc(var(--e)*-10px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*10px) 0 rgba(63,242,223,calc(var(--e)*.85))}
 .h-big .w{display:block;width:max-content}
-.h-big .e{display:block;font:700 clamp(10.5px,1.25vw,17px)/1.3 var(--f-mono);letter-spacing:.32em;text-transform:uppercase;color:var(--sig);margin:1.4em 0 0 .3em;text-shadow:0 0 14px rgba(233,255,59,.45);white-space:normal}
+.h-big .e{display:block;font:700 clamp(13px,1.75vw,25px)/1.35 var(--f-mono);letter-spacing:.26em;text-transform:uppercase;color:var(--sig);margin:1.4em 0 0 .3em;text-shadow:0 0 14px rgba(233,255,59,.45);white-space:normal}
 .h-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-top:30px}
-.lead{max-width:46ch;font-size:clamp(16px,1.6vw,19px);color:var(--phos);margin:0}
+.lead{max-width:50ch;font-size:clamp(14px,1.2vw,16.5px);color:var(--phos);margin:0}
 .lead em{font-style:normal;color:var(--sig)}
 .ctas{display:flex;gap:10px;flex-wrap:wrap}
 .btn{--on:1;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;font:700 15px/1 var(--f-body);white-space:nowrap;will-change:transform}
 .btn .bo{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.btn .bo path{fill:none;stroke-width:1.5}
-.btn.p{background:rgba(233,255,59,var(--on));color:var(--scope);box-shadow:0 0 calc(var(--on)*30px) rgba(233,255,59,calc(var(--on)*.28))}
+.btn .bo path{fill:none;stroke-width:1.5;stroke-opacity:calc(.35 + var(--on)*.65)}
+.btn.p{background:rgba(233,255,59,var(--on));color:rgba(12,22,16,var(--on));box-shadow:0 0 calc(var(--on)*34px) rgba(233,255,59,calc(var(--on)*.45)),0 0 calc(var(--on)*90px) rgba(233,255,59,calc(var(--on)*.18))}
 .btn.p .bo path{stroke:var(--sig)}
-.btn.g{color:rgba(230,242,232,calc(.25 + var(--on)*.75))}
+.btn.g{color:rgba(230,242,232,var(--on));text-shadow:0 0 calc(var(--on)*14px) rgba(230,242,232,calc(var(--on)*.55));box-shadow:0 0 calc(var(--on)*26px) rgba(230,242,232,calc(var(--on)*.12))}
 .btn.g .bo path{stroke:rgba(230,242,232,.45)}
 .btn svg.ic{width:18px;height:18px}
-@media(max-width:760px){.h-row{grid-template-columns:1fr}.ctas .btn{flex:1;padding:0 16px}.emb{right:auto;left:50%;margin-left:min(-15vh,-23vw);top:96px;width:min(30vh,46vw)}}
+@media(max-width:760px){.h-row{grid-template-columns:1fr}.ctas .btn{flex:1;padding:0 16px}.emb{right:auto;left:50%;--es:min(32vw,150px,17svh);width:var(--es);margin-left:calc(var(--es)/-2);top:max(86px,11svh)}.emb-lbl{bottom:-24px}}
 
 /* Manifesto */
 .mani{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
@@ -274,7 +267,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 /* Kanallar (hizmetler) */
 .svc{position:relative;padding-top:10vh;overflow:hidden}
 .svc .stage{position:relative;height:100svh;display:flex;flex-direction:column;justify-content:center}
-.track{position:relative;display:flex;gap:22px;padding-left:calc(var(--gut) + 22px);padding-right:30vw;padding-bottom:46px;will-change:transform}
+.track{position:relative;display:flex;gap:22px;padding-left:calc(var(--gut) + 22px);padding-right:max(24px,calc((100vw - min(500px,84vw))/2));padding-bottom:46px;will-change:transform}
 .ch{--cc:var(--sig);position:relative;flex:none;width:min(500px,84vw);height:min(580px,68svh);border:1px solid rgba(63,242,223,.16);border-radius:4px;background:linear-gradient(180deg,rgba(23,38,28,.95),rgba(12,22,16,.95));overflow:hidden;z-index:1;transition:border-color .5s}
 .ch:hover{border-color:color-mix(in srgb,var(--cc) 55%,transparent)}
 .ch::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px;opacity:.7;pointer-events:none}
@@ -305,9 +298,12 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .ch .back li{break-inside:avoid;padding:3px 0}.ch .back li::before{content:'— ';color:var(--cc)}
 .ch .back .note{font-size:13px;color:var(--phos-2);border-left:2px solid var(--cc);padding-left:10px;margin:0 0 12px}
 .ch .back .flip{margin-top:auto;align-self:flex-start;margin-left:0}
-.ch.end{background:none;border:1px dashed rgba(233,255,59,.35)}
-.ch.end .face{justify-content:center;gap:18px}
-.ch.end h3{margin:0}
+.ch.fin{border:1px dashed rgba(233,255,59,.45)}
+.ch.fin h3{color:var(--phos);font-size:clamp(30px,2.8vw,40px);line-height:1.05}
+.ch.fin p{color:var(--phos)}
+.ch.fin .ctas{gap:10px}
+.ch.fin .face{justify-content:center;gap:18px}
+.ch.fin h3{margin:0}
 @media(max-width:760px){.ch .back ul{columns:1}.ch .face{padding:18px}.ch h3{font-size:32px}.ch p{font-size:14px}}
 .bus{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}
 .bus .dr{fill:none;stroke:rgba(233,255,59,.7);stroke-width:2}
@@ -326,12 +322,12 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 
 /* Süreç: devre */
 .proc{position:relative;padding-top:14vh}
-.proc .pin{position:relative;min-height:100svh;padding-top:84px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,6vw,100px);align-items:center}
-.proc .bigw{position:relative;height:clamp(110px,22vw,330px);overflow:hidden}
-.proc .big{position:absolute;left:0;top:0;font:900 clamp(120px,24vw,360px)/.86 var(--f-disp);font-stretch:125%;color:var(--sig);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(233,255,59,.35),calc(var(--e)*-12px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*12px) 0 rgba(63,242,223,calc(var(--e)*.85))}
+.proc .pin{position:relative;min-height:100svh;padding:76px 0 24px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,6vw,100px);align-items:center}
+.proc .bigw{position:relative;height:min(22vw,30svh,330px);overflow:hidden}
+.proc .big{position:absolute;left:0;top:0;font:900 min(24vw,34svh,360px)/.86 var(--f-disp);font-stretch:125%;color:var(--sig);font-variant-numeric:tabular-nums;text-shadow:0 0 50px rgba(233,255,59,.35),calc(var(--e)*-12px) 0 rgba(255,40,90,calc(var(--e)*.85)),calc(var(--e)*12px) 0 rgba(63,242,223,calc(var(--e)*.85))}
 .proc .big-l{margin-top:14px}
 .proc .ok{margin-top:22px;font:700 12px/1 var(--f-mono);letter-spacing:.3em;color:var(--sig);text-shadow:0 0 12px var(--sig);opacity:0}
-.steps{position:relative;list-style:none;margin:0;padding:0 0 0 78px;display:grid;gap:26px}
+.steps{position:relative;list-style:none;margin:0;padding:0 0 0 78px;display:grid;gap:clamp(10px,2.4svh,26px)}
 .steps svg.cir{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .cir .wb{fill:none;stroke:rgba(63,242,223,.16);stroke-width:2}
 .cir .wd{fill:none;stroke:var(--sig);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(233,255,59,.7))}
@@ -344,10 +340,11 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .cir .halo{fill:var(--sig);opacity:0;filter:blur(10px)}
 .steps li{position:relative;opacity:.28;transform:translateX(-8px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
 .steps li.on{opacity:1;transform:none}
-.steps li h4{margin:0 0 4px;font:800 clamp(22px,2.4vw,30px)/1.1 var(--f-disp);font-stretch:110%}
-.steps li p{margin:0;color:var(--phos-2);max-width:46ch}
+.steps li h4{margin:0 0 4px;font:800 clamp(19px,min(2.4vw,3.3svh),30px)/1.1 var(--f-disp);font-stretch:110%}
+.steps li p{margin:0;color:var(--phos-2);max-width:46ch;font-size:clamp(13px,1.9svh,16px);line-height:1.5}
+.proc .pdesc{display:none}
 .steps li .n{font:500 11px/1 var(--f-mono);letter-spacing:.14em;color:var(--cy)}
-@media(max-width:860px){.proc .pin{grid-template-columns:1fr;align-content:center;gap:10px;padding-top:80px}.proc .bigw{height:clamp(80px,24vw,120px)}.proc .big{font-size:clamp(90px,28vw,140px)}.steps{gap:12px;padding-left:70px}.steps li p{font-size:13.5px;line-height:1.45}.steps li h4{font-size:20px}.proc .ok{margin-top:8px}}
+@media(max-width:860px){.proc .pin{grid-template-columns:1fr;align-content:center;gap:8px;padding-top:76px}.proc .bigw{height:min(24vw,13svh,120px)}.proc .big{font-size:min(28vw,15svh,140px)}.steps{gap:clamp(12px,3svh,22px);padding-left:70px}.steps li p{display:none}.steps li h4{font-size:20px}.proc .ok{margin-top:6px}.proc .pdesc{display:block;margin:10px 0 4px;color:var(--phos);font-size:14px;line-height:1.5;min-height:4.5em;max-width:46ch}}
 
 /* Ölçüm */
 .meter{position:relative;padding-block:16vh}
@@ -509,9 +506,9 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .end h2{margin:14px 0 26px;font:700 clamp(44px,8vw,120px)/.92 var(--f-serif);letter-spacing:-.02em}
 .end .num{display:inline-block;font:900 clamp(34px,6vw,84px)/1 var(--f-disp);font-stretch:118%;letter-spacing:.01em;margin-bottom:34px}
 .end .ctas{justify-content:center}
-.end .btn.p{background:rgba(20,21,26,var(--on));color:var(--paper);box-shadow:none}
+.end .btn.p{background:rgba(20,21,26,var(--on));color:rgba(239,221,178,var(--on));box-shadow:0 0 calc(var(--on)*26px) rgba(20,21,26,calc(var(--on)*.25))}
 .end .btn.p .bo path{stroke:var(--ink)}
-.end .btn.g{color:rgba(20,21,26,calc(.25 + var(--on)*.75))}
+.end .btn.g{color:rgba(20,21,26,var(--on));text-shadow:none;box-shadow:none}
 .end .btn.g .bo path{stroke:rgba(20,21,26,.4)}
 .end .bigsw{margin-top:56px}
 
@@ -561,7 +558,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
   <div class="in">
     <a href="#bas" class="brand" id="brand" aria-label="Gün Teknik, başa dön">
       <svg class="lg" viewBox="20 2 50 116" aria-hidden="true"><polygon class="l1" points="47,6 24,58 38,58 30,114 47,73" fill="#E9FF3B"/><polygon class="l2" points="47,6 47,73 60,114 66,58 52,58" fill="#3FF2DF"/></svg>
-      <span><b>GÜN TEKNİK</b><small>ORTACA · 7/24</small></span>
+      <span><b>GÜN TEKNİK</b><small>7/24 HİZMETİNİZDEYİZ</small></span>
       <svg class="mini" id="mini" viewBox="0 0 200 200" aria-hidden="true"><path class="ea" d="M103 19 L68.5 97 L89.5 97 L77.5 181 L103 119.5 L122.5 181 L131.5 97 L110.5 97 Z"/></svg>
     </a>
     <nav class="nav hx" aria-label="Bölümler">
@@ -569,7 +566,6 @@ html.off .bigsw .rk{transform:scaleY(-1)}
     </nav>
     <div class="tr-r">
       <a class="lang gizli" href="/index-en.html" hreflang="en" lang="en" tabindex="-1" aria-hidden="true">EN</a>
-      <button class="tilt hx" id="tilt" type="button" aria-label="Telefonu eğin: sayfa eğime tepki verir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/><path d="M2.5 9.5a9.5 9.5 0 0 1 2.2-4.2M21.5 14.5a9.5 9.5 0 0 1-2.2 4.2"/></svg><span>Telefonu eğin</span></button>
       <button class="msw hx" id="msw" type="button" aria-pressed="false" aria-label="Işıkları kapat"><span class="k"></span><em>IŞIK</em></button>
       <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Sesi aç"><i><b></b><b></b><b></b></i><em>SES</em></button>
       <a class="call" id="call" href="tel:+905446529486" data-magnet aria-label="Ara: 0544 652 94 86"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>0544 652 94 86</span></a>
@@ -585,10 +581,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
   <div class="xh"><i class="h"></i><i class="v"></i></div><div class="ring"></div>
   <div class="rd"><span id="rdT"></span><svg viewBox="0 0 96 26"><polyline id="rdW" points="0,13 96,13"/></svg></div>
   <div class="tool" id="tool">
-    <svg class="t-magnet" viewBox="0 0 30 34"><defs><linearGradient id="mgR" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8f1f17"/><stop offset=".45" stop-color="#e2463a"/><stop offset="1" stop-color="#7a1812"/></linearGradient><linearGradient id="mgS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d9a94"/><stop offset=".5" stop-color="#f3f7f5"/><stop offset="1" stop-color="#7d8a84"/></linearGradient></defs><path d="M4 12 V20 a11 11 0 0 0 22 0 V12 h-7 v8 a4 4 0 0 1 -8 0 v-8 z" fill="url(#mgR)"/><rect x="4" y="5" width="7" height="7" fill="url(#mgS)"/><rect x="19" y="5" width="7" height="7" fill="url(#mgS)"/><path d="M6 25 a9 9 0 0 0 6 4" stroke="rgba(255,255,255,.45)" stroke-width="1.2" fill="none"/><path d="M5 2 l-1.5 -2.5 M7.5 1.4 v-3 M10 2 l1.5 -2.5 M20 2 l-1.5 -2.5 M22.5 1.4 v-3 M25 2 l1.5 -2.5" stroke="#E9FF3B" stroke-width="1" opacity=".85"/></svg>
     <svg class="t-probe" viewBox="0 0 58 58"><path d="M2 56 L14 44" stroke="#E6F2E8" stroke-width="1.6"/><path d="M14 44 L30 28 L38 36 L22 52 Z" fill="#17261C" stroke="#3FF2DF" stroke-width="1.5"/><path d="M30 28 L46 12 a4 4 0 0 1 6 6 L38 36" fill="#0C1610" stroke="#3FF2DF" stroke-width="1.5"/><path d="M50 14 l6 -6" stroke="#E9FF3B" stroke-width="1.6"/><circle cx="2" cy="56" r="2" fill="#E9FF3B"/></svg>
-    <svg class="t-tester" viewBox="0 0 62 62"><path d="M3 59 L16 46" stroke="#E6F2E8" stroke-width="2.4" stroke-linecap="round"/><path d="M16 46 L22 40" stroke="#9DB5A3" stroke-width="4"/><path d="M22 40 L44 18 a5 5 0 0 1 7 7 L29 47 Z" fill="#17261C" stroke="#E0541A" stroke-width="1.6"/><rect class="bulb" x="31" y="27" width="10" height="5" rx="2" transform="rotate(-45 36 29.5)"/><path d="M48 21 l9 -9 a2 2 0 0 0 -3 -3 l-9 9" fill="#E0541A"/></svg>
-    <svg class="t-radar" viewBox="0 0 68 68"><defs><linearGradient id="rgx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9FF3B" stop-opacity="0"/><stop offset="1" stop-color="#E9FF3B" stop-opacity=".6"/></linearGradient></defs><circle cx="34" cy="34" r="32" fill="none" stroke="#E9FF3B" stroke-width="1.4"/><circle cx="34" cy="34" r="18" fill="none" stroke="rgba(233,255,59,.35)"/><path d="M34 2 V66 M2 34 H66" stroke="rgba(233,255,59,.2)"/><g class="sw"><path d="M34 34 L34 2 A32 32 0 0 1 61.7 18 Z" fill="url(#rgx)"/></g><circle cx="34" cy="34" r="2.5" fill="#E9FF3B"/></svg>
     <svg class="t-quill" viewBox="0 0 54 54"><path d="M3 51 C10 40 16 30 24 21 C31 13 40 6 51 2 C49 12 44 21 37 28 C30 35 21 41 12 45 Z" fill="#F6EBD0" stroke="#14151A" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 49 C17 34 31 18 49 4" fill="none" stroke="#14151A" stroke-width="1.2"/><path d="M24 21 l5 7 M30 15 l5 7 M36 10 l4 6 M18 28 l4 6" stroke="#14151A" stroke-width=".8" opacity=".55"/><path d="M1 53 L6 45 L9 48 Z" fill="#14151A"/></svg>
     <svg class="t-thermo" viewBox="0 0 22 64"><rect x="7" y="2" width="8" height="46" rx="4" fill="rgba(12,22,16,.85)" stroke="#3FF2DF" stroke-width="1.4"/><rect class="mer" x="9.5" y="10" width="3" height="40" rx="1.5" fill="#3FF2DF"/><circle cx="11" cy="53" r="8" fill="#3FF2DF" stroke="#E6F2E8" stroke-width="1.2"/><path d="M15 12 h4 M15 20 h3 M15 28 h4 M15 36 h3" stroke="#9DB5A3" stroke-width="1"/></svg>
     <svg class="t-sat" viewBox="0 0 56 46"><rect x="1" y="6" width="40" height="38" rx="5" fill="#111E16" stroke="#3FF2DF" stroke-width="1.4"/><rect x="6" y="11" width="30" height="13" rx="2" fill="#0C1610" stroke="rgba(63,242,223,.4)"/><rect class="sb" x="8" y="19" width="4" height="3"/><rect class="sb" x="13" y="17" width="4" height="5"/><rect class="sb" x="18" y="15" width="4" height="7"/><rect class="sb" x="23" y="13" width="4" height="9"/><rect class="sb" x="28" y="12" width="4" height="10"/><circle cx="21" cy="34" r="5" fill="none" stroke="#E9FF3B" stroke-width="1.4"/><path d="M41 22 C50 20 54 12 55 2" stroke="#9DB5A3" stroke-width="1.6" fill="none"/></svg>
@@ -612,11 +605,11 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 
 <main>
 <!-- KAHRAMAN -->
-<section class="hero" id="bas" data-cur="magnet">
+<section class="hero" id="bas">
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="in" id="heroIn">
     <div class="emb" id="emb" aria-hidden="true"><div class="emb-t" id="embT"><div class="emb-r" id="embR"></div></div><div class="emb-lbl hud" id="embL">CH1 · Elektrik</div></div>
-    <div class="hud-row hud" id="hHud"><span>5 kanal · <b id="hv">230.0 V</b> · <b id="hz">50.00 Hz</b></span><span>36.84° K · 28.77° D · Ortaca</span></div>
+    <div class="hud-row hud" id="hHud"><span>5 kanal · <b id="hv">230.0 V</b> · <b id="hz">50.00 Hz</b></span></div>
     <h1 class="h-big" id="hTitle"><span class="w">GÜN TEKNİK</span><span class="e" id="hE">Elektrik · Klima · Uydu Çanak · Güvenlik Sistemleri · Montaj</span></h1>
     <div class="h-row">
       <p class="lead" id="hLead">Ortaca, Dalyan, Dalaman ve Köyceğiz'de elektrik, klima, uydu çanak, güvenlik sistemleri ve montaj işleri. <em>7/24</em> geliyoruz; keşif ücretsiz, işçilik 15 gün garantili.</p>
@@ -626,20 +619,6 @@ html.off .bigsw .rk{transform:scaleY(-1)}
       </div>
     </div>
   </div>
-</section>
-
-<!-- MANİFESTO -->
-<section class="mani" id="maniSec" data-cur="tester" aria-label="Yaklaşımımız">
-  <div class="in" id="maniIn">
-    <div class="hud">— Ölçüm 01 · kontrol kalemi</div>
-    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
-  </div>
-  <div class="spark" id="spark"></div>
-</section>
-
-<!-- ANAHTAR -->
-<section class="swx" id="sw1" aria-label="Işık anahtarı">
-  <button class="bigsw dk" type="button" data-sw id="sw1b" aria-label="Işıkları kapat"><svg viewBox="0 0 120 170" aria-hidden="true"><rect class="pl" x="4" y="4" width="112" height="162" rx="10"/><circle class="sc" cx="60" cy="18" r="4"/><circle class="sc" cx="60" cy="152" r="4"/><rect class="sc" x="34" y="40" width="52" height="90" rx="6"/><g class="rk"><path d="M38 44 h44 v36 l-4 6 h-36 l-4 -6 z"/></g><circle class="led" cx="60" cy="122" r="3"/></svg><small>Işıkları kapatın</small></button>
 </section>
 
 <!-- KANALLAR -->
@@ -728,13 +707,25 @@ html.off .bigsw .rk{transform:scaleY(-1)}
           <button class="flip" type="button">← Geri</button>
         </div>
       </article>
-      <article class="ch end" data-i="6"><div class="face"><div class="hud">CH 06 · listede yok mu?</div><h3>Teknik bir işse sorun.</h3><p>Sorunu anlatın ya da fotoğrafını gönderin; yapabileceğimizi dürüstçe söyleriz.</p><a class="btn p" href="https://wa.me/905446529486" target="_blank" rel="noopener" data-magnet style="align-self:flex-start">WhatsApp'tan sor</a></div></article>
+      <article class="ch fin" data-i="6"><div class="face"><div class="hud">CH 06 · listede yok mu?</div><h3>Tüm teknik işleriniz için bize ulaşın.</h3><p>Sorunu anlatın ya da fotoğrafını gönderin; yapabileceğimizi dürüstçe söyleriz.</p><div class="ctas"><a class="btn p" href="tel:+905446529486" data-magnet><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>0544 652 94 86</a><a class="btn g" href="https://wa.me/905446529486" target="_blank" rel="noopener" data-magnet>WhatsApp'tan yaz</a></div></div></article>
     </div>
     <div class="prog hud"><span id="chN">CH 01</span><span class="bar"><i id="chBar"></i></span><span>Kaydırın</span></div>
   </div>
 </section>
 
-<section class="mq" id="mq" aria-hidden="true"><div class="row a rgb" id="mqA"></div><div class="row b" id="mqB"></div></section>
+<!-- ANAHTAR -->
+<section class="swx" id="sw1" aria-label="Işık anahtarı">
+  <button class="bigsw dk" type="button" data-sw id="sw1b" aria-label="Işıkları kapat"><svg viewBox="0 0 120 170" aria-hidden="true"><rect class="pl" x="4" y="4" width="112" height="162" rx="10"/><circle class="sc" cx="60" cy="18" r="4"/><circle class="sc" cx="60" cy="152" r="4"/><rect class="sc" x="34" y="40" width="52" height="90" rx="6"/><g class="rk"><path d="M38 44 h44 v36 l-4 6 h-36 l-4 -6 z"/></g><circle class="led" cx="60" cy="122" r="3"/></svg><small>Işıkları kapatın</small></button>
+</section>
+
+<!-- MANİFESTO -->
+<section class="mani" id="maniSec" aria-label="Yaklaşımımız">
+  <div class="in" id="maniIn">
+    <div class="hud">— Ölçüm 01 · kontrol kalemi</div>
+    <p id="mani">İyi yapılmış iş <span class="gz">görünmez:</span> <span class="kw" data-c="#E9FF3B">ışık</span> yanar, oda <span class="kw" data-c="#3FF2DF">serinler,</span> <span class="kw" data-c="#E6F2E8">yayın</span> gelir, <span class="kw" data-c="#E0541A">kamera</span> bekler, <span class="kw" data-c="#E9FF3B">raf</span> yerinde durur. Hepsi her gün, hiç düşünmeden <span class="ok">çalışır.</span></p>
+  </div>
+  <div class="spark" id="spark"></div>
+</section>
 
 <!-- SÜREÇ -->
 <section class="proc in" id="surec">
@@ -743,6 +734,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
       <div class="hud">— Süreç · devre</div>
       <div class="bigw"><div class="big" id="pBig">01</div></div>
       <div class="hud big-l" id="pBigL">Arayın</div>
+      <p class="pdesc" id="pDesc" aria-hidden="true"></p>
       <div class="ok" id="pOk">● Devre tamam</div>
     </div>
     <ol class="steps" id="steps">
@@ -779,7 +771,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 </section>
 
 <!-- BÖLGELER -->
-<section class="zones in" id="bolgeler" data-cur="radar">
+<section class="zones in" id="bolgeler">
   <div class="sh"><h2 class="rgb" data-fx="chars">Bölge<span>ler</span></h2><p data-fx="rise">Ortaca, Dalaman, Köyceğiz ve bağlı tüm mahalleler. Dalyan dahil.</p></div>
   <div class="wrap">
     <svg class="map" id="map" viewBox="0 0 480 360" role="img" aria-label="Hizmet bölgeleri: Dalyan, Ortaca, Dalaman, Köyceğiz"></svg>
@@ -814,6 +806,8 @@ html.off .bigsw .rk{transform:scaleY(-1)}
     <div class="gt-form-msg" role="status" aria-live="polite" hidden></div>
   </form>
 </section>
+
+<section class="mq" id="mq" aria-hidden="true"><div class="row a rgb" id="mqA"></div><div class="row b" id="mqB"></div></section>
 
 <!-- SSS -->
 <section class="faq in" id="sss" aria-label="Sık sorulanlar">
@@ -886,6 +880,6 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=21149034"></script>
+<script src="/assets/gt/ana.js?v=936fa21e"></script>
 </body>
 </html>
