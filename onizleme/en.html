@@ -95,7 +95,10 @@ html.booted #boot{display:none}
 .mini{width:24px;height:24px;margin-left:2px;overflow:visible;flex:none}
 .mini path{fill:none;stroke:var(--mc,#E9FF3B);stroke-width:9;stroke-linejoin:round;stroke-linecap:round;transition:stroke .6s}
 .top.paper .mini path{stroke:var(--ink)}
-.nav{display:flex;gap:24px;font:500 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.nav-not{font:500 10.5px/1.4 var(--f-mono);letter-spacing:.1em;color:var(--phos-2);opacity:.75;text-align:center;max-width:44ch;transition:opacity .6s,transform .6s}
+.nav-not.gz{opacity:0;transform:translateY(-8px);pointer-events:none}
+.top.paper .nav-not{color:var(--ink-2)}
+@media(max-width:1100px){.nav-not{display:none}}
 .nav a{opacity:.75;transition:opacity .2s}.nav a:hover{opacity:1}
 .tr-r{display:flex;align-items:center;gap:10px}
 .hx{transition:opacity .6s,max-width .8s cubic-bezier(.65,0,.35,1),margin .8s;max-width:560px;overflow:hidden}
@@ -303,8 +306,10 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .sh h2 span{color:var(--sig)}
 .ln-mask,.lm-mask,.wd-mask{padding:.12em 0 .2em;margin:-.12em 0 -.2em}
 .sh-l{display:flex;align-items:flex-end;gap:clamp(10px,2vw,30px)}
-.dish{flex:none;width:clamp(74px,9vw,150px);height:auto;overflow:visible;margin-bottom:-4px}
-.dish .d-st{fill:none;stroke:var(--phos-2);stroke-width:3;stroke-linecap:round}
+.zones{position:relative}
+.dish.wm{position:absolute;right:0;top:clamp(40px,9vh,96px);width:clamp(84px,10vw,160px);height:auto;overflow:visible;z-index:2;pointer-events:none}
+.dish .c-pl{fill:#17261C;stroke:var(--phos-2);stroke-width:2}.dish .c-sc{fill:var(--phos-2)}
+.dish .d-st{fill:none;stroke:var(--phos-2);stroke-width:6;stroke-linecap:round}
 .dish .d-b{fill:#0f1c14;stroke:#E6F2E8;stroke-width:2.6;stroke-linejoin:round}
 .dish .d-r{fill:none;stroke:rgba(230,242,232,.35);stroke-width:1.4}
 .dish .d-a{fill:none;stroke:var(--phos-2);stroke-width:2;stroke-linecap:round}
@@ -317,7 +322,7 @@ html.off .bigsw .rk{transform:scaleY(-1)}
 .yorum{position:relative}
 .cctv{position:absolute;right:0;top:clamp(40px,9vh,96px);width:clamp(84px,10vw,160px);height:auto;overflow:visible;z-index:2;pointer-events:none}
 .sh.sh-alt{display:block}.sh.sh-alt p{margin-top:14px;max-width:46ch}
-@media(max-width:760px){.cctv{top:4px;width:74px}.sh.sh-alt{padding-top:64px}}
+@media(max-width:760px){.cctv,.dish.wm{top:4px;width:74px}.sh.sh-alt{padding-top:64px}}
 .cctv .c-pl{fill:#17261C;stroke:var(--phos-2);stroke-width:2}.cctv .c-sc{fill:var(--phos-2)}
 .cctv .c-arm{stroke:var(--phos-2);stroke-width:6;stroke-linecap:round}
 .cctv .c-cone{fill:url(#camCone);opacity:.75}
@@ -720,9 +725,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
       <span><b>GÜN TECHNIC</b><small>AT YOUR SERVICE 24/7</small></span>
       <svg class="mini" id="mini" viewBox="0 0 200 200" aria-hidden="true"><path class="ea" d="M103 19 L68.5 97 L89.5 97 L77.5 181 L103 119.5 L122.5 181 L131.5 97 L110.5 97 Z"/></svg>
     </a>
-    <nav class="nav hx" aria-label="Sections">
-      <a href="#hizmetler" data-scr>Services</a><a href="#surec" data-scr>Process</a><a href="#bolgeler" data-scr>Areas</a><a href="#teklif" data-scr>Quote</a><a href="#defter" data-scr>Story</a>
-    </nav>
+    <div class="nav-not" id="navNot">To explore our site, simply keep scrolling down.</div>
     <div class="tr-r">
       <a class="lang" href="/" hreflang="tr" lang="tr" aria-label="Türkçe">TR</a>
       <button class="msw" id="msw" type="button" aria-pressed="false" aria-label="Lights off"><span class="k"></span><em>LIGHT</em></button>
@@ -746,7 +749,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
   <div class="rd"><span id="rdT"></span><svg viewBox="0 0 96 26"><polyline id="rdW" points="0,13 96,13"/></svg></div>
   <div class="tool" id="tool">
     <svg class="t-probe" viewBox="0 0 58 58"><path d="M2 56 L14 44" stroke="#E6F2E8" stroke-width="1.6"/><path d="M14 44 L30 28 L38 36 L22 52 Z" fill="#17261C" stroke="#3FF2DF" stroke-width="1.5"/><path d="M30 28 L46 12 a4 4 0 0 1 6 6 L38 36" fill="#0C1610" stroke="#3FF2DF" stroke-width="1.5"/><path d="M50 14 l6 -6" stroke="#E9FF3B" stroke-width="1.6"/><circle cx="2" cy="56" r="2" fill="#E9FF3B"/></svg>
-    <svg class="t-quill" viewBox="0 0 54 54"><path d="M3 51 C10 40 16 30 24 21 C31 13 40 6 51 2 C49 12 44 21 37 28 C30 35 21 41 12 45 Z" fill="#F6EBD0" stroke="#14151A" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 49 C17 34 31 18 49 4" fill="none" stroke="#14151A" stroke-width="1.2"/><path d="M24 21 l5 7 M30 15 l5 7 M36 10 l4 6 M18 28 l4 6" stroke="#14151A" stroke-width=".8" opacity=".55"/><path d="M1 53 L6 45 L9 48 Z" fill="#14151A"/></svg>
+    <svg class="t-quill" viewBox="0 0 54 54"><path d="M17 31 L43 5 a4.3 4.3 0 0 1 6.1 6.1 L23 37 Z" fill="#1d2a22" stroke="#14151A" stroke-width="1.3" stroke-linejoin="round"/><path d="M39 9 L29 19" stroke="#C9A227" stroke-width="2.2" stroke-linecap="round"/><path d="M11 37 L17 31 L23 37 L17 43 Z" fill="#14151A"/><path d="M2.5 51.5 L11 37 L17 43 Z" fill="#D9B54A" stroke="#14151A" stroke-width="1.2" stroke-linejoin="round"/><path d="M2.5 51.5 L12.6 41.6" stroke="#14151A" stroke-width=".9"/><circle cx="12.4" cy="41.8" r="1.1" fill="#14151A"/></svg>
     <svg class="t-thermo" viewBox="0 0 22 64"><rect x="7" y="2" width="8" height="46" rx="4" fill="rgba(12,22,16,.85)" stroke="#3FF2DF" stroke-width="1.4"/><rect class="mer" x="9.5" y="10" width="3" height="40" rx="1.5" fill="#3FF2DF"/><circle cx="11" cy="53" r="8" fill="#3FF2DF" stroke="#E6F2E8" stroke-width="1.2"/><path d="M15 12 h4 M15 20 h3 M15 28 h4 M15 36 h3" stroke="#9DB5A3" stroke-width="1"/></svg>
     <svg class="t-sat" viewBox="0 0 56 46"><rect x="1" y="6" width="40" height="38" rx="5" fill="#111E16" stroke="#3FF2DF" stroke-width="1.4"/><rect x="6" y="11" width="30" height="13" rx="2" fill="#0C1610" stroke="rgba(63,242,223,.4)"/><rect class="sb" x="8" y="19" width="4" height="3"/><rect class="sb" x="13" y="17" width="4" height="5"/><rect class="sb" x="18" y="15" width="4" height="7"/><rect class="sb" x="23" y="13" width="4" height="9"/><rect class="sb" x="28" y="12" width="4" height="10"/><circle cx="21" cy="34" r="5" fill="none" stroke="#E9FF3B" stroke-width="1.4"/><path d="M41 22 C50 20 54 12 55 2" stroke="#9DB5A3" stroke-width="1.6" fill="none"/></svg>
     <svg class="t-cam" viewBox="0 0 92 68"><path d="M2 16 V2 H16 M76 2 H90 V16 M90 52 V66 H76 M16 66 H2 V52" fill="none" stroke="#E6F2E8" stroke-width="2"/><circle class="rec" cx="12" cy="12" r="3" fill="#ff3b30"/><path d="M42 34 h8 M46 30 v8" stroke="#E6F2E8" stroke-width="1.2"/></svg>
@@ -946,7 +949,8 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 <!-- BÖLGELER -->
 <section class="zones in" id="bolgeler">
-  <div class="sh"><div class="sh-l"><h2 class="rgb" data-fx="chars">Are<span>as</span></h2><svg class="dish" id="dishT" viewBox="0 0 150 150" aria-hidden="true"><path class="d-st" d="M54 144 L64 104 L74 144 M44 144 H84 M64 104 L57 74"/><g id="dishR"><path class="d-w w1" d="M118 58 A16 16 0 0 1 118 82"/><path class="d-w w2" d="M128 50 A26 26 0 0 1 128 90"/><path class="d-w w3" d="M138 42 A36 36 0 0 1 138 98"/><path class="d-b" d="M60 26 C40 46 40 94 60 114 Z"/><path class="d-r" d="M60 26 C50 46 50 94 60 114"/><path class="d-a" d="M54 70 L100 70 M60 30 L100 70 M60 110 L100 70"/><rect class="d-l" x="99" y="63" width="14" height="14" rx="3"/><circle class="d-p" cx="56" cy="70" r="5"/></g></svg></div><p data-fx="rise">Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.</p></div>
+  <svg class="dish wm" id="dishT" viewBox="0 0 160 160" aria-hidden="true"><rect class="c-pl" x="142" y="52" width="14" height="56" rx="3"/><circle class="c-sc" cx="149" cy="60" r="1.8"/><circle class="c-sc" cx="149" cy="100" r="1.8"/><path class="d-st" d="M142 80 H124"/><g id="dishR"><path class="d-w w1" d="M58 68 A16 16 0 0 0 58 92"/><path class="d-w w2" d="M48 60 A26 26 0 0 0 48 100"/><path class="d-w w3" d="M38 52 A36 36 0 0 0 38 108"/><path class="d-b" d="M116 36 C136 56 136 104 116 124 Z"/><path class="d-r" d="M116 36 C126 56 126 104 116 124"/><path class="d-a" d="M122 80 L76 80 M116 40 L76 80 M116 120 L76 80"/><rect class="d-l" x="63" y="73" width="14" height="14" rx="3"/><circle class="d-p" cx="120" cy="80" r="5"/></g></svg>
+  <div class="sh sh-alt"><h2 class="rgb" data-fx="chars">Are<span>as</span></h2><p data-fx="rise">Ortaca, Dalaman, Köyceğiz and all their neighbourhoods, Dalyan included.</p></div>
   <div class="wrap">
     <svg class="map" id="map" viewBox="0 0 480 360" role="img" aria-label="Service areas: Dalyan, Ortaca, Dalaman, Köyceğiz"></svg>
     <div>
@@ -963,7 +967,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 
 <!-- TEKLİF -->
 <section class="teklif in" id="teklif" aria-label="Free quote">
-  <div class="sh"><h2 class="rgb" data-fx="chars">Job <span>ticket</span></h2><p data-fx="rise">Fill in the form and we'll call you. Free survey, clear quote.</p></div>
+  <div class="sh"><h2 class="rgb" data-fx="chars">Request <span>Form</span></h2><p data-fx="rise">Fill in the form and we'll call you. Free survey, clear quote.</p></div>
   <div class="tk-grid">
   <form class="fis" id="fis" data-gt-form novalidate>
     <div class="fis-h hud"><span>Free quote</span><span>Ticket no · <b id="fisNo">GT-0000</b></span></div>
@@ -987,7 +991,7 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <!-- MANİFESTO -->
 <section class="mani" id="maniSec" aria-label="Our approach">
   <div class="in" id="maniIn">
-    <div class="hud">— Measurement 01 · voltage tester</div>
+    <div class="hud">Keep scrolling down.</div>
     <p id="mani">Good work is <span class="gz">invisible:</span> the <span class="kw" data-c="#E9FF3B">light</span> comes on, the room <span class="kw" data-c="#3FF2DF">cools,</span> the <span class="kw" data-c="#E6F2E8">signal</span> arrives, the <span class="kw" data-c="#E0541A">camera</span> keeps watch, the <span class="kw" data-c="#C68A52">shelf</span> stays put. Every day, without a second thought, it all <span class="ok">just works.</span></p>
   </div>
   <div class="spark" id="spark"></div>
@@ -1067,6 +1071,6 @@ html.dark main .bigsw .pl,html.dark main .bigsw .rk{fill:#0c120e!important}
 <script src="/assets/gt/DrawSVGPlugin.min.js"></script>
 <script src="/assets/gt/MorphSVGPlugin.min.js"></script>
 <script src="/assets/gt/lenis.min.js"></script>
-<script src="/assets/gt/ana.js?v=17e62267"></script>
+<script src="/assets/gt/ana.js?v=63bf7640"></script>
 </body>
 </html>

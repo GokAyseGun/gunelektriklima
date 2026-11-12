@@ -61,7 +61,7 @@ PARCA = [
     ('Ölç<span>ü</span>m', 'Mea<span>su</span>re'),
     ('Saha <span>raporları</span>', 'Field <span>reports</span>'),
     ('Bölge<span>ler</span>', 'Are<span>as</span>'),
-    ('Arıza <span>kaydı</span>', 'Job <span>ticket</span>'),
+    ('Talep <span>Formu</span>', 'Request <span>Form</span>'),
     ('Sık<br>sorul<span>an</span>', 'Fre<span>que</span>ntly<br>asked'),
     ('Yolumuz bir çırak defteriyle başladı.<span class="sub" id="shiftS">Gün Teknik\'in defteri · 2010</span>',
      'Our road began with an apprentice\'s notebook.<span class="sub" id="shiftS">Gün Teknik\'s notebook · 2010</span>'),
@@ -179,7 +179,8 @@ METIN = {
     "Ücretsiz fiyat teklifi": "Free quote", "Adınız": "Your name", "Telefon": "Phone", "Hizmet türü": "Service", "Bölge": "Area", "Seçiniz…": "Choose…",
     "Açıklama (isteğe bağlı)": "Details (optional)", "Teklif iste, sizi arayalım": "Request a quote, we'll call you", "Işıkları kapatın": "Turn the lights off",
     # Manifesto
-    "— Ölçüm 01 · kontrol kalemi": "— Measurement 01 · voltage tester",
+    "Aşağı kaydırmaya devam edin.": "Keep scrolling down.",
+    "Sitemizde gezinmek için sadece aşağı doğru kaydırarak ilerleyiniz.": "To explore our site, simply keep scrolling down.",
     # SSS
     "Hangi bölgelere hizmet veriyorsunuz?": FAQ[0][0], "Ortaca, Dalaman, Köyceğiz ve bu ilçelere bağlı tüm mahallelere geliyoruz; Dalyan dahil.": FAQ[0][1],
     "Ne kadar sürede geliyorsunuz?": FAQ[1][0], "Dalyan ve Ortaca'ya 1 saat, Dalaman ve Köyceğiz'e 2 saat içinde ulaşmayı hedefliyoruz. 7/24 çalışıyoruz.": FAQ[1][1],

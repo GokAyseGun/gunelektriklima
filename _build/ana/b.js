@@ -117,7 +117,7 @@ const fig={
 };
 const DD={
   v220:{w:110,h:40,s:`<svg viewBox="0 0 110 40"><text x="0" y="30">220 V ~</text></svg>`,txt:1},
-  star:{w:40,h:40,s:`<svg viewBox="0 0 40 40"><path class="ink cu" d="M20 2 L24 16 L38 20 L24 24 L20 38 L16 24 L2 20 L16 16 Z"/></svg>`},
+  dish:{w:56,h:56,s:`<svg viewBox="0 0 60 60"><path class="ink" d="M12 14 C6 30 14 46 32 50 C24 40 18 26 12 14 Z"/><path class="ink" d="M18 32 L40 18 M38 14 L44 20 M24 48 L22 58 M14 58 H32"/><path class="ink cu" d="M46 10 A8 8 0 0 1 50 18 M50 4 A14 14 0 0 1 56 18"/></svg>`},
   arrow:{w:90,h:50,s:`<svg viewBox="0 0 90 50"><path class="ink" d="M4 40 C30 44 60 30 80 8 M80 8 l-12 2 M80 8 l-2 12"/></svg>`},
   flake:{w:56,h:56,s:`<svg viewBox="0 0 200 200"><path class="ink" style="stroke-width:7" d="${snowB}"/><path class="ink" style="stroke-width:7" d="M100 14 V186 M26 57 L174 143 M26 143 L174 57"/></svg>`},
   pvi:{w:120,h:40,s:`<svg viewBox="0 0 120 40"><text x="0" y="30">P = V · I</text></svg>`,txt:1}
@@ -126,24 +126,24 @@ const PAGES=[
  {run:"Gün Teknik'in defteri · I",
   ents:[{date:'Ankara · 2010–2016',h:'Çıraklık',p:"Hikayemiz Ankara'da; en iyi ustalardan biri olan Emre Kapan'ın yanında başladı. Tesisat çektik, arızaya gittik, çanaklar kurduk, ilk kamera sistemlerini bağladık. *Ölçmeden dokunmamayı* ve işi bulduğumuzdan temiz bırakmayı o yıllarda öğrendik. Bizi yetiştiren ustamıza derin saygı ve sevgiyle...",fig:fig.ankara},
         {date:'Antalya · 2016–2020',h:'Kalfalık',p:"Kalfalık yıllarımızı Antalya'nın sıcağında, sahada geçirdik. Elektriğin yanına *klimayı ekledik:* montaj, bakım, gaz, arıza. Bir sorunun tek bir parçada değil, bütün sistemde arandığını orada öğrendik.",fig:fig.antalya}],
-  dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
+  dd:[['v220','right:4%;top:8%'],['flake','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
   blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
  {run:"Gün Teknik'in defteri · II",
   ents:[{date:"Muğla · 2020'den bugüne",h:'Ustalık',p:"2020'de Muğla'ya geldik ve Gün Teknik'i burada büyüttük. Önce küçük bir ekiptik; işler çoğaldıkça *ekibimiz de giderek kalabalıklaştı.* Bugün Ortaca'dan Dalyan'a, Dalaman'dan Köyceğiz'e beş alanda tek ekip olarak çalışıyoruz.",fig:fig.mugla},
         {date:'Bugün',h:'Yolumuz sürüyor',p:"Sözlerimiz ilk günkü gibi: arızayı bulmadan parça değiştirmiyor, net fiyat vermeden işe başlamıyor, çalıştığımız yeri temiz bırakıyoruz. *Ve hâlâ öğreniyor, gelişiyor, geliştiriyoruz.*",fig:fig.bugun}],
-  dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['star','left:calc(var(--mg)/2 - 20px);top:58%']],
+  dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['dish','left:calc(var(--mg)/2 - 20px);top:58%']],
   blots:[['48%','12%',.8,.5]]}
 ];
 const PAGES_EN=[
  {run:"Gün Technic's notebook · I",
   ents:[{date:'Ankara · 2010–2016',h:'Apprenticeship',p:"Our story began in Ankara, at the side of Emre Kapan, one of the finest masters of the trade. We ran wiring, went out to faults, put up satellite dishes and connected our first camera systems. Those years taught us *never to touch before measuring* and to leave every job cleaner than we found it. With deep respect and love for the master who trained us...",fig:fig.ankara},
         {date:'Antalya · 2016–2020',h:'Journeyman years',p:"We spent our journeyman years out in the field, in the Antalya heat. Next to electrics *we added air conditioning:* installation, servicing, gas, repairs. That is where we learned a fault is found in the whole system, not in a single part.",fig:fig.antalya}],
-  dd:[['v220','right:4%;top:8%'],['star','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
+  dd:[['v220','right:4%;top:8%'],['flake','left:calc(var(--mg)/2 - 20px);top:34%'],['arrow','right:4%;bottom:7%']],
   blots:[['62%','46%',1.0,.38],['calc(var(--mg)/2 - 8px)','70%',.7,.82]]},
  {run:"Gün Technic's notebook · II",
   ents:[{date:"Muğla · 2020 to today",h:'Master craftsmen',p:"In 2020 we came to Muğla and grew Gün Technic here. We started as a small team; as the work grew, *so did the team.* Today we work as one team across five trades, from Ortaca to Dalyan and from Dalaman to Köyceğiz.",fig:fig.mugla},
         {date:'Today',h:'The road goes on',p:"Our promises are the same as on day one: we don't replace parts before finding the fault, we don't start before giving a clear price, and we leave the place clean. *And we are still learning, growing and improving.*",fig:fig.bugun}],
-  dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['star','left:calc(var(--mg)/2 - 20px);top:58%']],
+  dd:[['flake','right:5%;top:8%'],['pvi','right:6%;bottom:8%'],['dish','left:calc(var(--mg)/2 - 20px);top:58%']],
   blots:[['48%','12%',.8,.5]]}
 ];
 if(EN)PAGES.splice(0,PAGES.length,...PAGES_EN);
@@ -161,7 +161,7 @@ stage.innerHTML=`<div class="stack" id="stack"></div>`+PAGES.map((p,i)=>`<articl
   <div class="no">s. ${i+1}</div></article>`).join('')+
   `<svg id="flap" aria-hidden="true"><defs><linearGradient id="flg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E5C2"/><stop offset=".55" stop-color="#E2CC98"/><stop offset="1" stop-color="#C8AE76"/></linearGradient><filter id="fls" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="-6" dy="8" stdDeviation="10" flood-color="#3C2A0A" flood-opacity=".38"/></filter></defs><polygon id="shade" fill="rgba(60,42,10,.22)"/><polygon id="flapP" fill="url(#flg)" filter="url(#fls)"/><line id="crease" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/></svg>
   <div class="inkwell" id="inkwell"><svg viewBox="0 0 48 56"><path d="M8 20 h32 l4 30 a4 4 0 0 1 -4 4 h-32 a4 4 0 0 1 -4 -4 z" fill="#2b2a30" stroke="#14151A" stroke-width="1.5"/><rect x="16" y="10" width="16" height="10" rx="2" fill="#3a3830" stroke="#14151A" stroke-width="1.5"/><rect id="inkLv" x="9" y="30" width="30" height="22" fill="#0b0b10"/><path d="M12 26 q2 12 0 22" stroke="rgba(255,255,255,.25)" stroke-width="2" fill="none"/><ellipse cx="24" cy="11" rx="7" ry="2.4" fill="#0b0b10"/><circle id="inkRp" cx="24" cy="11" r="2" fill="none" stroke="#8a88a0" stroke-width="1" opacity="0"/></svg></div>
-  <div class="blot" id="blot"></div><div class="nib" id="nib">${$('.t-quill').outerHTML.replace('class="t-quill"','')}</div>
+  <div class="blot" id="blot"></div><div class="nib" id="nib"><svg viewBox="0 0 54 54"><path d="M3 51 C10 40 16 30 24 21 C31 13 40 6 51 2 C49 12 44 21 37 28 C30 35 21 41 12 45 Z" fill="#F6EBD0" stroke="#14151A" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 49 C17 34 31 18 49 4" fill="none" stroke="#14151A" stroke-width="1.2"/><path d="M24 21 l5 7 M30 15 l5 7 M36 10 l4 6 M18 28 l4 6" stroke="#14151A" stroke-width=".8" opacity=".55"/><path d="M1 53 L6 45 L9 48 Z" fill="#14151A"/></svg></div>
   <div class="bk-hud"><span id="bkN">Sayfa 1 / ${PAGES.length}</span><span class="bar"><i id="bkBar"></i></span></div>`;
 
 /* Kanal arka yüzü (tüm liste) */
@@ -202,18 +202,54 @@ const vel=()=>lenis?lenis.velocity:0;
 const hz=ms=>{try{if(navigator.vibrate&&(!navigator.userActivation||navigator.userActivation.hasBeenActive))navigator.vibrate(ms);}catch(e){}};
 const paperOn=()=>R.classList.contains('paper-on');
 const S=(function(){
-  /* Tek ses: koyu bölümlerde 160 Hz'lik saf bir sinüs, kaydırınca 240 Hz'e kadar yükselir.
-     Defterde 110 Hz'lik, daha kısık ve yumuşak bir sinüs, kaydırınca 150 Hz'e kadar. Harmonik, bas, filtre yok.
-     Glitch'te aynı ton kesik kesik bozulur. Küçük düğme sesleri kısa ve hafiftir. */
-  let ac=null,master,chop,dk,dkG,pp,ppG,on=false,spd=0,lastFlk=0,bootT=-9;
+  /* Müzik: kendi sentezimiz (dosya yok). Derin uzay ambiyansı: pad, alt bas, yavaş arpej, uzak çanlar, yankı ve gecikme.
+     Bölüme göre ton ve doku değişir (değişim ölçü başında, yumuşak). Kaydırma hızı tempoyu artırır.
+     Defterde org tınılı, saat tikli, yumuşak bir ostinato (özgün motif). Glitch'te müzik kesik kesik bozulur.
+     Düğme, çivi, bip gibi küçük efektler ayrı kalır. */
+  let ac=null,master,chop,musIn,musF,musG,rvS,dlS,noise,on=false,spd=0,lastFlk=0,bootT=-9;
+  const MS={
+    hero:{r:38,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[3,5,0],[6,1,3]],bpm:60,dv:2,cut:900,arp:.045,bell:.14},
+    svc:{r:41,s:[0,2,4,6,7,9,11],p:[[0,2,4],[1,3,5],[4,6,1],[5,0,2]],bpm:68,dv:4,cut:1500,arp:.035,bell:.16},
+    proc:{r:36,s:[0,2,3,5,7,9,10],p:[[0,2,4],[3,5,0],[4,6,1],[0,2,4]],bpm:72,dv:4,cut:1200,arp:.03,bell:.06,pulse:1},
+    glow:{r:40,s:[0,2,4,7,9],p:[[0,1,2],[3,4,1],[2,3,0],[4,0,2]],bpm:62,dv:2,cut:1800,arp:.04,bell:.3},
+    dark:{r:43,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[6,1,3],[4,6,1]],bpm:56,dv:2,cut:650,arp:.03,bell:.08},
+    paper:{r:45,s:[0,2,3,5,7,8,10],p:[[0,2,4],[5,0,2],[3,5,0],[4,6,1]],bpm:54,dv:2,cut:2400,arp:0,bell:0,organ:1}
+  };
+  const SECT=[['bas','hero'],['hizmetler','svc'],['surec','proc'],['olcum','glow'],['yorumlar','glow'],['bolgeler','glow'],['teklif','dark'],['maniSec','dark'],['mq','dark'],['sss','dark'],['shift','dark']];
+  let scK='hero',pendK='hero',sc=MS.hero,nT=0,stp=0,bar=0,chord=MS.hero.p[0],fr=0;
   const gain=v=>{const g=ac.createGain();g.gain.value=v;return g;};
+  const mtof=m=>440*Math.pow(2,(m-69)/12);
+  const nota=(d,o)=>{const L=sc.s.length;return mtof(sc.r+12*(o+Math.floor(d/L))+sc.s[((d%L)+L)%L]);};
+  function ir(sec){const n=ac.sampleRate*sec|0,b=ac.createBuffer(2,n,ac.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.8);}return b;}
+  function ses(f,t,dur,o){const x=ac.createOscillator(),g=gain(0);x.type=o.type||'sine';x.frequency.value=f;if(o.det)x.detune.value=o.det;x.connect(g);g.connect(musIn);
+    if(o.rv){const r=gain(o.rv);g.connect(r);r.connect(rvS);}if(o.dl){const q=gain(o.dl);g.connect(q);q.connect(dlS);}
+    const a=o.att||.01,rl=o.rel||.5;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(o.vol,t+a);g.gain.setTargetAtTime(0,t+a+dur,rl/3);x.start(t);x.stop(t+a+dur+rl*2);}
+  function org(f,t,dur,vol){[[1,1],[2,.55],[3,.32],[4,.2],[6,.09]].forEach(([h,a])=>ses(f*h,t,dur,{vol:vol*a,att:.06,rel:.7,rv:.75}));}
+  function tik(t,v){const b=ac.createBufferSource(),h=ac.createBiquadFilter(),g=gain(0);b.buffer=noise;h.type='highpass';h.frequency.value=3500;b.connect(h).connect(g).connect(musIn);
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.035);b.start(t);b.stop(t+.05);}
+  function olcu(t,len){chord=sc.p[bar%sc.p.length];bar++;
+    if(sc.organ){org(nota(chord[0],-1),t,len*.95,.03);return;}
+    chord.forEach((d,k)=>{const f=nota(d,0);ses(f,t,len*.7,{type:'sawtooth',vol:.016,att:len*.35,rel:len*.8,rv:.85,det:-7});ses(f,t,len*.7,{type:'sawtooth',vol:.016,att:len*.35,rel:len*.8,rv:.85,det:7});});
+    ses(nota(chord[0],-1),t,len*.8,{vol:.07,att:1.2,rel:1.6});}
+  function adim(t,sd,k){const beat=k%sc.dv===0;
+    if(sc.organ){const o=[nota(chord[0],1),nota(chord[2],1),nota(chord[1],1),nota(chord[2],1)];org(o[k%4],t,sd*.85,.017);if(beat)tik(t,.03);return;}
+    if(sc.pulse)ses(nota(chord[0],0),t,sd*.4,{vol:.03,att:.004,rel:.25,rv:.3});
+    if(k%2===0||Math.random()<.35+spd*.5){const idx=(k>>(sc.dv>2?0:1))%6,d=chord[idx%3]+(idx>2?7:0);ses(nota(d,2),t,.05,{type:'triangle',vol:sc.arp,att:.005,rel:1.3,rv:.55,dl:.45});}
+    if(beat&&Math.random()<sc.bell)ses(nota(chord[(Math.random()*3)|0],3),t,.02,{vol:.028,att:.003,rel:3.2,rv:.9,dl:.5});}
+  function sched(){if(!on||!ac||FD.off)return;const t=ac.currentTime;if(nT<t)nT=t+.06;
+    while(nT<t+.16){const sd=60/(sc.bpm*(1+spd*.9))/sc.dv,spb=4*sc.dv,k=stp%spb;
+      if(k===0){if(pendK!==scK){scK=pendK;sc=MS[scK];}olcu(nT,sd*spb);}
+      adim(nT,sd,k);nT+=sd;stp++;}}
   function init(){
     ac=new (W.AudioContext||W.webkitAudioContext)();
     const lim=ac.createDynamicsCompressor();lim.threshold.value=-3;lim.knee.value=0;lim.ratio.value=8;lim.attack.value=.003;lim.release.value=.15;
     master=gain(0);master.connect(lim);lim.connect(ac.destination);
     chop=gain(1);chop.connect(master);
-    dk=ac.createOscillator();dk.type='sine';dk.frequency.value=160;dkG=gain(0);dk.connect(dkG).connect(chop);dk.start();
-    pp=ac.createOscillator();pp.type='sine';pp.frequency.value=110;ppG=gain(0);pp.connect(ppG).connect(master);pp.start();
+    musIn=gain(1);musF=ac.createBiquadFilter();musF.type='lowpass';musF.frequency.value=900;musF.Q.value=.6;musG=gain(0);musIn.connect(musF);musF.connect(musG);musG.connect(chop);
+    const cv=ac.createConvolver();cv.buffer=ir(4.8);rvS=gain(1);rvS.connect(cv);const rr=gain(.6);cv.connect(rr);rr.connect(musIn);
+    const dl=ac.createDelay(2);dl.delayTime.value=.42;const fb=gain(.38),df=ac.createBiquadFilter();df.type='lowpass';df.frequency.value=1800;dlS=gain(1);dlS.connect(dl);dl.connect(df);df.connect(fb);fb.connect(dl);const dr=gain(.35);df.connect(dr);dr.connect(musIn);
+    noise=ac.createBuffer(1,ac.sampleRate*.06|0,ac.sampleRate);const nd=noise.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+    setInterval(sched,30);
   }
   function tone(f1,f2,type,peak,dur,a){const o=ac.createOscillator(),g=gain(0),t=ac.currentTime;o.type=type;o.frequency.setValueAtTime(f1,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
     g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+(a||.004));g.gain.exponentialRampToValueAtTime(.0001,t+(a||.004)+dur);o.connect(g).connect(master);o.start();o.stop(t+dur+.1);}
@@ -221,13 +257,11 @@ const S=(function(){
   return {
     toggle(){if(!ac)init();on=!on;if(on)ac.resume();master.gain.setTargetAtTime(on?1:0,ac.currentTime,.25);return on;},
     tick(){if(!on)return;const t=ac.currentTime,v=Math.min(1,Math.abs(vel())/35),mob=TOUCH?1.5:1,pap=paperOn(),E=FD.E;spd+=(v-spd)*.05;
+      if(++fr%15===0){let k='hero';if(pap)k='paper';else{const y=innerHeight/2;for(const [id,n] of SECT){const el=D.getElementById(id);if(!el)continue;const r=el.getBoundingClientRect();if(r.top<=y&&r.bottom>=y){k=n;break;}}}pendK=k;}
       const live=!FD.off,bf=Math.min(1,Math.max(0,(t-bootT-1.1)/1.3));
-      dkG.gain.setTargetAtTime(live&&!pap?.15*mob*bf:0,t,.35);
-      const wob=E>.02?1+(Math.random()-.5)*E*.3:1;
-      dk.frequency.setTargetAtTime(160*(1+spd*.5)*wob,t,E>.02?.006:.2);
-      chop.gain.setTargetAtTime(E>.03&&Math.random()<E*.5?.05:1,t,.004);
-      ppG.gain.setTargetAtTime(live&&pap?.085*mob*bf:0,t,.6);
-      pp.frequency.setTargetAtTime(110*(1+spd*.36),t,.35);},
+      musG.gain.setTargetAtTime(live?(scK==='paper'?.3:.36)*mob*bf:0,t,.5);
+      musF.frequency.setTargetAtTime(E>.03?200+Math.random()*3200:sc.cut*(1+spd*1.3),t,E>.03?.005:.35);
+      chop.gain.setTargetAtTime(E>.03&&Math.random()<E*.5?.05:1,t,.004);},
     hover(){if(!ok())return;paperOn()?tone(440,0,'sine',.02,.14,.01):tone(1800+Math.random()*400,0,'triangle',.028,.03);},
     click(){if(!ok())return;paperOn()?tone(330,0,'sine',.045,.25,.01):tone(150,70,'sine',.16,.12);},
     flick(){if(!ok())return;const n=performance.now();if(n-lastFlk<40)return;lastFlk=n;tone(2600+Math.random()*700,0,'square',.018,.015);tone(160,0,'sine',.05,.05);},
@@ -240,7 +274,7 @@ const S=(function(){
     off(){if(on)tone(160,40,'sine',.18,.6);},
     pwr(){if(!on)return;[0,.12,.2,.34].forEach(d=>setTimeout(()=>tone(160,0,'sine',.1,.05),d*1000));},
     /* ışık geri gelince: röle tıkı, kısa cızırtılar, 40 Hz'den ana tona yükselen dalga; ana ton arkasından yavaşça girer */
-    boot(){if(!on)return;const t=ac.currentTime,f=paperOn()?110:160;bootT=t;
+    boot(){if(!on)return;const t=ac.currentTime,f=mtof(sc.r+12);bootT=t;
       [0,.06,.55].forEach(d=>setTimeout(()=>{tone(2400,0,'square',.022,.012);tone(120,60,'sine',.12,.08);},d*1000));
       for(let i=0;i<7;i++)setTimeout(()=>tone(1700+Math.random()*1600,0,'square',.012,.01),90+Math.random()*700);
       const o=ac.createOscillator(),g=gain(0);o.type='sine';o.frequency.setValueAtTime(40,t);o.frequency.exponentialRampToValueAtTime(f,t+1.5);
@@ -460,6 +494,7 @@ if(FINE){
 const kTemp=$('#kTemp'),bub=$('#bub'),bars=$$('#hizmetler .ch[data-i="3"] .bar');let svcAct=false,liveI=0;
 let autoSig=0,liveT=0,lastLive=0;
 gsap.ticker.add(()=>{if(kaydir)kaydir.tick(svcAct);});
+const navNot=$('#navNot');if(navNot)gsap.ticker.add(()=>navNot.classList.toggle('gz',FD.heroP>.04||scrollY>innerHeight*.5));
 // yana kaydırma denenirse işaret sallanır
 addEventListener('wheel',e=>{if(svcAct&&kaydir&&Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>4)kaydir.nudge();},{passive:true});
 (function(){let sx=0,sy=0;addEventListener('touchstart',e=>{const p=e.touches[0];sx=p.clientX;sy=p.clientY;},{passive:true});
@@ -757,19 +792,19 @@ else{
 /* ════════ BÖLGELER: radar ortada, şimşek ════════ */
 (function(){
   const sec=$('#bolgeler'),map=$('#map'),lis=$$('#zlist li');
-  izle($('#dishT'),$('#dishR'),56,70,150,{base:-40,d:.9});
+  izle($('#dishT'),$('#dishR'),120,80,160,{base:200,off:180,d:.9});
   autoFx(sec.querySelector('.sh'));autoFx(sec.querySelector('.wrap>div'));
   const nodes=$$('.node',map),bolt=$('#mBolt'),wire=$('#mWire'),sweep=$('#mSweep');
   const pt=(x,y)=>{const m=map.getScreenCTM();if(!m)return {x:0,y:0};const p=map.createSVGPoint();p.x=x;p.y=y;return p.matrixTransform(m);};
   const tp=tap(sec,s=>{const a=pt(-30,150);return hline(railX0()-s.left,a.y-s.top,a.x-s.left);});
   life(map,(tl,a,d)=>{tp.inTl(tl,a,d*.5);
-      tl.fromTo('#mSea',{opacity:0},{opacity:1,duration:d*.5},a).fromTo('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'0%'},{drawSVG:'100%',duration:d*.7,stagger:{amount:d*.2},ease:'power1.inOut'},a)
-        .fromTo('#mRadar',{scale:.2,opacity:0,transformOrigin:`${MC[0]}px ${MC[1]}px`},{scale:1,opacity:1,duration:d*.6,ease:'expo.out'},a+d*.2)
-        .fromTo(wire,{autoRound:false,strokeDashoffset:1,strokeDasharray:'1 1'},{autoRound:false,strokeDashoffset:0,duration:d*.4},a+d*.45)
-        .fromTo(nodes,{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:d*.3,stagger:{amount:d*.25},ease:'back.out(2.5)'},a+d*.5)
-        .fromTo('.map .lbl',{opacity:0},{opacity:1,duration:d*.3},a+d*.6);},
+      tl.fromTo('#mSea',{opacity:0},{opacity:1,duration:d*.4},a).fromTo('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'0%'},{drawSVG:'100%',duration:d*.5,stagger:{amount:d*.25},ease:'power1.inOut'},a+d*.05)
+        .fromTo('#mRadar',{scale:.2,opacity:0,transformOrigin:`${MC[0]}px ${MC[1]}px`},{scale:1,opacity:1,duration:d*.45,ease:'power2.out'},a+d*.3)
+        .fromTo(wire,{autoRound:false,strokeDashoffset:1,strokeDasharray:'1 1'},{autoRound:false,strokeDashoffset:0,duration:d*.3},a+d*.5)
+        .fromTo(nodes,{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:d*.22,stagger:{amount:d*.3},ease:'back.out(2.5)'},a+d*.6)
+        .fromTo('.map .lbl',{opacity:0},{opacity:1,duration:d*.3},a+d*.75);},
     (tl,a,d)=>{tl.to(nodes,{scale:0,duration:d*.3,stagger:{amount:d*.2,from:'end'},immediateRender:false},a).to(wire,{autoRound:false,strokeDashoffset:-1,duration:d*.4,immediateRender:false},a)
-        .to('#mRadar',{scale:.2,opacity:0,duration:d*.5,immediateRender:false},a+d*.2).to('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'100% 100%',duration:d*.6,immediateRender:false},a+d*.3).to('#mSea,.map .lbl',{opacity:0,duration:d*.4,immediateRender:false},a+d*.5);tp.outTl(tl,a,d*.6);});
+        .to('#mRadar',{scale:.2,opacity:0,duration:d*.5,immediateRender:false},a+d*.2).to('#mCoast,#mLake,.map .riv,.map .road',{drawSVG:'100% 100%',duration:d*.6,immediateRender:false},a+d*.3).to('#mSea,.map .lbl',{opacity:0,duration:d*.4,immediateRender:false},a+d*.5);tp.outTl(tl,a,d*.6);},{s0:.02,ein:1,eout:.3});
   life($('#zlist'),(tl,a,d)=>{tl.fromTo(lis,{opacity:0,x:60,clipPath:'inset(0% 100% 0% 0%)'},{opacity:1,x:0,clipPath:'inset(0% 0% 0% 0%)',duration:d*.6,stagger:{amount:d*.35},ease:'power2.out'},a);},
     (tl,a,d)=>{tl.to(lis,{opacity:0,x:-40,clipPath:'inset(0% 0% 0% 100%)',duration:d*.6,stagger:{amount:d*.35,from:'end'},ease:'power1.in'},a);});
   const on=i=>lis.forEach(l=>l.classList.toggle('on',+l.dataset.z===i));
@@ -937,7 +972,7 @@ else{
 /* ════════ DEFTER ════════ */
 (function(){
   const pages=$$('.page',stage),flapP=$('#flapP'),shade=$('#shade'),crease=$('#crease'),flapSvg=$('#flap'),blot=$('#blot'),nib=$('#nib'),stack=$('#stack'),well=$('#inkwell'),lv=$('#inkLv'),rp=$('#inkRp');
-  const writer=FINE?blot:nib;
+  const writer=nib;
   let SW=1,SH2=1;
   const rs=()=>{SW=pages[0].offsetWidth;SH2=pages[0].offsetHeight;flapSvg.setAttribute('viewBox',`0 0 ${stage.clientWidth} ${stage.clientHeight}`);};rs();addEventListener('resize',rs);
   const setStack=n=>{let s=[];for(let i=1;i<=n;i++)s.push(`${i}px ${(i*.8).toFixed(1)}px 0 ${i%2?'#E2CC98':'#b99d62'}`);stack.style.boxShadow=s.join(',');};
