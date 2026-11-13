@@ -187,7 +187,9 @@ ScrollTrigger.config({ignoreMobileResize:true});
 /* ════════ YUMUŞAK KAYDIRMA ════════ */
 let lenis=null;const VMAX=1000,wHist=[];let wLast=-1e9,wAct=false;
 if(W.Lenis){
-  lenis=new Lenis({lerp:.075,wheelMultiplier:.9,touchMultiplier:1.2,smoothWheel:true,syncTouch:true,syncTouchLerp:.075,touchInertiaMultiplier:30});
+  lenis=new Lenis({lerp:.075,wheelMultiplier:.9,touchMultiplier:1.2,smoothWheel:true,syncTouch:true,syncTouchLerp:.075,touchInertiaMultiplier:30,
+    // mobil: yana kayan branş şeridinde yatay çekiş dikey kaydırmaya çevrilir (sağdan sola → aşağı, soldan sağa → yukarı)
+    virtualScroll:d=>{if(TOUCH&&svcAct&&d.event.type.includes('touch')&&Math.abs(d.deltaX)>Math.abs(d.deltaY)){d.deltaY=d.deltaX;d.deltaX=0;}return true;}});
   // hız tavanı (her cihazda 1000 px/sn): hedef, o anki konumun en fazla G piksel önünde tutulur (lerp ile ≈ VMAX px/sn).
   // Masaüstü: tavanı aşan tekerlek hareketi biriktirilmez (en fazla ~0,2 sn'lik pay). Tekerlek 0,1 sn durursa site o anki hızından 0,5 sn'de yumuşakça durur.
   // Dokunmatik: parmak sürüklemesi yumuşak takip eder (lerp .075), fırlatmada biriken mesafe en fazla 1,5 ekran.
