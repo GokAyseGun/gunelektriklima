@@ -527,6 +527,23 @@ if(FINE){
   const ink=$('#ink'),ic=ink.getContext('2d');let lx=null,ly=null,px=-99,py=-99,frame=0,vx=0,schC=null,inkDirty=false;const parts=[],segs=[],INK_MS=6000;
   const isz=()=>{const d=Math.min(devicePixelRatio||1,2);ink.width=innerWidth*d;ink.height=innerHeight*d;ic.setTransform(d,0,0,d,0,0);};isz();addEventListener('resize',isz);
   setMode=m=>{if(m===inst.mode)return;inst.mode=m;c.dataset.m=m;lx=ly=null;ink.classList.toggle('on',m==='quill'||m==='thermo');};
+  /* Mürekkep lekesi: defterden sonra imleç damlaya döner, zemine füme leke bırakır. Lekeler silinmez (sayfa yenilenene kadar). */
+  const leke=$('#leke'),lc=leke&&!TOUCH?leke.getContext('2d'):null;let lkTop=0,lkAcc=0,lkIdle=0,lkR=6,lkX=0,lkY=0;
+  const lkOlc=()=>{if(!lc)return;const sn=$('#son');if(!sn)return;const top=Math.round(sn.getBoundingClientRect().top+scrollY),w=D.documentElement.clientWidth;
+    leke.style.height='0px';const hh=Math.max(1,D.documentElement.scrollHeight-top);if(top===lkTop&&leke.width===w&&leke.height===hh){leke.style.height=hh+'px';return;}
+    let old=null;if(leke.width>1&&leke.height>1){old=D.createElement('canvas');old.width=leke.width;old.height=leke.height;old.getContext('2d').drawImage(leke,0,0);}
+    lkTop=top;leke.style.top=top+'px';leke.width=w;leke.height=hh;leke.style.height=hh+'px';if(old)lc.drawImage(old,0,0);};
+  if(lc){lkOlc();addEventListener('resize',lkOlc);addEventListener('load',lkOlc);if(W.ScrollTrigger)ScrollTrigger.addEventListener('refresh',lkOlc);}
+  function damla(x,y,r,a){const g=lc.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`rgba(46,44,54,${(a*.5).toFixed(3)})`);g.addColorStop(.68,`rgba(46,44,54,${(a*.38).toFixed(3)})`);g.addColorStop(.9,`rgba(24,23,30,${(a*.8).toFixed(3)})`);g.addColorStop(1,'rgba(24,23,30,0)');
+    lc.fillStyle=g;lc.beginPath();const n=16;for(let i=0;i<=n;i++){const t=i/n*Math.PI*2,rr=r*(.84+Math.random()*.24);const X=x+Math.cos(t)*rr,Y=y+Math.sin(t)*rr;i?lc.lineTo(X,Y):lc.moveTo(X,Y);}lc.closePath();lc.fill();}
+  function serp(x,y,a){const n=3+(Math.random()*5|0);for(let k=0;k<n;k++){const t=Math.random()*Math.PI*2,d=6+Math.random()*22;damla(x+Math.cos(t)*d,y+Math.sin(t)*d,.8+Math.random()*2.6,a);}}
+  function lekeAt(X,Y,sp,mx,my){if(!lc)return;const x=X,y=Y+scrollY-lkTop;lkIdle=0;lkR=6;lkX=x;lkY=y;if(y<0||y>leke.height)return;lkAcc+=sp;
+    if(lkAcc<9)return;lkAcc=0;const r=Math.max(2.5,9-sp*.18);damla(x,y,r,.55);if(Math.random()<.14)serp(x,y,.7);
+    if(sp>18&&Math.random()<.35){const ux=mx/sp,uy=my/sp;for(let k=1;k<5;k++)damla(x+ux*k*5,y+uy*k*5,r*(1-k*.17),.45);}}
+  // imleç dururken leke yavaşça yayılır; zamanla koca bir gölleye dönüşebilir
+  if(lc)gsap.ticker.add(()=>{if(inst.mode!=='drop')return;if(++lkIdle<15)return;const y=py+scrollY-lkTop;if(y<0||y>leke.height)return;
+    if(lkIdle%4===0){lkR=Math.min(90,lkR+1.1);damla(px,y,lkR,.07);if(Math.random()<.05)serp(px,y,.35);}});
   const pick=()=>{if(px<0)return;const el=D.elementFromPoint(px,py);const h=el&&el.closest?el.closest('[data-cur]'):null;let m=h?h.dataset.cur:'def';
     if(m==='def'&&paperOn())m='quill';if(FD.off)m='def';setMode(m);
     const cd=el&&el.closest&&el.closest('.ch');inst.card=cd?+cd.dataset.i:0;schC=cd?cd.querySelector('.sch'):null;c.classList.toggle('hot',!!(el&&el.closest&&el.closest('a,button,summary,.node,input,select,textarea')));};
@@ -534,6 +551,7 @@ if(FINE){
     xR(X);yR(Y);xT(X);yT(Y);pick();
     const m=inst.mode;
     if(m==='quill')rT(gsap.utils.clamp(-14,14,dx*.6));else rT(0);
+    if(m==='drop')lekeAt(X,Y,Math.hypot(dx,e.movementY||0),dx,e.movementY||0);
     if(m==='quill'){if(lx!==null){const sp=Math.hypot(X-lx,Y-ly);if(sp>.5)segs.push([lx,ly,X,Y,Math.max(.6,2.4-sp*.04),performance.now()]);}lx=X;ly=Y;}
     if(m==='kbd'){kbN+=Math.abs(dx)+Math.abs(e.movementY||0);if(kbN>34){kbN=0;kbBas();}}
     if(m==='thermo'&&Math.random()<.7)parts.push({x:X+(Math.random()-.5)*18,y:Y+6,vx:(Math.random()-.5)*.6,vy:.4+Math.random()*.9,l:1});
