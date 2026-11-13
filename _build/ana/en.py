@@ -87,7 +87,7 @@ SECENEK = {
 
 # ── Tek başına duran metinler (etiketler arası, birebir) ───────────────────
 METIN = {
-    "7/24 HİZMETİNİZDEYİZ": "AT YOUR SERVICE 24/7", "Hizmetler": "Services", "Süreç": "Process", "Bölgeler": "Areas", "Teklif": "Quote", "Hikâye": "Story",
+    "7/24 HİZMETİNİZDE": "HERE FOR YOU 24/7", "YAVAŞLAYIN": "SLOW DOWN", "Hizmetler": "Services", "Süreç": "Process", "Bölgeler": "Areas", "Teklif": "Quote", "Hikâye": "Story",
     "IŞIK": "LIGHT", "SES": "SOUND", "Karanlıkta mı kaldınız?": "Left in the dark?",
     "Tüm arıza ve tamirat işleriniz için; 7/24 hizmetinizdeyiz. Genel elektrik kesintileri için lütfen 186 numarasını arayın.":
         "For every fault and repair, we are here 24/7. For area-wide power cuts, please call 186.",

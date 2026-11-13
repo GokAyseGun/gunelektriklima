@@ -185,14 +185,25 @@ gsap.defaults({ease:'power3.out'});
 ScrollTrigger.config({ignoreMobileResize:true});
 
 /* ════════ YUMUŞAK KAYDIRMA ════════ */
-let lenis=null;
+let lenis=null;const VMAX=1000,wHist=[];let wLast=-1e9,wAct=false;
 if(W.Lenis){
   lenis=new Lenis({lerp:.075,wheelMultiplier:.9,touchMultiplier:1.2,smoothWheel:true,syncTouch:true,syncTouchLerp:.075,touchInertiaMultiplier:30});
-  // hız tavanı: hedef, o anki konumun en fazla G piksel önünde tutulur (lerp ile ≈ VMAX px/sn); kalan mesafe kaybolmaz, sırayla verilir.
-  // Tavan her cihazda 1000 px/sn. Dokunmatikte parmak sürüklemesi de yumuşak takip eder (lerp .075), fırlatmada biriken mesafe en fazla 1,5 ekran.
-  const VMAX=1000,G=VMAX/((1-Math.exp(-.075))*60),sTo=lenis.scrollTo.bind(lenis);let want=null,lastNT=null;
-  lenis.scrollTo=(t,o={})=>{if(o.programmatic===false&&typeof t==='number'){if(TOUCH)o={...o,lerp:.075};const base=want??lenis.targetScroll,c=lenis.animatedScroll;want=clamp(0,lenis.limit,base+(t-lenis.targetScroll));if(TOUCH)want=clamp(c-innerHeight*1.5,c+innerHeight*1.5,want);const r=sTo(c+clamp(-G,G,want-c),o);lastNT=lenis.targetScroll;return r;}want=null;lastNT=null;return sTo(t,o);};
-  gsap.ticker.add(()=>{if(want===null)return;
+  // hız tavanı (her cihazda 1000 px/sn): hedef, o anki konumun en fazla G piksel önünde tutulur (lerp ile ≈ VMAX px/sn).
+  // Masaüstü: tavanı aşan tekerlek hareketi biriktirilmez (en fazla ~0,2 sn'lik pay). Tekerlek 0,1 sn durursa site o anki hızından 0,5 sn'de yumuşakça durur.
+  // Dokunmatik: parmak sürüklemesi yumuşak takip eder (lerp .075), fırlatmada biriken mesafe en fazla 1,5 ekran.
+  const G=VMAX/((1-Math.exp(-.075))*60),PAY=VMAX*.2,sTo=lenis.scrollTo.bind(lenis);let want=null,lastNT=null;
+  lenis.scrollTo=(t,o={})=>{if(o.programmatic===false&&typeof t==='number'){const d=t-lenis.targetScroll,c=lenis.animatedScroll;
+      if(TOUCH)o={...o,lerp:.075};else{const now=performance.now();wHist.push([now,Math.abs(d)]);wLast=now;wAct=true;}
+      const base=want??lenis.targetScroll;want=clamp(0,lenis.limit,base+d);
+      want=TOUCH?clamp(c-VH*1.5,c+VH*1.5,want):clamp(c-G-PAY,c+G+PAY,want);
+      const r=sTo(c+clamp(-G,G,want-c),o);lastNT=lenis.targetScroll;return r;}
+    want=null;lastNT=null;wAct=false;return sTo(t,o);};
+  gsap.ticker.add(()=>{
+    // masaüstü fren: tekerlek durunca birikim yok, 0,5 sn'de yumuşak duruş (ease-out: başlangıç hızı = o anki hız)
+    if(!TOUCH&&wAct&&performance.now()-wLast>100){wAct=false;want=null;lastNT=null;
+      const v=vel()*60/(gsap.ticker.deltaRatio(60)||1),c=lenis.animatedScroll,dist=v*.25;
+      if(Math.abs(dist)>2)sTo(clamp(0,lenis.limit,c+dist),{duration:.5,easing:t=>1-(1-t)*(1-t)});return;}
+    if(want===null)return;
     // kaydırma çubuğu, klavye ya da bağlantıyla dışarıdan atlanırsa bekleyen hedefi bırak
     if(lastNT!==null&&Math.abs(lenis.targetScroll-lastNT)>2){want=null;lastNT=null;return;}
     const c=lenis.animatedScroll;if(Math.abs(want-c)<1){want=null;lastNT=null;return;}const nt=c+clamp(-G,G,want-c);if(Math.abs(nt-lenis.targetScroll)>.5){sTo(nt,{programmatic:false,lerp:.075});lastNT=lenis.targetScroll;}});
@@ -418,14 +429,18 @@ let docked=false;
 function dock(on){if(on===docked)return;docked=on;top.classList.toggle('dock',on);}
 
 /* ════════ ENERJİ: glitch yalnızca gerçekten hızlı kaydırmada ════════ */
-// Kaydırma her cihazda en fazla 1000 px/sn. Glitch yalnızca masaüstünde, tavana dayanınca (~960'tan itibaren en az 0,1 sn, ~1000'de tam güç); dokunmatikte kapalı.
-const GL0=960,GLR=38;
-const crt=$('#crt'),roll=$('#crtRoll'),nz=$('#crtNoise');let rollY=0,lastE=-1,fastT=0;
+// Kaydırma her cihazda en fazla 1000 px/sn. Glitch yalnızca masaüstünde: tekerlek tavandan hızlı (istenen hız > 1150 px/sn) 0,8 sn kesintisiz
+// zorlanırsa başlar, 0,4 sn'de tam güce çıkar; zorlama bitince 0,6 sn'de söner. Başlayınca üstte "YAVAŞLAYIN" ikazı çıkar. Dokunmatikte kapalı.
+const slowW=$('#slowW');let slowOn=false;
+const crt=$('#crt'),roll=$('#crtRoll'),nz=$('#crtNoise');let rollY=0,lastE=-1,forceT=0;
 gsap.ticker.add((time,dt)=>{
-  const dr=gsap.ticker.deltaRatio(60)||1,pxs=Math.abs(vel())*60/dr;
-  if(pxs>GL0)fastT+=dt/1000;else fastT=Math.max(0,fastT-dt/500);
-  const tg=(!TOUCH&&fastT>.1)?clamp(0,1,(pxs-GL0)/GLR):0; // dokunmatikte glitch yok (deneme)
-  FD.E=FD.off?0:(tg>FD.E?FD.E+(tg-FD.E)*.3:FD.E*.985);if(FD.E<.004)FD.E=0;
+  const now=performance.now();while(wHist.length&&now-wHist[0][0]>300)wHist.shift();
+  const req=wHist.reduce((a,x)=>a+x[1],0)/.3,zor=!TOUCH&&now-wLast<150&&req>VMAX*1.15;
+  forceT=zor?forceT+dt/1000:Math.max(0,forceT-dt/500);
+  const tg=forceT>.8?clamp(0,1,(forceT-.8)/.4):0;
+  FD.E=FD.off?0:(tg>FD.E?FD.E+(tg-FD.E)*.3:Math.max(0,FD.E-dt/600));if(FD.E<.004)FD.E=0;
+  if(slowW){const want2=slowOn?FD.E>.02:FD.E>.08;if(want2!==slowOn){slowOn=want2;slowW.classList.toggle('on',slowOn);}
+    if(slowOn)slowW.style.translate=`${((Math.random()-.5)*FD.E*7).toFixed(1)}px ${((Math.random()-.5)*FD.E*4).toFixed(1)}px`;}
   const e=FD.E*FD.E*(3-2*FD.E);
   if(Math.abs(e-lastE)>.004){R.style.setProperty('--e',e.toFixed(3));crt.style.opacity=Math.min(1,e*1.2).toFixed(3);crt.style.visibility=e>.004?'visible':'hidden';lastE=e;}
   if(e>.01){rollY=(rollY+4+e*52)%(VH*1.4);roll.style.transform=`translate3d(0,${(rollY-VH*.2)|0}px,0)`;nz.style.transform=`translate3d(${(Math.random()*60-30)|0}px,${(Math.random()*60-30)|0}px,0)`;}
